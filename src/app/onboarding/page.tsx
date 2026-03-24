@@ -1,221 +1,194 @@
 "use client";
 
-import { useState } from "react";
-import { useMutation } from "convex/react";
+import { useEffect, useRef, useState } from "react";
+import { useAction } from "convex/react";
 import { useConvexAuth } from "convex/react";
 import { useRouter } from "next/navigation";
 import { api } from "../../../convex/_generated/api";
-import { saveProfile, type UserProfile } from "../../lib/personalScore";
 
-const MOTIVATIONS = [
-  "Manage my health conditions",
-  "Eat cleaner for my family",
-  "Avoid specific ingredients",
-  "General curiosity",
-  "Pregnancy / trying to conceive",
+const QUESTIONS = [
+  "Hey! What brings you to CleanList? Are you managing a health condition, avoiding certain ingredients, or something else?",
+  "Got it. Do you have any diagnosed conditions I should know about — things like IBS, thyroid issues, ADHD, eczema, or anything similar? No worries if not.",
+  "Last one — any sensitivities or things you personally react to? Migraines, gluten, food dyes, preservatives, anything like that?",
 ];
 
-const CONDITIONS = [
-  "ADHD",
-  "IBS / Gut sensitivity",
-  "Thyroid condition",
-  "Eczema / skin",
-  "Hormone-sensitive condition",
-  "Cancer history",
-  "Pregnancy",
-  "None",
-];
-
-const SENSITIVITIES = [
-  "Migraines",
-  "Food allergies",
-  "Gluten sensitivity",
-  "Gut sensitivity",
-  "Artificial dyes",
-  "Preservatives",
-  "None",
-];
-
-function MultiSelect({
-  options,
-  selected,
-  onChange,
-}: {
-  options: string[];
-  selected: string[];
-  onChange: (val: string[]) => void;
-}) {
-  function toggle(opt: string) {
-    if (opt === "None") {
-      onChange(["None"]);
-      return;
-    }
-    const without = selected.filter((s) => s !== "None");
-    if (without.includes(opt)) {
-      onChange(without.filter((s) => s !== opt));
-    } else {
-      onChange([...without, opt]);
-    }
-  }
-
-  return (
-    <div className="flex flex-wrap gap-2">
-      {options.map((opt) => {
-        const active = selected.includes(opt);
-        return (
-          <button
-            key={opt}
-            type="button"
-            onClick={() => toggle(opt)}
-            className={active ? "pill" : "pill-neutral"}
-          >
-            {opt}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
+type Message = {
+  role: "bot" | "user";
+  text: string;
+};
 
 export default function OnboardingPage() {
   const router = useRouter();
   const { isAuthenticated, isLoading: authLoading } = useConvexAuth();
-  const [step, setStep] = useState(0);
-  const [motivation, setMotivation] = useState<string[]>([]);
-  const [conditions, setConditions] = useState<string[]>([]);
-  const [sensitivities, setSensitivities] = useState<string[]>([]);
+  const parseAndSaveProfile = useAction(api.onboarding.parseAndSaveProfile);
+
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState<string[]>([]);
+  const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [done, setDone] = useState(false);
 
-  const steps = [
-    {
-      eyebrow: "Step 1 of 3",
-      title: "What brings you to CleanList?",
-      subtitle: "Select everything that applies.",
-      content: (
-        <MultiSelect
-          options={MOTIVATIONS}
-          selected={motivation}
-          onChange={setMotivation}
-        />
-      ),
-    },
-    {
-      eyebrow: "Step 2 of 3",
-      title: "Any diagnosed conditions?",
-      subtitle:
-        "We'll surface ingredient flags specific to these conditions.",
-      content: (
-        <MultiSelect
-          options={CONDITIONS}
-          selected={conditions}
-          onChange={setConditions}
-        />
-      ),
-    },
-    {
-      eyebrow: "Step 3 of 3",
-      title: "Any sensitivities?",
-      subtitle: "Self-reported is fine — we apply appropriate weighting.",
-      content: (
-        <MultiSelect
-          options={SENSITIVITIES}
-          selected={sensitivities}
-          onChange={setSensitivities}
-        />
-      ),
-    },
-  ];
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const createOrUpdateProfile = useMutation(
-    api.userProfiles.createOrUpdateProfile
-  );
+  // Show the first question on mount (after auth resolves)
+  useEffect(() => {
+    if (!authLoading && isAuthenticated && messages.length === 0) {
+      setMessages([{ role: "bot", text: QUESTIONS[0] }]);
+    }
+  }, [authLoading, isAuthenticated, messages.length]);
 
-  async function handleNext() {
-    if (step < steps.length - 1) {
-      setStep(step + 1);
+  // Scroll to bottom whenever messages change
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Focus input after bot message appears
+  useEffect(() => {
+    if (!submitting && !done) {
+      inputRef.current?.focus();
+    }
+  }, [messages, submitting, done]);
+
+  async function handleSend() {
+    const text = input.trim();
+    if (!text || submitting || done) return;
+
+    const newAnswers = [...answers, text];
+    const newMessages: Message[] = [...messages, { role: "user", text }];
+    setInput("");
+    setAnswers(newAnswers);
+    setMessages(newMessages);
+
+    const nextIndex = questionIndex + 1;
+
+    if (nextIndex < QUESTIONS.length) {
+      // Small delay so the bot reply feels natural
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          { role: "bot", text: QUESTIONS[nextIndex] },
+        ]);
+        setQuestionIndex(nextIndex);
+      }, 400);
     } else {
-      const profile: UserProfile = {
-        motivation,
-        conditions: conditions.filter((c) => c !== "None"),
-        sensitivities: sensitivities.filter((s) => s !== "None"),
-      };
-      // Save to localStorage (fast hydration cache) and Convex (source of truth)
-      saveProfile(profile);
+      // All questions answered — parse and save
+      setDone(true);
+      setSubmitting(true);
       setSubmitError(null);
+
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "bot",
+            text: "Perfect, building your profile now...",
+          },
+        ]);
+      }, 400);
+
       try {
-        await createOrUpdateProfile({
-          motivation: profile.motivation.join(", "),
-          conditions: profile.conditions,
-          sensitivities: profile.sensitivities,
-        });
+        await parseAndSaveProfile({ answers: newAnswers });
         router.push("/app");
       } catch {
         setSubmitError("Something went wrong saving your profile. Please try again.");
+        setDone(false);
+        setSubmitting(false);
       }
     }
   }
 
-  const current = steps[step];
-  const canProceed = (step === 0 ? motivation.length > 0 : true) && !authLoading && isAuthenticated;
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  }
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-[var(--surface)] flex items-center justify-center">
+        <p className="text-sm text-[var(--ink-3)]">Loading…</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[var(--surface)] flex flex-col items-center justify-center px-4">
-      <div className="w-full max-w-lg">
-        {/* Progress dots */}
-        <div className="flex gap-1.5 mb-8 justify-center">
-          {steps.map((_, i) => (
-            <div
-              key={i}
-              className={`h-1.5 rounded-full transition-all ${
-                i <= step
-                  ? "w-8 bg-[var(--teal)]"
-                  : "w-4 bg-[var(--surface-3)]"
-              }`}
-            />
-          ))}
-        </div>
-
-        <div className="bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-8">
-          <p className="section-eyebrow mb-2">{current.eyebrow}</p>
+      <div className="w-full max-w-lg flex flex-col" style={{ height: "min(600px, 90vh)" }}>
+        {/* Header */}
+        <div className="mb-4 text-center">
+          <p className="section-eyebrow">CleanList</p>
           <h1
-            className="text-2xl text-[var(--ink)] mb-1"
+            className="text-xl text-[var(--ink)]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            {current.title}
+            Let&apos;s personalise your experience
           </h1>
-          <p className="text-sm text-[var(--ink-3)] mb-6">{current.subtitle}</p>
-
-          {current.content}
-
-          {submitError && (
-            <p className="text-sm text-red-600 mt-6">{submitError}</p>
-          )}
-
-          <div className="flex justify-between items-center mt-8">
-            {step > 0 ? (
-              <button
-                onClick={() => setStep(step - 1)}
-                className="text-sm text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors"
-              >
-                ← Back
-              </button>
-            ) : (
-              <span />
-            )}
-            <button
-              onClick={handleNext}
-              disabled={!canProceed}
-              className="bg-[var(--teal)] text-white font-medium text-sm px-6 py-2.5 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-50"
-            >
-              {step < steps.length - 1 ? "Continue →" : "Start Scoring"}
-            </button>
-          </div>
         </div>
 
-        {/* MVP disclosure */}
-        <p className="text-xs text-[var(--ink-4)] text-center mt-4 max-w-sm mx-auto">
-          Scores are AI-generated using peer-reviewed evidence and regulatory
-          data. Independent expert review coming soon.
+        {/* Chat messages */}
+        <div className="flex-1 overflow-y-auto bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-4 flex flex-col gap-3">
+          {messages.map((msg, i) => (
+            <div
+              key={i}
+              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+            >
+              <div
+                className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                  msg.role === "user"
+                    ? "bg-[var(--teal)] text-white rounded-br-sm"
+                    : "bg-[var(--surface-2)] text-[var(--ink)] rounded-bl-sm"
+                }`}
+              >
+                {msg.text}
+              </div>
+            </div>
+          ))}
+          {submitting && !submitError && (
+            <div className="flex justify-start">
+              <div className="bg-[var(--surface-2)] rounded-2xl rounded-bl-sm px-4 py-2.5">
+                <span className="inline-flex gap-1 items-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-3)] animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-3)] animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-3)] animate-bounce" style={{ animationDelay: "300ms" }} />
+                </span>
+              </div>
+            </div>
+          )}
+          <div ref={bottomRef} />
+        </div>
+
+        {/* Error */}
+        {submitError && (
+          <p className="text-xs text-red-600 mt-2 text-center">{submitError}</p>
+        )}
+
+        {/* Input */}
+        <div className="mt-3 flex gap-2">
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Type your answer…"
+            disabled={submitting || done}
+            className="flex-1 text-sm border border-[var(--border)] rounded-[var(--radius)] px-4 py-2.5 bg-white text-[var(--ink)] placeholder:text-[var(--ink-4)] focus:outline-none focus:ring-2 focus:ring-[var(--teal)] disabled:opacity-50"
+          />
+          <button
+            onClick={handleSend}
+            disabled={!input.trim() || submitting || done}
+            className="bg-[var(--teal)] text-white font-medium text-sm px-5 py-2.5 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-50"
+          >
+            Send
+          </button>
+        </div>
+
+        <p className="text-xs text-[var(--ink-4)] text-center mt-3">
+          Scores are AI-generated using peer-reviewed evidence and regulatory data.
         </p>
       </div>
     </div>
