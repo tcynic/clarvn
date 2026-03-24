@@ -34,6 +34,7 @@ export default function AdminProductsPage() {
   const [assemblyFilter, setAssemblyFilter] = useState<AssemblyStatus | null>(null);
   const [selected, setSelected] = useState<Doc<"products"> | null>(null);
   const [refreshStatus, setRefreshStatus] = useState<string | null>(null);
+  const [reassembleStatus, setReassembleStatus] = useState<string | null>(null);
 
   const products = useQuery(api.products.listProducts, { status: "scored" });
   const productCount = useQuery(api.products.countProducts, { status: "scored" });
@@ -43,6 +44,7 @@ export default function AdminProductsPage() {
   );
 
   const refreshCheck = useAction(api.scoring.refreshCheck);
+  const reassembleStuck = useAction(api.scoring.reassembleStuckProducts);
 
   const filtered = (products ?? []).filter((p) => {
     const matchesSearch =
@@ -54,6 +56,16 @@ export default function AdminProductsPage() {
     if (tierFilter && !p.tier) return false;
     return matchesSearch && matchesTier && matchesAssembly;
   });
+
+  async function handleReassemble() {
+    setReassembleStatus("Reassembling…");
+    try {
+      const result = await reassembleStuck({});
+      setReassembleStatus(`Done — ${result.reassembled} product(s) reassembled.`);
+    } catch {
+      setReassembleStatus("Reassembly failed.");
+    }
+  }
 
   async function handleRefreshCheck() {
     setRefreshStatus("Running refresh check…");
@@ -85,6 +97,15 @@ export default function AdminProductsPage() {
           </div>
         </div>
         <div className="flex items-center gap-3">
+          {reassembleStatus && (
+            <span className="text-xs text-[var(--ink-3)]">{reassembleStatus}</span>
+          )}
+          <button
+            onClick={handleReassemble}
+            className="text-sm bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
+          >
+            Reassemble Stuck
+          </button>
           {refreshStatus && (
             <span className="text-xs text-[var(--ink-3)]">{refreshStatus}</span>
           )}

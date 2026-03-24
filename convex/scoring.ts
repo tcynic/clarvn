@@ -348,6 +348,36 @@ export const refreshCheck = action({
   },
 });
 
+/**
+ * Admin action: re-run assembleProductScore for every product stuck in
+ * "pending_ingredients" or "partial" assembly state. Safe to call multiple
+ * times — assembleProductScore is idempotent and recalculates from current
+ * ingredient state.
+ */
+export const reassembleStuckProducts = action({
+  args: {},
+  handler: async (ctx): Promise<{ reassembled: number }> => {
+    await requireAdmin(ctx);
+
+    const pending = await ctx.runQuery(
+      internal.products.listByAssemblyStatus,
+      { assemblyStatus: "pending_ingredients" }
+    );
+    const partial = await ctx.runQuery(
+      internal.products.listByAssemblyStatus,
+      { assemblyStatus: "partial" }
+    );
+
+    const all = [...pending, ...partial];
+    for (const product of all) {
+      await ctx.runMutation(internal.assembly.assembleProductScore, {
+        productId: product._id,
+      });
+    }
+    return { reassembled: all.length };
+  },
+});
+
 // Internal action: batched refresh check via scheduler
 export const refreshCheckBatch = internalAction({
   args: { cursor: v.union(v.string(), v.null()) },

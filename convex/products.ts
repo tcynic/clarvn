@@ -113,6 +113,25 @@ export const applyRefresh = internalMutation({
   },
 });
 
+// Internal query: list all products by assembly status (for stuck-product repair).
+export const listByAssemblyStatus = internalQuery({
+  args: {
+    assemblyStatus: v.union(
+      v.literal("complete"),
+      v.literal("partial"),
+      v.literal("pending_ingredients")
+    ),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("products")
+      .withIndex("by_assemblyStatus", (q) =>
+        q.eq("assemblyStatus", args.assemblyStatus)
+      )
+      .collect();
+  },
+});
+
 // Internal query: paginate over scored products for refresh check batching.
 export const listScoredPage = internalQuery({
   args: { cursor: v.union(v.string(), v.null()) },
