@@ -138,13 +138,14 @@ export const getQueueEntry = internalQuery({
 });
 
 // Internal query: get the next batch of pending queue entries for server-side batch processing.
+// Sorted by requestCount descending (most-requested items first).
 export const getPendingBatch = internalQuery({
   args: { limit: v.optional(v.number()) },
   handler: async (ctx, args) => {
     return await ctx.db
       .query("scoring_queue")
-      .withIndex("by_status_and_priority", (q) => q.eq("status", "pending"))
-      .order("asc")
+      .withIndex("by_status_and_requestCount", (q) => q.eq("status", "pending"))
+      .order("desc")
       .take(args.limit ?? 20);
   },
 });
@@ -169,6 +170,39 @@ export const getAlternativesForProduct = query({
     );
 
     return products.filter(Boolean);
+  },
+});
+
+// Internal query: get the singleton batch state document.
+export const getBatchState = internalQuery({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("batch_state").first();
+  },
+});
+
+// Internal mutation: upsert the singleton batch state.
+export const setBatchState = internalMutation({
+  args: {
+    isRunning: v.boolean(),
+    shouldStop: v.boolean(),
+  },
+  handler: async (ctx, args) => {
+    const existing = await ctx.db.query("batch_state").first();
+    if (existing) {
+      await ctx.db.patch(existing._id, args);
+    } else {
+      await ctx.db.insert("batch_state", args);
+    }
+  },
+});
+
+// Public query: get batch state for UI (admin-only).
+export const getBatchStateForUI = query({
+  args: {},
+  handler: async (ctx) => {
+    await requireAdmin(ctx);
+    return await ctx.db.query("batch_state").first();
   },
 });
 

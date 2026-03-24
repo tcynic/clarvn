@@ -194,7 +194,14 @@ export const processQueueBatch = internalAction({
       limit: 10,
     });
 
-    if (entries.length === 0) return;
+    if (entries.length === 0) {
+      // No more work — mark batch as stopped
+      await ctx.runMutation(internal.scoringQueue.setBatchState, {
+        isRunning: false,
+        shouldStop: false,
+      });
+      return;
+    }
 
     for (const entry of entries) {
       try {
@@ -206,10 +213,26 @@ export const processQueueBatch = internalAction({
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
 
-    // Check if more pending entries remain and schedule next batch
+    // Check shouldStop flag and remaining pending entries
+    const batchState = await ctx.runQuery(internal.scoringQueue.getBatchState, {});
+    if (batchState?.shouldStop) {
+      // Stop requested — mark as stopped
+      await ctx.runMutation(internal.scoringQueue.setBatchState, {
+        isRunning: false,
+        shouldStop: false,
+      });
+      return;
+    }
+
     const remaining = await ctx.runQuery(internal.scoringQueue.getPendingBatch, { limit: 1 });
     if (remaining.length > 0) {
       await ctx.scheduler.runAfter(1000, internal.scoring.processQueueBatch, {});
+    } else {
+      // No more pending — mark as stopped
+      await ctx.runMutation(internal.scoringQueue.setBatchState, {
+        isRunning: false,
+        shouldStop: false,
+      });
     }
   },
 });
@@ -219,8 +242,37 @@ export const processAllPending = action({
   args: {},
   handler: async (ctx, _args): Promise<{ started: boolean }> => {
     await requireAdmin(ctx);
+    
+    // Guard against double-start
+    const batchState = await ctx.runQuery(internal.scoringQueue.getBatchState, {});
+    if (batchState?.isRunning) {
+      return { started: false };
+    }
+    
+    // Mark as running and start batch
+    await ctx.runMutation(internal.scoringQueue.setBatchState, {
+      isRunning: true,
+      shouldStop: false,
+    });
     await ctx.scheduler.runAfter(0, internal.scoring.processQueueBatch, {});
     return { started: true };
+  },
+});
+
+// Public: request batch processing to stop (admin-only).
+export const cancelBatch = action({
+  args: {},
+  handler: async (ctx, _args): Promise<{ cancelled: boolean }> => {
+    await requireAdmin(ctx);
+    const batchState = await ctx.runQuery(internal.scoringQueue.getBatchState, {});
+    if (!batchState?.isRunning) {
+      return { cancelled: false };
+    }
+    await ctx.runMutation(internal.scoringQueue.setBatchState, {
+      isRunning: batchState.isRunning,
+      shouldStop: true,
+    });
+    return { cancelled: true };
   },
 });
 

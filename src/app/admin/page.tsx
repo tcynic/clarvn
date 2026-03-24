@@ -32,11 +32,12 @@ export default function AdminQueuePage() {
     status: statusFilter,
     paginationOpts: { numItems: 20, cursor: null },
   });
+  const batchState = useQuery(api.scoringQueue.getBatchStateForUI);
 
   const addToQueue = useMutation(api.scoringQueue.addToQueue);
   const scoreProduct = useAction(api.scoring.scoreProduct);
   const processAllPending = useAction(api.scoring.processAllPending);
-  const [batchAllStatus, setBatchAllStatus] = useState<string | null>(null);
+  const cancelBatch = useAction(api.scoring.cancelBatch);
 
   async function handleAddToQueue(e: React.FormEvent) {
     e.preventDefault();
@@ -70,12 +71,22 @@ export default function AdminQueuePage() {
   }
 
   async function handleProcessAllPending() {
-    setBatchAllStatus("Starting…");
     try {
-      await processAllPending({});
-      setBatchAllStatus("Batch queued — processing in background. Refresh queue to monitor progress.");
+      const result = await processAllPending({});
+      if (!result.started) {
+        // Batch already running
+        return;
+      }
     } catch (err) {
-      setBatchAllStatus("Failed to start batch.");
+      console.error(err);
+    }
+  }
+
+  async function handleCancelBatch() {
+    try {
+      await cancelBatch({});
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -109,15 +120,24 @@ export default function AdminQueuePage() {
 
         {/* Batch controls */}
         <div className="flex items-center gap-3 flex-wrap">
-          {batchAllStatus && (
-            <span className="text-xs text-[var(--ink-3)] max-w-xs">{batchAllStatus}</span>
+          {batchState?.isRunning && (
+            <span className="text-xs text-[var(--ink-3)] font-medium">Batch running…</span>
           )}
           <button
             onClick={handleProcessAllPending}
-            className="bg-[var(--ink)] text-white text-sm font-medium px-3 py-1.5 rounded-[var(--radius)] hover:opacity-80 transition-opacity"
+            disabled={batchState?.isRunning}
+            className="bg-[var(--ink)] text-white text-sm font-medium px-3 py-1.5 rounded-[var(--radius)] hover:opacity-80 transition-opacity disabled:opacity-50"
           >
             Process All Pending
           </button>
+          {batchState?.isRunning && (
+            <button
+              onClick={handleCancelBatch}
+              className="bg-red-600 text-white text-sm font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-red-700 transition-colors"
+            >
+              Stop Batch
+            </button>
+          )}
           {/* Score Next N */}
           <div className="flex items-center gap-2">
           <input

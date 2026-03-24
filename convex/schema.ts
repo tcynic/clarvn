@@ -39,8 +39,13 @@ export default defineSchema({
     errorMessage: v.optional(v.string()),
   })
     .index("by_status_and_priority", ["status", "priority"])
+    .index("by_status_and_requestCount", ["status", "requestCount"])
     .index("by_productName", ["productName"])
     .index("by_sourceProductId_and_status", ["sourceProductId", "status"]),
+  batch_state: defineTable({
+    isRunning: v.boolean(),
+    shouldStop: v.boolean(),
+  }),
 
   products: defineTable({
     name: v.string(),
