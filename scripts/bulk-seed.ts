@@ -55,12 +55,21 @@ if (!CONVEX_URL) {
 // --- CLI args ---
 const args = process.argv.slice(2);
 const isDryRun = args.includes("--dry-run");
+const isProd = args.includes("--prod");
 const limitArg = args.find((a) => a.startsWith("--limit="));
 const limit = limitArg ? parseInt(limitArg.split("=")[1]) : undefined;
 
+const ACTIVE_URL = isProd
+  ? (process.env.PROD_CONVEX_URL ?? CONVEX_URL)
+  : CONVEX_URL;
+
+if (isProd && !process.env.PROD_CONVEX_URL) {
+  console.warn("⚠ --prod flag set but PROD_CONVEX_URL not found in .env.local, falling back to NEXT_PUBLIC_CONVEX_URL");
+}
+
 // --- Clients ---
 const anthropic = new Anthropic({ apiKey: ANTHROPIC_API_KEY });
-const convex = new ConvexHttpClient(CONVEX_URL);
+const convex = new ConvexHttpClient(ACTIVE_URL!);
 
 // --- Progress log ---
 const LOG_FILE = path.resolve(__dirname, "seed-run.log");
@@ -236,10 +245,10 @@ async function main() {
   const products = limit ? allProducts.slice(0, limit) : allProducts;
 
   console.log(
-    `\n🌱 CleanList Bulk Seed${isDryRun ? " [DRY RUN]" : ""}`
+    `\n🌱 CleanList Bulk Seed${isDryRun ? " [DRY RUN]" : ""}${isProd ? " [PROD]" : " [DEV]"}`
   );
   console.log(`   Products to process: ${products.length}`);
-  console.log(`   Convex URL: ${CONVEX_URL}`);
+  console.log(`   Convex URL: ${ACTIVE_URL}`);
   console.log(`   Log file: ${LOG_FILE}\n`);
 
   let scored = 0;
