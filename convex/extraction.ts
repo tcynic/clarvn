@@ -11,7 +11,7 @@
 
 import { v } from "convex/values";
 import { action, internalAction } from "./_generated/server";
-import { internal } from "./_generated/api";
+import { internal, api } from "./_generated/api";
 import Anthropic from "@anthropic-ai/sdk";
 
 /**
@@ -161,11 +161,21 @@ export const processExtraction = internalAction({
     );
 
     // Step 2: Process the result via mutation
-    await ctx.runMutation(internal.extractionMutations.processExtractionResult, {
-      productId: args.productId,
-      ingredientNames: result.ingredientNames,
-      source: result.source,
-    });
+    const extractionResult: { pendingCount: number; totalIngredients: number } =
+      await ctx.runMutation(internal.extractionMutations.processExtractionResult, {
+        productId: args.productId,
+        ingredientNames: result.ingredientNames,
+        source: result.source,
+      });
+
+    // Step 3: If new ingredients were queued, auto-trigger scoring
+    if (extractionResult.pendingCount > 0) {
+      await ctx.scheduler.runAfter(
+        0,
+        internal.ingredientScoring.processIngredientQueueBatch,
+        {}
+      );
+    }
 
     return result;
   },
