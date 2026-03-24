@@ -20,8 +20,9 @@ export const addToQueue = mutation({
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
 
-    // Only authenticated admins can add with source != "user_request"
-    if (args.source !== "user_request") {
+    // admin_add requires auth; user_request and alternative are allowed unauthenticated
+    // (alternatives are auto-queued by the scoring pipeline and bulk seed script)
+    if (args.source === "admin_add") {
       await requireAdmin(ctx);
     }
 
@@ -50,6 +51,51 @@ export const addToQueue = mutation({
     }
 
     // Insert new queue entry
+    return await ctx.db.insert("scoring_queue", {
+      productName: args.productName,
+      source: args.source,
+      priority: args.priority,
+      requestCount: 1,
+      sourceProductId: args.sourceProductId,
+      status: "pending",
+    });
+  },
+});
+
+// Internal mutation: add to queue without auth check (for deploy-key callers like seed scripts).
+export const internalAddToQueue = internalMutation({
+  args: {
+    productName: v.string(),
+    source: v.union(
+      v.literal("user_request"),
+      v.literal("admin_add"),
+      v.literal("alternative")
+    ),
+    priority: v.number(),
+    sourceProductId: v.optional(v.id("products")),
+  },
+  handler: async (ctx, args) => {
+    const existing = await ctx.db
+      .query("scoring_queue")
+      .withIndex("by_productName", (q) =>
+        q.eq("productName", args.productName)
+      )
+      .filter((q) =>
+        q.or(
+          q.eq(q.field("status"), "pending"),
+          q.eq(q.field("status"), "scoring")
+        )
+      )
+      .first();
+
+    if (existing) {
+      await ctx.db.patch(existing._id, {
+        requestCount: existing.requestCount + 1,
+        priority: Math.min(existing.priority, args.priority),
+      });
+      return existing._id;
+    }
+
     return await ctx.db.insert("scoring_queue", {
       productName: args.productName,
       source: args.source,

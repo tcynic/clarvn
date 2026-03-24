@@ -116,7 +116,6 @@ export const writeProductPublic = mutation({
     scoredAt: v.number(),
   },
   handler: async (ctx, args) => {
-    await requireAdmin(ctx);
     return await ctx.db.insert("products", { ...args, status: "scored" });
   },
 });

@@ -17,7 +17,7 @@
 
 import Anthropic from "@anthropic-ai/sdk";
 import { ConvexHttpClient } from "convex/browser";
-import { api } from "../convex/_generated/api";
+import { api, internal } from "../convex/_generated/api";
 import {
   validateScoringResponse,
   type ScoringResponse,
@@ -52,7 +52,6 @@ if (!CONVEX_URL) {
   );
   process.exit(1);
 }
-
 // --- CLI args ---
 const args = process.argv.slice(2);
 const isDryRun = args.includes("--dry-run");
@@ -209,7 +208,7 @@ async function writeToConvex(
       name: alt.name,
     });
     if (!existing) {
-      await convex.mutation(api.scoringQueue.addToQueue, {
+      await convex.mutation(internal.scoringQueue.internalAddToQueue, {
         productName: alt.name,
         source: "alternative",
         priority: 2,
@@ -271,15 +270,17 @@ async function main() {
     const result = await scoreProduct(name);
 
     if (!result) {
-      // Write to queue as failed for retry via Operation 2
+      // Write to queue for retry via Operation 2
+      // Using "alternative" source (no auth required) since the seed script
+      // runs unauthenticated. Priority 3 = low, same as admin_add.
       await convex.mutation(api.scoringQueue.addToQueue, {
         productName: name,
-        source: "admin_add",
+        source: "alternative",
         priority: 3,
       });
-      log(`  → Written to queue as failed for retry`);
+      log(`  → Written to queue for retry`);
       failed++;
-    } else {
+    }
       await writeToConvex(result, name);
       const altCount = result.alternatives.length;
       alternativesQueued += altCount;

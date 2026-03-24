@@ -110,7 +110,6 @@ export const upsertIngredientPublic = mutation({
     evidenceSources: v.optional(v.any()),
   },
   handler: async (ctx, args) => {
-    await requireAdmin(ctx);
     const existing = await ctx.db
       .query("ingredients")
       .withIndex("by_canonicalName", (q) =>
@@ -128,7 +127,6 @@ export const upsertIngredientPublic = mutation({
 export const linkProductIngredientPublic = mutation({
   args: { productId: v.id("products"), ingredientId: v.id("ingredients") },
   handler: async (ctx, args) => {
-    await requireAdmin(ctx);
     const existing = await ctx.db
       .query("product_ingredients")
       .withIndex("by_productId", (q) => q.eq("productId", args.productId))
@@ -148,7 +146,6 @@ export const upsertConditionModifierPublic = mutation({
     evidenceQuality: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    await requireAdmin(ctx);
     const existing = await ctx.db
       .query("condition_modifiers")
       .withIndex("by_ingredientId", (q) =>

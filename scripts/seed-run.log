@@ -1,0 +1,47 @@
+[2026-03-24T03:38:10.342Z] [1/10] Scoring: Froot Loops (Kellogg's)
+[2026-03-24T03:38:10.574Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:38:10.666Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMD2CMfxJDoHVZ3LfPny"}
+[2026-03-24T03:43:08.597Z] [1/10] Scoring: Froot Loops (Kellogg's)
+[2026-03-24T03:43:08.674Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:43:08.761Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDQArVo99HY42qns9ge"}
+[2026-03-24T03:46:13.245Z] [1/10] Scoring: Froot Loops (Kellogg's)
+[2026-03-24T03:46:13.343Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:13.400Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDdnNnZAVgAz1pvgSaW"}
+[2026-03-24T03:46:13.446Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:13.980Z] [2/10] Scoring: Lucky Charms (General Mills)
+[2026-03-24T03:46:14.026Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:14.081Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDdqJeKCaqP9aADXT16"}
+[2026-03-24T03:46:14.123Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:14.662Z] [3/10] Scoring: Honey Nut Cheerios (General Mills)
+[2026-03-24T03:46:14.715Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:14.779Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDdtF1X3PsvitTxMABV"}
+[2026-03-24T03:46:14.829Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:15.363Z] [4/10] Scoring: Cheerios Original (General Mills)
+[2026-03-24T03:46:15.407Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:15.461Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDdwAsVqKqBrYHbtZXi"}
+[2026-03-24T03:46:15.513Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:16.045Z] [5/10] Scoring: Cap'n Crunch (Quaker)
+[2026-03-24T03:46:16.103Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:16.154Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDdzACuw4pVCTsEEqoa"}
+[2026-03-24T03:46:16.205Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:16.751Z] [6/10] Scoring: Frosted Flakes (Kellogg's)
+[2026-03-24T03:46:16.807Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:16.851Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDe3AXtNeaypFXgEpAF"}
+[2026-03-24T03:46:16.902Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:17.437Z] [7/10] Scoring: Cocoa Puffs (General Mills)
+[2026-03-24T03:46:17.480Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:17.531Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDe63uvvXAbjM5HewNk"}
+[2026-03-24T03:46:17.585Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:18.123Z] [8/10] Scoring: Trix (General Mills)
+[2026-03-24T03:46:18.181Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:18.233Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDe94ExUPZ7Cri3TBA1"}
+[2026-03-24T03:46:18.287Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:18.830Z] [9/10] Scoring: Cinnamon Toast Crunch (General Mills)
+[2026-03-24T03:46:18.881Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:18.927Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDeC3L3PdykNuSubkfY"}
+[2026-03-24T03:46:18.981Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:19.520Z] [10/10] Scoring: Rice Krispies (Kellogg's)
+[2026-03-24T03:46:19.571Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T03:46:19.625Z]   ✗ Failed after 2 attempts: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CZMDeEzvdrSZBe7KpxJk5"}
+[2026-03-24T03:46:19.674Z]   → Written to queue as failed for retry
+[2026-03-24T03:46:20.176Z] SUMMARY scored=0 skipped=0 failed=10 alts=0
