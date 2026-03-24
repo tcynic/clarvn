@@ -289,7 +289,7 @@ function ProfilePanel({
   onChange: (p: UserProfile) => void;
   onClose: () => void;
   onSignOut: () => void;
-})
+}) {
   const CONDITIONS = ["ADHD","IBS / Gut sensitivity","Thyroid condition","Eczema / skin","Hormone-sensitive condition","Cancer history","Pregnancy"];
   const SENSITIVITIES = ["Migraines","Food allergies","Gluten sensitivity","Gut sensitivity","Artificial dyes","Preservatives"];
 
