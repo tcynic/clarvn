@@ -18,7 +18,10 @@ export const createOrUpdateProfile = mutation({
       throw new ConvexError("Not authenticated");
     }
 
-    const userId = identity.tokenIdentifier;
+    // @convex-dev/auth tokenIdentifier format: "<issuer>|<userId>|<sessionId>"
+    // Use the stable middle segment so the profile survives across sessions.
+    const parts = identity.tokenIdentifier.split("|");
+    const userId = parts.length >= 2 ? parts[1] : identity.tokenIdentifier;
 
     const existing = await ctx.db
       .query("user_profiles")
@@ -59,7 +62,9 @@ export const createOrUpdateProfileInternal = internalMutation({
       throw new ConvexError("Not authenticated");
     }
 
-    const userId = identity.tokenIdentifier;
+    // @convex-dev/auth tokenIdentifier format: "<issuer>|<userId>|<sessionId>"
+    const parts = identity.tokenIdentifier.split("|");
+    const userId = parts.length >= 2 ? parts[1] : identity.tokenIdentifier;
 
     const existing = await ctx.db
       .query("user_profiles")
@@ -96,7 +101,9 @@ export const getMyProfile = query({
       return null;
     }
 
-    const userId = identity.tokenIdentifier;
+    // @convex-dev/auth tokenIdentifier format: "<issuer>|<userId>|<sessionId>"
+    const parts = identity.tokenIdentifier.split("|");
+    const userId = parts.length >= 2 ? parts[1] : identity.tokenIdentifier;
 
     return await ctx.db
       .query("user_profiles")
