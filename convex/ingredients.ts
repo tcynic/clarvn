@@ -221,3 +221,54 @@ export const getModifiersByIngredients = query({
     return allModifiers.flat();
   },
 });
+
+// Admin query: list all scored ingredients.
+export const listIngredients = query({
+  args: {},
+  handler: async (ctx) => {
+    await requireAdmin(ctx);
+    return await ctx.db
+      .query("ingredients")
+      .order("asc")
+      .take(500);
+  },
+});
+
+// Admin query: get ingredient detail with condition modifiers and linked products.
+export const getIngredientDetail = query({
+  args: { ingredientId: v.id("ingredients") },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx);
+    const ingredient = await ctx.db.get(args.ingredientId);
+    if (!ingredient) return null;
+
+    // Get condition modifiers
+    const modifiers = await ctx.db
+      .query("condition_modifiers")
+      .withIndex("by_ingredientId", (q) => q.eq("ingredientId", args.ingredientId))
+      .take(50);
+
+    // Get linked products via product_ingredients
+    // (no index on ingredientId, so we scan — acceptable for admin detail view)
+    const links = await ctx.db
+      .query("product_ingredients")
+      .take(2000);
+    const relevantLinks = links.filter((l) => l.ingredientId === args.ingredientId);
+
+    const products = await Promise.all(
+      relevantLinks.map((link) => ctx.db.get(link.productId))
+    );
+
+    return {
+      ...ingredient,
+      modifiers: modifiers.filter((m) => m.status === "active"),
+      linkedProducts: products.filter(Boolean).map((p) => ({
+        _id: p!._id,
+        name: p!.name,
+        brand: p!.brand,
+        tier: p!.tier,
+        baseScore: p!.baseScore,
+      })),
+    };
+  },
+});

@@ -6,15 +6,12 @@ import { useConvexAuth } from "convex/react";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useRouter } from "next/navigation";
 import { api } from "../../../convex/_generated/api";
-import { Doc } from "../../../convex/_generated/dataModel";
 import { TierBadge } from "../../components/TierBadge";
 import {
-  getPersonalScore,
   loadProfile,
   saveProfile,
   hasCompletedOnboarding,
   type UserProfile,
-  type ModifierData,
 } from "../../lib/personalScore";
 
 type Tier = "Clean" | "Watch" | "Caution" | "Avoid";
@@ -41,29 +38,25 @@ function ScorePill({ score, tier }: { score: number; tier: Tier }) {
   );
 }
 
+/**
+ * v3 ProductRow — uses getPersonalizedProduct for server-side personalization.
+ * Single reactive query replaces product + ingredients + modifiers.
+ */
 function ProductRow({
   item,
-  profile,
   isSelected,
   onSelect,
   onRequest,
 }: {
   item: ListItem;
-  profile: UserProfile;
   isSelected: boolean;
   onSelect: () => void;
   onRequest: () => void;
 }) {
   const product = useQuery(api.products.getProduct, { name: item.name });
-  const ingredientLinks = useQuery(
-    api.ingredients.getIngredientsByProduct,
+  const personalized = useQuery(
+    api.assembly.getPersonalizedProduct,
     product ? { productId: product._id } : "skip"
-  );
-  const modifiers = useQuery(
-    api.ingredients.getModifiersByIngredients,
-    ingredientLinks
-      ? { ingredientIds: (ingredientLinks as Doc<"ingredients">[]).map((i) => i._id) }
-      : "skip"
   );
 
   if (product === undefined) {
@@ -102,19 +95,11 @@ function ProductRow({
     );
   }
 
-  // v3: baseScore/tier may be null if product is pending ingredients
-  const baseScore = product.baseScore ?? 0;
-  const baseTier = (product.tier ?? "Clean") as Tier;
-  const isPending = product.baseScore == null;
-
-  const personal = modifiers && !isPending
-    ? getPersonalScore(baseScore, modifiers as ModifierData[], profile)
-    : null;
-  const displayScore = personal?.personalScore ?? baseScore;
-  const displayTier = personal?.personalTier ?? baseTier;
-  const hasModifiers = personal && personal.appliedModifiers.length > 0;
-
-  if (isPending) {
+  // Pending ingredients — no score yet
+  if (
+    personalized?.assemblyStatus === "pending_ingredients" &&
+    personalized.baseScore === 0
+  ) {
     return (
       <div
         className={`flex items-center gap-3 px-4 py-3 rounded-[var(--radius-lg)] border transition-colors ${
@@ -129,12 +114,21 @@ function ProductRow({
             {product.emoji} {product.name}
           </p>
           <p className="text-xs text-[var(--ink-3)]">
-            Scoring in progress{product.pendingIngredientCount != null ? ` — ${product.pendingIngredientCount} ingredients pending` : ""}
+            Scoring in progress
+            {personalized.pendingCount > 0
+              ? ` — ${personalized.pendingCount} ingredients pending`
+              : ""}
           </p>
         </div>
       </div>
     );
   }
+
+  const displayScore = personalized?.personalScore ?? personalized?.baseScore ?? product.baseScore ?? 0;
+  const displayTier = (personalized?.personalTier ?? personalized?.tier ?? product.tier ?? "Clean") as Tier;
+  const baseScore = personalized?.baseScore ?? product.baseScore ?? 0;
+  const hasModifiers = personalized && personalized.modifiers.length > 0;
+  const isPartial = personalized?.assemblyStatus === "partial";
 
   return (
     <button
@@ -150,11 +144,14 @@ function ProductRow({
             {product.emoji} {product.name}
           </p>
           <TierBadge tier={displayTier} />
+          {isPartial && (
+            <span className="text-xs text-[var(--ink-4)] italic">partial</span>
+          )}
         </div>
         <p className="text-xs text-[var(--ink-3)]">{product.brand}</p>
         {hasModifiers && (
           <div className="flex flex-wrap gap-1 mt-0.5">
-            {personal!.appliedModifiers.map((m, i) => (
+            {personalized!.modifiers.map((m, i) => (
               <span key={i} className="text-xs text-[var(--tier-caution)]">
                 +{m.modifierAmount} {m.condition}
               </span>
@@ -171,45 +168,34 @@ function ProductRow({
   );
 }
 
+/**
+ * v3 ProductDetail — uses getPersonalizedProduct for ingredient breakdown,
+ * worst ingredient highlighting, modifier detail, and pending states.
+ */
 function ProductDetail({
   name,
-  profile,
   onClose,
   onSwap,
 }: {
   name: string;
-  profile: UserProfile;
   onClose: () => void;
   onSwap: (newName: string) => void;
 }) {
   const product = useQuery(api.products.getProduct, { name });
-  const ingredientLinks = useQuery(
-    api.ingredients.getIngredientsByProduct,
+  const personalized = useQuery(
+    api.assembly.getPersonalizedProduct,
     product ? { productId: product._id } : "skip"
-  );
-  const modifiers = useQuery(
-    api.ingredients.getModifiersByIngredients,
-    ingredientLinks
-      ? { ingredientIds: (ingredientLinks as Doc<"ingredients">[]).map((i) => i._id) }
-      : "skip"
   );
   const alternatives = useQuery(
     api.scoringQueue.getAlternativesForProduct,
     product ? { productId: product._id } : "skip"
   );
 
-  if (!product) return null;
+  if (!product || !personalized) return null;
 
-  // v3: baseScore/tier may be null if product is pending ingredients
-  const baseScore = product.baseScore ?? 0;
-  const baseTier = (product.tier ?? "Clean") as Tier;
-  const isPending = product.baseScore == null;
-
-  const personal = modifiers && !isPending
-    ? getPersonalScore(baseScore, modifiers as ModifierData[], profile)
-    : null;
-  const displayScore = personal?.personalScore ?? baseScore;
-  const displayTier = personal?.personalTier ?? baseTier;
+  const displayScore = personalized.personalScore;
+  const displayTier = personalized.personalTier as Tier;
+  const baseScore = personalized.baseScore;
 
   return (
     <div className="bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-5 mt-3">
@@ -226,8 +212,8 @@ function ProductDetail({
       {/* Score display */}
       <div className="flex items-center gap-4 mb-5">
         <div className="flex flex-col items-center">
-          {personal && personal.personalScore !== personal.baseScore && (
-            <span className="text-xs line-through text-[var(--ink-4)]">{personal.baseScore.toFixed(1)}</span>
+          {personalized.personalScore !== personalized.baseScore && (
+            <span className="text-xs line-through text-[var(--ink-4)]">{baseScore.toFixed(1)}</span>
           )}
           <span
             className="text-4xl font-bold"
@@ -239,15 +225,18 @@ function ProductDetail({
         </div>
         <div className="text-xs text-[var(--ink-3)]">
           <p>v{product.scoreVersion}</p>
+          {personalized.assemblyStatus === "partial" && (
+            <p className="text-[var(--tier-watch)]">Partial score — {personalized.pendingCount} pending</p>
+          )}
           <p className="mt-0.5">AI-generated</p>
         </div>
       </div>
 
       {/* Profile modifiers */}
-      {personal && personal.appliedModifiers.length > 0 && (
+      {personalized.modifiers.length > 0 && (
         <div className="mb-4 p-3 bg-[var(--tier-caution-light)] rounded-[var(--radius)]">
           <p className="text-xs font-semibold text-[var(--tier-caution)] uppercase tracking-wide mb-1.5">Your Profile</p>
-          {personal.appliedModifiers.map((m, i) => (
+          {personalized.modifiers.map((m, i) => (
             <div key={i} className="text-xs text-[var(--tier-caution)] mb-0.5">
               +{m.modifierAmount} {m.condition} · {m.evidenceCitation.split(" ").slice(0, 5).join(" ")}…
             </div>
@@ -255,23 +244,36 @@ function ProductDetail({
         </div>
       )}
 
-      {/* Ingredients */}
-      {ingredientLinks && (
+      {/* Ingredients — sorted worst first, worst highlighted */}
+      {personalized.ingredients.length > 0 && (
         <div className="border-t border-[var(--border)] pt-4">
           <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Ingredients</p>
           <ul className="flex flex-col gap-1">
-            {(ingredientLinks as Doc<"ingredients">[])
-              .sort((a, b) => b.baseScore - a.baseScore)
-              .map((ing) => (
-                <li key={ing._id} className="flex items-center justify-between text-xs py-0.5">
-                  <span className="text-[var(--ink-2)]">
+            {personalized.ingredients.map((ing) => {
+              const isWorst = personalized.worstIngredientId === ing._id;
+              return (
+                <li key={ing._id} className={`flex items-center justify-between text-xs py-0.5 ${isWorst ? "font-semibold" : ""}`}>
+                  <span className={isWorst ? "text-[var(--tier-avoid)]" : "text-[var(--ink-2)]"}>
                     {ing.canonicalName}
-                    {ing.flagLabel && <span className="text-[var(--ink-4)] ml-1">· {ing.flagLabel}</span>}
+                    {isWorst && <span className="ml-1 text-[var(--tier-avoid)]">· Primary concern</span>}
+                    {ing.flagLabel && !isWorst && <span className="text-[var(--ink-4)] ml-1">· {ing.flagLabel}</span>}
                   </span>
                   <TierBadge tier={ing.tier as Tier} />
                 </li>
-              ))}
+              );
+            })}
           </ul>
+          {/* Pending ingredients */}
+          {personalized.pendingIngredients.length > 0 && (
+            <div className="mt-2">
+              {personalized.pendingIngredients.map((ing) => (
+                <div key={ing._id} className="flex items-center justify-between text-xs py-0.5 text-[var(--ink-4)]">
+                  <span className="italic">{ing.canonicalName}</span>
+                  <span className="text-xs">Pending</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -280,31 +282,31 @@ function ProductDetail({
         <div className="border-t border-[var(--border)] pt-4 mt-1">
           <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Alternatives</p>
           <ul className="flex flex-col gap-2">
-            {(alternatives as Doc<"products">[]).map((alt) => {
+            {(alternatives as any[]).map((alt) => {
               const altTier = (alt.tier ?? "Clean") as Tier;
               return (
-              <li key={alt._id} className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 min-w-0">
-                  <span
-                    className="text-sm font-bold shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white"
-                    style={{ background: `var(--tier-${altTier.toLowerCase()})`, fontFamily: "var(--font-serif)" }}
-                  >
-                    {alt.baseScore != null ? alt.baseScore.toFixed(1) : "—"}
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-xs font-medium text-[var(--ink)] truncate">
-                      {alt.emoji} {alt.name}
-                    </p>
-                    <TierBadge tier={altTier} />
+                <li key={alt._id} className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span
+                      className="text-sm font-bold shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white"
+                      style={{ background: `var(--tier-${altTier.toLowerCase()})`, fontFamily: "var(--font-serif)" }}
+                    >
+                      {alt.baseScore != null ? alt.baseScore.toFixed(1) : "—"}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-medium text-[var(--ink)] truncate">
+                        {alt.emoji} {alt.name}
+                      </p>
+                      <TierBadge tier={altTier} />
+                    </div>
                   </div>
-                </div>
-                <button
-                  onClick={() => onSwap(alt.name)}
-                  className="text-xs bg-[var(--teal-light)] text-[var(--teal-dark)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--teal-pale)] transition-colors shrink-0"
-                >
-                  Swap
-                </button>
-              </li>
+                  <button
+                    onClick={() => onSwap(alt.name)}
+                    className="text-xs bg-[var(--teal-light)] text-[var(--teal-dark)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--teal-pale)] transition-colors shrink-0"
+                  >
+                    Swap
+                  </button>
+                </li>
               );
             })}
           </ul>
@@ -328,6 +330,8 @@ function ProfilePanel({
   const CONDITIONS = ["ADHD","IBS / Gut sensitivity","Thyroid condition","Eczema / skin","Hormone-sensitive condition","Cancer history","Pregnancy"];
   const SENSITIVITIES = ["Migraines","Food allergies","Gluten sensitivity","Gut sensitivity","Artificial dyes","Preservatives"];
 
+  const updateProfile = useMutation(api.userProfiles.createOrUpdateProfile);
+
   function toggle(type: "conditions" | "sensitivities", val: string) {
     const next = profile[type].includes(val)
       ? profile[type].filter((v) => v !== val)
@@ -335,6 +339,12 @@ function ProfilePanel({
     const updated = { ...profile, [type]: next };
     onChange(updated);
     saveProfile(updated);
+    // Write to Convex (fire-and-forget) — triggers reactive recalculation
+    updateProfile({
+      motivation: updated.motivation.join(", "),
+      conditions: updated.conditions,
+      sensitivities: updated.sensitivities,
+    }).catch(() => {});
   }
 
   return (
@@ -387,17 +397,40 @@ export default function ShoppingListPage() {
     motivation: [], conditions: [], sensitivities: [],
   });
 
+  // Sync profile: hydrate from localStorage (fast), then override from Convex (source of truth)
+  const convexProfile = useQuery(
+    api.userProfiles.getMyProfile,
+    isAuthenticated ? {} : "skip"
+  );
+
   useEffect(() => {
     if (isLoading) return;
     if (!isAuthenticated) {
       router.push("/login");
       return;
     }
+    // Start with localStorage (instant)
     setProfile(loadProfile());
     if (!hasCompletedOnboarding()) {
       router.push("/onboarding");
     }
   }, [isAuthenticated, isLoading, router]);
+
+  // When Convex profile loads, sync it to local state and localStorage
+  useEffect(() => {
+    if (convexProfile) {
+      const synced: UserProfile = {
+        motivation: convexProfile.motivation
+          ? convexProfile.motivation.split(", ").filter(Boolean)
+          : profile.motivation,
+        conditions: convexProfile.conditions,
+        sensitivities: convexProfile.sensitivities,
+      };
+      setProfile(synced);
+      saveProfile(synced);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [convexProfile]);
 
   const addToQueue = useMutation(api.scoringQueue.addToQueue);
 
@@ -473,7 +506,6 @@ export default function ShoppingListPage() {
               <ProductRow
                 key={item.name}
                 item={item}
-                profile={profile}
                 isSelected={selectedName === item.name}
                 onSelect={() => setSelectedName(selectedName === item.name ? null : item.name)}
                 onRequest={() => handleRequest(item.name)}
@@ -485,7 +517,6 @@ export default function ShoppingListPage() {
         {selectedName && (
           <ProductDetail
             name={selectedName}
-            profile={profile}
             onClose={() => setSelectedName(null)}
             onSwap={(newName) => handleSwap(selectedName, newName)}
           />
