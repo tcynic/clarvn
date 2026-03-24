@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { useConvexAuth } from "convex/react";
+import { useAuthActions } from "@convex-dev/auth/react";
 import { useRouter } from "next/navigation";
 import { api } from "../../../convex/_generated/api";
 import { Doc } from "../../../convex/_generated/dataModel";
@@ -282,11 +283,13 @@ function ProfilePanel({
   profile,
   onChange,
   onClose,
+  onSignOut,
 }: {
   profile: UserProfile;
   onChange: (p: UserProfile) => void;
   onClose: () => void;
-}) {
+  onSignOut: () => void;
+})
   const CONDITIONS = ["ADHD","IBS / Gut sensitivity","Thyroid condition","Eczema / skin","Hormone-sensitive condition","Cancer history","Pregnancy"];
   const SENSITIVITIES = ["Migraines","Food allergies","Gluten sensitivity","Gut sensitivity","Artificial dyes","Preservatives"];
 
@@ -324,6 +327,14 @@ function ProfilePanel({
             ))}
           </div>
         </div>
+        <div className="border-t border-[var(--border)] mt-4 pt-4">
+          <button
+            onClick={onSignOut}
+            className="text-xs text-[var(--ink-3)] hover:text-[var(--tier-avoid)] transition-colors"
+          >
+            Sign out
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -332,6 +343,7 @@ function ProfilePanel({
 export default function ShoppingListPage() {
   const router = useRouter();
   const { isAuthenticated, isLoading } = useConvexAuth();
+  const { signOut } = useAuthActions();
   const [search, setSearch] = useState("");
   const [list, setList] = useState<ListItem[]>([]);
   const [selectedName, setSelectedName] = useState<string | null>(null);
@@ -450,6 +462,7 @@ export default function ShoppingListPage() {
           profile={profile}
           onChange={setProfile}
           onClose={() => setShowProfile(false)}
+          onSignOut={() => signOut()}
         />
       )}
     </div>
