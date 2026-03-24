@@ -108,6 +108,7 @@ async function scoreProductCore(
   }
 
   // 3. Write product + ingredients + modifiers
+  // v2 scoring path: product is fully scored by AI, so assemblyStatus="complete"
   const productId: Id<"products"> = await ctx.runMutation(internal.products.writeProduct, {
     name: scored.name,
     brand: scored.brand,
@@ -116,6 +117,9 @@ async function scoreProductCore(
     tier: scored.tier,
     scoreVersion: 1,
     scoredAt: Date.now(),
+    assemblyStatus: "complete",
+    pendingIngredientCount: 0,
+    ingredientSource: "ai_extraction",
   });
 
   for (const ing of scored.ingredients) {
@@ -301,6 +305,8 @@ export const refreshCheck = action({
         id: productId,
       });
       if (!product) continue;
+      // v3: skip products without a score (pending assembly)
+      if (product.baseScore == null || product.tier == null) continue;
 
       const lastScoredDate = new Date(product.scoredAt).toISOString().split("T")[0];
 

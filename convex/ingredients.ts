@@ -19,6 +19,8 @@ export const upsertIngredient = internalMutation({
     ),
     flagLabel: v.optional(v.string()),
     evidenceSources: v.optional(v.any()),
+    scoreVersion: v.optional(v.number()),
+    scoredAt: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     const existing = await ctx.db
@@ -29,11 +31,19 @@ export const upsertIngredient = internalMutation({
       .first();
 
     if (existing) {
-      await ctx.db.patch(existing._id, args);
+      await ctx.db.patch(existing._id, {
+        ...args,
+        scoreVersion: (existing.scoreVersion ?? 0) + 1,
+        scoredAt: args.scoredAt ?? Date.now(),
+      });
       return existing._id;
     }
 
-    return await ctx.db.insert("ingredients", args);
+    return await ctx.db.insert("ingredients", {
+      ...args,
+      scoreVersion: args.scoreVersion ?? 1,
+      scoredAt: args.scoredAt ?? Date.now(),
+    });
   },
 });
 
@@ -108,6 +118,8 @@ export const upsertIngredientPublic = mutation({
     ),
     flagLabel: v.optional(v.string()),
     evidenceSources: v.optional(v.any()),
+    scoreVersion: v.optional(v.number()),
+    scoredAt: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
@@ -118,10 +130,18 @@ export const upsertIngredientPublic = mutation({
       )
       .first();
     if (existing) {
-      await ctx.db.patch(existing._id, args);
+      await ctx.db.patch(existing._id, {
+        ...args,
+        scoreVersion: (existing.scoreVersion ?? 0) + 1,
+        scoredAt: args.scoredAt ?? Date.now(),
+      });
       return existing._id;
     }
-    return await ctx.db.insert("ingredients", args);
+    return await ctx.db.insert("ingredients", {
+      ...args,
+      scoreVersion: args.scoreVersion ?? 1,
+      scoredAt: args.scoredAt ?? Date.now(),
+    });
   },
 });
 
@@ -199,5 +219,56 @@ export const getModifiersByIngredients = query({
       )
     );
     return allModifiers.flat();
+  },
+});
+
+// Admin query: list all scored ingredients.
+export const listIngredients = query({
+  args: {},
+  handler: async (ctx) => {
+    await requireAdmin(ctx);
+    return await ctx.db
+      .query("ingredients")
+      .order("asc")
+      .take(500);
+  },
+});
+
+// Admin query: get ingredient detail with condition modifiers and linked products.
+export const getIngredientDetail = query({
+  args: { ingredientId: v.id("ingredients") },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx);
+    const ingredient = await ctx.db.get(args.ingredientId);
+    if (!ingredient) return null;
+
+    // Get condition modifiers
+    const modifiers = await ctx.db
+      .query("condition_modifiers")
+      .withIndex("by_ingredientId", (q) => q.eq("ingredientId", args.ingredientId))
+      .take(50);
+
+    // Get linked products via product_ingredients
+    // (no index on ingredientId, so we scan — acceptable for admin detail view)
+    const links = await ctx.db
+      .query("product_ingredients")
+      .take(2000);
+    const relevantLinks = links.filter((l) => l.ingredientId === args.ingredientId);
+
+    const products = await Promise.all(
+      relevantLinks.map((link) => ctx.db.get(link.productId))
+    );
+
+    return {
+      ...ingredient,
+      modifiers: modifiers.filter((m) => m.status === "active"),
+      linkedProducts: products.filter(Boolean).map((p) => ({
+        _id: p!._id,
+        name: p!.name,
+        brand: p!.brand,
+        tier: p!.tier,
+        baseScore: p!.baseScore,
+      })),
+    };
   },
 });

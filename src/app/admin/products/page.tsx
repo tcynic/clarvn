@@ -8,10 +8,30 @@ import { TierBadge } from "../../../components/TierBadge";
 
 type Tier = "Clean" | "Watch" | "Caution" | "Avoid";
 const TIERS: Tier[] = ["Clean", "Watch", "Caution", "Avoid"];
+type AssemblyStatus = "complete" | "partial" | "pending_ingredients";
+const ASSEMBLY_STATUSES: { value: AssemblyStatus | null; label: string }[] = [
+  { value: null, label: "All" },
+  { value: "complete", label: "Complete" },
+  { value: "partial", label: "Partial" },
+  { value: "pending_ingredients", label: "Pending" },
+];
+
+const SOURCE_BADGE: Record<string, { label: string; cls: string }> = {
+  open_food_facts: { label: "OFF", cls: "b-teal" },
+  ai_extraction: { label: "AI", cls: "b-blue" },
+  manual: { label: "Manual", cls: "b-gray" },
+};
+
+const ASSEMBLY_BADGE: Record<string, { label: string; cls: string }> = {
+  complete: { label: "Complete", cls: "b-clean" },
+  partial: { label: "Partial", cls: "b-watch" },
+  pending_ingredients: { label: "Pending", cls: "b-gray" },
+};
 
 export default function AdminProductsPage() {
   const [search, setSearch] = useState("");
   const [tierFilter, setTierFilter] = useState<Tier | null>(null);
+  const [assemblyFilter, setAssemblyFilter] = useState<AssemblyStatus | null>(null);
   const [selected, setSelected] = useState<Doc<"products"> | null>(null);
   const [refreshStatus, setRefreshStatus] = useState<string | null>(null);
 
@@ -30,7 +50,9 @@ export default function AdminProductsPage() {
       p.name.toLowerCase().includes(search.toLowerCase()) ||
       p.brand.toLowerCase().includes(search.toLowerCase());
     const matchesTier = !tierFilter || p.tier === tierFilter;
-    return matchesSearch && matchesTier;
+    const matchesAssembly = !assemblyFilter || p.assemblyStatus === assemblyFilter;
+    if (tierFilter && !p.tier) return false;
+    return matchesSearch && matchesTier && matchesAssembly;
   });
 
   async function handleRefreshCheck() {
@@ -111,6 +133,23 @@ export default function AdminProductsPage() {
         </div>
       </div>
 
+      {/* Assembly status filter */}
+      <div className="flex gap-2 mb-4">
+        {ASSEMBLY_STATUSES.map((s) => (
+          <button
+            key={String(s.value)}
+            onClick={() => setAssemblyFilter(s.value)}
+            className={`text-xs font-semibold px-3 py-1.5 rounded-[var(--radius)] transition-colors ${
+              assemblyFilter === s.value
+                ? "bg-[var(--ink)] text-white"
+                : "bg-[var(--surface-2)] text-[var(--ink-3)] hover:bg-[var(--surface-3)]"
+            }`}
+          >
+            {s.label}
+          </button>
+        ))}
+      </div>
+
       <div className="flex gap-4">
         {/* Product list */}
         <div className="flex-1 bg-white rounded-[var(--radius-lg)] border border-[var(--border)] overflow-hidden">
@@ -135,37 +174,70 @@ export default function AdminProductsPage() {
                   <th className="text-left px-4 py-2.5 text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide">
                     Tier
                   </th>
+                  <th className="text-left px-4 py-2.5 text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide">
+                    Assembly
+                  </th>
+                  <th className="text-left px-4 py-2.5 text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide">
+                    Source
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((p, i) => (
-                  <tr
-                    key={p._id}
-                    onClick={() =>
-                      setSelected(selected?._id === p._id ? null : p)
-                    }
-                    className={`border-b border-[var(--border)] last:border-0 cursor-pointer transition-colors ${
-                      selected?._id === p._id
-                        ? "bg-[var(--teal-light)]"
-                        : i % 2 === 1
-                        ? "bg-[var(--surface)] hover:bg-[var(--surface-2)]"
-                        : "hover:bg-[var(--surface)]"
-                    }`}
-                  >
-                    <td className="px-4 py-3">
-                      <div className="font-medium text-[var(--ink)]">
-                        {p.emoji} {p.name}
-                      </div>
-                      <div className="text-xs text-[var(--ink-3)]">{p.brand}</div>
-                    </td>
-                    <td className="px-4 py-3 font-semibold text-[var(--ink)]">
-                      {p.baseScore.toFixed(1)}
-                    </td>
-                    <td className="px-4 py-3">
-                      <TierBadge tier={p.tier as Tier} />
-                    </td>
-                  </tr>
-                ))}
+                {filtered.map((p, i) => {
+                  const asm = p.assemblyStatus
+                    ? ASSEMBLY_BADGE[p.assemblyStatus]
+                    : null;
+                  const src = p.ingredientSource
+                    ? SOURCE_BADGE[p.ingredientSource]
+                    : null;
+                  return (
+                    <tr
+                      key={p._id}
+                      onClick={() =>
+                        setSelected(selected?._id === p._id ? null : p)
+                      }
+                      className={`border-b border-[var(--border)] last:border-0 cursor-pointer transition-colors ${
+                        selected?._id === p._id
+                          ? "bg-[var(--teal-light)]"
+                          : i % 2 === 1
+                          ? "bg-[var(--surface)] hover:bg-[var(--surface-2)]"
+                          : "hover:bg-[var(--surface)]"
+                      }`}
+                    >
+                      <td className="px-4 py-3">
+                        <div className="font-medium text-[var(--ink)]">
+                          {p.emoji} {p.name}
+                        </div>
+                        <div className="text-xs text-[var(--ink-3)]">{p.brand}</div>
+                      </td>
+                      <td className="px-4 py-3 font-semibold text-[var(--ink)]">
+                        {p.baseScore != null ? p.baseScore.toFixed(1) : "—"}
+                      </td>
+                      <td className="px-4 py-3">
+                        {p.tier ? <TierBadge tier={p.tier as Tier} /> : <span className="text-xs text-[var(--ink-3)]">Pending</span>}
+                      </td>
+                      <td className="px-4 py-3">
+                        {asm ? (
+                          <span className={asm.cls}>{asm.label}</span>
+                        ) : (
+                          <span className="text-xs text-[var(--ink-4)]">—</span>
+                        )}
+                        {p.pendingIngredientCount != null && p.pendingIngredientCount > 0 && (
+                          <span className="text-xs text-[var(--ink-4)] ml-1">
+                            ({p.pendingIngredientCount} pending)
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3">
+                        {src ? (
+                          <span className={src.cls}>{src.label}</span>
+                        ) : (
+                          <span className="text-xs text-[var(--ink-4)]">—</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           )}
@@ -181,7 +253,7 @@ export default function AdminProductsPage() {
                 </h2>
                 <p className="text-xs text-[var(--ink-3)]">{selected.brand}</p>
               </div>
-              <TierBadge tier={selected.tier as Tier} />
+              {selected.tier ? <TierBadge tier={selected.tier as Tier} /> : <span className="text-xs text-[var(--ink-3)]">Pending</span>}
             </div>
 
             <div className="flex items-center gap-2 mb-4">
@@ -189,16 +261,30 @@ export default function AdminProductsPage() {
                 className="text-3xl font-bold"
                 style={{
                   fontFamily: "var(--font-serif)",
-                  color: `var(--tier-${selected.tier.toLowerCase()})`,
+                  color: selected.tier ? `var(--tier-${selected.tier.toLowerCase()})` : "var(--ink-3)",
                 }}
               >
-                {selected.baseScore.toFixed(1)}
+                {selected.baseScore != null ? selected.baseScore.toFixed(1) : "—"}
               </span>
               <div className="text-xs text-[var(--ink-3)]">
                 <div>v{selected.scoreVersion}</div>
                 <div>
                   {new Date(selected.scoredAt).toLocaleDateString()}
                 </div>
+                {selected.assemblyStatus && (
+                  <div className="mt-1">
+                    <span className={ASSEMBLY_BADGE[selected.assemblyStatus]?.cls ?? "b-gray"}>
+                      {ASSEMBLY_BADGE[selected.assemblyStatus]?.label ?? selected.assemblyStatus}
+                    </span>
+                  </div>
+                )}
+                {selected.ingredientSource && (
+                  <div className="mt-1">
+                    <span className={SOURCE_BADGE[selected.ingredientSource]?.cls ?? "b-gray"}>
+                      {SOURCE_BADGE[selected.ingredientSource]?.label ?? selected.ingredientSource}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -214,17 +300,24 @@ export default function AdminProductsPage() {
                 <ul className="flex flex-col gap-1.5">
                   {(ingredients as Doc<"ingredients">[])
                     .sort((a, b) => b.baseScore - a.baseScore)
-                    .map((ing) => (
-                      <li
-                        key={ing._id}
-                        className="flex items-center justify-between text-xs"
-                      >
-                        <span className="text-[var(--ink-2)]">
-                          {ing.canonicalName}
-                        </span>
-                        <TierBadge tier={ing.tier as Tier} />
-                      </li>
-                    ))}
+                    .map((ing) => {
+                      const isScored = (ing.scoreVersion ?? 0) > 0;
+                      return (
+                        <li
+                          key={ing._id}
+                          className="flex items-center justify-between text-xs"
+                        >
+                          <span className={isScored ? "text-[var(--ink-2)]" : "text-[var(--ink-4)] italic"}>
+                            {ing.canonicalName}
+                          </span>
+                          {isScored ? (
+                            <TierBadge tier={ing.tier as Tier} />
+                          ) : (
+                            <span className="text-xs text-[var(--ink-4)]">Pending</span>
+                          )}
+                        </li>
+                      );
+                    })}
                 </ul>
               )}
             </div>

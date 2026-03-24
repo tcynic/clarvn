@@ -18,6 +18,8 @@ export default defineSchema({
   })
     .index("email", ["email"])
     .index("phone", ["phone"]),
+
+  // --- v2 product-level scoring queue (retained for backward compat) ---
   scoring_queue: defineTable({
     productName: v.string(),
     source: v.union(
@@ -47,25 +49,91 @@ export default defineSchema({
     shouldStop: v.boolean(),
   }),
 
+  // --- v3 ingredient queue (admin's primary work surface) ---
+  ingredient_queue: defineTable({
+    canonicalName: v.string(),
+    status: v.union(
+      v.literal("pending"),
+      v.literal("scoring"),
+      v.literal("done"),
+      v.literal("failed")
+    ),
+    priority: v.number(), // 1 = user-requested, 2 = bulk seed, 3 = admin proactive
+    requestCount: v.number(), // how many products are blocked on this ingredient
+    blockedProductIds: v.array(v.id("products")),
+    ingredientId: v.optional(v.id("ingredients")), // set on success
+    errorMessage: v.optional(v.string()),
+  })
+    .index("by_status_and_priority", ["status", "priority"])
+    .index("by_canonicalName", ["canonicalName"]),
+
+  // --- v3 user profiles (server-side personalization) ---
+  user_profiles: defineTable({
+    userId: v.string(), // auth identity tokenIdentifier
+    motivation: v.optional(v.string()),
+    conditions: v.array(v.string()),
+    sensitivities: v.array(v.string()),
+  }).index("by_userId", ["userId"]),
+
+  // --- v3 alternatives queue (decoupled from scoring pipeline) ---
+  alternatives_queue: defineTable({
+    productId: v.id("products"),
+    status: v.union(
+      v.literal("pending"),
+      v.literal("done"),
+      v.literal("failed")
+    ),
+    alternatives: v.optional(
+      v.array(
+        v.object({
+          name: v.string(),
+          brand: v.string(),
+          reason: v.optional(v.string()),
+        })
+      )
+    ),
+  }),
+
   products: defineTable({
     name: v.string(),
     brand: v.string(),
     upc: v.optional(v.array(v.string())),
     emoji: v.optional(v.string()),
-    baseScore: v.number(),
-    tier: v.union(
-      v.literal("Clean"),
-      v.literal("Watch"),
-      v.literal("Caution"),
-      v.literal("Avoid")
+    // v3: baseScore and tier are optional (null when pending ingredients)
+    baseScore: v.optional(v.number()),
+    tier: v.optional(
+      v.union(
+        v.literal("Clean"),
+        v.literal("Watch"),
+        v.literal("Caution"),
+        v.literal("Avoid")
+      )
     ),
     status: v.union(v.literal("scored"), v.literal("archived")),
     scoreVersion: v.number(),
     scoredAt: v.number(),
     refreshConfirmedAt: v.optional(v.number()),
+    // v3 assembly fields
+    assemblyStatus: v.optional(
+      v.union(
+        v.literal("complete"),
+        v.literal("partial"),
+        v.literal("pending_ingredients")
+      )
+    ),
+    pendingIngredientCount: v.optional(v.number()),
+    worstIngredientId: v.optional(v.id("ingredients")),
+    ingredientSource: v.optional(
+      v.union(
+        v.literal("open_food_facts"),
+        v.literal("ai_extraction"),
+        v.literal("manual")
+      )
+    ),
   })
     .index("by_name", ["name"])
-    .index("by_status", ["status"]),
+    .index("by_status", ["status"])
+    .index("by_assemblyStatus", ["assemblyStatus"]),
 
   ingredients: defineTable({
     canonicalName: v.string(),
@@ -82,6 +150,8 @@ export default defineSchema({
     ),
     flagLabel: v.optional(v.string()),
     evidenceSources: v.optional(v.any()),
+    scoreVersion: v.optional(v.number()),
+    scoredAt: v.optional(v.number()),
   }).index("by_canonicalName", ["canonicalName"]),
 
   condition_modifiers: defineTable({

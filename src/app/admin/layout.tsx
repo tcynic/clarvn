@@ -52,6 +52,12 @@ export default function AdminLayout({
               Queue
             </Link>
             <Link
+              href="/admin/ingredients"
+              className="text-white/70 hover:text-white transition-colors"
+            >
+              Ingredients
+            </Link>
+            <Link
               href="/admin/products"
               className="text-white/70 hover:text-white transition-colors"
             >

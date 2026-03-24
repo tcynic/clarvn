@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
+import { api } from "../../../convex/_generated/api";
 import { saveProfile, type UserProfile } from "../../lib/personalScore";
 
 const MOTIVATIONS = [
@@ -121,7 +123,11 @@ export default function OnboardingPage() {
     },
   ];
 
-  function handleNext() {
+  const createOrUpdateProfile = useMutation(
+    api.userProfiles.createOrUpdateProfile
+  );
+
+  async function handleNext() {
     if (step < steps.length - 1) {
       setStep(step + 1);
     } else {
@@ -130,7 +136,17 @@ export default function OnboardingPage() {
         conditions: conditions.filter((c) => c !== "None"),
         sensitivities: sensitivities.filter((s) => s !== "None"),
       };
+      // Save to localStorage (fast hydration cache) and Convex (source of truth)
       saveProfile(profile);
+      try {
+        await createOrUpdateProfile({
+          motivation: profile.motivation.join(", "),
+          conditions: profile.conditions,
+          sensitivities: profile.sensitivities,
+        });
+      } catch {
+        // Proceed even if Convex write fails — localStorage has the profile
+      }
       router.push("/app");
     }
   }
