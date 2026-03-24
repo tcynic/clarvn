@@ -9,15 +9,34 @@ export const writeProduct = internalMutation({
     brand: v.string(),
     upc: v.optional(v.array(v.string())),
     emoji: v.optional(v.string()),
-    baseScore: v.number(),
-    tier: v.union(
-      v.literal("Clean"),
-      v.literal("Watch"),
-      v.literal("Caution"),
-      v.literal("Avoid")
+    baseScore: v.optional(v.number()),
+    tier: v.optional(
+      v.union(
+        v.literal("Clean"),
+        v.literal("Watch"),
+        v.literal("Caution"),
+        v.literal("Avoid")
+      )
     ),
     scoreVersion: v.number(),
     scoredAt: v.number(),
+    // v3 assembly fields
+    assemblyStatus: v.optional(
+      v.union(
+        v.literal("complete"),
+        v.literal("partial"),
+        v.literal("pending_ingredients")
+      )
+    ),
+    pendingIngredientCount: v.optional(v.number()),
+    worstIngredientId: v.optional(v.id("ingredients")),
+    ingredientSource: v.optional(
+      v.union(
+        v.literal("open_food_facts"),
+        v.literal("ai_extraction"),
+        v.literal("manual")
+      )
+    ),
   },
   handler: async (ctx, args) => {
     return await ctx.db.insert("products", {
@@ -105,15 +124,34 @@ export const writeProductPublic = mutation({
     brand: v.string(),
     upc: v.optional(v.array(v.string())),
     emoji: v.optional(v.string()),
-    baseScore: v.number(),
-    tier: v.union(
-      v.literal("Clean"),
-      v.literal("Watch"),
-      v.literal("Caution"),
-      v.literal("Avoid")
+    baseScore: v.optional(v.number()),
+    tier: v.optional(
+      v.union(
+        v.literal("Clean"),
+        v.literal("Watch"),
+        v.literal("Caution"),
+        v.literal("Avoid")
+      )
     ),
     scoreVersion: v.number(),
     scoredAt: v.number(),
+    // v3 assembly fields
+    assemblyStatus: v.optional(
+      v.union(
+        v.literal("complete"),
+        v.literal("partial"),
+        v.literal("pending_ingredients")
+      )
+    ),
+    pendingIngredientCount: v.optional(v.number()),
+    worstIngredientId: v.optional(v.id("ingredients")),
+    ingredientSource: v.optional(
+      v.union(
+        v.literal("open_food_facts"),
+        v.literal("ai_extraction"),
+        v.literal("manual")
+      )
+    ),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
