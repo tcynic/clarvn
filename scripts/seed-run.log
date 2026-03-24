@@ -469,3 +469,1015 @@
 [2026-03-24T04:41:13.934Z] [9/10] SKIP (already scored): Cinnamon Toast Crunch
 [2026-03-24T04:41:13.962Z] [10/10] SKIP (already scored): Rice Krispies
 [2026-03-24T04:41:13.962Z] SUMMARY scored=1 skipped=9 failed=0 alts=3
+[2026-03-24T04:52:34.056Z] [1/20] SKIP (already scored): Froot Loops
+[2026-03-24T04:52:34.088Z] [2/20] SKIP (already scored): Lucky Charms
+[2026-03-24T04:52:34.116Z] [3/20] SKIP (already scored): Honey Nut Cheerios
+[2026-03-24T04:52:34.147Z] [4/20] SKIP (already scored): Cheerios Original
+[2026-03-24T04:52:34.175Z] [5/20] SKIP (already scored): Cap'n Crunch
+[2026-03-24T04:52:34.217Z] [6/20] SKIP (already scored): Frosted Flakes
+[2026-03-24T04:52:34.247Z] [7/20] SKIP (already scored): Cocoa Puffs
+[2026-03-24T04:52:34.529Z] [8/20] Scoring: Trix (General Mills)
+[2026-03-24T04:53:17.437Z]   → Queued alternative: Nature's Path EnviroKidz Amazon Flakes
+[2026-03-24T04:53:17.511Z]   → Queued alternative: Barbara's Puffins Original
+[2026-03-24T04:53:17.603Z]   → Queued alternative: Cascadian Farm Purely O's
+[2026-03-24T04:53:17.604Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T04:53:18.126Z] [9/20] SKIP (already scored): Cinnamon Toast Crunch
+[2026-03-24T04:53:18.158Z] [10/20] SKIP (already scored): Rice Krispies
+[2026-03-24T04:53:18.181Z] [11/20] Scoring: Corn Flakes (Kellogg's)
+[2026-03-24T04:53:47.638Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T04:53:48.168Z] [12/20] Scoring: Special K Original (Kellogg's)
+[2026-03-24T04:54:29.347Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T04:55:10.122Z]   → Queued alternative: Nature's Path Organic Heritage Flakes
+[2026-03-24T04:55:10.205Z]   → Queued alternative: Barbara's Original Puffins
+[2026-03-24T04:55:10.206Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=2
+[2026-03-24T04:55:10.743Z] [13/20] Scoring: Raisin Bran (Kellogg's)
+[2026-03-24T04:55:50.066Z]   → Queued alternative: Cascadian Farm Organic Raisin Bran
+[2026-03-24T04:55:50.147Z]   → Queued alternative: Nature's Path Flax Plus Raisin Bran
+[2026-03-24T04:55:50.147Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T04:55:50.673Z] [14/20] Scoring: Grape Nuts (Post)
+[2026-03-24T04:56:07.681Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T04:56:36.780Z]   ✓ Scored: baseScore=2.4 tier=Clean alts=0
+[2026-03-24T04:56:37.314Z] [15/20] Scoring: Honey Bunches of Oats (Post)
+[2026-03-24T04:57:15.603Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T04:57:56.415Z]   → Queued alternative: Barbara's Organic Morning Oat Crunch
+[2026-03-24T04:57:56.506Z]   → Queued alternative: Cascadian Farm Organic Oats & Honey Granola
+[2026-03-24T04:57:56.587Z]   → Queued alternative: Nature's Path Organic Honey Almond Granola
+[2026-03-24T04:57:56.588Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T04:57:57.115Z] [16/20] Scoring: Frosted Mini-Wheats (Kellogg's)
+[2026-03-24T04:58:31.027Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T04:59:02.746Z]   ✓ Scored: baseScore=3.8 tier=Watch alts=0
+[2026-03-24T04:59:03.283Z] [17/20] Scoring: Life Cereal Original (Quaker)
+[2026-03-24T04:59:42.131Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T04:59:42.661Z] [18/20] Scoring: Honey Smacks (Kellogg's)
+[2026-03-24T05:00:27.185Z]   → Queued alternative: Cascadian Farm Organic Honey Nut O's
+[2026-03-24T05:00:27.259Z]   → Queued alternative: Nature's Path Honey'd Corn Flakes
+[2026-03-24T05:00:27.339Z]   → Queued alternative: Barbara's Puffins Honey Rice
+[2026-03-24T05:00:27.340Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T05:00:27.866Z] [19/20] Scoring: Reese's Puffs (General Mills)
+[2026-03-24T05:01:21.606Z]   → Queued alternative: Cascadian Farm Organic Peanut Butter Puffs
+[2026-03-24T05:01:21.689Z]   → Queued alternative: Nature's Path EnviroKidz Peanut Butter Panda Puffs
+[2026-03-24T05:01:21.775Z]   → Queued alternative: Barbara's Peanut Butter Puffins
+[2026-03-24T05:01:21.776Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T05:01:22.304Z] [20/20] Scoring: Golden Grahams (General Mills)
+[2026-03-24T05:01:55.723Z]   → Queued alternative: Cascadian Farm Organic Honey Nut O's
+[2026-03-24T05:01:55.796Z]   → Queued alternative: Nature's Path Honey'd Corn Flakes
+[2026-03-24T05:01:55.873Z]   → Queued alternative: Barbara's Puffins Original
+[2026-03-24T05:01:55.884Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T05:01:56.389Z] SUMMARY scored=11 skipped=9 failed=0 alts=19
+[2026-03-24T05:07:37.498Z] [1/478] Scoring: Froot Loops (Kellogg's)
+[2026-03-24T05:07:37.498Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:37.549Z] [2/478] Scoring: Lucky Charms (General Mills)
+[2026-03-24T05:07:37.549Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:37.601Z] [3/478] Scoring: Honey Nut Cheerios (General Mills)
+[2026-03-24T05:07:37.601Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:37.652Z] [4/478] Scoring: Cheerios Original (General Mills)
+[2026-03-24T05:07:37.652Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:37.704Z] [5/478] Scoring: Cap'n Crunch (Quaker)
+[2026-03-24T05:07:37.704Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:37.755Z] [6/478] Scoring: Frosted Flakes (Kellogg's)
+[2026-03-24T05:07:37.756Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:37.808Z] [7/478] Scoring: Cocoa Puffs (General Mills)
+[2026-03-24T05:07:37.809Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:37.860Z] [8/478] Scoring: Trix (General Mills)
+[2026-03-24T05:07:37.861Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:37.912Z] [9/478] Scoring: Cinnamon Toast Crunch (General Mills)
+[2026-03-24T05:07:37.914Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:37.965Z] [10/478] Scoring: Rice Krispies (Kellogg's)
+[2026-03-24T05:07:37.965Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.017Z] [11/478] Scoring: Corn Flakes (Kellogg's)
+[2026-03-24T05:07:38.020Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.072Z] [12/478] Scoring: Special K Original (Kellogg's)
+[2026-03-24T05:07:38.078Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.129Z] [13/478] Scoring: Raisin Bran (Kellogg's)
+[2026-03-24T05:07:38.131Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.184Z] [14/478] Scoring: Grape Nuts (Post)
+[2026-03-24T05:07:38.184Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.235Z] [15/478] Scoring: Honey Bunches of Oats (Post)
+[2026-03-24T05:07:38.235Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.286Z] [16/478] Scoring: Frosted Mini-Wheats (Kellogg's)
+[2026-03-24T05:07:38.286Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.337Z] [17/478] Scoring: Life Cereal Original (Quaker)
+[2026-03-24T05:07:38.337Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.388Z] [18/478] Scoring: Honey Smacks (Kellogg's)
+[2026-03-24T05:07:38.389Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.440Z] [19/478] Scoring: Reese's Puffs (General Mills)
+[2026-03-24T05:07:38.440Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.491Z] [20/478] Scoring: Golden Grahams (General Mills)
+[2026-03-24T05:07:38.492Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.543Z] [21/478] Scoring: Quaker Instant Oatmeal Maple Brown Sugar (Quaker)
+[2026-03-24T05:07:38.546Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.597Z] [22/478] Scoring: Quaker Instant Oatmeal Original (Quaker)
+[2026-03-24T05:07:38.598Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.649Z] [23/478] Scoring: Cream of Wheat Original (B&G Foods)
+[2026-03-24T05:07:38.650Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.702Z] [24/478] Scoring: Bob's Red Mill Old Fashioned Oats (Bob's Red Mill)
+[2026-03-24T05:07:38.703Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.753Z] [25/478] Scoring: Kashi Go Crunch (Kashi)
+[2026-03-24T05:07:38.754Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.805Z] [26/478] Scoring: Kashi Heart to Heart (Kashi)
+[2026-03-24T05:07:38.805Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.856Z] [27/478] Scoring: Fiber One Original (General Mills)
+[2026-03-24T05:07:38.858Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.909Z] [28/478] Scoring: Total Whole Grain (General Mills)
+[2026-03-24T05:07:38.912Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:38.965Z] [29/478] Scoring: Apple Jacks (Kellogg's)
+[2026-03-24T05:07:38.966Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.017Z] [30/478] Scoring: Corn Pops (Kellogg's)
+[2026-03-24T05:07:39.018Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.071Z] [31/478] Scoring: Cocoa Krispies (Kellogg's)
+[2026-03-24T05:07:39.071Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.123Z] [32/478] Scoring: Honey Nut Clusters (General Mills)
+[2026-03-24T05:07:39.123Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.174Z] [33/478] Scoring: Count Chocula (General Mills)
+[2026-03-24T05:07:39.175Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.227Z] [34/478] Scoring: Nature's Path Heritage Flakes (Nature's Path)
+[2026-03-24T05:07:39.228Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.278Z] [35/478] Scoring: Barbara's Puffins Original (Barbara's)
+[2026-03-24T05:07:39.279Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.330Z] [36/478] Scoring: Gatorade Lemon-Lime (PepsiCo)
+[2026-03-24T05:07:39.330Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.381Z] [37/478] Scoring: Gatorade Fruit Punch (PepsiCo)
+[2026-03-24T05:07:39.382Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.434Z] [38/478] Scoring: Gatorade Blue Cherry (PepsiCo)
+[2026-03-24T05:07:39.435Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.488Z] [39/478] Scoring: Powerade Mountain Berry Blast (Coca-Cola)
+[2026-03-24T05:07:39.488Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.540Z] [40/478] Scoring: Powerade Fruit Punch (Coca-Cola)
+[2026-03-24T05:07:39.541Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.592Z] [41/478] Scoring: Capri Sun Fruit Punch (Kraft Heinz)
+[2026-03-24T05:07:39.592Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.644Z] [42/478] Scoring: Capri Sun Pacific Cooler (Kraft Heinz)
+[2026-03-24T05:07:39.646Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.697Z] [43/478] Scoring: Hi-C Orange Lavaburst (Coca-Cola)
+[2026-03-24T05:07:39.699Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.751Z] [44/478] Scoring: Kool-Aid Tropical Punch Jammers (Kraft Heinz)
+[2026-03-24T05:07:39.751Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.806Z] [45/478] Scoring: Monster Energy Original (Monster Beverage)
+[2026-03-24T05:07:39.808Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.860Z] [46/478] Scoring: Monster Energy Zero Ultra (Monster Beverage)
+[2026-03-24T05:07:39.860Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.912Z] [47/478] Scoring: Red Bull Original (Red Bull)
+[2026-03-24T05:07:39.912Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:39.964Z] [48/478] Scoring: Red Bull Sugar Free (Red Bull)
+[2026-03-24T05:07:39.964Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.016Z] [49/478] Scoring: 5-Hour Energy Original (Innovation Ventures)
+[2026-03-24T05:07:40.016Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.067Z] [50/478] Scoring: Celsius Sparkling Orange (Celsius)
+[2026-03-24T05:07:40.068Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.120Z] [51/478] Scoring: Prime Hydration Lemonade (Prime)
+[2026-03-24T05:07:40.121Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.172Z] [52/478] Scoring: Liquid I.V. Lemon Lime (Liquid I.V.)
+[2026-03-24T05:07:40.172Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.224Z] [53/478] Scoring: Tropicana Orange Juice Original (PepsiCo)
+[2026-03-24T05:07:40.224Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.278Z] [54/478] Scoring: Minute Maid Orange Juice (Coca-Cola)
+[2026-03-24T05:07:40.279Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.330Z] [55/478] Scoring: Ocean Spray Cranberry Cocktail (Ocean Spray)
+[2026-03-24T05:07:40.332Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.383Z] [56/478] Scoring: Welch's Grape Juice (Welch's)
+[2026-03-24T05:07:40.383Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.434Z] [57/478] Scoring: Sunny D Tangy Original (Harvest Hill)
+[2026-03-24T05:07:40.434Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.485Z] [58/478] Scoring: V8 Original Vegetable Juice (Campbell's)
+[2026-03-24T05:07:40.485Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.536Z] [59/478] Scoring: Bolthouse Farms Strawberry Banana Smoothie (Bolthouse)
+[2026-03-24T05:07:40.537Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.588Z] [60/478] Scoring: Naked Green Machine (PepsiCo)
+[2026-03-24T05:07:40.589Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.640Z] [61/478] Scoring: Silk Original Oat Milk (Silk)
+[2026-03-24T05:07:40.641Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.692Z] [62/478] Scoring: Oatly Oat Milk Original (Oatly)
+[2026-03-24T05:07:40.693Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.744Z] [63/478] Scoring: Ripple Original Pea Milk (Ripple Foods)
+[2026-03-24T05:07:40.745Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.796Z] [64/478] Scoring: Snapple Peach Tea (Keurig Dr Pepper)
+[2026-03-24T05:07:40.798Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.849Z] [65/478] Scoring: AriZona Green Tea with Honey (AriZona)
+[2026-03-24T05:07:40.850Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.901Z] [66/478] Scoring: Lipton Iced Tea Lemon (Unilever)
+[2026-03-24T05:07:40.901Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:40.952Z] [67/478] Scoring: Pure Leaf Sweet Tea (Unilever/PepsiCo)
+[2026-03-24T05:07:40.953Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.005Z] [68/478] Scoring: Starbucks Frappuccino Mocha (Starbucks)
+[2026-03-24T05:07:41.005Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.056Z] [69/478] Scoring: Starbucks Doubleshot Energy Vanilla (Starbucks)
+[2026-03-24T05:07:41.057Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.108Z] [70/478] Scoring: Nesquik Chocolate Milk (Nestlé)
+[2026-03-24T05:07:41.109Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.160Z] [71/478] Scoring: TruMoo Chocolate Milk (Dean Foods)
+[2026-03-24T05:07:41.160Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.211Z] [72/478] Scoring: Core Power Elite 42g Protein Chocolate (Fairlife)
+[2026-03-24T05:07:41.213Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.264Z] [73/478] Scoring: Fairlife 2% Reduced Fat Milk (Fairlife)
+[2026-03-24T05:07:41.265Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.316Z] [74/478] Scoring: Bubly Sparkling Water Lime (PepsiCo)
+[2026-03-24T05:07:41.316Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.368Z] [75/478] Scoring: LaCroix Sparkling Water Pamplemousse (National Beverage)
+[2026-03-24T05:07:41.370Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.421Z] [76/478] Scoring: Spindrift Lemon Sparkling Water (Spindrift)
+[2026-03-24T05:07:41.421Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.472Z] [77/478] Scoring: Hint Water Watermelon (Hint)
+[2026-03-24T05:07:41.473Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.523Z] [78/478] Scoring: Bai Brasilia Blueberry (Bai Brands)
+[2026-03-24T05:07:41.524Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.575Z] [79/478] Scoring: GT's Synergy Gingerberry Kombucha (GT's Living Foods)
+[2026-03-24T05:07:41.576Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.631Z] [80/478] Scoring: Health-Ade Pink Lady Apple Kombucha (Health-Ade)
+[2026-03-24T05:07:41.632Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.683Z] [81/478] Scoring: Doritos Nacho Cheese (Frito-Lay)
+[2026-03-24T05:07:41.684Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.735Z] [82/478] Scoring: Doritos Cool Ranch (Frito-Lay)
+[2026-03-24T05:07:41.736Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.787Z] [83/478] Scoring: Lay's Classic (Frito-Lay)
+[2026-03-24T05:07:41.788Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.839Z] [84/478] Scoring: Lay's Sour Cream & Onion (Frito-Lay)
+[2026-03-24T05:07:41.841Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.893Z] [85/478] Scoring: Lay's Barbecue (Frito-Lay)
+[2026-03-24T05:07:41.896Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:41.948Z] [86/478] Scoring: Pringles Original (Kellogg's)
+[2026-03-24T05:07:41.951Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.003Z] [87/478] Scoring: Pringles Sour Cream & Onion (Kellogg's)
+[2026-03-24T05:07:42.004Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.056Z] [88/478] Scoring: Cheetos Crunchy (Frito-Lay)
+[2026-03-24T05:07:42.057Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.110Z] [89/478] Scoring: Cheetos Puffs (Frito-Lay)
+[2026-03-24T05:07:42.110Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.161Z] [90/478] Scoring: Funyuns Onion Flavored Rings (Frito-Lay)
+[2026-03-24T05:07:42.162Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.212Z] [91/478] Scoring: Fritos Original (Frito-Lay)
+[2026-03-24T05:07:42.213Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.265Z] [92/478] Scoring: Tostitos Original (Frito-Lay)
+[2026-03-24T05:07:42.266Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.318Z] [93/478] Scoring: Tostitos Hint of Lime (Frito-Lay)
+[2026-03-24T05:07:42.318Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.369Z] [94/478] Scoring: SunChips Original (Frito-Lay)
+[2026-03-24T05:07:42.370Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.421Z] [95/478] Scoring: Ruffles Original (Frito-Lay)
+[2026-03-24T05:07:42.421Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.474Z] [96/478] Scoring: Ruffles Cheddar & Sour Cream (Frito-Lay)
+[2026-03-24T05:07:42.475Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.527Z] [97/478] Scoring: Goldfish Crackers Original (Pepperidge Farm)
+[2026-03-24T05:07:42.530Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.581Z] [98/478] Scoring: Goldfish Crackers Cheddar (Pepperidge Farm)
+[2026-03-24T05:07:42.582Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.634Z] [99/478] Scoring: Cheez-It Original (Kellogg's)
+[2026-03-24T05:07:42.635Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.687Z] [100/478] Scoring: Cheez-It White Cheddar (Kellogg's)
+[2026-03-24T05:07:42.688Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.739Z] [101/478] Scoring: Wheat Thins Original (Nabisco)
+[2026-03-24T05:07:42.741Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.794Z] [102/478] Scoring: Triscuit Original (Nabisco)
+[2026-03-24T05:07:42.796Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.848Z] [103/478] Scoring: Ritz Crackers Original (Nabisco)
+[2026-03-24T05:07:42.849Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.899Z] [104/478] Scoring: Club Crackers Original (Kellogg's)
+[2026-03-24T05:07:42.900Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:42.951Z] [105/478] Scoring: Townhouse Crackers Original (Kellogg's)
+[2026-03-24T05:07:42.952Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.005Z] [106/478] Scoring: Stacy's Pita Chips Simply Naked (Frito-Lay)
+[2026-03-24T05:07:43.005Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.057Z] [107/478] Scoring: Popchips Original Potato (Popchips)
+[2026-03-24T05:07:43.057Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.108Z] [108/478] Scoring: Skinny Pop Original Popcorn (Amplify Snack Brands)
+[2026-03-24T05:07:43.108Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.159Z] [109/478] Scoring: Orville Redenbacher Smart Pop Butter (ConAgra)
+[2026-03-24T05:07:43.162Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.213Z] [110/478] Scoring: ACT II Butter Lovers Popcorn (ConAgra)
+[2026-03-24T05:07:43.213Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.264Z] [111/478] Scoring: Pirate's Booty Aged White Cheddar (Pirate Brands)
+[2026-03-24T05:07:43.264Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.314Z] [112/478] Scoring: Snyder's Mini Pretzels (Campbell's)
+[2026-03-24T05:07:43.315Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.365Z] [113/478] Scoring: Unique \"Extra Dark\" Pretzels (Unique Snacks)
+[2026-03-24T05:07:43.365Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.416Z] [114/478] Scoring: Bugles Original (General Mills)
+[2026-03-24T05:07:43.416Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.467Z] [115/478] Scoring: Combos Cheddar Cheese Cracker (Mars)
+[2026-03-24T05:07:43.467Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.519Z] [116/478] Scoring: Munchies Cheese Fix Snack Mix (Frito-Lay)
+[2026-03-24T05:07:43.519Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.570Z] [117/478] Scoring: Chex Mix Original (General Mills)
+[2026-03-24T05:07:43.571Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.623Z] [118/478] Scoring: Gardetto's Original Recipe Snack Mix (General Mills)
+[2026-03-24T05:07:43.624Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.675Z] [119/478] Scoring: Harvest Snaps Green Pea Snacks Lightly Salted (Calbee)
+[2026-03-24T05:07:43.675Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.727Z] [120/478] Scoring: Beanitos White Bean Chips (Beanitos)
+[2026-03-24T05:07:43.728Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.779Z] [121/478] Scoring: Late July Organic Multigrain Tortilla Chips (Late July)
+[2026-03-24T05:07:43.780Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.831Z] [122/478] Scoring: Siete Grain-Free Tortilla Chips Sea Salt (Siete Foods)
+[2026-03-24T05:07:43.832Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.888Z] [123/478] Scoring: Simple Mills Almond Flour Crackers (Simple Mills)
+[2026-03-24T05:07:43.889Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.941Z] [124/478] Scoring: RW Garcia Sweet Potato Crackers (RW Garcia)
+[2026-03-24T05:07:43.942Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:43.992Z] [125/478] Scoring: Mary's Gone Crackers Original (Mary's Gone Crackers)
+[2026-03-24T05:07:43.992Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.044Z] [126/478] Scoring: Kind Mini Bars Dark Chocolate Nuts & Sea Salt (Kind)
+[2026-03-24T05:07:44.044Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.095Z] [127/478] Scoring: RXBar Chocolate Sea Salt (RXBAR)
+[2026-03-24T05:07:44.096Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.148Z] [128/478] Scoring: Larabar Apple Pie (General Mills)
+[2026-03-24T05:07:44.148Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.199Z] [129/478] Scoring: Cliff Bar Chocolate Chip (Clif Bar)
+[2026-03-24T05:07:44.201Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.254Z] [130/478] Scoring: Oreo Original (Nabisco)
+[2026-03-24T05:07:44.255Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.306Z] [131/478] Scoring: Oreo Double Stuf (Nabisco)
+[2026-03-24T05:07:44.307Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.357Z] [132/478] Scoring: Oreo Golden (Nabisco)
+[2026-03-24T05:07:44.357Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.408Z] [133/478] Scoring: Chips Ahoy! Original (Nabisco)
+[2026-03-24T05:07:44.409Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.460Z] [134/478] Scoring: Chips Ahoy! Chewy (Nabisco)
+[2026-03-24T05:07:44.461Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.513Z] [135/478] Scoring: Nutter Butter Original (Nabisco)
+[2026-03-24T05:07:44.513Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.565Z] [136/478] Scoring: Pepperidge Farm Milano Cookies (Pepperidge Farm)
+[2026-03-24T05:07:44.565Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.616Z] [137/478] Scoring: Famous Amos Chocolate Chip Cookies (Ferrero)
+[2026-03-24T05:07:44.616Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.667Z] [138/478] Scoring: Lorna Doone Shortbread Cookies (Nabisco)
+[2026-03-24T05:07:44.668Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.719Z] [139/478] Scoring: Keebler Fudge Stripes (Kellogg's)
+[2026-03-24T05:07:44.720Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.771Z] [140/478] Scoring: Twinkies (Hostess)
+[2026-03-24T05:07:44.771Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.822Z] [141/478] Scoring: Ding Dongs (Hostess)
+[2026-03-24T05:07:44.823Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.874Z] [142/478] Scoring: Little Debbie Oatmeal Creme Pies (McKee Foods)
+[2026-03-24T05:07:44.875Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.926Z] [143/478] Scoring: Little Debbie Nutty Bars (McKee Foods)
+[2026-03-24T05:07:44.926Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:44.978Z] [144/478] Scoring: Skittles Original (Mars)
+[2026-03-24T05:07:44.979Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.031Z] [145/478] Scoring: Skittles Wild Berry (Mars)
+[2026-03-24T05:07:45.032Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.084Z] [146/478] Scoring: Starburst Original (Mars)
+[2026-03-24T05:07:45.085Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.135Z] [147/478] Scoring: Twizzlers Strawberry Twists (Hershey's)
+[2026-03-24T05:07:45.136Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.186Z] [148/478] Scoring: Swedish Fish Original (Mondelēz)
+[2026-03-24T05:07:45.187Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.241Z] [149/478] Scoring: Sour Patch Kids Original (Mondelēz)
+[2026-03-24T05:07:45.244Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.295Z] [150/478] Scoring: Airheads Original (Perfetti Van Melle)
+[2026-03-24T05:07:45.296Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.348Z] [151/478] Scoring: Jolly Rancher Hard Candy Assorted (Hershey's)
+[2026-03-24T05:07:45.348Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.400Z] [152/478] Scoring: Nerds Original (Ferrara Candy)
+[2026-03-24T05:07:45.400Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.451Z] [153/478] Scoring: Haribo Gold-Bears (Haribo)
+[2026-03-24T05:07:45.453Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.505Z] [154/478] Scoring: Trolli Sour Brite Crawlers (Ferrara Candy)
+[2026-03-24T05:07:45.506Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.557Z] [155/478] Scoring: Mike and Ike Original Fruits (Just Born)
+[2026-03-24T05:07:45.557Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.609Z] [156/478] Scoring: M&Ms Milk Chocolate (Mars)
+[2026-03-24T05:07:45.609Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.660Z] [157/478] Scoring: M&Ms Peanut (Mars)
+[2026-03-24T05:07:45.660Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.712Z] [158/478] Scoring: Snickers Original (Mars)
+[2026-03-24T05:07:45.712Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.764Z] [159/478] Scoring: Kit Kat Original (Hershey's)
+[2026-03-24T05:07:45.764Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.815Z] [160/478] Scoring: Reese's Peanut Butter Cups (Hershey's)
+[2026-03-24T05:07:45.816Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.868Z] [161/478] Scoring: Hershey's Milk Chocolate Bar (Hershey's)
+[2026-03-24T05:07:45.871Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.923Z] [162/478] Scoring: Butterfinger Original (Ferrero)
+[2026-03-24T05:07:45.923Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:45.974Z] [163/478] Scoring: Baby Ruth Original (Ferrero)
+[2026-03-24T05:07:45.975Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.026Z] [164/478] Scoring: 3 Musketeers (Mars)
+[2026-03-24T05:07:46.027Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.078Z] [165/478] Scoring: Milky Way Original (Mars)
+[2026-03-24T05:07:46.078Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.130Z] [166/478] Scoring: Almond Joy (Hershey's)
+[2026-03-24T05:07:46.131Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.186Z] [167/478] Scoring: Mounds (Hershey's)
+[2026-03-24T05:07:46.186Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.238Z] [168/478] Scoring: Toblerone Milk Chocolate (Mondelēz)
+[2026-03-24T05:07:46.240Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.293Z] [169/478] Scoring: Lindt Excellence 70% Cocoa Dark (Lindt)
+[2026-03-24T05:07:46.293Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.345Z] [170/478] Scoring: Justin's Dark Chocolate Peanut Butter Cups (Justin's)
+[2026-03-24T05:07:46.345Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.398Z] [171/478] Scoring: Lily's Milk Chocolate Chips (Lily's)
+[2026-03-24T05:07:46.401Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.453Z] [172/478] Scoring: SmartSweets Peach Rings (SmartSweets)
+[2026-03-24T05:07:46.454Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.505Z] [173/478] Scoring: YumEarth Organic Gummy Bears (YumEarth)
+[2026-03-24T05:07:46.506Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.557Z] [174/478] Scoring: Unreal Dark Chocolate Peanut Butter Cups (Unreal)
+[2026-03-24T05:07:46.558Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.610Z] [175/478] Scoring: Kraft Mac & Cheese Original (Kraft Heinz)
+[2026-03-24T05:07:46.615Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.667Z] [176/478] Scoring: Kraft Mac & Cheese Shapes (Kraft Heinz)
+[2026-03-24T05:07:46.668Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.719Z] [177/478] Scoring: Velveeta Shells & Cheese (Kraft Heinz)
+[2026-03-24T05:07:46.720Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.771Z] [178/478] Scoring: Annie's Organic Mac & Cheese (General Mills)
+[2026-03-24T05:07:46.772Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.823Z] [179/478] Scoring: Maruchan Ramen Chicken (Maruchan)
+[2026-03-24T05:07:46.824Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.875Z] [180/478] Scoring: Maruchan Ramen Beef (Maruchan)
+[2026-03-24T05:07:46.876Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.928Z] [181/478] Scoring: Top Ramen Chicken (Nissin)
+[2026-03-24T05:07:46.928Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:46.979Z] [182/478] Scoring: Nissin Cup Noodles Chicken (Nissin)
+[2026-03-24T05:07:46.980Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.031Z] [183/478] Scoring: Hamburger Helper Cheeseburger Macaroni (General Mills)
+[2026-03-24T05:07:47.032Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.083Z] [184/478] Scoring: Rice-A-Roni Chicken Flavor (PepsiCo)
+[2026-03-24T05:07:47.083Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.133Z] [185/478] Scoring: Knorr Pasta Sides Chicken Broccoli (Unilever)
+[2026-03-24T05:07:47.134Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.185Z] [186/478] Scoring: Pasta Roni Angel Hair & Butter (PepsiCo)
+[2026-03-24T05:07:47.185Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.236Z] [187/478] Scoring: Barilla Spaghetti (Barilla)
+[2026-03-24T05:07:47.237Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.288Z] [188/478] Scoring: Barilla Penne Rigate (Barilla)
+[2026-03-24T05:07:47.288Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.339Z] [189/478] Scoring: Barilla Rotini (Barilla)
+[2026-03-24T05:07:47.340Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.391Z] [190/478] Scoring: Ronzoni Garden Delight Rotini (TreeHouse Foods)
+[2026-03-24T05:07:47.391Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.442Z] [191/478] Scoring: Banza Chickpea Pasta Penne (Banza)
+[2026-03-24T05:07:47.442Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.493Z] [192/478] Scoring: Explore Cuisine Edamame Spaghetti (Explore Cuisine)
+[2026-03-24T05:07:47.494Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.546Z] [193/478] Scoring: Near East Couscous Roasted Garlic & Olive Oil (PepsiCo)
+[2026-03-24T05:07:47.546Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.597Z] [194/478] Scoring: Uncle Ben's Ready Rice Long Grain & Wild (Mars Food)
+[2026-03-24T05:07:47.598Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.649Z] [195/478] Scoring: Seeds of Change Organic Brown Rice & Quinoa (Mars Food)
+[2026-03-24T05:07:47.649Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.702Z] [196/478] Scoring: Idahoan Instant Mashed Potatoes Four Cheese (Idahoan)
+[2026-03-24T05:07:47.702Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.753Z] [197/478] Scoring: Betty Crocker Scalloped Potatoes (General Mills)
+[2026-03-24T05:07:47.754Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.805Z] [198/478] Scoring: Knorr Lipton Onion Soup & Dip Mix (Unilever)
+[2026-03-24T05:07:47.805Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.856Z] [199/478] Scoring: McCormick Taco Seasoning (McCormick)
+[2026-03-24T05:07:47.858Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.917Z] [200/478] Scoring: Chili-Man Mild Chili Seasoning Mix (Tone Brothers)
+[2026-03-24T05:07:47.919Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:47.970Z] [201/478] Scoring: Zatarain's Dirty Rice Mix (Mars Food)
+[2026-03-24T05:07:47.970Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.022Z] [202/478] Scoring: Old El Paso Taco Shells Hard (General Mills)
+[2026-03-24T05:07:48.023Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.075Z] [203/478] Scoring: Old El Paso Flour Tortillas Small (General Mills)
+[2026-03-24T05:07:48.075Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.125Z] [204/478] Scoring: Mission Flour Tortillas Soft Taco (Mission Foods)
+[2026-03-24T05:07:48.126Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.177Z] [205/478] Scoring: La Banderita Corn Tortillas (Mission Foods)
+[2026-03-24T05:07:48.178Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.228Z] [206/478] Scoring: Goya Black Beans (Goya)
+[2026-03-24T05:07:48.228Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.279Z] [207/478] Scoring: Ro-Tel Original Diced Tomatoes & Chilies (ConAgra)
+[2026-03-24T05:07:48.279Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.330Z] [208/478] Scoring: Campbell's Chunky Classic Chicken Noodle (Campbell's)
+[2026-03-24T05:07:48.331Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.382Z] [209/478] Scoring: DiGiorno Rising Crust Pepperoni Pizza (Nestlé)
+[2026-03-24T05:07:48.382Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.433Z] [210/478] Scoring: DiGiorno Thin & Crispy Three Meat (Nestlé)
+[2026-03-24T05:07:48.433Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.485Z] [211/478] Scoring: Red Baron Classic Crust Pepperoni (Schwan's)
+[2026-03-24T05:07:48.485Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.536Z] [212/478] Scoring: Totino's Party Pizza Pepperoni (General Mills)
+[2026-03-24T05:07:48.537Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.588Z] [213/478] Scoring: Stouffer's Macaroni & Cheese (Nestlé)
+[2026-03-24T05:07:48.589Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.644Z] [214/478] Scoring: Stouffer's Lasagna with Meat Sauce (Nestlé)
+[2026-03-24T05:07:48.645Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.697Z] [215/478] Scoring: Lean Cuisine Glazed Chicken (Nestlé)
+[2026-03-24T05:07:48.699Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.750Z] [216/478] Scoring: Amy's Cheese Pizza (Amy's Kitchen)
+[2026-03-24T05:07:48.751Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.802Z] [217/478] Scoring: Amy's Broccoli Cheddar Bake (Amy's Kitchen)
+[2026-03-24T05:07:48.803Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.855Z] [218/478] Scoring: Birds Eye Steamfresh Mixed Vegetables (ConAgra)
+[2026-03-24T05:07:48.856Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.907Z] [219/478] Scoring: Birds Eye Steamfresh Broccoli (ConAgra)
+[2026-03-24T05:07:48.908Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:48.960Z] [220/478] Scoring: Green Giant Broccoli & Cheese Sauce (B&G Foods)
+[2026-03-24T05:07:48.962Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.014Z] [221/478] Scoring: Ore-Ida Golden Crinkles (Kraft Heinz)
+[2026-03-24T05:07:49.015Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.066Z] [222/478] Scoring: Ore-Ida Tater Tots (Kraft Heinz)
+[2026-03-24T05:07:49.066Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.118Z] [223/478] Scoring: McCain Smiles Mashed Potato Shapes (McCain Foods)
+[2026-03-24T05:07:49.118Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.170Z] [224/478] Scoring: Eggo Homestyle Waffles (Kellogg's)
+[2026-03-24T05:07:49.170Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.222Z] [225/478] Scoring: Eggo Buttermilk Waffles (Kellogg's)
+[2026-03-24T05:07:49.223Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.275Z] [226/478] Scoring: Pillsbury Frozen Mini Pancakes Blueberry (General Mills)
+[2026-03-24T05:07:49.275Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.326Z] [227/478] Scoring: Jimmy Dean Sausage Egg & Cheese Croissant (Tyson)
+[2026-03-24T05:07:49.328Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.379Z] [228/478] Scoring: Jimmy Dean Original Pork Sausage Patties (Tyson)
+[2026-03-24T05:07:49.380Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.431Z] [229/478] Scoring: Hot Pockets Pepperoni Pizza (Nestlé)
+[2026-03-24T05:07:49.434Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.485Z] [230/478] Scoring: Hot Pockets Ham & Cheese (Nestlé)
+[2026-03-24T05:07:49.486Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.537Z] [231/478] Scoring: Bagel Bites Pepperoni (Ore-Ida)
+[2026-03-24T05:07:49.537Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.589Z] [232/478] Scoring: TGI Friday's Mozzarella Sticks (Inventure Foods)
+[2026-03-24T05:07:49.589Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.642Z] [233/478] Scoring: Jose Ole Beef & Cheese Taquitos (Ruiz Foods)
+[2026-03-24T05:07:49.644Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.696Z] [234/478] Scoring: El Monterey Bean & Cheese Burritos (Ruiz Foods)
+[2026-03-24T05:07:49.698Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.749Z] [235/478] Scoring: Tyson Crispy Chicken Strips (Tyson)
+[2026-03-24T05:07:49.750Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.801Z] [236/478] Scoring: Perdue Chicken Nuggets (Perdue)
+[2026-03-24T05:07:49.802Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.853Z] [237/478] Scoring: Foster Farms Corn Dogs (Foster Farms)
+[2026-03-24T05:07:49.855Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.907Z] [238/478] Scoring: Applegate Naturals Chicken Nuggets (Applegate)
+[2026-03-24T05:07:49.907Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:49.963Z] [239/478] Scoring: MorningStar Farms Veggie Burger Original (Kellogg's)
+[2026-03-24T05:07:49.964Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.017Z] [240/478] Scoring: Impossible Burger Patties (Impossible Foods)
+[2026-03-24T05:07:50.017Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.068Z] [241/478] Scoring: Beyond Burger Plant-Based Patties (Beyond Meat)
+[2026-03-24T05:07:50.070Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.121Z] [242/478] Scoring: Gardein Beefless Burger (Conagra)
+[2026-03-24T05:07:50.121Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.172Z] [243/478] Scoring: Ben & Jerry's Chocolate Chip Cookie Dough (Unilever)
+[2026-03-24T05:07:50.173Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.225Z] [244/478] Scoring: Häagen-Dazs Vanilla (Nestlé)
+[2026-03-24T05:07:50.226Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.277Z] [245/478] Scoring: Dreyer's Slow Churned Vanilla Bean (Nestlé)
+[2026-03-24T05:07:50.277Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.328Z] [246/478] Scoring: Breyers Natural Vanilla (Unilever)
+[2026-03-24T05:07:50.333Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.386Z] [247/478] Scoring: Breyers Oreo Cookies & Cream (Unilever)
+[2026-03-24T05:07:50.388Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.440Z] [248/478] Scoring: Popsicle Orange Cherry Grape (Unilever)
+[2026-03-24T05:07:50.441Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.492Z] [249/478] Scoring: Welch's Fruit Snacks Mixed Fruit (Welch's)
+[2026-03-24T05:07:50.495Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.548Z] [250/478] Scoring: Outshine Strawberry Fruit Bar (Nestlé)
+[2026-03-24T05:07:50.548Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.600Z] [251/478] Scoring: Halo Top Vanilla Bean (Halo Top)
+[2026-03-24T05:07:50.604Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.663Z] [252/478] Scoring: Good Culture Cottage Cheese 2% (Good Culture)
+[2026-03-24T05:07:50.664Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.716Z] [253/478] Scoring: Evol Truffle Parmesan Mac & Cheese (Conagra)
+[2026-03-24T05:07:50.717Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.768Z] [254/478] Scoring: Sweet Earth Protein Lovers Burrito (Nestlé)
+[2026-03-24T05:07:50.769Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.820Z] [255/478] Scoring: Caulipower Cauliflower Pizza Margherita (Caulipower)
+[2026-03-24T05:07:50.821Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.872Z] [256/478] Scoring: Wonder Classic White Bread (Flowers Foods)
+[2026-03-24T05:07:50.873Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.925Z] [257/478] Scoring: Nature's Own Honey Wheat Bread (Flowers Foods)
+[2026-03-24T05:07:50.926Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:50.977Z] [258/478] Scoring: Dave's Killer Bread 21 Whole Grains (Flowers Foods)
+[2026-03-24T05:07:50.978Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.030Z] [259/478] Scoring: Arnold Whole Wheat Bread (Bimbo Bakeries)
+[2026-03-24T05:07:51.030Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.083Z] [260/478] Scoring: Sara Lee Delightful Wheat Bread (Flowers Foods)
+[2026-03-24T05:07:51.084Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.139Z] [261/478] Scoring: Pepperidge Farm Farmhouse White (Pepperidge Farm)
+[2026-03-24T05:07:51.139Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.190Z] [262/478] Scoring: Thomas' English Muffins Original (Bimbo Bakeries)
+[2026-03-24T05:07:51.190Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.246Z] [263/478] Scoring: Thomas' Everything Bagels (Bimbo Bakeries)
+[2026-03-24T05:07:51.248Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.300Z] [264/478] Scoring: Lender's Blueberry Bagels (Bimbo Bakeries)
+[2026-03-24T05:07:51.300Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.352Z] [265/478] Scoring: Pillsbury Crescent Rolls Original (General Mills)
+[2026-03-24T05:07:51.355Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.409Z] [266/478] Scoring: Pepperidge Farm Puff Pastry Sheets (Pepperidge Farm)
+[2026-03-24T05:07:51.415Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.466Z] [267/478] Scoring: Betty Crocker Blueberry Muffin Mix (General Mills)
+[2026-03-24T05:07:51.467Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.518Z] [268/478] Scoring: Bisquick Original Pancake & Baking Mix (General Mills)
+[2026-03-24T05:07:51.518Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.570Z] [269/478] Scoring: Aunt Jemima Buttermilk Pancake Mix (Pearl Milling Co.)
+[2026-03-24T05:07:51.570Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.621Z] [270/478] Scoring: Krusteaz Buttermilk Pancake Mix (Continental Mills)
+[2026-03-24T05:07:51.622Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.673Z] [271/478] Scoring: Pepperidge Farm Stuffing Herb Seasoned (Pepperidge Farm)
+[2026-03-24T05:07:51.673Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.725Z] [272/478] Scoring: Mission Flour Tortillas Large (Mission Foods)
+[2026-03-24T05:07:51.726Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.777Z] [273/478] Scoring: Old El Paso Stand 'n Stuff Taco Shells (General Mills)
+[2026-03-24T05:07:51.778Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.829Z] [274/478] Scoring: Udi's Gluten-Free Original Sandwich Bread (Canyon Bakehouse)
+[2026-03-24T05:07:51.829Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.881Z] [275/478] Scoring: Oroweat Whole Grains Double Fiber Bread (Bimbo Bakeries)
+[2026-03-24T05:07:51.882Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.933Z] [276/478] Scoring: Brownberry Buttermilk Bread (Bimbo Bakeries)
+[2026-03-24T05:07:51.935Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:51.986Z] [277/478] Scoring: Schmidt Old Tyme 647 Bread (Schmidt Baking Co.)
+[2026-03-24T05:07:51.987Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.038Z] [278/478] Scoring: Siete Grain-Free Almond Flour Tortillas (Siete Foods)
+[2026-03-24T05:07:52.039Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.090Z] [279/478] Scoring: Base Culture Original Keto Bread (Base Culture)
+[2026-03-24T05:07:52.091Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.142Z] [280/478] Scoring: Heinz Tomato Ketchup (Kraft Heinz)
+[2026-03-24T05:07:52.142Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.193Z] [281/478] Scoring: Hunt's Ketchup No Sugar Added (ConAgra)
+[2026-03-24T05:07:52.195Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.247Z] [282/478] Scoring: French's Classic Yellow Mustard (McCormick)
+[2026-03-24T05:07:52.247Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.300Z] [283/478] Scoring: Grey Poupon Dijon Mustard (Kraft Heinz)
+[2026-03-24T05:07:52.300Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.351Z] [284/478] Scoring: Hellmann's Real Mayonnaise (Unilever)
+[2026-03-24T05:07:52.351Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.402Z] [285/478] Scoring: Miracle Whip Dressing (Kraft Heinz)
+[2026-03-24T05:07:52.403Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.454Z] [286/478] Scoring: Heinz Sweet Relish (Kraft Heinz)
+[2026-03-24T05:07:52.456Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.509Z] [287/478] Scoring: Vlasic Bread & Butter Chips (Conagra)
+[2026-03-24T05:07:52.513Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.564Z] [288/478] Scoring: Prego Traditional Pasta Sauce (Campbell's)
+[2026-03-24T05:07:52.565Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.617Z] [289/478] Scoring: Ragu Traditional Pasta Sauce (Mizkan)
+[2026-03-24T05:07:52.617Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.668Z] [290/478] Scoring: Bertolli Marinara Sauce (Mizkan)
+[2026-03-24T05:07:52.669Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.722Z] [291/478] Scoring: Rao's Homemade Marinara Sauce (Rao's)
+[2026-03-24T05:07:52.722Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.774Z] [292/478] Scoring: Classico Sweet Basil Marinara (Kraft Heinz)
+[2026-03-24T05:07:52.775Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.826Z] [293/478] Scoring: Jif Creamy Peanut Butter (J.M. Smucker)
+[2026-03-24T05:07:52.830Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.882Z] [294/478] Scoring: Skippy Creamy Peanut Butter (Hormel)
+[2026-03-24T05:07:52.882Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.933Z] [295/478] Scoring: Smucker's Strawberry Jam (J.M. Smucker)
+[2026-03-24T05:07:52.935Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:52.986Z] [296/478] Scoring: Smucker's Concord Grape Jelly (J.M. Smucker)
+[2026-03-24T05:07:52.986Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.037Z] [297/478] Scoring: Nutella Hazelnut Spread (Ferrero)
+[2026-03-24T05:07:53.038Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.088Z] [298/478] Scoring: Hershey's Chocolate Syrup (Hershey's)
+[2026-03-24T05:07:53.088Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.140Z] [299/478] Scoring: Mrs. Butterworth's Original Syrup (TreeHouse Foods)
+[2026-03-24T05:07:53.140Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.191Z] [300/478] Scoring: Aunt Jemima Original Syrup (Pearl Milling Co.)
+[2026-03-24T05:07:53.191Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.242Z] [301/478] Scoring: Hidden Valley Original Ranch Dressing (Clorox)
+[2026-03-24T05:07:53.242Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.294Z] [302/478] Scoring: Ken's Thousand Island Dressing (Ken's Foods)
+[2026-03-24T05:07:53.294Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.345Z] [303/478] Scoring: Wish-Bone Italian Dressing (Wish-Bone)
+[2026-03-24T05:07:53.345Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.396Z] [304/478] Scoring: Newman's Own Caesar Dressing (Newman's Own)
+[2026-03-24T05:07:53.397Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.446Z] [305/478] Scoring: Kraft Classic Caesar Dressing (Kraft Heinz)
+[2026-03-24T05:07:53.447Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.498Z] [306/478] Scoring: Frank's RedHot Original Hot Sauce (McCormick)
+[2026-03-24T05:07:53.499Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.549Z] [307/478] Scoring: Tabasco Original Red Sauce (McIlhenny Co.)
+[2026-03-24T05:07:53.550Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.601Z] [308/478] Scoring: Cholula Original Hot Sauce (McCormick)
+[2026-03-24T05:07:53.607Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.658Z] [309/478] Scoring: Sriracha Rooster Sauce (Huy Fong Foods)
+[2026-03-24T05:07:53.661Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.712Z] [310/478] Scoring: Heinz 57 Sauce (Kraft Heinz)
+[2026-03-24T05:07:53.714Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.765Z] [311/478] Scoring: A.1. Original Sauce (Kraft Heinz)
+[2026-03-24T05:07:53.766Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.817Z] [312/478] Scoring: Lea & Perrins Worcestershire Sauce (Kraft Heinz)
+[2026-03-24T05:07:53.817Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.869Z] [313/478] Scoring: Kikkoman Soy Sauce (Kikkoman)
+[2026-03-24T05:07:53.870Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.921Z] [314/478] Scoring: Bragg Liquid Aminos (Bragg)
+[2026-03-24T05:07:53.922Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:53.974Z] [315/478] Scoring: Ocean's Halo No Soy Organic Soy-Free Sauce (Ocean's Halo)
+[2026-03-24T05:07:53.976Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.027Z] [316/478] Scoring: Pace Chunky Salsa Medium (Campbell's)
+[2026-03-24T05:07:54.027Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.078Z] [317/478] Scoring: Tostitos Chunky Salsa Medium (Frito-Lay)
+[2026-03-24T05:07:54.079Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.129Z] [318/478] Scoring: Sabra Classic Hummus (PepsiCo)
+[2026-03-24T05:07:54.130Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.181Z] [319/478] Scoring: Wholly Guacamole Classic (Hormel)
+[2026-03-24T05:07:54.182Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.234Z] [320/478] Scoring: Dannon Strawberry Yogurt (Danone)
+[2026-03-24T05:07:54.234Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.285Z] [321/478] Scoring: Dannon Light & Fit Greek Strawberry (Danone)
+[2026-03-24T05:07:54.286Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.337Z] [322/478] Scoring: Yoplait Original Strawberry (General Mills)
+[2026-03-24T05:07:54.337Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.388Z] [323/478] Scoring: Chobani Plain Greek Yogurt (Chobani)
+[2026-03-24T05:07:54.389Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.440Z] [324/478] Scoring: Chobani Strawberry Greek Yogurt (Chobani)
+[2026-03-24T05:07:54.441Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.491Z] [325/478] Scoring: Activia Strawberry Probiotic Yogurt (Danone)
+[2026-03-24T05:07:54.491Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.544Z] [326/478] Scoring: Stonyfield Organic Whole Milk Vanilla (Lactalis)
+[2026-03-24T05:07:54.545Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.597Z] [327/478] Scoring: Siggi's Plain Whole-Milk Skyr (Arla Foods)
+[2026-03-24T05:07:54.602Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.654Z] [328/478] Scoring: Kraft Singles American Cheese (Kraft Heinz)
+[2026-03-24T05:07:54.656Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.708Z] [329/478] Scoring: Velveeta Original Pasteurized Cheese (Kraft Heinz)
+[2026-03-24T05:07:54.709Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.763Z] [330/478] Scoring: Sargento Shredded Mild Cheddar (Sargento)
+[2026-03-24T05:07:54.764Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.816Z] [331/478] Scoring: Tillamook Medium Cheddar (Tillamook)
+[2026-03-24T05:07:54.817Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.870Z] [332/478] Scoring: Babybel Original Mini Cheese (Bel Brands)
+[2026-03-24T05:07:54.872Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.923Z] [333/478] Scoring: Laughing Cow Original Creamy Swiss (Bel Brands)
+[2026-03-24T05:07:54.924Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:54.975Z] [334/478] Scoring: Philadelphia Original Cream Cheese (Kraft Heinz)
+[2026-03-24T05:07:54.976Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.031Z] [335/478] Scoring: Daisy Pure & Natural Sour Cream (Daisy Brand)
+[2026-03-24T05:07:55.033Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.084Z] [336/478] Scoring: Horizon Organic Whole Milk (Danone)
+[2026-03-24T05:07:55.085Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.137Z] [337/478] Scoring: Coffee-mate Original Liquid Creamer (Nestlé)
+[2026-03-24T05:07:55.139Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.190Z] [338/478] Scoring: Coffee-mate Natural Bliss Oat Milk Creamer (Nestlé)
+[2026-03-24T05:07:55.191Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.243Z] [339/478] Scoring: International Delight French Vanilla (Danone)
+[2026-03-24T05:07:55.244Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.296Z] [340/478] Scoring: Vital Farms Pasture-Raised Butter (Vital Farms)
+[2026-03-24T05:07:55.297Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.350Z] [341/478] Scoring: Land O'Lakes Unsalted Butter (Land O'Lakes)
+[2026-03-24T05:07:55.350Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.401Z] [342/478] Scoring: I Can't Believe It's Not Butter! (Upfield)
+[2026-03-24T05:07:55.403Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.453Z] [343/478] Scoring: Country Crock Original Buttery Spread (Upfield)
+[2026-03-24T05:07:55.453Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.504Z] [344/478] Scoring: Egg Beaters Original (ConAgra)
+[2026-03-24T05:07:55.505Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.556Z] [345/478] Scoring: Just Egg Plant-Based Scramble (Eat Just)
+[2026-03-24T05:07:55.556Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.607Z] [346/478] Scoring: Bob Evans Original Country Sausage (Post Holdings)
+[2026-03-24T05:07:55.608Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.659Z] [347/478] Scoring: Pillsbury Orange Sweet Rolls (General Mills)
+[2026-03-24T05:07:55.659Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.710Z] [348/478] Scoring: Sargento String Cheese Original (Sargento)
+[2026-03-24T05:07:55.711Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.762Z] [349/478] Scoring: Horizon Organic String Cheese (Danone)
+[2026-03-24T05:07:55.762Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.813Z] [350/478] Scoring: Babybel Light Mini Cheese (Bel Brands)
+[2026-03-24T05:07:55.814Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.865Z] [351/478] Scoring: Daisy Squeezable Sour Cream (Daisy Brand)
+[2026-03-24T05:07:55.865Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.916Z] [352/478] Scoring: Good Culture Cottage Cheese 4% (Good Culture)
+[2026-03-24T05:07:55.917Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:55.968Z] [353/478] Scoring: Kite Hill Almond Milk Yogurt Plain (Kite Hill)
+[2026-03-24T05:07:55.971Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.022Z] [354/478] Scoring: Oscar Mayer Classic Beef Franks (Kraft Heinz)
+[2026-03-24T05:07:56.023Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.077Z] [355/478] Scoring: Ball Park Beef Franks (Tyson)
+[2026-03-24T05:07:56.078Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.129Z] [356/478] Scoring: Hebrew National Beef Franks (ConAgra)
+[2026-03-24T05:07:56.129Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.180Z] [357/478] Scoring: Oscar Mayer Turkey Bacon (Kraft Heinz)
+[2026-03-24T05:07:56.180Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.231Z] [358/478] Scoring: Applegate Farms Uncured Turkey Bacon (Applegate)
+[2026-03-24T05:07:56.231Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.283Z] [359/478] Scoring: Oscar Mayer Original Bologna (Kraft Heinz)
+[2026-03-24T05:07:56.283Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.336Z] [360/478] Scoring: Hillshire Farm Smoked Sausage Original (Tyson)
+[2026-03-24T05:07:56.337Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.388Z] [361/478] Scoring: Eckrich Smoked Sausage (John Morrell)
+[2026-03-24T05:07:56.389Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.440Z] [362/478] Scoring: Johnsonville Original Bratwurst (Johnsonville)
+[2026-03-24T05:07:56.441Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.500Z] [363/478] Scoring: Hormel Pepperoni Classic (Hormel)
+[2026-03-24T05:07:56.501Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.551Z] [364/478] Scoring: Hormel Black Label Bacon Regular (Hormel)
+[2026-03-24T05:07:56.551Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.602Z] [365/478] Scoring: Boar's Head Low Sodium Oven Roasted Turkey (Boar's Head)
+[2026-03-24T05:07:56.603Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.654Z] [366/478] Scoring: Deli Select Honey Ham (Hillshire Farm)
+[2026-03-24T05:07:56.654Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.705Z] [367/478] Scoring: Armour Vienna Sausage Original (Conagra)
+[2026-03-24T05:07:56.705Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.757Z] [368/478] Scoring: Spam Classic (Hormel)
+[2026-03-24T05:07:56.757Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.808Z] [369/478] Scoring: Spam Lite (Hormel)
+[2026-03-24T05:07:56.808Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.859Z] [370/478] Scoring: Hormel Compleats Chicken & Rice (Hormel)
+[2026-03-24T05:07:56.860Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.911Z] [371/478] Scoring: StarKist Chunk Light Tuna in Water (StarKist)
+[2026-03-24T05:07:56.911Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:56.962Z] [372/478] Scoring: Bumble Bee Chunk White Albacore Tuna (Bumble Bee)
+[2026-03-24T05:07:56.963Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.014Z] [373/478] Scoring: Wild Planet Wild Albacore Tuna (Wild Planet)
+[2026-03-24T05:07:57.014Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.065Z] [374/478] Scoring: Chicken of the Sea Pink Salmon (Chicken of the Sea)
+[2026-03-24T05:07:57.066Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.117Z] [375/478] Scoring: Sargento Ultra Thin Sliced Swiss (Sargento)
+[2026-03-24T05:07:57.117Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.168Z] [376/478] Scoring: Jennie-O Ground Turkey 93/7 (Jennie-O)
+[2026-03-24T05:07:57.169Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.220Z] [377/478] Scoring: Tyson Grilled & Ready Chicken Strips (Tyson)
+[2026-03-24T05:07:57.220Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.271Z] [378/478] Scoring: Perdue Short Cuts Carved Chicken Breast Original (Perdue)
+[2026-03-24T05:07:57.272Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.323Z] [379/478] Scoring: Jack Link's Original Beef Jerky (Jack Link's)
+[2026-03-24T05:07:57.324Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.376Z] [380/478] Scoring: Slim Jim Original Smoked Snack Stick (Conagra)
+[2026-03-24T05:07:57.377Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.426Z] [381/478] Scoring: Old Wisconsin Beef Summer Sausage (Kraft Heinz)
+[2026-03-24T05:07:57.428Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.480Z] [382/478] Scoring: Bridgford Pepperoni Slices (Bridgford Foods)
+[2026-03-24T05:07:57.481Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.533Z] [383/478] Scoring: Gerber 2nd Foods Apple Blueberry (Nestlé)
+[2026-03-24T05:07:57.533Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.584Z] [384/478] Scoring: Gerber 2nd Foods Sweet Potato (Nestlé)
+[2026-03-24T05:07:57.586Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.639Z] [385/478] Scoring: Gerber 3rd Foods Pasta Alphabet in Chicken Broth (Nestlé)
+[2026-03-24T05:07:57.639Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.690Z] [386/478] Scoring: Gerber Puffs Banana (Nestlé)
+[2026-03-24T05:07:57.692Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.743Z] [387/478] Scoring: Gerber Lil' Crunchies Mild Cheddar (Nestlé)
+[2026-03-24T05:07:57.743Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.796Z] [388/478] Scoring: Happy Baby Organic Clearly Crafted Apple Mango (Happy Family)
+[2026-03-24T05:07:57.799Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.851Z] [389/478] Scoring: Sprout Organic Baby Food Pea Pear Broccoli (Sprout Organics)
+[2026-03-24T05:07:57.852Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.903Z] [390/478] Scoring: Beech-Nut Stage 2 Apple & Blueberry (Beech-Nut)
+[2026-03-24T05:07:57.903Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:57.955Z] [391/478] Scoring: Earth's Best Organic Stage 2 Winter Squash (Hain Celestial)
+[2026-03-24T05:07:57.960Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.011Z] [392/478] Scoring: Plum Organics Just Fruits Variety Pack (Campbell's)
+[2026-03-24T05:07:58.012Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.064Z] [393/478] Scoring: Similac Pro-Advance Non-GMO Infant Formula (Abbott)
+[2026-03-24T05:07:58.064Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.115Z] [394/478] Scoring: Enfamil NeuroPro Infant Formula (Mead Johnson)
+[2026-03-24T05:07:58.115Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.165Z] [395/478] Scoring: Parent's Choice Infant Formula (Walmart)
+[2026-03-24T05:07:58.166Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.217Z] [396/478] Scoring: Annie's Organic Bunny Grahams (General Mills)
+[2026-03-24T05:07:58.217Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.268Z] [397/478] Scoring: Annie's Organic Cheddar Bunnies (General Mills)
+[2026-03-24T05:07:58.268Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.320Z] [398/478] Scoring: Nilla Wafers Mini (Nabisco)
+[2026-03-24T05:07:58.320Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.371Z] [399/478] Scoring: Teddy Grahams Honey (Nabisco)
+[2026-03-24T05:07:58.371Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.422Z] [400/478] Scoring: Keebler Gripz Cinnamon Grahams (Kellogg's)
+[2026-03-24T05:07:58.423Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.474Z] [401/478] Scoring: Welch's Fruit Snacks Mixed Fruit (Welch's)
+[2026-03-24T05:07:58.474Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.526Z] [402/478] Scoring: Motts Fruit Snacks Assorted (Mott's)
+[2026-03-24T05:07:58.526Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.579Z] [403/478] Scoring: Horizon Organic Whole Milk Boxes (Danone)
+[2026-03-24T05:07:58.579Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.630Z] [404/478] Scoring: Stonyfield YoBaby Organic Whole Milk Yogurt Peach (Lactalis)
+[2026-03-24T05:07:58.630Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.681Z] [405/478] Scoring: Danimals Strawberry Explosion Smoothie (Danone)
+[2026-03-24T05:07:58.682Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.733Z] [406/478] Scoring: Go-GURT Strawberry Banana Yogurt Tube (General Mills)
+[2026-03-24T05:07:58.734Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.786Z] [407/478] Scoring: Kraft Easy Mac Original (Kraft Heinz)
+[2026-03-24T05:07:58.787Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.838Z] [408/478] Scoring: Lunchables Turkey & Cheddar with Crackers (Kraft Heinz)
+[2026-03-24T05:07:58.838Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.890Z] [409/478] Scoring: Lunchables Pizza with Pepperoni (Kraft Heinz)
+[2026-03-24T05:07:58.890Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.941Z] [410/478] Scoring: Nature Valley Oats 'n Honey Bar (General Mills)
+[2026-03-24T05:07:58.942Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:58.992Z] [411/478] Scoring: Nature Valley Sweet & Salty Almond (General Mills)
+[2026-03-24T05:07:58.995Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.047Z] [412/478] Scoring: Nutri-Grain Strawberry Bar (Kellogg's)
+[2026-03-24T05:07:59.049Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.100Z] [413/478] Scoring: Nutri-Grain Apple Cinnamon Bar (Kellogg's)
+[2026-03-24T05:07:59.103Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.155Z] [414/478] Scoring: Special K Chocolate Almond Protein Bar (Kellogg's)
+[2026-03-24T05:07:59.155Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.207Z] [415/478] Scoring: Quaker Chewy Chocolate Chip Granola Bar (Quaker)
+[2026-03-24T05:07:59.208Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.259Z] [416/478] Scoring: Quaker Chewy Dipps Chocolate Chip (Quaker)
+[2026-03-24T05:07:59.260Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.310Z] [417/478] Scoring: Fiber One Chocolate Fudge Brownie (General Mills)
+[2026-03-24T05:07:59.311Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.362Z] [418/478] Scoring: Kind Bar Dark Chocolate Nuts & Sea Salt (Kind)
+[2026-03-24T05:07:59.363Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.416Z] [419/478] Scoring: Kind Breakfast Oats & Honey Bar (Kind)
+[2026-03-24T05:07:59.416Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.467Z] [420/478] Scoring: RXBar Chocolate Sea Salt (RXBAR)
+[2026-03-24T05:07:59.467Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.518Z] [421/478] Scoring: RXBar Blueberry (RXBAR)
+[2026-03-24T05:07:59.520Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.572Z] [422/478] Scoring: Larabar Apple Pie (General Mills)
+[2026-03-24T05:07:59.572Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.623Z] [423/478] Scoring: Larabar Peanut Butter Chocolate Chip (General Mills)
+[2026-03-24T05:07:59.623Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.675Z] [424/478] Scoring: Clif Bar Chocolate Chip (Clif Bar)
+[2026-03-24T05:07:59.675Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.726Z] [425/478] Scoring: Clif Bar Crunchy Peanut Butter (Clif Bar)
+[2026-03-24T05:07:59.729Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.781Z] [426/478] Scoring: Luna Bar Chocolate Dipped Coconut (Clif Bar)
+[2026-03-24T05:07:59.782Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.833Z] [427/478] Scoring: Quest Bar Chocolate Chip Cookie Dough (Quest Nutrition)
+[2026-03-24T05:07:59.834Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.886Z] [428/478] Scoring: Quest Bar Birthday Cake (Quest Nutrition)
+[2026-03-24T05:07:59.887Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.939Z] [429/478] Scoring: One Bar Birthday Cake (ONE Brands)
+[2026-03-24T05:07:59.939Z]   → [dry-run] would call Claude API
+[2026-03-24T05:07:59.990Z] [430/478] Scoring: Atkins Chocolate Peanut Butter Bar (Atkins)
+[2026-03-24T05:07:59.991Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.046Z] [431/478] Scoring: Think! Protein Bar Chocolate Fudge (thinkThin)
+[2026-03-24T05:08:00.047Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.099Z] [432/478] Scoring: Perfect Bar Dark Chocolate Chip Peanut Butter (Perfect Bar)
+[2026-03-24T05:08:00.100Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.151Z] [433/478] Scoring: GoMacro MacroBar Peanut Butter Chocolate Chip (GoMacro)
+[2026-03-24T05:08:00.151Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.202Z] [434/478] Scoring: Rise Bar Sunflower Cinnamon Protein (Rise Bar)
+[2026-03-24T05:08:00.202Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.254Z] [435/478] Scoring: Kashi Chewy Granola Bar Dark Chocolate Coconut (Kashi)
+[2026-03-24T05:08:00.254Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.305Z] [436/478] Scoring: Bear Naked Granola Fruit & Nut (Kellanova)
+[2026-03-24T05:08:00.305Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.356Z] [437/478] Scoring: KIND Healthy Grains Oats & Honey Clusters (Kind)
+[2026-03-24T05:08:00.357Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.406Z] [438/478] Scoring: Orgain Organic Protein Powder Chocolate Fudge (Orgain)
+[2026-03-24T05:08:00.407Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.458Z] [439/478] Scoring: Garden of Life Raw Organic Protein Vanilla (Nestlé)
+[2026-03-24T05:08:00.460Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.511Z] [440/478] Scoring: Vega Sport Premium Protein Chocolate (Danone)
+[2026-03-24T05:08:00.512Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.565Z] [441/478] Scoring: Muscle Milk Genuine Protein Shake Chocolate (Hormel)
+[2026-03-24T05:08:00.565Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.617Z] [442/478] Scoring: Premier Protein Shake Chocolate (Post Holdings)
+[2026-03-24T05:08:00.617Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.668Z] [443/478] Scoring: Ensure Original Nutrition Shake Vanilla (Abbott)
+[2026-03-24T05:08:00.669Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.720Z] [444/478] Scoring: Boost Original Vanilla Drink (Nestlé)
+[2026-03-24T05:08:00.721Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.772Z] [445/478] Scoring: Glucerna Snack Shake Homemade Vanilla (Abbott)
+[2026-03-24T05:08:00.773Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.824Z] [446/478] Scoring: Odwalla Protein Shake Chocolate (Coca-Cola)
+[2026-03-24T05:08:00.825Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.875Z] [447/478] Scoring: Body Armor Fruit Punch (Coca-Cola)
+[2026-03-24T05:08:00.876Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.926Z] [448/478] Scoring: Nuun Sport Electrolyte Tablets Lemon Lime (Nuun)
+[2026-03-24T05:08:00.926Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:00.978Z] [449/478] Scoring: Clif Shot Energy Gel Chocolate (Clif Bar)
+[2026-03-24T05:08:00.980Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.031Z] [450/478] Scoring: GU Energy Gel Vanilla Bean (GU Energy Labs)
+[2026-03-24T05:08:01.031Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.082Z] [451/478] Scoring: Hammer Gel Chocolate (Hammer Nutrition)
+[2026-03-24T05:08:01.087Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.140Z] [452/478] Scoring: Gatorade Recover 03 Protein Shake Chocolate (PepsiCo)
+[2026-03-24T05:08:01.141Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.193Z] [453/478] Scoring: Isopure Zero Carb Protein Powder Dutch Chocolate (Isopure)
+[2026-03-24T05:08:01.193Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.245Z] [454/478] Scoring: Pure Protein Bar Chocolate Peanut Butter (Worldwide Sport)
+[2026-03-24T05:08:01.245Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.296Z] [455/478] Scoring: Gatorade Fast Twitch Berry (PepsiCo)
+[2026-03-24T05:08:01.298Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.349Z] [456/478] Scoring: Primal Kitchen Avocado Oil Mayo (Kraft Heinz)
+[2026-03-24T05:08:01.350Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.401Z] [457/478] Scoring: Chosen Foods Avocado Oil (Chosen Foods)
+[2026-03-24T05:08:01.402Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.453Z] [458/478] Scoring: Bragg Apple Cider Vinegar (Bragg)
+[2026-03-24T05:08:01.453Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.503Z] [459/478] Scoring: Bob's Red Mill Organic Chia Seeds (Bob's Red Mill)
+[2026-03-24T05:08:01.504Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.555Z] [460/478] Scoring: Navitas Organics Hemp Seeds (Navitas)
+[2026-03-24T05:08:01.556Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.609Z] [461/478] Scoring: Thrive Market Organic Coconut Sugar (Thrive Market)
+[2026-03-24T05:08:01.609Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.660Z] [462/478] Scoring: Now Foods Organic Stevia Packets (Now Foods)
+[2026-03-24T05:08:01.663Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.715Z] [463/478] Scoring: Monkfruit In The Raw Zero Calorie Sweetener (In The Raw)
+[2026-03-24T05:08:01.715Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.768Z] [464/478] Scoring: Splenda Original Sweetener (Splenda)
+[2026-03-24T05:08:01.769Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.820Z] [465/478] Scoring: Equal Original Sweetener (Equal)
+[2026-03-24T05:08:01.821Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.872Z] [466/478] Scoring: Sweet'N Low Zero Calorie Sweetener (Sweet'N Low)
+[2026-03-24T05:08:01.876Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.927Z] [467/478] Scoring: Stevia In The Raw Packets (In The Raw)
+[2026-03-24T05:08:01.928Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:01.979Z] [468/478] Scoring: Vital Proteins Collagen Peptides Unflavored (Nestlé)
+[2026-03-24T05:08:01.981Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.033Z] [469/478] Scoring: Ancient Nutrition Multi Collagen Protein (Ancient Nutrition)
+[2026-03-24T05:08:02.033Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.084Z] [470/478] Scoring: OLIPOP Classic Root Beer (Olipop)
+[2026-03-24T05:08:02.088Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.140Z] [471/478] Scoring: Poppi Apple Cider Vinegar Prebiotic Soda (Poppi)
+[2026-03-24T05:08:02.141Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.192Z] [472/478] Scoring: Siete Foods Sea Salt Tortilla Chips (Siete Foods)
+[2026-03-24T05:08:02.192Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.244Z] [473/478] Scoring: Simple Mills Almond Flour Vanilla Frosting (Simple Mills)
+[2026-03-24T05:08:02.246Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.298Z] [474/478] Scoring: Anthony's Organic Coconut Flour (Anthony's)
+[2026-03-24T05:08:02.299Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.349Z] [475/478] Scoring: Primal Kitchen Buffalo Sauce (Kraft Heinz)
+[2026-03-24T05:08:02.351Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.403Z] [476/478] Scoring: Thrive Market Organic Cassava Flour Tortillas (Thrive Market)
+[2026-03-24T05:08:02.404Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.455Z] [477/478] Scoring: Hu Chocolate Gems (Mondelēz)
+[2026-03-24T05:08:02.456Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.507Z] [478/478] Scoring: Enjoy Life Semi-Sweet Chocolate Mini Chips (Mondelēz)
+[2026-03-24T05:08:02.508Z]   → [dry-run] would call Claude API
+[2026-03-24T05:08:02.559Z] SUMMARY scored=478 skipped=0 failed=0 alts=0
