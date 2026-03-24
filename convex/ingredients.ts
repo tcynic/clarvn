@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { internalMutation, mutation, query } from "./_generated/server";
+import { internalMutation, internalQuery, mutation, query } from "./_generated/server";
 import { requireAdmin } from "./lib/auth";
 
 // Internal mutation: insert or update an ingredient by canonicalName.
@@ -213,6 +213,24 @@ export const upsertConditionModifierPublic = mutation({
       return existing._id;
     }
     return await ctx.db.insert("condition_modifiers", { ...args, status: "active" });
+  },
+});
+
+// Internal query: return scoreVersion=0 placeholder ingredients linked to a product.
+// Used by requeueUnscoredIngredients to find what needs re-scoring.
+export const getPlaceholderIngredientsByProduct = internalQuery({
+  args: { productId: v.id("products") },
+  handler: async (ctx, args) => {
+    const links = await ctx.db
+      .query("product_ingredients")
+      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
+      .take(200);
+    const placeholders = [];
+    for (const link of links) {
+      const ing = await ctx.db.get(link.ingredientId);
+      if (ing && (ing.scoreVersion ?? 0) === 0) placeholders.push(ing);
+    }
+    return placeholders;
   },
 });
 

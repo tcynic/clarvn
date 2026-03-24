@@ -349,6 +349,56 @@ export const refreshCheck = action({
 });
 
 /**
+ * Admin action: find all scoreVersion=0 placeholder ingredients linked to stuck
+ * products and re-queue them for scoring. When they score, the placeholderName
+ * hint in upsertIngredient updates them in-place so product_ingredients links
+ * stay valid and decrementPendingAndAssemble assembles the products automatically.
+ * Safe to run multiple times.
+ */
+export const requeueUnscoredIngredients = action({
+  args: {},
+  handler: async (ctx): Promise<{ requeued: number; productsAffected: number }> => {
+    await requireAdmin(ctx);
+
+    const pending = await ctx.runQuery(internal.products.listByAssemblyStatus, {
+      assemblyStatus: "pending_ingredients",
+    });
+    const partial = await ctx.runQuery(internal.products.listByAssemblyStatus, {
+      assemblyStatus: "partial",
+    });
+
+    const affectedProducts = new Set<string>();
+    let requeued = 0;
+
+    for (const product of [...pending, ...partial]) {
+      const placeholders = await ctx.runQuery(
+        internal.ingredients.getPlaceholderIngredientsByProduct,
+        { productId: product._id }
+      );
+      for (const ing of placeholders) {
+        await ctx.runMutation(internal.ingredientQueue.internalAddToIngredientQueue, {
+          canonicalName: ing.canonicalName,
+          priority: 1,
+          blockedProductId: product._id,
+        });
+        requeued++;
+        affectedProducts.add(product._id);
+      }
+    }
+
+    if (requeued > 0) {
+      await ctx.scheduler.runAfter(
+        0,
+        internal.ingredientScoring.processIngredientQueueBatch,
+        {}
+      );
+    }
+
+    return { requeued, productsAffected: affectedProducts.size };
+  },
+});
+
+/**
  * Admin action: re-run assembleProductScore for every product stuck in
  * "pending_ingredients" or "partial" assembly state. Safe to call multiple
  * times — assembleProductScore is idempotent and recalculates from current
