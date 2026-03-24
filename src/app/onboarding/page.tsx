@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useMutation } from "convex/react";
+import { useConvexAuth } from "convex/react";
 import { useRouter } from "next/navigation";
 import { api } from "../../../convex/_generated/api";
 import { saveProfile, type UserProfile } from "../../lib/personalScore";
@@ -78,10 +79,12 @@ function MultiSelect({
 
 export default function OnboardingPage() {
   const router = useRouter();
+  const { isAuthenticated, isLoading: authLoading } = useConvexAuth();
   const [step, setStep] = useState(0);
   const [motivation, setMotivation] = useState<string[]>([]);
   const [conditions, setConditions] = useState<string[]>([]);
   const [sensitivities, setSensitivities] = useState<string[]>([]);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const steps = [
     {
@@ -138,21 +141,22 @@ export default function OnboardingPage() {
       };
       // Save to localStorage (fast hydration cache) and Convex (source of truth)
       saveProfile(profile);
+      setSubmitError(null);
       try {
         await createOrUpdateProfile({
           motivation: profile.motivation.join(", "),
           conditions: profile.conditions,
           sensitivities: profile.sensitivities,
         });
+        router.push("/app");
       } catch {
-        // Proceed even if Convex write fails — localStorage has the profile
+        setSubmitError("Something went wrong saving your profile. Please try again.");
       }
-      router.push("/app");
     }
   }
 
   const current = steps[step];
-  const canProceed = step === 0 ? motivation.length > 0 : true;
+  const canProceed = (step === 0 ? motivation.length > 0 : true) && !authLoading && isAuthenticated;
 
   return (
     <div className="min-h-screen bg-[var(--surface)] flex flex-col items-center justify-center px-4">
@@ -182,6 +186,10 @@ export default function OnboardingPage() {
           <p className="text-sm text-[var(--ink-3)] mb-6">{current.subtitle}</p>
 
           {current.content}
+
+          {submitError && (
+            <p className="text-sm text-red-600 mt-6">{submitError}</p>
+          )}
 
           <div className="flex justify-between items-center mt-8">
             {step > 0 ? (
