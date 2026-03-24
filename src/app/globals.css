@@ -1,26 +1,123 @@
+/* Google Fonts — must be first @import */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
 @import "tailwindcss";
 
+/* === CleanList Design System v2 ===*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Fonts --- */
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+
+  /* --- Ink scale (text & icons) --- */
+  --ink:   #0D0F14;
+  --ink-2: #363840;
+  --ink-3: #60636E;
+  --ink-4: #9CA0AC;
+
+  /* --- Surface scale (backgrounds) --- */
+  --white:     #FFFFFF;
+  --surface:   #F5F6F8;
+  --surface-2: #ECEEF2;
+  --surface-3: #DEE1E8;
+
+  /* --- Primary (teal-emerald) --- */
+  --teal-dark:  #077A62;
+  --teal:       #0BA888;
+  --teal-mid:   #33C4A4;
+  --teal-pale:  #8DDECE;
+  --teal-light: #E4F8F4;
+
+  /* --- Score tier colours --- */
+  --tier-clean:         #059669;
+  --tier-clean-light:   #D1FAE5;
+  --tier-watch:         #D97706;
+  --tier-watch-light:   #FEF3C7;
+  --tier-caution:       #EA580C;
+  --tier-caution-light: #FFEDD5;
+  --tier-avoid:         #DC2626;
+  --tier-avoid-light:   #FEE2E2;
+
+  /* --- Supporting semantic --- */
+  --purple:       #7C3AED;
+  --purple-light: #EDE9FE;
+  --blue:         #2563EB;
+  --blue-light:   #EFF6FF;
+  --amber:        #D97706;
+  --amber-light:  #FEF3C7;
+
+  /* --- Borders --- */
+  --border:        rgba(13, 15, 20, 0.09);
+  --border-strong: rgba(13, 15, 20, 0.16);
+
+  /* --- Border radius --- */
+  --radius:    8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Page bg */
+  --background: var(--white);
+  --foreground: var(--ink);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Component Classes === */
+
+/* Tier badges */
+.b-clean   { background: var(--tier-clean-light);   color: var(--tier-clean);   border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+.b-watch   { background: var(--tier-watch-light);   color: var(--tier-watch);   border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+.b-caution { background: var(--tier-caution-light); color: var(--tier-caution); border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+.b-avoid   { background: var(--tier-avoid-light);   color: var(--tier-avoid);   border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+.b-teal    { background: var(--teal-light);         color: var(--teal-dark);    border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+.b-gray    { background: var(--surface-2);          color: var(--ink-3);        border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+.b-purple  { background: var(--purple-light);       color: var(--purple);       border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+.b-blue    { background: var(--blue-light);         color: var(--blue);         border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+
+/* Pills/chips */
+.pill         { background: var(--teal-light); color: var(--teal-dark); border-radius: 20px; padding: 4px 12px; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; }
+.pill-neutral { background: var(--surface);   color: var(--ink-3);     border-radius: 20px; padding: 4px 12px; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; }
+
+/* Score display */
+.score-display { border-radius: var(--radius-lg); padding: 12px 16px; display: inline-flex; flex-direction: column; align-items: center; gap: 2px; }
+.sd-clean   { background: var(--tier-clean-light);   color: var(--tier-clean); }
+.sd-watch   { background: var(--tier-watch-light);   color: var(--tier-watch); }
+.sd-caution { background: var(--tier-caution-light); color: var(--tier-caution); }
+.sd-avoid   { background: var(--tier-avoid-light);   color: var(--tier-avoid); }
+.score-display .base-score     { font-size: 13px; color: var(--ink-4); text-decoration: line-through; }
+.score-display .personal-score { font-family: var(--font-serif); font-size: 2.1rem; line-height: 1; }
+.score-display .tier-label     { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Callouts */
+.callout { border-left: 4px solid; border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin: 1rem 0; display: flex; gap: 12px; }
+.callout.teal   { border-color: var(--teal);       background: var(--teal-light); }
+.callout.amber  { border-color: var(--tier-watch); background: var(--tier-watch-light); }
+.callout.red    { border-color: var(--tier-avoid); background: var(--tier-avoid-light); }
+.callout.blue   { border-color: var(--blue);       background: var(--blue-light); }
+
+/* Hairline grid */
+.grid-container { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.grid-cell { background: var(--white); }
+
+/* Section eyebrow */
+.section-eyebrow { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--teal); }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container { padding: 0 1.25rem; }
+  .section   { padding: 2.5rem 0; }
 }

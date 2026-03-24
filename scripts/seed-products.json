@@ -1,0 +1,1914 @@
+[
+  {
+    "name": "Froot Loops",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Lucky Charms",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Honey Nut Cheerios",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Cheerios Original",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Cap'n Crunch",
+    "brand": "Quaker"
+  },
+  {
+    "name": "Frosted Flakes",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Cocoa Puffs",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Trix",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Cinnamon Toast Crunch",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Rice Krispies",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Corn Flakes",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Special K Original",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Raisin Bran",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Grape Nuts",
+    "brand": "Post"
+  },
+  {
+    "name": "Honey Bunches of Oats",
+    "brand": "Post"
+  },
+  {
+    "name": "Frosted Mini-Wheats",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Life Cereal Original",
+    "brand": "Quaker"
+  },
+  {
+    "name": "Honey Smacks",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Reese's Puffs",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Golden Grahams",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Quaker Instant Oatmeal Maple Brown Sugar",
+    "brand": "Quaker"
+  },
+  {
+    "name": "Quaker Instant Oatmeal Original",
+    "brand": "Quaker"
+  },
+  {
+    "name": "Cream of Wheat Original",
+    "brand": "B&G Foods"
+  },
+  {
+    "name": "Bob's Red Mill Old Fashioned Oats",
+    "brand": "Bob's Red Mill"
+  },
+  {
+    "name": "Kashi Go Crunch",
+    "brand": "Kashi"
+  },
+  {
+    "name": "Kashi Heart to Heart",
+    "brand": "Kashi"
+  },
+  {
+    "name": "Fiber One Original",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Total Whole Grain",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Apple Jacks",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Corn Pops",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Cocoa Krispies",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Honey Nut Clusters",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Count Chocula",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Nature's Path Heritage Flakes",
+    "brand": "Nature's Path"
+  },
+  {
+    "name": "Barbara's Puffins Original",
+    "brand": "Barbara's"
+  },
+  {
+    "name": "Gatorade Lemon-Lime",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Gatorade Fruit Punch",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Gatorade Blue Cherry",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Powerade Mountain Berry Blast",
+    "brand": "Coca-Cola"
+  },
+  {
+    "name": "Powerade Fruit Punch",
+    "brand": "Coca-Cola"
+  },
+  {
+    "name": "Capri Sun Fruit Punch",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Capri Sun Pacific Cooler",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Hi-C Orange Lavaburst",
+    "brand": "Coca-Cola"
+  },
+  {
+    "name": "Kool-Aid Tropical Punch Jammers",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Monster Energy Original",
+    "brand": "Monster Beverage"
+  },
+  {
+    "name": "Monster Energy Zero Ultra",
+    "brand": "Monster Beverage"
+  },
+  {
+    "name": "Red Bull Original",
+    "brand": "Red Bull"
+  },
+  {
+    "name": "Red Bull Sugar Free",
+    "brand": "Red Bull"
+  },
+  {
+    "name": "5-Hour Energy Original",
+    "brand": "Innovation Ventures"
+  },
+  {
+    "name": "Celsius Sparkling Orange",
+    "brand": "Celsius"
+  },
+  {
+    "name": "Prime Hydration Lemonade",
+    "brand": "Prime"
+  },
+  {
+    "name": "Liquid I.V. Lemon Lime",
+    "brand": "Liquid I.V."
+  },
+  {
+    "name": "Tropicana Orange Juice Original",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Minute Maid Orange Juice",
+    "brand": "Coca-Cola"
+  },
+  {
+    "name": "Ocean Spray Cranberry Cocktail",
+    "brand": "Ocean Spray"
+  },
+  {
+    "name": "Welch's Grape Juice",
+    "brand": "Welch's"
+  },
+  {
+    "name": "Sunny D Tangy Original",
+    "brand": "Harvest Hill"
+  },
+  {
+    "name": "V8 Original Vegetable Juice",
+    "brand": "Campbell's"
+  },
+  {
+    "name": "Bolthouse Farms Strawberry Banana Smoothie",
+    "brand": "Bolthouse"
+  },
+  {
+    "name": "Naked Green Machine",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Silk Original Oat Milk",
+    "brand": "Silk"
+  },
+  {
+    "name": "Oatly Oat Milk Original",
+    "brand": "Oatly"
+  },
+  {
+    "name": "Ripple Original Pea Milk",
+    "brand": "Ripple Foods"
+  },
+  {
+    "name": "Snapple Peach Tea",
+    "brand": "Keurig Dr Pepper"
+  },
+  {
+    "name": "AriZona Green Tea with Honey",
+    "brand": "AriZona"
+  },
+  {
+    "name": "Lipton Iced Tea Lemon",
+    "brand": "Unilever"
+  },
+  {
+    "name": "Pure Leaf Sweet Tea",
+    "brand": "Unilever/PepsiCo"
+  },
+  {
+    "name": "Starbucks Frappuccino Mocha",
+    "brand": "Starbucks"
+  },
+  {
+    "name": "Starbucks Doubleshot Energy Vanilla",
+    "brand": "Starbucks"
+  },
+  {
+    "name": "Nesquik Chocolate Milk",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "TruMoo Chocolate Milk",
+    "brand": "Dean Foods"
+  },
+  {
+    "name": "Core Power Elite 42g Protein Chocolate",
+    "brand": "Fairlife"
+  },
+  {
+    "name": "Fairlife 2% Reduced Fat Milk",
+    "brand": "Fairlife"
+  },
+  {
+    "name": "Bubly Sparkling Water Lime",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "LaCroix Sparkling Water Pamplemousse",
+    "brand": "National Beverage"
+  },
+  {
+    "name": "Spindrift Lemon Sparkling Water",
+    "brand": "Spindrift"
+  },
+  {
+    "name": "Hint Water Watermelon",
+    "brand": "Hint"
+  },
+  {
+    "name": "Bai Brasilia Blueberry",
+    "brand": "Bai Brands"
+  },
+  {
+    "name": "GT's Synergy Gingerberry Kombucha",
+    "brand": "GT's Living Foods"
+  },
+  {
+    "name": "Health-Ade Pink Lady Apple Kombucha",
+    "brand": "Health-Ade"
+  },
+  {
+    "name": "Doritos Nacho Cheese",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Doritos Cool Ranch",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Lay's Classic",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Lay's Sour Cream & Onion",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Lay's Barbecue",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Pringles Original",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Pringles Sour Cream & Onion",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Cheetos Crunchy",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Cheetos Puffs",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Funyuns Onion Flavored Rings",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Fritos Original",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Tostitos Original",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Tostitos Hint of Lime",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "SunChips Original",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Ruffles Original",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Ruffles Cheddar & Sour Cream",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Goldfish Crackers Original",
+    "brand": "Pepperidge Farm"
+  },
+  {
+    "name": "Goldfish Crackers Cheddar",
+    "brand": "Pepperidge Farm"
+  },
+  {
+    "name": "Cheez-It Original",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Cheez-It White Cheddar",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Wheat Thins Original",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Triscuit Original",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Ritz Crackers Original",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Club Crackers Original",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Townhouse Crackers Original",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Stacy's Pita Chips Simply Naked",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Popchips Original Potato",
+    "brand": "Popchips"
+  },
+  {
+    "name": "Skinny Pop Original Popcorn",
+    "brand": "Amplify Snack Brands"
+  },
+  {
+    "name": "Orville Redenbacher Smart Pop Butter",
+    "brand": "ConAgra"
+  },
+  {
+    "name": "ACT II Butter Lovers Popcorn",
+    "brand": "ConAgra"
+  },
+  {
+    "name": "Pirate's Booty Aged White Cheddar",
+    "brand": "Pirate Brands"
+  },
+  {
+    "name": "Snyder's Mini Pretzels",
+    "brand": "Campbell's"
+  },
+  {
+    "name": "Unique \\\"Extra Dark\\\" Pretzels",
+    "brand": "Unique Snacks"
+  },
+  {
+    "name": "Bugles Original",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Combos Cheddar Cheese Cracker",
+    "brand": "Mars"
+  },
+  {
+    "name": "Munchies Cheese Fix Snack Mix",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Chex Mix Original",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Gardetto's Original Recipe Snack Mix",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Harvest Snaps Green Pea Snacks Lightly Salted",
+    "brand": "Calbee"
+  },
+  {
+    "name": "Beanitos White Bean Chips",
+    "brand": "Beanitos"
+  },
+  {
+    "name": "Late July Organic Multigrain Tortilla Chips",
+    "brand": "Late July"
+  },
+  {
+    "name": "Siete Grain-Free Tortilla Chips Sea Salt",
+    "brand": "Siete Foods"
+  },
+  {
+    "name": "Simple Mills Almond Flour Crackers",
+    "brand": "Simple Mills"
+  },
+  {
+    "name": "RW Garcia Sweet Potato Crackers",
+    "brand": "RW Garcia"
+  },
+  {
+    "name": "Mary's Gone Crackers Original",
+    "brand": "Mary's Gone Crackers"
+  },
+  {
+    "name": "Kind Mini Bars Dark Chocolate Nuts & Sea Salt",
+    "brand": "Kind"
+  },
+  {
+    "name": "RXBar Chocolate Sea Salt",
+    "brand": "RXBAR"
+  },
+  {
+    "name": "Larabar Apple Pie",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Cliff Bar Chocolate Chip",
+    "brand": "Clif Bar"
+  },
+  {
+    "name": "Oreo Original",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Oreo Double Stuf",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Oreo Golden",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Chips Ahoy! Original",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Chips Ahoy! Chewy",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Nutter Butter Original",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Pepperidge Farm Milano Cookies",
+    "brand": "Pepperidge Farm"
+  },
+  {
+    "name": "Famous Amos Chocolate Chip Cookies",
+    "brand": "Ferrero"
+  },
+  {
+    "name": "Lorna Doone Shortbread Cookies",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Keebler Fudge Stripes",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Twinkies",
+    "brand": "Hostess"
+  },
+  {
+    "name": "Ding Dongs",
+    "brand": "Hostess"
+  },
+  {
+    "name": "Little Debbie Oatmeal Creme Pies",
+    "brand": "McKee Foods"
+  },
+  {
+    "name": "Little Debbie Nutty Bars",
+    "brand": "McKee Foods"
+  },
+  {
+    "name": "Skittles Original",
+    "brand": "Mars"
+  },
+  {
+    "name": "Skittles Wild Berry",
+    "brand": "Mars"
+  },
+  {
+    "name": "Starburst Original",
+    "brand": "Mars"
+  },
+  {
+    "name": "Twizzlers Strawberry Twists",
+    "brand": "Hershey's"
+  },
+  {
+    "name": "Swedish Fish Original",
+    "brand": "Mondel\u0113z"
+  },
+  {
+    "name": "Sour Patch Kids Original",
+    "brand": "Mondel\u0113z"
+  },
+  {
+    "name": "Airheads Original",
+    "brand": "Perfetti Van Melle"
+  },
+  {
+    "name": "Jolly Rancher Hard Candy Assorted",
+    "brand": "Hershey's"
+  },
+  {
+    "name": "Nerds Original",
+    "brand": "Ferrara Candy"
+  },
+  {
+    "name": "Haribo Gold-Bears",
+    "brand": "Haribo"
+  },
+  {
+    "name": "Trolli Sour Brite Crawlers",
+    "brand": "Ferrara Candy"
+  },
+  {
+    "name": "Mike and Ike Original Fruits",
+    "brand": "Just Born"
+  },
+  {
+    "name": "M&Ms Milk Chocolate",
+    "brand": "Mars"
+  },
+  {
+    "name": "M&Ms Peanut",
+    "brand": "Mars"
+  },
+  {
+    "name": "Snickers Original",
+    "brand": "Mars"
+  },
+  {
+    "name": "Kit Kat Original",
+    "brand": "Hershey's"
+  },
+  {
+    "name": "Reese's Peanut Butter Cups",
+    "brand": "Hershey's"
+  },
+  {
+    "name": "Hershey's Milk Chocolate Bar",
+    "brand": "Hershey's"
+  },
+  {
+    "name": "Butterfinger Original",
+    "brand": "Ferrero"
+  },
+  {
+    "name": "Baby Ruth Original",
+    "brand": "Ferrero"
+  },
+  {
+    "name": "3 Musketeers",
+    "brand": "Mars"
+  },
+  {
+    "name": "Milky Way Original",
+    "brand": "Mars"
+  },
+  {
+    "name": "Almond Joy",
+    "brand": "Hershey's"
+  },
+  {
+    "name": "Mounds",
+    "brand": "Hershey's"
+  },
+  {
+    "name": "Toblerone Milk Chocolate",
+    "brand": "Mondel\u0113z"
+  },
+  {
+    "name": "Lindt Excellence 70% Cocoa Dark",
+    "brand": "Lindt"
+  },
+  {
+    "name": "Justin's Dark Chocolate Peanut Butter Cups",
+    "brand": "Justin's"
+  },
+  {
+    "name": "Lily's Milk Chocolate Chips",
+    "brand": "Lily's"
+  },
+  {
+    "name": "SmartSweets Peach Rings",
+    "brand": "SmartSweets"
+  },
+  {
+    "name": "YumEarth Organic Gummy Bears",
+    "brand": "YumEarth"
+  },
+  {
+    "name": "Unreal Dark Chocolate Peanut Butter Cups",
+    "brand": "Unreal"
+  },
+  {
+    "name": "Kraft Mac & Cheese Original",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Kraft Mac & Cheese Shapes",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Velveeta Shells & Cheese",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Annie's Organic Mac & Cheese",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Maruchan Ramen Chicken",
+    "brand": "Maruchan"
+  },
+  {
+    "name": "Maruchan Ramen Beef",
+    "brand": "Maruchan"
+  },
+  {
+    "name": "Top Ramen Chicken",
+    "brand": "Nissin"
+  },
+  {
+    "name": "Nissin Cup Noodles Chicken",
+    "brand": "Nissin"
+  },
+  {
+    "name": "Hamburger Helper Cheeseburger Macaroni",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Rice-A-Roni Chicken Flavor",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Knorr Pasta Sides Chicken Broccoli",
+    "brand": "Unilever"
+  },
+  {
+    "name": "Pasta Roni Angel Hair & Butter",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Barilla Spaghetti",
+    "brand": "Barilla"
+  },
+  {
+    "name": "Barilla Penne Rigate",
+    "brand": "Barilla"
+  },
+  {
+    "name": "Barilla Rotini",
+    "brand": "Barilla"
+  },
+  {
+    "name": "Ronzoni Garden Delight Rotini",
+    "brand": "TreeHouse Foods"
+  },
+  {
+    "name": "Banza Chickpea Pasta Penne",
+    "brand": "Banza"
+  },
+  {
+    "name": "Explore Cuisine Edamame Spaghetti",
+    "brand": "Explore Cuisine"
+  },
+  {
+    "name": "Near East Couscous Roasted Garlic & Olive Oil",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Uncle Ben's Ready Rice Long Grain & Wild",
+    "brand": "Mars Food"
+  },
+  {
+    "name": "Seeds of Change Organic Brown Rice & Quinoa",
+    "brand": "Mars Food"
+  },
+  {
+    "name": "Idahoan Instant Mashed Potatoes Four Cheese",
+    "brand": "Idahoan"
+  },
+  {
+    "name": "Betty Crocker Scalloped Potatoes",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Knorr Lipton Onion Soup & Dip Mix",
+    "brand": "Unilever"
+  },
+  {
+    "name": "McCormick Taco Seasoning",
+    "brand": "McCormick"
+  },
+  {
+    "name": "Chili-Man Mild Chili Seasoning Mix",
+    "brand": "Tone Brothers"
+  },
+  {
+    "name": "Zatarain's Dirty Rice Mix",
+    "brand": "Mars Food"
+  },
+  {
+    "name": "Old El Paso Taco Shells Hard",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Old El Paso Flour Tortillas Small",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Mission Flour Tortillas Soft Taco",
+    "brand": "Mission Foods"
+  },
+  {
+    "name": "La Banderita Corn Tortillas",
+    "brand": "Mission Foods"
+  },
+  {
+    "name": "Goya Black Beans",
+    "brand": "Goya"
+  },
+  {
+    "name": "Ro-Tel Original Diced Tomatoes & Chilies",
+    "brand": "ConAgra"
+  },
+  {
+    "name": "Campbell's Chunky Classic Chicken Noodle",
+    "brand": "Campbell's"
+  },
+  {
+    "name": "DiGiorno Rising Crust Pepperoni Pizza",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "DiGiorno Thin & Crispy Three Meat",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Red Baron Classic Crust Pepperoni",
+    "brand": "Schwan's"
+  },
+  {
+    "name": "Totino's Party Pizza Pepperoni",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Stouffer's Macaroni & Cheese",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Stouffer's Lasagna with Meat Sauce",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Lean Cuisine Glazed Chicken",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Amy's Cheese Pizza",
+    "brand": "Amy's Kitchen"
+  },
+  {
+    "name": "Amy's Broccoli Cheddar Bake",
+    "brand": "Amy's Kitchen"
+  },
+  {
+    "name": "Birds Eye Steamfresh Mixed Vegetables",
+    "brand": "ConAgra"
+  },
+  {
+    "name": "Birds Eye Steamfresh Broccoli",
+    "brand": "ConAgra"
+  },
+  {
+    "name": "Green Giant Broccoli & Cheese Sauce",
+    "brand": "B&G Foods"
+  },
+  {
+    "name": "Ore-Ida Golden Crinkles",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Ore-Ida Tater Tots",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "McCain Smiles Mashed Potato Shapes",
+    "brand": "McCain Foods"
+  },
+  {
+    "name": "Eggo Homestyle Waffles",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Eggo Buttermilk Waffles",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Pillsbury Frozen Mini Pancakes Blueberry",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Jimmy Dean Sausage Egg & Cheese Croissant",
+    "brand": "Tyson"
+  },
+  {
+    "name": "Jimmy Dean Original Pork Sausage Patties",
+    "brand": "Tyson"
+  },
+  {
+    "name": "Hot Pockets Pepperoni Pizza",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Hot Pockets Ham & Cheese",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Bagel Bites Pepperoni",
+    "brand": "Ore-Ida"
+  },
+  {
+    "name": "TGI Friday's Mozzarella Sticks",
+    "brand": "Inventure Foods"
+  },
+  {
+    "name": "Jose Ole Beef & Cheese Taquitos",
+    "brand": "Ruiz Foods"
+  },
+  {
+    "name": "El Monterey Bean & Cheese Burritos",
+    "brand": "Ruiz Foods"
+  },
+  {
+    "name": "Tyson Crispy Chicken Strips",
+    "brand": "Tyson"
+  },
+  {
+    "name": "Perdue Chicken Nuggets",
+    "brand": "Perdue"
+  },
+  {
+    "name": "Foster Farms Corn Dogs",
+    "brand": "Foster Farms"
+  },
+  {
+    "name": "Applegate Naturals Chicken Nuggets",
+    "brand": "Applegate"
+  },
+  {
+    "name": "MorningStar Farms Veggie Burger Original",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Impossible Burger Patties",
+    "brand": "Impossible Foods"
+  },
+  {
+    "name": "Beyond Burger Plant-Based Patties",
+    "brand": "Beyond Meat"
+  },
+  {
+    "name": "Gardein Beefless Burger",
+    "brand": "Conagra"
+  },
+  {
+    "name": "Ben & Jerry's Chocolate Chip Cookie Dough",
+    "brand": "Unilever"
+  },
+  {
+    "name": "H\u00e4agen-Dazs Vanilla",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Dreyer's Slow Churned Vanilla Bean",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Breyers Natural Vanilla",
+    "brand": "Unilever"
+  },
+  {
+    "name": "Breyers Oreo Cookies & Cream",
+    "brand": "Unilever"
+  },
+  {
+    "name": "Popsicle Orange Cherry Grape",
+    "brand": "Unilever"
+  },
+  {
+    "name": "Welch's Fruit Snacks Mixed Fruit",
+    "brand": "Welch's"
+  },
+  {
+    "name": "Outshine Strawberry Fruit Bar",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Halo Top Vanilla Bean",
+    "brand": "Halo Top"
+  },
+  {
+    "name": "Good Culture Cottage Cheese 2%",
+    "brand": "Good Culture"
+  },
+  {
+    "name": "Evol Truffle Parmesan Mac & Cheese",
+    "brand": "Conagra"
+  },
+  {
+    "name": "Sweet Earth Protein Lovers Burrito",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Caulipower Cauliflower Pizza Margherita",
+    "brand": "Caulipower"
+  },
+  {
+    "name": "Wonder Classic White Bread",
+    "brand": "Flowers Foods"
+  },
+  {
+    "name": "Nature's Own Honey Wheat Bread",
+    "brand": "Flowers Foods"
+  },
+  {
+    "name": "Dave's Killer Bread 21 Whole Grains",
+    "brand": "Flowers Foods"
+  },
+  {
+    "name": "Arnold Whole Wheat Bread",
+    "brand": "Bimbo Bakeries"
+  },
+  {
+    "name": "Sara Lee Delightful Wheat Bread",
+    "brand": "Flowers Foods"
+  },
+  {
+    "name": "Pepperidge Farm Farmhouse White",
+    "brand": "Pepperidge Farm"
+  },
+  {
+    "name": "Thomas' English Muffins Original",
+    "brand": "Bimbo Bakeries"
+  },
+  {
+    "name": "Thomas' Everything Bagels",
+    "brand": "Bimbo Bakeries"
+  },
+  {
+    "name": "Lender's Blueberry Bagels",
+    "brand": "Bimbo Bakeries"
+  },
+  {
+    "name": "Pillsbury Crescent Rolls Original",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Pepperidge Farm Puff Pastry Sheets",
+    "brand": "Pepperidge Farm"
+  },
+  {
+    "name": "Betty Crocker Blueberry Muffin Mix",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Bisquick Original Pancake & Baking Mix",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Aunt Jemima Buttermilk Pancake Mix",
+    "brand": "Pearl Milling Co."
+  },
+  {
+    "name": "Krusteaz Buttermilk Pancake Mix",
+    "brand": "Continental Mills"
+  },
+  {
+    "name": "Pepperidge Farm Stuffing Herb Seasoned",
+    "brand": "Pepperidge Farm"
+  },
+  {
+    "name": "Mission Flour Tortillas Large",
+    "brand": "Mission Foods"
+  },
+  {
+    "name": "Old El Paso Stand 'n Stuff Taco Shells",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Udi's Gluten-Free Original Sandwich Bread",
+    "brand": "Canyon Bakehouse"
+  },
+  {
+    "name": "Oroweat Whole Grains Double Fiber Bread",
+    "brand": "Bimbo Bakeries"
+  },
+  {
+    "name": "Brownberry Buttermilk Bread",
+    "brand": "Bimbo Bakeries"
+  },
+  {
+    "name": "Schmidt Old Tyme 647 Bread",
+    "brand": "Schmidt Baking Co."
+  },
+  {
+    "name": "Siete Grain-Free Almond Flour Tortillas",
+    "brand": "Siete Foods"
+  },
+  {
+    "name": "Base Culture Original Keto Bread",
+    "brand": "Base Culture"
+  },
+  {
+    "name": "Heinz Tomato Ketchup",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Hunt's Ketchup No Sugar Added",
+    "brand": "ConAgra"
+  },
+  {
+    "name": "French's Classic Yellow Mustard",
+    "brand": "McCormick"
+  },
+  {
+    "name": "Grey Poupon Dijon Mustard",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Hellmann's Real Mayonnaise",
+    "brand": "Unilever"
+  },
+  {
+    "name": "Miracle Whip Dressing",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Heinz Sweet Relish",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Vlasic Bread & Butter Chips",
+    "brand": "Conagra"
+  },
+  {
+    "name": "Prego Traditional Pasta Sauce",
+    "brand": "Campbell's"
+  },
+  {
+    "name": "Ragu Traditional Pasta Sauce",
+    "brand": "Mizkan"
+  },
+  {
+    "name": "Bertolli Marinara Sauce",
+    "brand": "Mizkan"
+  },
+  {
+    "name": "Rao's Homemade Marinara Sauce",
+    "brand": "Rao's"
+  },
+  {
+    "name": "Classico Sweet Basil Marinara",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Jif Creamy Peanut Butter",
+    "brand": "J.M. Smucker"
+  },
+  {
+    "name": "Skippy Creamy Peanut Butter",
+    "brand": "Hormel"
+  },
+  {
+    "name": "Smucker's Strawberry Jam",
+    "brand": "J.M. Smucker"
+  },
+  {
+    "name": "Smucker's Concord Grape Jelly",
+    "brand": "J.M. Smucker"
+  },
+  {
+    "name": "Nutella Hazelnut Spread",
+    "brand": "Ferrero"
+  },
+  {
+    "name": "Hershey's Chocolate Syrup",
+    "brand": "Hershey's"
+  },
+  {
+    "name": "Mrs. Butterworth's Original Syrup",
+    "brand": "TreeHouse Foods"
+  },
+  {
+    "name": "Aunt Jemima Original Syrup",
+    "brand": "Pearl Milling Co."
+  },
+  {
+    "name": "Hidden Valley Original Ranch Dressing",
+    "brand": "Clorox"
+  },
+  {
+    "name": "Ken's Thousand Island Dressing",
+    "brand": "Ken's Foods"
+  },
+  {
+    "name": "Wish-Bone Italian Dressing",
+    "brand": "Wish-Bone"
+  },
+  {
+    "name": "Newman's Own Caesar Dressing",
+    "brand": "Newman's Own"
+  },
+  {
+    "name": "Kraft Classic Caesar Dressing",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Frank's RedHot Original Hot Sauce",
+    "brand": "McCormick"
+  },
+  {
+    "name": "Tabasco Original Red Sauce",
+    "brand": "McIlhenny Co."
+  },
+  {
+    "name": "Cholula Original Hot Sauce",
+    "brand": "McCormick"
+  },
+  {
+    "name": "Sriracha Rooster Sauce",
+    "brand": "Huy Fong Foods"
+  },
+  {
+    "name": "Heinz 57 Sauce",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "A.1. Original Sauce",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Lea & Perrins Worcestershire Sauce",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Kikkoman Soy Sauce",
+    "brand": "Kikkoman"
+  },
+  {
+    "name": "Bragg Liquid Aminos",
+    "brand": "Bragg"
+  },
+  {
+    "name": "Ocean's Halo No Soy Organic Soy-Free Sauce",
+    "brand": "Ocean's Halo"
+  },
+  {
+    "name": "Pace Chunky Salsa Medium",
+    "brand": "Campbell's"
+  },
+  {
+    "name": "Tostitos Chunky Salsa Medium",
+    "brand": "Frito-Lay"
+  },
+  {
+    "name": "Sabra Classic Hummus",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Wholly Guacamole Classic",
+    "brand": "Hormel"
+  },
+  {
+    "name": "Dannon Strawberry Yogurt",
+    "brand": "Danone"
+  },
+  {
+    "name": "Dannon Light & Fit Greek Strawberry",
+    "brand": "Danone"
+  },
+  {
+    "name": "Yoplait Original Strawberry",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Chobani Plain Greek Yogurt",
+    "brand": "Chobani"
+  },
+  {
+    "name": "Chobani Strawberry Greek Yogurt",
+    "brand": "Chobani"
+  },
+  {
+    "name": "Activia Strawberry Probiotic Yogurt",
+    "brand": "Danone"
+  },
+  {
+    "name": "Stonyfield Organic Whole Milk Vanilla",
+    "brand": "Lactalis"
+  },
+  {
+    "name": "Siggi's Plain Whole-Milk Skyr",
+    "brand": "Arla Foods"
+  },
+  {
+    "name": "Kraft Singles American Cheese",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Velveeta Original Pasteurized Cheese",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Sargento Shredded Mild Cheddar",
+    "brand": "Sargento"
+  },
+  {
+    "name": "Tillamook Medium Cheddar",
+    "brand": "Tillamook"
+  },
+  {
+    "name": "Babybel Original Mini Cheese",
+    "brand": "Bel Brands"
+  },
+  {
+    "name": "Laughing Cow Original Creamy Swiss",
+    "brand": "Bel Brands"
+  },
+  {
+    "name": "Philadelphia Original Cream Cheese",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Daisy Pure & Natural Sour Cream",
+    "brand": "Daisy Brand"
+  },
+  {
+    "name": "Horizon Organic Whole Milk",
+    "brand": "Danone"
+  },
+  {
+    "name": "Coffee-mate Original Liquid Creamer",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Coffee-mate Natural Bliss Oat Milk Creamer",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "International Delight French Vanilla",
+    "brand": "Danone"
+  },
+  {
+    "name": "Vital Farms Pasture-Raised Butter",
+    "brand": "Vital Farms"
+  },
+  {
+    "name": "Land O'Lakes Unsalted Butter",
+    "brand": "Land O'Lakes"
+  },
+  {
+    "name": "I Can't Believe It's Not Butter!",
+    "brand": "Upfield"
+  },
+  {
+    "name": "Country Crock Original Buttery Spread",
+    "brand": "Upfield"
+  },
+  {
+    "name": "Egg Beaters Original",
+    "brand": "ConAgra"
+  },
+  {
+    "name": "Just Egg Plant-Based Scramble",
+    "brand": "Eat Just"
+  },
+  {
+    "name": "Bob Evans Original Country Sausage",
+    "brand": "Post Holdings"
+  },
+  {
+    "name": "Pillsbury Orange Sweet Rolls",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Sargento String Cheese Original",
+    "brand": "Sargento"
+  },
+  {
+    "name": "Horizon Organic String Cheese",
+    "brand": "Danone"
+  },
+  {
+    "name": "Babybel Light Mini Cheese",
+    "brand": "Bel Brands"
+  },
+  {
+    "name": "Daisy Squeezable Sour Cream",
+    "brand": "Daisy Brand"
+  },
+  {
+    "name": "Good Culture Cottage Cheese 4%",
+    "brand": "Good Culture"
+  },
+  {
+    "name": "Kite Hill Almond Milk Yogurt Plain",
+    "brand": "Kite Hill"
+  },
+  {
+    "name": "Oscar Mayer Classic Beef Franks",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Ball Park Beef Franks",
+    "brand": "Tyson"
+  },
+  {
+    "name": "Hebrew National Beef Franks",
+    "brand": "ConAgra"
+  },
+  {
+    "name": "Oscar Mayer Turkey Bacon",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Applegate Farms Uncured Turkey Bacon",
+    "brand": "Applegate"
+  },
+  {
+    "name": "Oscar Mayer Original Bologna",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Hillshire Farm Smoked Sausage Original",
+    "brand": "Tyson"
+  },
+  {
+    "name": "Eckrich Smoked Sausage",
+    "brand": "John Morrell"
+  },
+  {
+    "name": "Johnsonville Original Bratwurst",
+    "brand": "Johnsonville"
+  },
+  {
+    "name": "Hormel Pepperoni Classic",
+    "brand": "Hormel"
+  },
+  {
+    "name": "Hormel Black Label Bacon Regular",
+    "brand": "Hormel"
+  },
+  {
+    "name": "Boar's Head Low Sodium Oven Roasted Turkey",
+    "brand": "Boar's Head"
+  },
+  {
+    "name": "Deli Select Honey Ham",
+    "brand": "Hillshire Farm"
+  },
+  {
+    "name": "Armour Vienna Sausage Original",
+    "brand": "Conagra"
+  },
+  {
+    "name": "Spam Classic",
+    "brand": "Hormel"
+  },
+  {
+    "name": "Spam Lite",
+    "brand": "Hormel"
+  },
+  {
+    "name": "Hormel Compleats Chicken & Rice",
+    "brand": "Hormel"
+  },
+  {
+    "name": "StarKist Chunk Light Tuna in Water",
+    "brand": "StarKist"
+  },
+  {
+    "name": "Bumble Bee Chunk White Albacore Tuna",
+    "brand": "Bumble Bee"
+  },
+  {
+    "name": "Wild Planet Wild Albacore Tuna",
+    "brand": "Wild Planet"
+  },
+  {
+    "name": "Chicken of the Sea Pink Salmon",
+    "brand": "Chicken of the Sea"
+  },
+  {
+    "name": "Sargento Ultra Thin Sliced Swiss",
+    "brand": "Sargento"
+  },
+  {
+    "name": "Jennie-O Ground Turkey 93/7",
+    "brand": "Jennie-O"
+  },
+  {
+    "name": "Tyson Grilled & Ready Chicken Strips",
+    "brand": "Tyson"
+  },
+  {
+    "name": "Perdue Short Cuts Carved Chicken Breast Original",
+    "brand": "Perdue"
+  },
+  {
+    "name": "Jack Link's Original Beef Jerky",
+    "brand": "Jack Link's"
+  },
+  {
+    "name": "Slim Jim Original Smoked Snack Stick",
+    "brand": "Conagra"
+  },
+  {
+    "name": "Old Wisconsin Beef Summer Sausage",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Bridgford Pepperoni Slices",
+    "brand": "Bridgford Foods"
+  },
+  {
+    "name": "Gerber 2nd Foods Apple Blueberry",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Gerber 2nd Foods Sweet Potato",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Gerber 3rd Foods Pasta Alphabet in Chicken Broth",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Gerber Puffs Banana",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Gerber Lil' Crunchies Mild Cheddar",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Happy Baby Organic Clearly Crafted Apple Mango",
+    "brand": "Happy Family"
+  },
+  {
+    "name": "Sprout Organic Baby Food Pea Pear Broccoli",
+    "brand": "Sprout Organics"
+  },
+  {
+    "name": "Beech-Nut Stage 2 Apple & Blueberry",
+    "brand": "Beech-Nut"
+  },
+  {
+    "name": "Earth's Best Organic Stage 2 Winter Squash",
+    "brand": "Hain Celestial"
+  },
+  {
+    "name": "Plum Organics Just Fruits Variety Pack",
+    "brand": "Campbell's"
+  },
+  {
+    "name": "Similac Pro-Advance Non-GMO Infant Formula",
+    "brand": "Abbott"
+  },
+  {
+    "name": "Enfamil NeuroPro Infant Formula",
+    "brand": "Mead Johnson"
+  },
+  {
+    "name": "Parent's Choice Infant Formula",
+    "brand": "Walmart"
+  },
+  {
+    "name": "Annie's Organic Bunny Grahams",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Annie's Organic Cheddar Bunnies",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Nilla Wafers Mini",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Teddy Grahams Honey",
+    "brand": "Nabisco"
+  },
+  {
+    "name": "Keebler Gripz Cinnamon Grahams",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Welch's Fruit Snacks Mixed Fruit",
+    "brand": "Welch's"
+  },
+  {
+    "name": "Motts Fruit Snacks Assorted",
+    "brand": "Mott's"
+  },
+  {
+    "name": "Horizon Organic Whole Milk Boxes",
+    "brand": "Danone"
+  },
+  {
+    "name": "Stonyfield YoBaby Organic Whole Milk Yogurt Peach",
+    "brand": "Lactalis"
+  },
+  {
+    "name": "Danimals Strawberry Explosion Smoothie",
+    "brand": "Danone"
+  },
+  {
+    "name": "Go-GURT Strawberry Banana Yogurt Tube",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Kraft Easy Mac Original",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Lunchables Turkey & Cheddar with Crackers",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Lunchables Pizza with Pepperoni",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Nature Valley Oats 'n Honey Bar",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Nature Valley Sweet & Salty Almond",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Nutri-Grain Strawberry Bar",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Nutri-Grain Apple Cinnamon Bar",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Special K Chocolate Almond Protein Bar",
+    "brand": "Kellogg's"
+  },
+  {
+    "name": "Quaker Chewy Chocolate Chip Granola Bar",
+    "brand": "Quaker"
+  },
+  {
+    "name": "Quaker Chewy Dipps Chocolate Chip",
+    "brand": "Quaker"
+  },
+  {
+    "name": "Fiber One Chocolate Fudge Brownie",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Kind Bar Dark Chocolate Nuts & Sea Salt",
+    "brand": "Kind"
+  },
+  {
+    "name": "Kind Breakfast Oats & Honey Bar",
+    "brand": "Kind"
+  },
+  {
+    "name": "RXBar Chocolate Sea Salt",
+    "brand": "RXBAR"
+  },
+  {
+    "name": "RXBar Blueberry",
+    "brand": "RXBAR"
+  },
+  {
+    "name": "Larabar Apple Pie",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Larabar Peanut Butter Chocolate Chip",
+    "brand": "General Mills"
+  },
+  {
+    "name": "Clif Bar Chocolate Chip",
+    "brand": "Clif Bar"
+  },
+  {
+    "name": "Clif Bar Crunchy Peanut Butter",
+    "brand": "Clif Bar"
+  },
+  {
+    "name": "Luna Bar Chocolate Dipped Coconut",
+    "brand": "Clif Bar"
+  },
+  {
+    "name": "Quest Bar Chocolate Chip Cookie Dough",
+    "brand": "Quest Nutrition"
+  },
+  {
+    "name": "Quest Bar Birthday Cake",
+    "brand": "Quest Nutrition"
+  },
+  {
+    "name": "One Bar Birthday Cake",
+    "brand": "ONE Brands"
+  },
+  {
+    "name": "Atkins Chocolate Peanut Butter Bar",
+    "brand": "Atkins"
+  },
+  {
+    "name": "Think! Protein Bar Chocolate Fudge",
+    "brand": "thinkThin"
+  },
+  {
+    "name": "Perfect Bar Dark Chocolate Chip Peanut Butter",
+    "brand": "Perfect Bar"
+  },
+  {
+    "name": "GoMacro MacroBar Peanut Butter Chocolate Chip",
+    "brand": "GoMacro"
+  },
+  {
+    "name": "Rise Bar Sunflower Cinnamon Protein",
+    "brand": "Rise Bar"
+  },
+  {
+    "name": "Kashi Chewy Granola Bar Dark Chocolate Coconut",
+    "brand": "Kashi"
+  },
+  {
+    "name": "Bear Naked Granola Fruit & Nut",
+    "brand": "Kellanova"
+  },
+  {
+    "name": "KIND Healthy Grains Oats & Honey Clusters",
+    "brand": "Kind"
+  },
+  {
+    "name": "Orgain Organic Protein Powder Chocolate Fudge",
+    "brand": "Orgain"
+  },
+  {
+    "name": "Garden of Life Raw Organic Protein Vanilla",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Vega Sport Premium Protein Chocolate",
+    "brand": "Danone"
+  },
+  {
+    "name": "Muscle Milk Genuine Protein Shake Chocolate",
+    "brand": "Hormel"
+  },
+  {
+    "name": "Premier Protein Shake Chocolate",
+    "brand": "Post Holdings"
+  },
+  {
+    "name": "Ensure Original Nutrition Shake Vanilla",
+    "brand": "Abbott"
+  },
+  {
+    "name": "Boost Original Vanilla Drink",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Glucerna Snack Shake Homemade Vanilla",
+    "brand": "Abbott"
+  },
+  {
+    "name": "Odwalla Protein Shake Chocolate",
+    "brand": "Coca-Cola"
+  },
+  {
+    "name": "Body Armor Fruit Punch",
+    "brand": "Coca-Cola"
+  },
+  {
+    "name": "Nuun Sport Electrolyte Tablets Lemon Lime",
+    "brand": "Nuun"
+  },
+  {
+    "name": "Clif Shot Energy Gel Chocolate",
+    "brand": "Clif Bar"
+  },
+  {
+    "name": "GU Energy Gel Vanilla Bean",
+    "brand": "GU Energy Labs"
+  },
+  {
+    "name": "Hammer Gel Chocolate",
+    "brand": "Hammer Nutrition"
+  },
+  {
+    "name": "Gatorade Recover 03 Protein Shake Chocolate",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Isopure Zero Carb Protein Powder Dutch Chocolate",
+    "brand": "Isopure"
+  },
+  {
+    "name": "Pure Protein Bar Chocolate Peanut Butter",
+    "brand": "Worldwide Sport"
+  },
+  {
+    "name": "Gatorade Fast Twitch Berry",
+    "brand": "PepsiCo"
+  },
+  {
+    "name": "Primal Kitchen Avocado Oil Mayo",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Chosen Foods Avocado Oil",
+    "brand": "Chosen Foods"
+  },
+  {
+    "name": "Bragg Apple Cider Vinegar",
+    "brand": "Bragg"
+  },
+  {
+    "name": "Bob's Red Mill Organic Chia Seeds",
+    "brand": "Bob's Red Mill"
+  },
+  {
+    "name": "Navitas Organics Hemp Seeds",
+    "brand": "Navitas"
+  },
+  {
+    "name": "Thrive Market Organic Coconut Sugar",
+    "brand": "Thrive Market"
+  },
+  {
+    "name": "Now Foods Organic Stevia Packets",
+    "brand": "Now Foods"
+  },
+  {
+    "name": "Monkfruit In The Raw Zero Calorie Sweetener",
+    "brand": "In The Raw"
+  },
+  {
+    "name": "Splenda Original Sweetener",
+    "brand": "Splenda"
+  },
+  {
+    "name": "Equal Original Sweetener",
+    "brand": "Equal"
+  },
+  {
+    "name": "Sweet'N Low Zero Calorie Sweetener",
+    "brand": "Sweet'N Low"
+  },
+  {
+    "name": "Stevia In The Raw Packets",
+    "brand": "In The Raw"
+  },
+  {
+    "name": "Vital Proteins Collagen Peptides Unflavored",
+    "brand": "Nestl\u00e9"
+  },
+  {
+    "name": "Ancient Nutrition Multi Collagen Protein",
+    "brand": "Ancient Nutrition"
+  },
+  {
+    "name": "OLIPOP Classic Root Beer",
+    "brand": "Olipop"
+  },
+  {
+    "name": "Poppi Apple Cider Vinegar Prebiotic Soda",
+    "brand": "Poppi"
+  },
+  {
+    "name": "Siete Foods Sea Salt Tortilla Chips",
+    "brand": "Siete Foods"
+  },
+  {
+    "name": "Simple Mills Almond Flour Vanilla Frosting",
+    "brand": "Simple Mills"
+  },
+  {
+    "name": "Anthony's Organic Coconut Flour",
+    "brand": "Anthony's"
+  },
+  {
+    "name": "Primal Kitchen Buffalo Sauce",
+    "brand": "Kraft Heinz"
+  },
+  {
+    "name": "Thrive Market Organic Cassava Flour Tortillas",
+    "brand": "Thrive Market"
+  },
+  {
+    "name": "Hu Chocolate Gems",
+    "brand": "Mondel\u0113z"
+  },
+  {
+    "name": "Enjoy Life Semi-Sweet Chocolate Mini Chips",
+    "brand": "Mondel\u0113z"
+  }
+]
