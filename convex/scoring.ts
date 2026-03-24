@@ -41,11 +41,14 @@ async function callClaude(
 ): Promise<string> {
   const response = await anthropic.messages.create({
     model,
-    max_tokens: 1500,
+    max_tokens: 4096,
     temperature: 0,
     system: systemPrompt,
     messages: [{ role: "user", content: userMessage }],
   });
+  if (response.stop_reason === "max_tokens") {
+    throw new Error("Response truncated — max_tokens limit reached");
+  }
   const content = response.content[0];
   if (content.type !== "text") throw new Error("Unexpected response type");
   return content.text;

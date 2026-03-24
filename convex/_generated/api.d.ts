@@ -12,6 +12,7 @@ import type * as auth from "../auth.js";
 import type * as http from "../http.js";
 import type * as ingredients from "../ingredients.js";
 import type * as lib_auth from "../lib/auth.js";
+import type * as lib_authHelpers from "../lib/authHelpers.js";
 import type * as lib_scoringPrompt from "../lib/scoringPrompt.js";
 import type * as lib_validator from "../lib/validator.js";
 import type * as products from "../products.js";
@@ -29,6 +30,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   ingredients: typeof ingredients;
   "lib/auth": typeof lib_auth;
+  "lib/authHelpers": typeof lib_authHelpers;
   "lib/scoringPrompt": typeof lib_scoringPrompt;
   "lib/validator": typeof lib_validator;
   products: typeof products;

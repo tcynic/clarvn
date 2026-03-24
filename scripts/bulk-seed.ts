@@ -39,7 +39,7 @@ const CONVEX_URL =
   process.env.CONVEX_URL ?? process.env.NEXT_PUBLIC_CONVEX_URL;
 const MODEL_PRIMARY = "claude-sonnet-4-5";
 const MODEL_FALLBACK = "claude-opus-4-5";
-const MAX_TOKENS = 1500;
+const MAX_TOKENS = 4096;
 const DELAY_MS = 500;
 
 if (!ANTHROPIC_API_KEY) {
@@ -95,6 +95,9 @@ async function callClaude(
     ],
   });
 
+  if (response.stop_reason === "max_tokens") {
+    throw new Error("Response truncated — max_tokens limit reached");
+  }
   const content = response.content[0];
   if (content.type !== "text") {
     throw new Error("Unexpected response type from Claude");
@@ -208,7 +211,7 @@ async function writeToConvex(
       name: alt.name,
     });
     if (!existing) {
-      await convex.mutation(internal.scoringQueue.internalAddToQueue, {
+      await convex.mutation(api.scoringQueue.addToQueue, {
         productName: alt.name,
         source: "alternative",
         priority: 2,
@@ -270,9 +273,8 @@ async function main() {
     const result = await scoreProduct(name);
 
     if (!result) {
-      // Write to queue for retry via Operation 2
-      // Using "alternative" source (no auth required) since the seed script
-      // runs unauthenticated. Priority 3 = low, same as admin_add.
+      // Write to queue for retry via Operation 2.
+      // Using "alternative" source (no auth required from CLI).
       await convex.mutation(api.scoringQueue.addToQueue, {
         productName: name,
         source: "alternative",
@@ -280,7 +282,7 @@ async function main() {
       });
       log(`  → Written to queue for retry`);
       failed++;
-    }
+    } else {
       await writeToConvex(result, name);
       const altCount = result.alternatives.length;
       alternativesQueued += altCount;

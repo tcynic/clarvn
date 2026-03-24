@@ -111,7 +111,8 @@ Return ONLY valid JSON. No explanation, no markdown fences, no commentary.
 - conditionModifiers must have a citable study or regulatory finding — do not invent modifiers
 - evidenceQuality must be one of: RCT, cohort, animal, regulatory, advocacy
 - All scores are numbers (not strings)
-- baseScore must be between 1.0 and 10.0
+- ALL scores (baseScore, harmEvidenceScore, regulatoryScore, avoidanceScore) must be between 1.0 and 10.0 — never use 0
+- The minimum score for any ingredient dimension is 1.0. Even the safest ingredient (water, salt) scores 1.0, not 0
 - tier must exactly match: "Clean", "Watch", "Caution", or "Avoid"`;
 
 export const SCORING_DIFF_PROMPT = `You are reviewing an existing CleanList score for regulatory or scientific changes.

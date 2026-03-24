@@ -53,15 +53,50 @@ export type Ingredient = z.infer<typeof IngredientSchema>;
 export type ConditionModifier = z.infer<typeof ConditionModifierSchema>;
 export type Alternative = z.infer<typeof AlternativeSchema>;
 
-/** Parse and validate an AI response string. Throws ZodError on failure. */
-export function validateScoringResponse(raw: string): ScoringResponse {
-  // Strip any accidental markdown fences
-  const cleaned = raw
+/**
+ * Sanitize common LLM JSON output issues:
+ * - Markdown fences
+ * - Trailing commas before } or ]
+ * - Single-line // comments
+ * - Unescaped control characters inside string values
+ */
+function sanitizeLLMJson(raw: string): string {
+  // 1. Strip markdown fences
+  let s = raw
     .replace(/^```json\s*/i, "")
     .replace(/^```\s*/i, "")
     .replace(/```\s*$/i, "")
     .trim();
 
+  // 2. Extract the outermost JSON object in case of surrounding prose
+  const firstBrace = s.indexOf("{");
+  const lastBrace = s.lastIndexOf("}");
+  if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+    s = s.slice(firstBrace, lastBrace + 1);
+  }
+
+  // 3. Remove single-line // comments (not inside strings)
+  s = s.replace(/^(\s*)\/\/.*$/gm, "$1");
+
+  // 4. Remove trailing commas before } or ]
+  s = s.replace(/,\s*([}\]])/g, "$1");
+
+  // 5. Fix unescaped control characters inside JSON string values.
+  //    Walk through the string and escape literal newlines/tabs that
+  //    appear between unescaped double-quotes.
+  s = s.replace(/"(?:[^"\\]|\\.)*"/g, (match) => {
+    return match
+      .replace(/(?<!\\)\t/g, "\\t")
+      .replace(/(?<!\\)\r/g, "\\r")
+      .replace(/\n/g, "\\n");
+  });
+
+  return s;
+}
+
+/** Parse and validate an AI response string. Throws ZodError on failure. */
+export function validateScoringResponse(raw: string): ScoringResponse {
+  const cleaned = sanitizeLLMJson(raw);
   const parsed = JSON.parse(cleaned);
   return ScoringResponseSchema.parse(parsed);
 }
@@ -80,12 +115,7 @@ export const DiffResponseSchema = z.union([
 export type DiffResponse = z.infer<typeof DiffResponseSchema>;
 
 export function validateDiffResponse(raw: string): DiffResponse {
-  const cleaned = raw
-    .replace(/^```json\s*/i, "")
-    .replace(/^```\s*/i, "")
-    .replace(/```\s*$/i, "")
-    .trim();
-
+  const cleaned = sanitizeLLMJson(raw);
   const parsed = JSON.parse(cleaned);
   return DiffResponseSchema.parse(parsed);
 }
