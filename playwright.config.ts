@@ -17,15 +17,6 @@ export default defineConfig({
     {
       name: "chromium",
       use: { browserName: "chromium" },
-      testIgnore: ["**/admin.spec.ts"],
-    },
-    {
-      name: "chromium-admin",
-      use: {
-        browserName: "chromium",
-        baseURL: "http://admin.localhost:3000",
-      },
-      testMatch: ["**/admin.spec.ts"],
     },
   ],
   webServer: {
