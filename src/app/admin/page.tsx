@@ -201,7 +201,7 @@ export default function AdminQueuePage() {
                     </td>
                     <td className="px-4 py-3">
                       {entry.status === "scoring" || isScoring ? (
-                        <span className="b-teal">Scoring…</span>
+                        <span className="b-watch">Scoring…</span>
                       ) : entry.status === "failed" ? (
                         <div>
                           <span className="b-avoid">Failed</span>
@@ -214,7 +214,7 @@ export default function AdminQueuePage() {
                       ) : entry.status === "done" ? (
                         <span className="b-clean">Done</span>
                       ) : (
-                        <span className="b-watch">Pending</span>
+                        <span className="b-gray">Pending</span>
                       )}
                     </td>
                     <td className="px-4 py-3 text-right">
