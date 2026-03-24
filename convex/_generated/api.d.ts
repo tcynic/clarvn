@@ -25,6 +25,7 @@ import type * as migrations from "../migrations.js";
 import type * as products from "../products.js";
 import type * as scoring from "../scoring.js";
 import type * as scoringQueue from "../scoringQueue.js";
+import type * as shoppingList from "../shoppingList.js";
 import type * as userProfiles from "../userProfiles.js";
 
 import type {
@@ -51,6 +52,7 @@ declare const fullApi: ApiFromModules<{
   products: typeof products;
   scoring: typeof scoring;
   scoringQueue: typeof scoringQueue;
+  shoppingList: typeof shoppingList;
   userProfiles: typeof userProfiles;
 }>;
 

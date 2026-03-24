@@ -10,7 +10,6 @@ import { TierBadge } from "../../components/TierBadge";
 import {
   loadProfile,
   saveProfile,
-  hasCompletedOnboarding,
   type UserProfile,
 } from "../../lib/personalScore";
 
@@ -18,7 +17,7 @@ type Tier = "Clean" | "Watch" | "Caution" | "Avoid";
 
 interface ListItem {
   name: string;
-  requestSent?: boolean;
+  requestSent: boolean;
 }
 
 function ScorePill({ score, tier }: { score: number; tier: Tier }) {
@@ -390,12 +389,25 @@ export default function ShoppingListPage() {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const { signOut } = useAuthActions();
   const [search, setSearch] = useState("");
-  const [list, setList] = useState<ListItem[]>([]);
   const [selectedName, setSelectedName] = useState<string | null>(null);
   const [showProfile, setShowProfile] = useState(false);
   const [profile, setProfile] = useState<UserProfile>({
     motivation: [], conditions: [], sensitivities: [],
   });
+
+  // Persistent shopping list from Convex
+  const listDocs = useQuery(
+    api.shoppingList.getMyList,
+    isAuthenticated ? {} : "skip"
+  );
+  const list: ListItem[] = (listDocs ?? []).map((d) => ({
+    name: d.name,
+    requestSent: d.requestSent,
+  }));
+  const addItemMutation = useMutation(api.shoppingList.addItem);
+  const markRequestedMutation = useMutation(api.shoppingList.markRequested);
+  const swapItemMutation = useMutation(api.shoppingList.swapItem);
+  const clearListMutation = useMutation(api.shoppingList.clearList);
 
   // Sync profile: hydrate from localStorage (fast), then override from Convex (source of truth)
   const convexProfile = useQuery(
@@ -411,10 +423,17 @@ export default function ShoppingListPage() {
     }
     // Start with localStorage (instant)
     setProfile(loadProfile());
-    if (!hasCompletedOnboarding()) {
+  }, [isAuthenticated, isLoading, router]);
+
+  // Redirect to onboarding only if Convex confirms no profile exists (one-time check)
+  useEffect(() => {
+    if (isLoading || !isAuthenticated) return;
+    // convexProfile is undefined while loading, null if no profile exists
+    if (convexProfile === undefined) return;
+    if (convexProfile === null) {
       router.push("/onboarding");
     }
-  }, [isAuthenticated, isLoading, router]);
+  }, [convexProfile, isAuthenticated, isLoading, router]);
 
   // When Convex profile loads, sync it to local state and localStorage
   useEffect(() => {
@@ -437,7 +456,7 @@ export default function ShoppingListPage() {
   function handleAdd() {
     const name = search.trim();
     if (!name || list.some((i) => i.name === name)) return;
-    setList((prev) => [...prev, { name }]);
+    addItemMutation({ name }).catch(() => {});
     setSearch("");
     setSelectedName(name);
   }
@@ -448,11 +467,11 @@ export default function ShoppingListPage() {
     } catch {
       // Silently fail — product will show as "Not yet scored"
     }
-    setList((prev) => prev.map((item) => item.name === name ? { ...item, requestSent: true } : item));
+    markRequestedMutation({ name }).catch(() => {});
   }
 
   function handleSwap(currentName: string, newName: string) {
-    setList((prev) => prev.map((item) => item.name === currentName ? { name: newName } : item));
+    swapItemMutation({ currentName, newName }).catch(() => {});
     setSelectedName(newName);
   }
 
@@ -498,6 +517,17 @@ export default function ShoppingListPage() {
             Add
           </button>
         </form>
+
+        {list.length > 0 && (
+          <div className="flex justify-end mb-3">
+            <button
+              onClick={() => { clearListMutation().catch(() => {}); setSelectedName(null); }}
+              className="text-xs text-[var(--ink-3)] hover:text-[var(--tier-avoid)] transition-colors"
+            >
+              Clear list
+            </button>
+          </div>
+        )}
 
         {list.length === 0 ? (
           <div className="text-center py-12">

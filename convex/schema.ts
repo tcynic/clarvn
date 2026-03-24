@@ -169,4 +169,12 @@ export default defineSchema({
     productId: v.id("products"),
     ingredientId: v.id("ingredients"),
   }).index("by_productId", ["productId"]),
+
+  shopping_list_items: defineTable({
+    userId: v.string(),
+    name: v.string(),
+    requestSent: v.boolean(),
+  })
+    .index("by_userId", ["userId"])
+    .index("by_userId_and_name", ["userId", "name"]),
 });
