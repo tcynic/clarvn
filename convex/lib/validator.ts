@@ -119,3 +119,36 @@ export function validateDiffResponse(raw: string): DiffResponse {
   const parsed = JSON.parse(cleaned);
   return DiffResponseSchema.parse(parsed);
 }
+
+/** Ingredient-level scoring response schema (Epic 3). */
+export const IngredientConditionModifierSchema = z.object({
+  condition: z.string().min(1),
+  modifierAmount: z.number().min(0).max(9),
+  evidenceCitation: z.string().min(1),
+  evidenceQuality: EvidenceQualitySchema.optional(),
+});
+
+export const IngredientScoringResponseSchema = z.object({
+  canonicalName: z.string().min(1),
+  aliases: z.array(z.string()).default([]),
+  harmEvidenceScore: z.number().min(1).max(10),
+  regulatoryScore: z.number().min(0).max(10),
+  avoidanceScore: z.number().min(1).max(10),
+  baseScore: z.number().min(1).max(10),
+  tier: TierSchema,
+  flagLabel: z.string().optional(),
+  evidenceSources: z.record(z.string(), z.string()).optional(),
+  conditionModifiers: z.array(IngredientConditionModifierSchema).default([]),
+});
+
+export type IngredientScoringResponse = z.infer<
+  typeof IngredientScoringResponseSchema
+>;
+
+export function validateIngredientScoringResponse(
+  raw: string
+): IngredientScoringResponse {
+  const cleaned = sanitizeLLMJson(raw);
+  const parsed = JSON.parse(cleaned);
+  return IngredientScoringResponseSchema.parse(parsed);
+}
