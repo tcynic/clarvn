@@ -7,7 +7,7 @@
  */
 
 import { v } from "convex/values";
-import { action, internalAction } from "./_generated/server";
+import { action, internalAction, ActionCtx } from "./_generated/server";
 import { internal, api } from "./_generated/api";
 import { Id } from "./_generated/dataModel";
 import Anthropic from "@anthropic-ai/sdk";
@@ -54,132 +54,173 @@ async function callClaude(
   return content.text;
 }
 
-// --- Operation 2: Score a single product from the queue ---
+// Core scoring logic shared by scoreProduct and processQueueBatch.
+// Does NOT check auth — callers are responsible for authorization.
+async function scoreProductCore(
+  ctx: ActionCtx,
+  queueId: Id<"scoring_queue">
+): Promise<{ success: boolean; productId?: string; error?: string }> {
+  const anthropic = getAnthropicClient();
+
+  // 1. Mark as scoring
+  await ctx.runMutation(internal.scoringQueue.updateQueueStatus, {
+    queueId,
+    status: "scoring",
+  });
+
+  const queueEntry = await ctx.runQuery(
+    internal.scoringQueue.getQueueEntry,
+    { queueId }
+  );
+  if (!queueEntry) throw new Error("Queue entry not found");
+
+  const productName = queueEntry.productName;
+
+  // 2. Call Claude API (primary model, fallback on validation failure)
+  let scored = null;
+  let lastError = "";
+
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const model = attempt === 1 ? MODEL_PRIMARY : MODEL_FALLBACK;
+    try {
+      const raw = await callClaude(
+        anthropic,
+        productName,
+        model,
+        SCORING_SYSTEM_PROMPT,
+        buildScoringUserMessage(productName)
+      );
+      scored = validateScoringResponse(raw);
+      break;
+    } catch (err) {
+      lastError = err instanceof Error ? err.message : String(err);
+      if (attempt === 2) break;
+    }
+  }
+
+  if (!scored) {
+    await ctx.runMutation(internal.scoringQueue.updateQueueStatus, {
+      queueId,
+      status: "failed",
+      errorMessage: lastError,
+    });
+    return { success: false, error: lastError };
+  }
+
+  // 3. Write product + ingredients + modifiers
+  const productId: Id<"products"> = await ctx.runMutation(internal.products.writeProduct, {
+    name: scored.name,
+    brand: scored.brand,
+    emoji: scored.emoji,
+    baseScore: scored.baseScore,
+    tier: scored.tier,
+    scoreVersion: 1,
+    scoredAt: Date.now(),
+  });
+
+  for (const ing of scored.ingredients) {
+    const ingredientId = await ctx.runMutation(
+      internal.ingredients.upsertIngredient,
+      {
+        canonicalName: ing.canonicalName,
+        aliases: ing.aliases ?? [],
+        harmEvidenceScore: ing.harmEvidenceScore,
+        regulatoryScore: ing.regulatoryScore,
+        avoidanceScore: ing.avoidanceScore,
+        baseScore: ing.baseScore,
+        tier: ing.tier,
+        flagLabel: ing.flagLabel,
+        evidenceSources: ing.evidenceSources as Record<string, string> | undefined,
+      }
+    );
+
+    await ctx.runMutation(internal.ingredients.linkProductIngredient, {
+      productId,
+      ingredientId,
+    });
+
+    const modifiers = scored.conditionModifiers.filter(
+      (m) => m.ingredientCanonicalName === ing.canonicalName
+    );
+    for (const mod of modifiers) {
+      await ctx.runMutation(internal.ingredients.upsertConditionModifier, {
+        ingredientId,
+        condition: mod.condition,
+        modifierAmount: mod.modifierAmount,
+        evidenceCitation: mod.evidenceCitation,
+        evidenceQuality: mod.evidenceQuality,
+      });
+    }
+  }
+
+  // 4. Mark done
+  await ctx.runMutation(internal.scoringQueue.updateQueueStatus, {
+    queueId,
+    status: "done",
+    productId,
+  });
+
+  // 5. Auto-queue alternatives
+  for (const alt of scored.alternatives) {
+    const existing = await ctx.runQuery(api.products.getProduct, { name: alt.name });
+    if (!existing) {
+      await ctx.runMutation(api.scoringQueue.addToQueue, {
+        productName: alt.name,
+        source: "alternative",
+        priority: 2,
+        sourceProductId: productId,
+      });
+    }
+  }
+
+  return { success: true, productId };
+}
+
+// --- Operation 2: Score a single product from the queue (admin-only) ---
 export const scoreProduct = action({
   args: { queueId: v.id("scoring_queue") },
   handler: async (ctx, args): Promise<{ success: boolean; productId?: string; error?: string }> => {
     await requireAdmin(ctx);
+    return scoreProductCore(ctx, args.queueId);
+  },
+});
 
-    const anthropic = getAnthropicClient();
-
-    // 1. Mark as scoring
-    await ctx.runMutation(internal.scoringQueue.updateQueueStatus, {
-      queueId: args.queueId,
-      status: "scoring",
+// --- Operation 4: Batch-process all pending queue entries server-side ---
+// Internal: processes one batch and schedules the next if more remain.
+export const processQueueBatch = internalAction({
+  args: {},
+  handler: async (ctx, _args) => {
+    const entries = await ctx.runQuery(internal.scoringQueue.getPendingBatch, {
+      limit: 10,
     });
 
-    // Get queue entry to get the product name
-    const queueEntry = await ctx.runQuery(
-      internal.scoringQueue.getQueueEntry,
-      { queueId: args.queueId }
-    );
-    if (!queueEntry) throw new Error("Queue entry not found");
+    if (entries.length === 0) return;
 
-    const productName = queueEntry.productName;
-
-    // 2. Call Claude API (primary model, fallback on validation failure)
-    let scored = null;
-    let lastError = "";
-
-    for (let attempt = 1; attempt <= 2; attempt++) {
-      const model = attempt === 1 ? MODEL_PRIMARY : MODEL_FALLBACK;
+    for (const entry of entries) {
       try {
-        const raw = await callClaude(
-          anthropic,
-          productName,
-          model,
-          SCORING_SYSTEM_PROMPT,
-          buildScoringUserMessage(productName)
-        );
-        scored = validateScoringResponse(raw);
-        break;
-      } catch (err) {
-        lastError = err instanceof Error ? err.message : String(err);
-        if (attempt === 2) break;
-        // Fall through to retry with fallback model
+        await scoreProductCore(ctx, entry._id);
+      } catch (_err) {
+        // scoreProductCore already marks failed; continue batch
       }
+      // 500ms between calls to stay under API rate limits
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
 
-    if (!scored) {
-      // Mark as failed
-      await ctx.runMutation(internal.scoringQueue.updateQueueStatus, {
-        queueId: args.queueId,
-        status: "failed",
-        errorMessage: lastError,
-      });
-      return { success: false, error: lastError };
+    // Check if more pending entries remain and schedule next batch
+    const remaining = await ctx.runQuery(internal.scoringQueue.getPendingBatch, { limit: 1 });
+    if (remaining.length > 0) {
+      await ctx.scheduler.runAfter(1000, internal.scoring.processQueueBatch, {});
     }
+  },
+});
 
-    // 3. Write product + ingredients + modifiers
-    const productId: Id<"products"> = await ctx.runMutation(internal.products.writeProduct, {
-      name: scored.name,
-      brand: scored.brand,
-      emoji: scored.emoji,
-      baseScore: scored.baseScore,
-      tier: scored.tier,
-      scoreVersion: 1,
-      scoredAt: Date.now(),
-    });
-
-    for (const ing of scored.ingredients) {
-      const ingredientId = await ctx.runMutation(
-        internal.ingredients.upsertIngredient,
-        {
-          canonicalName: ing.canonicalName,
-          aliases: ing.aliases ?? [],
-          harmEvidenceScore: ing.harmEvidenceScore,
-          regulatoryScore: ing.regulatoryScore,
-          avoidanceScore: ing.avoidanceScore,
-          baseScore: ing.baseScore,
-          tier: ing.tier,
-          flagLabel: ing.flagLabel,
-          evidenceSources: ing.evidenceSources as Record<string, string> | undefined,
-        }
-      );
-
-      await ctx.runMutation(internal.ingredients.linkProductIngredient, {
-        productId,
-        ingredientId,
-      });
-
-      // Condition modifiers for this ingredient
-      const modifiers = scored.conditionModifiers.filter(
-        (m) => m.ingredientCanonicalName === ing.canonicalName
-      );
-      for (const mod of modifiers) {
-        await ctx.runMutation(internal.ingredients.upsertConditionModifier, {
-          ingredientId,
-          condition: mod.condition,
-          modifierAmount: mod.modifierAmount,
-          evidenceCitation: mod.evidenceCitation,
-          evidenceQuality: mod.evidenceQuality,
-        });
-      }
-    }
-
-    // 4. Mark queue entry as done
-    await ctx.runMutation(internal.scoringQueue.updateQueueStatus, {
-      queueId: args.queueId,
-      status: "done",
-      productId,
-    });
-
-    // 5. Auto-queue alternatives
-    for (const alt of scored.alternatives) {
-      const existing = await ctx.runQuery(api.products.getProduct, {
-        name: alt.name,
-      });
-      if (!existing) {
-        await ctx.runMutation(api.scoringQueue.addToQueue, {
-          productName: alt.name,
-          source: "alternative",
-          priority: 2,
-          sourceProductId: productId,
-        });
-      }
-    }
-
-    return { success: true, productId };
+// Public: kick off batch processing (admin-only).
+export const processAllPending = action({
+  args: {},
+  handler: async (ctx, _args): Promise<{ started: boolean }> => {
+    await requireAdmin(ctx);
+    await ctx.scheduler.runAfter(0, internal.scoring.processQueueBatch, {});
+    return { started: true };
   },
 });
 

@@ -137,6 +137,18 @@ export const getQueueEntry = internalQuery({
   },
 });
 
+// Internal query: get the next batch of pending queue entries for server-side batch processing.
+export const getPendingBatch = internalQuery({
+  args: { limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("scoring_queue")
+      .withIndex("by_status_and_priority", (q) => q.eq("status", "pending"))
+      .order("asc")
+      .take(args.limit ?? 20);
+  },
+});
+
 // Public query: get scored alternatives for a given product.
 // Finds scoring_queue entries where source="alternative", sourceProductId matches,
 // and status="done", then joins to the products table.

@@ -35,6 +35,8 @@ export default function AdminQueuePage() {
 
   const addToQueue = useMutation(api.scoringQueue.addToQueue);
   const scoreProduct = useAction(api.scoring.scoreProduct);
+  const processAllPending = useAction(api.scoring.processAllPending);
+  const [batchAllStatus, setBatchAllStatus] = useState<string | null>(null);
 
   async function handleAddToQueue(e: React.FormEvent) {
     e.preventDefault();
@@ -67,6 +69,16 @@ export default function AdminQueuePage() {
     }
   }
 
+  async function handleProcessAllPending() {
+    setBatchAllStatus("Starting…");
+    try {
+      await processAllPending({});
+      setBatchAllStatus("Batch queued — processing in background. Refresh queue to monitor progress.");
+    } catch (err) {
+      setBatchAllStatus("Failed to start batch.");
+    }
+  }
+
   async function handleScoreNextN() {
     if (!queueResult?.page) return;
     setBatchRunning(true);
@@ -95,8 +107,19 @@ export default function AdminQueuePage() {
           </h1>
         </div>
 
-        {/* Score Next N */}
-        <div className="flex items-center gap-2">
+        {/* Batch controls */}
+        <div className="flex items-center gap-3 flex-wrap">
+          {batchAllStatus && (
+            <span className="text-xs text-[var(--ink-3)] max-w-xs">{batchAllStatus}</span>
+          )}
+          <button
+            onClick={handleProcessAllPending}
+            className="bg-[var(--ink)] text-white text-sm font-medium px-3 py-1.5 rounded-[var(--radius)] hover:opacity-80 transition-opacity"
+          >
+            Process All Pending
+          </button>
+          {/* Score Next N */}
+          <div className="flex items-center gap-2">
           <input
             type="number"
             min={1}
@@ -112,6 +135,7 @@ export default function AdminQueuePage() {
           >
             {batchRunning ? "Scoring…" : `Score Next ${scoreNextN}`}
           </button>
+          </div>
         </div>
       </div>
 
