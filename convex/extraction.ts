@@ -25,15 +25,22 @@ function normalizeIngredientName(raw: string): string {
     .toLowerCase();
 }
 
+type OFFResult = {
+  ingredientNames: string[];
+  brand?: string;
+  upc?: string[];
+};
+
 /**
- * Search Open Food Facts by product name/brand and extract ingredient names.
+ * Search Open Food Facts by product name/brand and extract ingredient names,
+ * brand, and barcode.
  */
 async function fetchFromOpenFoodFacts(
   productName: string,
   brand: string
-): Promise<string[] | null> {
+): Promise<OFFResult | null> {
   const query = encodeURIComponent(`${productName} ${brand}`.trim());
-  const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${query}&search_simple=1&action=process&json=1&page_size=5&fields=product_name,brands,ingredients_text`;
+  const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${query}&search_simple=1&action=process&json=1&page_size=5&fields=product_name,brands,ingredients_text,code`;
 
   const resp = await fetch(url, {
     headers: { "User-Agent": "ClarvnBot/1.0 (contact@clarvn.com)" },
@@ -57,16 +64,36 @@ async function fetchFromOpenFoodFacts(
     .map((s: string) => s.trim())
     .filter((s: string) => s.length > 0);
 
-  return rawList.map(normalizeIngredientName).filter((s) => s.length > 0);
+  const ingredientNames = rawList.map(normalizeIngredientName).filter((s) => s.length > 0);
+
+  // Extract brand — OFF returns a comma-separated string; take the first value
+  const offBrand: string | undefined =
+    typeof match.brands === "string" && match.brands.trim().length > 0
+      ? match.brands.split(",")[0].trim()
+      : undefined;
+
+  // Extract barcode
+  const upc: string[] | undefined =
+    typeof match.code === "string" && match.code.trim().length > 0
+      ? [match.code.trim()]
+      : undefined;
+
+  return { ingredientNames, brand: offBrand, upc };
 }
 
+type AIResult = {
+  ingredientNames: string[];
+  brand?: string;
+  emoji?: string;
+};
+
 /**
- * AI fallback: ask Claude to list ingredients for a product.
+ * AI fallback: ask Claude for brand, emoji, and ingredient list for a product.
  */
 async function fetchFromAI(
   productName: string,
   brand: string
-): Promise<string[]> {
+): Promise<AIResult> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY not configured");
 
@@ -77,11 +104,11 @@ async function fetchFromAI(
     max_tokens: 2048,
     temperature: 0,
     system:
-      "You are a food product ingredient database. Return ONLY a JSON array of ingredient names. No explanation, no markdown fences.",
+      'You are a food product database. Return ONLY a JSON object with three fields: "brand" (string, the correct brand name), "emoji" (string, a single emoji that best represents this product category), and "ingredients" (array of ingredient name strings). No explanation, no markdown fences.',
     messages: [
       {
         role: "user",
-        content: `List all ingredients in "${productName}" by "${brand}". Return a JSON array of ingredient names as strings.`,
+        content: `Product: "${productName}" by "${brand}". Return the JSON object with brand, emoji, and ingredients.`,
       },
     ],
   });
@@ -89,7 +116,7 @@ async function fetchFromAI(
   const content = response.content[0];
   if (content.type !== "text") throw new Error("Unexpected response type");
 
-  // Parse the JSON array
+  // Parse the JSON object
   let text = content.text.trim();
   // Strip markdown fences if present
   text = text
@@ -99,16 +126,32 @@ async function fetchFromAI(
     .trim();
 
   const parsed = JSON.parse(text);
-  if (!Array.isArray(parsed)) throw new Error("AI did not return an array");
 
-  return parsed
-    .map((s: unknown) => (typeof s === "string" ? normalizeIngredientName(s) : ""))
-    .filter((s) => s.length > 0);
+  const ingredientNames: string[] = Array.isArray(parsed.ingredients)
+    ? parsed.ingredients
+        .map((s: unknown) => (typeof s === "string" ? normalizeIngredientName(s) : ""))
+        .filter((s: string) => s.length > 0)
+    : [];
+
+  const aiBrand: string | undefined =
+    typeof parsed.brand === "string" && parsed.brand.trim().length > 0
+      ? parsed.brand.trim()
+      : undefined;
+
+  const aiEmoji: string | undefined =
+    typeof parsed.emoji === "string" && parsed.emoji.trim().length > 0
+      ? parsed.emoji.trim()
+      : undefined;
+
+  return { ingredientNames, brand: aiBrand, emoji: aiEmoji };
 }
 
 type ExtractionResult = {
   ingredientNames: string[];
   source: "open_food_facts" | "ai_extraction";
+  brand?: string;
+  upc?: string[];
+  emoji?: string;
 };
 
 /**
@@ -120,13 +163,23 @@ async function extractIngredientsCore(
 ): Promise<ExtractionResult> {
   // Try Open Food Facts first
   const offResult = await fetchFromOpenFoodFacts(productName, brand);
-  if (offResult && offResult.length > 0) {
-    return { ingredientNames: offResult, source: "open_food_facts" };
+  if (offResult && offResult.ingredientNames.length > 0) {
+    return {
+      ingredientNames: offResult.ingredientNames,
+      source: "open_food_facts",
+      brand: offResult.brand,
+      upc: offResult.upc,
+    };
   }
 
   // Fallback to AI extraction
   const aiResult = await fetchFromAI(productName, brand);
-  return { ingredientNames: aiResult, source: "ai_extraction" };
+  return {
+    ingredientNames: aiResult.ingredientNames,
+    source: "ai_extraction",
+    brand: aiResult.brand,
+    emoji: aiResult.emoji,
+  };
 }
 
 /**
@@ -166,6 +219,9 @@ export const processExtraction = internalAction({
         productId: args.productId,
         ingredientNames: result.ingredientNames,
         source: result.source,
+        brand: result.brand,
+        upc: result.upc,
+        emoji: result.emoji,
       });
 
     // Step 3: If new ingredients were queued, auto-trigger scoring

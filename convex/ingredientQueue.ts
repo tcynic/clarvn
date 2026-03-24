@@ -106,6 +106,7 @@ export const updateIngredientQueueStatus = internalMutation({
     const patch: Record<string, unknown> = { status: args.status };
     if (args.ingredientId !== undefined) patch.ingredientId = args.ingredientId;
     if (args.errorMessage !== undefined) patch.errorMessage = args.errorMessage;
+    if (args.status === "done") patch.blockedProductIds = [];
     await ctx.db.patch(args.queueId, patch);
   },
 });

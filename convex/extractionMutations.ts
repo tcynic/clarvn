@@ -22,8 +22,30 @@ export const processExtractionResult = internalMutation({
       v.literal("ai_extraction"),
       v.literal("manual")
     ),
+    brand: v.optional(v.string()),
+    upc: v.optional(v.array(v.string())),
+    emoji: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    // Enrich product fields — only overwrite brand if it's still the default
+    // "Unknown"; only set upc/emoji if they're missing.
+    const product = await ctx.db.get(args.productId);
+    if (product) {
+      const enrichPatch: Record<string, unknown> = {};
+      if (args.brand && (product.brand === "Unknown" || !product.brand)) {
+        enrichPatch.brand = args.brand;
+      }
+      if (args.upc && !product.upc) {
+        enrichPatch.upc = args.upc;
+      }
+      if (args.emoji && !product.emoji) {
+        enrichPatch.emoji = args.emoji;
+      }
+      if (Object.keys(enrichPatch).length > 0) {
+        await ctx.db.patch(args.productId, enrichPatch);
+      }
+    }
+
     let pendingCount = 0;
 
     for (const name of args.ingredientNames) {
