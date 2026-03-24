@@ -30,6 +30,8 @@ export default function AdminProductsPage() {
       p.name.toLowerCase().includes(search.toLowerCase()) ||
       p.brand.toLowerCase().includes(search.toLowerCase());
     const matchesTier = !tierFilter || p.tier === tierFilter;
+    // v3: skip products without a score yet in tier filter
+    if (tierFilter && !p.tier) return false;
     return matchesSearch && matchesTier;
   });
 
@@ -159,10 +161,10 @@ export default function AdminProductsPage() {
                       <div className="text-xs text-[var(--ink-3)]">{p.brand}</div>
                     </td>
                     <td className="px-4 py-3 font-semibold text-[var(--ink)]">
-                      {p.baseScore.toFixed(1)}
+                      {p.baseScore != null ? p.baseScore.toFixed(1) : "—"}
                     </td>
                     <td className="px-4 py-3">
-                      <TierBadge tier={p.tier as Tier} />
+                      {p.tier ? <TierBadge tier={p.tier as Tier} /> : <span className="text-xs text-[var(--ink-3)]">Pending</span>}
                     </td>
                   </tr>
                 ))}
@@ -181,7 +183,7 @@ export default function AdminProductsPage() {
                 </h2>
                 <p className="text-xs text-[var(--ink-3)]">{selected.brand}</p>
               </div>
-              <TierBadge tier={selected.tier as Tier} />
+              {selected.tier ? <TierBadge tier={selected.tier as Tier} /> : <span className="text-xs text-[var(--ink-3)]">Pending</span>}
             </div>
 
             <div className="flex items-center gap-2 mb-4">
@@ -189,10 +191,10 @@ export default function AdminProductsPage() {
                 className="text-3xl font-bold"
                 style={{
                   fontFamily: "var(--font-serif)",
-                  color: `var(--tier-${selected.tier.toLowerCase()})`,
+                  color: selected.tier ? `var(--tier-${selected.tier.toLowerCase()})` : "var(--ink-3)",
                 }}
               >
-                {selected.baseScore.toFixed(1)}
+                {selected.baseScore != null ? selected.baseScore.toFixed(1) : "—"}
               </span>
               <div className="text-xs text-[var(--ink-3)]">
                 <div>v{selected.scoreVersion}</div>

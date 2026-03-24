@@ -10,6 +10,7 @@
 
 import type * as auth from "../auth.js";
 import type * as http from "../http.js";
+import type * as ingredientQueue from "../ingredientQueue.js";
 import type * as ingredients from "../ingredients.js";
 import type * as lib_auth from "../lib/auth.js";
 import type * as lib_authHelpers from "../lib/authHelpers.js";
@@ -18,6 +19,7 @@ import type * as lib_validator from "../lib/validator.js";
 import type * as products from "../products.js";
 import type * as scoring from "../scoring.js";
 import type * as scoringQueue from "../scoringQueue.js";
+import type * as userProfiles from "../userProfiles.js";
 
 import type {
   ApiFromModules,
@@ -28,6 +30,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   http: typeof http;
+  ingredientQueue: typeof ingredientQueue;
   ingredients: typeof ingredients;
   "lib/auth": typeof lib_auth;
   "lib/authHelpers": typeof lib_authHelpers;
@@ -36,6 +39,7 @@ declare const fullApi: ApiFromModules<{
   products: typeof products;
   scoring: typeof scoring;
   scoringQueue: typeof scoringQueue;
+  userProfiles: typeof userProfiles;
 }>;
 
 /**

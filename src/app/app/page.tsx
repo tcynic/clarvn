@@ -102,12 +102,39 @@ function ProductRow({
     );
   }
 
-  const personal = modifiers
-    ? getPersonalScore(product.baseScore, modifiers as ModifierData[], profile)
+  // v3: baseScore/tier may be null if product is pending ingredients
+  const baseScore = product.baseScore ?? 0;
+  const baseTier = (product.tier ?? "Clean") as Tier;
+  const isPending = product.baseScore == null;
+
+  const personal = modifiers && !isPending
+    ? getPersonalScore(baseScore, modifiers as ModifierData[], profile)
     : null;
-  const displayScore = personal?.personalScore ?? product.baseScore;
-  const displayTier = personal?.personalTier ?? (product.tier as Tier);
+  const displayScore = personal?.personalScore ?? baseScore;
+  const displayTier = personal?.personalTier ?? baseTier;
   const hasModifiers = personal && personal.appliedModifiers.length > 0;
+
+  if (isPending) {
+    return (
+      <div
+        className={`flex items-center gap-3 px-4 py-3 rounded-[var(--radius-lg)] border transition-colors ${
+          isSelected ? "border-[var(--teal)] bg-[var(--teal-light)]" : "border-[var(--border)] bg-white"
+        }`}
+      >
+        <div className="w-10 h-10 rounded-full bg-[var(--surface-2)] flex items-center justify-center shrink-0">
+          <span className="text-xs text-[var(--ink-3)]">…</span>
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-medium text-[var(--ink)] truncate">
+            {product.emoji} {product.name}
+          </p>
+          <p className="text-xs text-[var(--ink-3)]">
+            Scoring in progress{product.pendingIngredientCount != null ? ` — ${product.pendingIngredientCount} ingredients pending` : ""}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <button
@@ -137,7 +164,7 @@ function ProductRow({
       </div>
       {hasModifiers && (
         <span className="text-xs line-through text-[var(--ink-4)] shrink-0">
-          {product.baseScore.toFixed(1)}
+          {baseScore.toFixed(1)}
         </span>
       )}
     </button>
@@ -173,11 +200,16 @@ function ProductDetail({
 
   if (!product) return null;
 
-  const personal = modifiers
-    ? getPersonalScore(product.baseScore, modifiers as ModifierData[], profile)
+  // v3: baseScore/tier may be null if product is pending ingredients
+  const baseScore = product.baseScore ?? 0;
+  const baseTier = (product.tier ?? "Clean") as Tier;
+  const isPending = product.baseScore == null;
+
+  const personal = modifiers && !isPending
+    ? getPersonalScore(baseScore, modifiers as ModifierData[], profile)
     : null;
-  const displayScore = personal?.personalScore ?? product.baseScore;
-  const displayTier = personal?.personalTier ?? (product.tier as Tier);
+  const displayScore = personal?.personalScore ?? baseScore;
+  const displayTier = personal?.personalTier ?? baseTier;
 
   return (
     <div className="bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-5 mt-3">
@@ -248,20 +280,22 @@ function ProductDetail({
         <div className="border-t border-[var(--border)] pt-4 mt-1">
           <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Alternatives</p>
           <ul className="flex flex-col gap-2">
-            {(alternatives as Doc<"products">[]).map((alt) => (
+            {(alternatives as Doc<"products">[]).map((alt) => {
+              const altTier = (alt.tier ?? "Clean") as Tier;
+              return (
               <li key={alt._id} className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
                   <span
                     className="text-sm font-bold shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white"
-                    style={{ background: `var(--tier-${alt.tier.toLowerCase()})`, fontFamily: "var(--font-serif)" }}
+                    style={{ background: `var(--tier-${altTier.toLowerCase()})`, fontFamily: "var(--font-serif)" }}
                   >
-                    {alt.baseScore.toFixed(1)}
+                    {alt.baseScore != null ? alt.baseScore.toFixed(1) : "—"}
                   </span>
                   <div className="min-w-0">
                     <p className="text-xs font-medium text-[var(--ink)] truncate">
                       {alt.emoji} {alt.name}
                     </p>
-                    <TierBadge tier={alt.tier as Tier} />
+                    <TierBadge tier={altTier} />
                   </div>
                 </div>
                 <button
@@ -271,7 +305,8 @@ function ProductDetail({
                   Swap
                 </button>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
       )}

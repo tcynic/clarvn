@@ -19,6 +19,8 @@ export const upsertIngredient = internalMutation({
     ),
     flagLabel: v.optional(v.string()),
     evidenceSources: v.optional(v.any()),
+    scoreVersion: v.optional(v.number()),
+    scoredAt: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     const existing = await ctx.db
@@ -29,11 +31,19 @@ export const upsertIngredient = internalMutation({
       .first();
 
     if (existing) {
-      await ctx.db.patch(existing._id, args);
+      await ctx.db.patch(existing._id, {
+        ...args,
+        scoreVersion: (existing.scoreVersion ?? 0) + 1,
+        scoredAt: args.scoredAt ?? Date.now(),
+      });
       return existing._id;
     }
 
-    return await ctx.db.insert("ingredients", args);
+    return await ctx.db.insert("ingredients", {
+      ...args,
+      scoreVersion: args.scoreVersion ?? 1,
+      scoredAt: args.scoredAt ?? Date.now(),
+    });
   },
 });
 
@@ -108,6 +118,8 @@ export const upsertIngredientPublic = mutation({
     ),
     flagLabel: v.optional(v.string()),
     evidenceSources: v.optional(v.any()),
+    scoreVersion: v.optional(v.number()),
+    scoredAt: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
@@ -118,10 +130,18 @@ export const upsertIngredientPublic = mutation({
       )
       .first();
     if (existing) {
-      await ctx.db.patch(existing._id, args);
+      await ctx.db.patch(existing._id, {
+        ...args,
+        scoreVersion: (existing.scoreVersion ?? 0) + 1,
+        scoredAt: args.scoredAt ?? Date.now(),
+      });
       return existing._id;
     }
-    return await ctx.db.insert("ingredients", args);
+    return await ctx.db.insert("ingredients", {
+      ...args,
+      scoreVersion: args.scoreVersion ?? 1,
+      scoredAt: args.scoredAt ?? Date.now(),
+    });
   },
 });
 
