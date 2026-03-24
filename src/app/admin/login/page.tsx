@@ -11,16 +11,25 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
     setLoading(true);
     try {
-      await signIn("password", { email, password, flow: "signIn" });
+      await signIn("password", {
+        email,
+        password,
+        flow: isSignUp ? "signUp" : "signIn",
+      });
       router.push("/admin");
     } catch (err) {
-      setError("Invalid email or password.");
+      setError(
+        isSignUp
+          ? "Could not create account. Email may already be registered."
+          : "Invalid email or password."
+      );
     } finally {
       setLoading(false);
     }
@@ -77,9 +86,19 @@ export default function AdminLoginPage() {
             disabled={loading}
             className="bg-[var(--teal)] text-white font-medium text-sm rounded-[var(--radius)] px-4 py-2.5 hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-60"
           >
-            {loading ? "Signing in…" : "Sign In"}
+          {loading ? (isSignUp ? "Creating…" : "Signing in…") : isSignUp ? "Create Account" : "Sign In"}
           </button>
         </form>
+
+        <p className="text-xs text-center text-[var(--ink-3)] mt-4">
+          {isSignUp ? "Already have an account?" : "First time?"}{" "}
+          <button
+            onClick={() => { setIsSignUp(!isSignUp); setError(""); }}
+            className="text-[var(--teal-dark)] hover:underline"
+          >
+            {isSignUp ? "Sign in" : "Create account"}
+          </button>
+        </p>
       </div>
     </div>
   );
