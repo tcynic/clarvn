@@ -217,7 +217,6 @@ export default function ShoppingListPage() {
       {showProfile && (
         <ProfilePanel
           profile={profile}
-          onChange={setProfile}
           onClose={() => setShowProfile(false)}
           onSignOut={() => signOut()}
         />
