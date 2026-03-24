@@ -46,6 +46,17 @@ export const writeProduct = internalMutation({
   },
 });
 
+// Internal query: look up a product by name (for use by actions).
+export const getProductByName = internalQuery({
+  args: { name: v.string() },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("products")
+      .withIndex("by_name", (q) => q.eq("name", args.name))
+      .first();
+  },
+});
+
 // Public query: look up a product by name (case-sensitive).
 export const getProduct = query({
   args: { name: v.string() },

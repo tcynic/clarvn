@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useQuery, useMutation } from "convex/react";
+import { useQuery, useMutation, useAction } from "convex/react";
 import { useConvexAuth } from "convex/react";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useRouter } from "next/navigation";
@@ -432,7 +432,7 @@ export default function ShoppingListPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [convexProfile]);
 
-  const addToQueue = useMutation(api.scoringQueue.addToQueue);
+  const requestProduct = useAction(api.extraction.requestProduct);
 
   function handleAdd() {
     const name = search.trim();
@@ -443,7 +443,11 @@ export default function ShoppingListPage() {
   }
 
   async function handleRequest(name: string) {
-    await addToQueue({ productName: name, source: "user_request", priority: 1 });
+    try {
+      await requestProduct({ productName: name });
+    } catch {
+      // Silently fail — product will show as "Not yet scored"
+    }
     setList((prev) => prev.map((item) => item.name === name ? { ...item, requestSent: true } : item));
   }
 

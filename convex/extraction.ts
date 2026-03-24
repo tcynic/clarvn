@@ -170,3 +170,45 @@ export const processExtraction = internalAction({
     return result;
   },
 });
+
+/**
+ * Public action: consumer requests a new product.
+ * Creates a pending product record and triggers the v3 extraction pipeline.
+ * If the product already exists, returns the existing product ID.
+ */
+export const requestProduct = action({
+  args: {
+    productName: v.string(),
+    brand: v.optional(v.string()),
+  },
+  handler: async (ctx, args): Promise<{ productId: string; alreadyExists: boolean }> => {
+    const brand = args.brand || "Unknown";
+
+    // Check if product already exists
+    const existing = await ctx.runQuery(internal.products.getProductByName, {
+      name: args.productName,
+    });
+    if (existing) {
+      return { productId: existing._id, alreadyExists: true };
+    }
+
+    // Create a pending product record
+    const productId = await ctx.runMutation(internal.products.writeProduct, {
+      name: args.productName,
+      brand,
+      scoreVersion: 0,
+      scoredAt: Date.now(),
+      assemblyStatus: "pending_ingredients",
+      pendingIngredientCount: 0,
+    });
+
+    // Run extraction pipeline (Open Food Facts → AI fallback → process result)
+    await ctx.scheduler.runAfter(0, internal.extraction.processExtraction, {
+      productId,
+      productName: args.productName,
+      brand,
+    });
+
+    return { productId, alreadyExists: false };
+  },
+});

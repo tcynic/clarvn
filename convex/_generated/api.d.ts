@@ -21,6 +21,7 @@ import type * as lib_authHelpers from "../lib/authHelpers.js";
 import type * as lib_ingredientScoringPrompt from "../lib/ingredientScoringPrompt.js";
 import type * as lib_scoringPrompt from "../lib/scoringPrompt.js";
 import type * as lib_validator from "../lib/validator.js";
+import type * as migrations from "../migrations.js";
 import type * as products from "../products.js";
 import type * as scoring from "../scoring.js";
 import type * as scoringQueue from "../scoringQueue.js";
@@ -46,6 +47,7 @@ declare const fullApi: ApiFromModules<{
   "lib/ingredientScoringPrompt": typeof lib_ingredientScoringPrompt;
   "lib/scoringPrompt": typeof lib_scoringPrompt;
   "lib/validator": typeof lib_validator;
+  migrations: typeof migrations;
   products: typeof products;
   scoring: typeof scoring;
   scoringQueue: typeof scoringQueue;
