@@ -1,66 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery, useMutation, useAction } from "convex/react";
+import { useQuery, useAction } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Id } from "../../../convex/_generated/dataModel";
-import { TierBadge } from "../../components/TierBadge";
 
-const SOURCE_BADGE: Record<string, string> = {
-  user_request: "b-teal",
-  admin_add: "b-blue",
-  alternative: "b-gray",
+const PRIORITY_LABEL: Record<number, string> = {
+  1: "User",
+  2: "Seed",
+  3: "Admin",
 };
 
-const SOURCE_LABEL: Record<string, string> = {
-  user_request: "User",
-  admin_add: "Admin",
-  alternative: "Alt",
-};
-
-export default function AdminQueuePage() {
-  const [addName, setAddName] = useState("");
-  const [addLoading, setAddLoading] = useState(false);
-  const [scoreNextN, setScoreNextN] = useState(10);
+export default function AdminIngredientQueuePage() {
   const [scoringIds, setScoringIds] = useState<Set<string>>(new Set());
   const [batchRunning, setBatchRunning] = useState(false);
   const [statusFilter, setStatusFilter] = useState<
     "pending" | "scoring" | "done" | "failed" | undefined
   >(undefined);
 
-  const queueResult = useQuery(api.scoringQueue.listQueue, {
+  const entries = useQuery(api.ingredientQueue.listIngredientQueue, {
     status: statusFilter,
-    paginationOpts: { numItems: 20, cursor: null },
   });
-  const batchState = useQuery(api.scoringQueue.getBatchStateForUI);
 
-  const addToQueue = useMutation(api.scoringQueue.addToQueue);
-  const scoreProduct = useAction(api.scoring.scoreProduct);
-  const processAllPending = useAction(api.scoring.processAllPending);
-  const cancelBatch = useAction(api.scoring.cancelBatch);
+  const scoreIngredient = useAction(api.ingredientScoring.scoreIngredient);
+  const scoreAllPending = useAction(api.ingredientScoring.scoreAllPendingIngredients);
 
-  async function handleAddToQueue(e: React.FormEvent) {
-    e.preventDefault();
-    if (!addName.trim()) return;
-    setAddLoading(true);
-    try {
-      await addToQueue({
-        productName: addName.trim(),
-        source: "admin_add",
-        priority: 3,
-      });
-      setAddName("");
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setAddLoading(false);
-    }
-  }
-
-  async function handleScoreNow(queueId: Id<"scoring_queue">) {
+  async function handleScoreNow(queueId: Id<"ingredient_queue">) {
     setScoringIds((prev) => new Set(prev).add(queueId));
     try {
-      await scoreProduct({ queueId });
+      await scoreIngredient({ queueId });
     } finally {
       setScoringIds((prev) => {
         const next = new Set(prev);
@@ -70,40 +38,16 @@ export default function AdminQueuePage() {
     }
   }
 
-  async function handleProcessAllPending() {
-    try {
-      const result = await processAllPending({});
-      if (!result.started) {
-        // Batch already running
-        return;
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  async function handleCancelBatch() {
-    try {
-      await cancelBatch({});
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  async function handleScoreNextN() {
-    if (!queueResult?.page) return;
+  async function handleScoreAllPending() {
     setBatchRunning(true);
-    const pending = queueResult.page
-      .filter((e) => e.status === "pending" || e.status === "failed")
-      .slice(0, scoreNextN);
-
-    for (const entry of pending) {
-      await handleScoreNow(entry._id);
+    try {
+      await scoreAllPending({});
+    } finally {
+      setBatchRunning(false);
     }
-    setBatchRunning(false);
   }
 
-  const entries = queueResult?.page ?? [];
+  const items = entries ?? [];
 
   return (
     <div>
@@ -114,71 +58,21 @@ export default function AdminQueuePage() {
             className="text-2xl text-[var(--ink)] mt-1"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Scoring Queue
+            Ingredient Queue
           </h1>
         </div>
 
         {/* Batch controls */}
-        <div className="flex items-center gap-3 flex-wrap">
-          {batchState?.isRunning && (
-            <span className="text-xs text-[var(--ink-3)] font-medium">Batch running…</span>
-          )}
+        <div className="flex items-center gap-3">
           <button
-            onClick={handleProcessAllPending}
-            disabled={batchState?.isRunning}
+            onClick={handleScoreAllPending}
+            disabled={batchRunning}
             className="bg-[var(--ink)] text-white text-sm font-medium px-3 py-1.5 rounded-[var(--radius)] hover:opacity-80 transition-opacity disabled:opacity-50"
           >
-            Process All Pending
+            {batchRunning ? "Processing…" : "Score All Pending"}
           </button>
-          {batchState?.isRunning && (
-            <button
-              onClick={handleCancelBatch}
-              className="bg-red-600 text-white text-sm font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-red-700 transition-colors"
-            >
-              Stop Batch
-            </button>
-          )}
-          {/* Score Next N */}
-          <div className="flex items-center gap-2">
-          <input
-            type="number"
-            min={1}
-            max={100}
-            value={scoreNextN}
-            onChange={(e) => setScoreNextN(Number(e.target.value))}
-            className="w-16 border border-[var(--border)] rounded-[var(--radius)] px-2 py-1.5 text-sm text-center"
-          />
-          <button
-            onClick={handleScoreNextN}
-            disabled={batchRunning || entries.length === 0}
-            className="bg-[var(--teal)] text-white text-sm font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-50"
-          >
-            {batchRunning ? "Scoring…" : `Score Next ${scoreNextN}`}
-          </button>
-          </div>
         </div>
       </div>
-
-      {/* Add to Queue */}
-      <form
-        onSubmit={handleAddToQueue}
-        className="flex gap-2 mb-6"
-      >
-        <input
-          type="text"
-          value={addName}
-          onChange={(e) => setAddName(e.target.value)}
-          placeholder="Add product to queue…"
-          className="flex-1 border border-[var(--border)] rounded-[var(--radius)] px-3 py-2 text-sm text-[var(--ink)] outline-none focus:border-[var(--teal)] transition-colors"
-        />
-        <button
-          type="submit"
-          disabled={addLoading || !addName.trim()}
-          className="bg-[var(--ink)] text-white text-sm font-medium px-4 py-2 rounded-[var(--radius)] hover:opacity-80 transition-opacity disabled:opacity-50"
-        >
-          {addLoading ? "Adding…" : "Add"}
-        </button>
-      </form>
 
       {/* Status filter tabs */}
       <div className="flex gap-2 mb-4 flex-wrap">
@@ -199,22 +93,22 @@ export default function AdminQueuePage() {
 
       {/* Queue table */}
       <div className="bg-white rounded-[var(--radius-lg)] border border-[var(--border)] overflow-hidden">
-        {entries.length === 0 ? (
+        {items.length === 0 ? (
           <p className="text-sm text-[var(--ink-3)] text-center py-12">
-            {queueResult === undefined ? "Loading…" : "Queue is empty."}
+            {entries === undefined ? "Loading…" : "Queue is empty."}
           </p>
         ) : (
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-[var(--surface)] border-b border-[var(--border)]">
                 <th className="text-left px-4 py-2.5 text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide">
-                  Product
+                  Ingredient
                 </th>
                 <th className="text-left px-4 py-2.5 text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide">
-                  Source
+                  Blocked Products
                 </th>
                 <th className="text-left px-4 py-2.5 text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide">
-                  Requests
+                  Priority
                 </th>
                 <th className="text-left px-4 py-2.5 text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide">
                   Status
@@ -223,8 +117,9 @@ export default function AdminQueuePage() {
               </tr>
             </thead>
             <tbody>
-              {entries.map((entry, i) => {
+              {items.map((entry, i) => {
                 const isScoring = scoringIds.has(entry._id);
+                const blockedCount = entry.blockedProductIds.length;
                 return (
                   <tr
                     key={entry._id}
@@ -233,15 +128,21 @@ export default function AdminQueuePage() {
                     }`}
                   >
                     <td className="px-4 py-3 font-medium text-[var(--ink)]">
-                      {entry.productName}
+                      {entry.canonicalName}
                     </td>
                     <td className="px-4 py-3">
-                      <span className={SOURCE_BADGE[entry.source] ?? "b-gray"}>
-                        {SOURCE_LABEL[entry.source] ?? entry.source}
-                      </span>
+                      {blockedCount > 0 ? (
+                        <span className="b-watch">
+                          Blocks {blockedCount} product{blockedCount !== 1 ? "s" : ""}
+                        </span>
+                      ) : (
+                        <span className="text-[var(--ink-4)]">{entry.requestCount}</span>
+                      )}
                     </td>
-                    <td className="px-4 py-3 text-[var(--ink-3)]">
-                      {entry.requestCount}
+                    <td className="px-4 py-3">
+                      <span className="b-gray">
+                        {PRIORITY_LABEL[entry.priority] ?? `P${entry.priority}`}
+                      </span>
                     </td>
                     <td className="px-4 py-3">
                       {entry.status === "scoring" || isScoring ? (
@@ -265,9 +166,7 @@ export default function AdminQueuePage() {
                       {(entry.status === "pending" ||
                         entry.status === "failed") && (
                         <button
-                          onClick={() =>
-                            handleScoreNow(entry._id)
-                          }
+                          onClick={() => handleScoreNow(entry._id)}
                           disabled={isScoring || batchRunning}
                           className="text-xs bg-[var(--teal-light)] text-[var(--teal-dark)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--teal-pale)] transition-colors disabled:opacity-50"
                         >
