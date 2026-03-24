@@ -1481,3 +1481,1888 @@
 [2026-03-24T05:08:02.507Z] [478/478] Scoring: Enjoy Life Semi-Sweet Chocolate Mini Chips (Mondelēz)
 [2026-03-24T05:08:02.508Z]   → [dry-run] would call Claude API
 [2026-03-24T05:08:02.559Z] SUMMARY scored=478 skipped=0 failed=0 alts=0
+[2026-03-24T05:11:15.698Z] [1/478] Scoring: Froot Loops (Kellogg's)
+[2026-03-24T05:12:43.392Z] [1/478] Scoring: Froot Loops (Kellogg's)
+[2026-03-24T05:13:31.934Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T05:21:16.953Z] [1/478] Scoring: Froot Loops (Kellogg's)
+[2026-03-24T05:21:58.263Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T05:30:22.180Z] [1/478] Scoring: Froot Loops (Kellogg's)
+[2026-03-24T05:31:06.824Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T05:40:42.208Z] [1/478] Scoring: Froot Loops (Kellogg's)
+[2026-03-24T05:41:21.844Z]   → Queued alternative: Cascadian Farm Organic Fruitful O's
+[2026-03-24T05:41:21.926Z]   → Queued alternative: Nature's Path EnviroKidz Amazon Frosted Flakes
+[2026-03-24T05:41:22.013Z]   → Queued alternative: Barbara's Puffins Original
+[2026-03-24T05:41:22.014Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T05:41:22.551Z] [2/478] Scoring: Lucky Charms (General Mills)
+[2026-03-24T05:42:12.213Z]   → Queued alternative: Nature's Path EnviroKidz Organic Koala Crisp
+[2026-03-24T05:42:12.288Z]   → Queued alternative: Barbara's Puffins Peanut Butter
+[2026-03-24T05:42:12.363Z]   → Queued alternative: Cascadian Farm Organic Fruitful O's
+[2026-03-24T05:42:12.364Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T05:42:12.897Z] [3/478] Scoring: Honey Nut Cheerios (General Mills)
+[2026-03-24T05:43:09.394Z]   → Queued alternative: Cascadian Farm Organic Honey Nut O's
+[2026-03-24T05:43:09.471Z]   → Queued alternative: Nature's Path Organic Honey'd Corn Flakes
+[2026-03-24T05:43:09.545Z]   → Queued alternative: Barbara's Honey Nut Toasted O's
+[2026-03-24T05:43:09.547Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T05:43:10.074Z] [4/478] Scoring: Cheerios Original (General Mills)
+[2026-03-24T05:43:51.587Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T05:43:52.129Z] [5/478] Scoring: Cap'n Crunch (Quaker)
+[2026-03-24T05:44:43.753Z]   → Queued alternative: Cascadian Farm Organic Honey Nut O's
+[2026-03-24T05:44:43.843Z]   → Queued alternative: Nature's Path EnviroKidz Gorilla Munch
+[2026-03-24T05:44:43.919Z]   → Queued alternative: Barbara's Puffins Original
+[2026-03-24T05:44:43.921Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T05:44:44.447Z] [6/478] Scoring: Frosted Flakes (Kellogg's)
+[2026-03-24T05:45:22.343Z]   → Queued alternative: Nature's Path Corn Flakes
+[2026-03-24T05:45:22.422Z]   → Queued alternative: Barbara's Organic Corn Flakes
+[2026-03-24T05:45:22.485Z]   → Queued alternative: Cascadian Farm Organic Fruitful O's
+[2026-03-24T05:45:22.485Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T05:45:23.013Z] [7/478] Scoring: Cocoa Puffs (General Mills)
+[2026-03-24T05:46:04.753Z]   → Queued alternative: Cascadian Farm Organic Chocolate O's
+[2026-03-24T05:46:04.835Z]   → Queued alternative: Nature's Path Koala Crisp
+[2026-03-24T05:46:04.907Z]   → Queued alternative: Barbara's Puffins Peanut Butter
+[2026-03-24T05:46:04.908Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T05:46:05.446Z] [8/478] Scoring: Trix (General Mills)
+[2026-03-24T05:46:43.383Z]   → Queued alternative: Nature's Path EnviroKidz Amazon Frosted Flakes
+[2026-03-24T05:46:43.454Z]   → Queued alternative: Barbara's Puffins Original
+[2026-03-24T05:46:43.537Z]   → Queued alternative: Cascadian Farm Purely O's
+[2026-03-24T05:46:43.538Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T05:46:44.066Z] [9/478] Scoring: Cinnamon Toast Crunch (General Mills)
+[2026-03-24T05:47:38.758Z]   → Queued alternative: Cascadian Farm Organic Cinnamon Crunch
+[2026-03-24T05:47:38.829Z]   → Queued alternative: Nature's Path Cinnamon Sunrise
+[2026-03-24T05:47:38.900Z]   → Queued alternative: Barbara's Cinnamon Puffins
+[2026-03-24T05:47:38.901Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T05:47:39.438Z] [10/478] Scoring: Rice Krispies (Kellogg's)
+[2026-03-24T05:48:14.930Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T05:48:15.465Z] [11/478] Scoring: Corn Flakes (Kellogg's)
+[2026-03-24T05:48:50.196Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T05:48:50.730Z] [12/478] Scoring: Special K Original (Kellogg's)
+[2026-03-24T05:49:35.726Z]   → Queued alternative: Nature's Path Organic Heritage Flakes
+[2026-03-24T05:49:35.820Z]   → Queued alternative: Barbara's Original Puffins
+[2026-03-24T05:49:35.901Z]   → Queued alternative: Cascadian Farm Organic Purely O's
+[2026-03-24T05:49:35.902Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T05:49:36.434Z] [13/478] Scoring: Raisin Bran (Kellogg's)
+[2026-03-24T05:50:19.979Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T05:50:58.653Z]   → Queued alternative: Ezekiel 4:9 Sprouted Whole Grain Cereal
+[2026-03-24T05:50:58.752Z]   → Queued alternative: Barbara's Organic Morning Oat Crunch
+[2026-03-24T05:50:58.828Z]   → Queued alternative: Cascadian Farm Organic Raisin Bran
+[2026-03-24T05:50:58.829Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T05:50:59.370Z] [14/478] Scoring: Grape Nuts (Post)
+[2026-03-24T05:51:17.722Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T05:51:18.264Z] [15/478] Scoring: Honey Bunches of Oats (Post)
+[2026-03-24T05:52:13.063Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T05:52:13.597Z] [16/478] Scoring: Frosted Mini-Wheats (Kellogg's)
+[2026-03-24T05:52:47.336Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T05:53:16.857Z]   ✓ Scored: baseScore=3.8 tier=Watch alts=0
+[2026-03-24T05:53:17.388Z] [17/478] Scoring: Life Cereal Original (Quaker)
+[2026-03-24T05:53:58.078Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T05:53:58.615Z] [18/478] Scoring: Honey Smacks (Kellogg's)
+[2026-03-24T05:54:35.611Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T05:55:05.906Z]   → Queued alternative: Nature's Path Honey'd Corn Flakes
+[2026-03-24T05:55:05.982Z]   → Queued alternative: Barbara's Puffins Honey Rice
+[2026-03-24T05:55:06.070Z]   → Queued alternative: Cascadian Farm Honey Oat Crunch
+[2026-03-24T05:55:06.072Z]   ✓ Scored: baseScore=6.4 tier=Caution alts=3
+[2026-03-24T05:55:06.603Z] [19/478] Scoring: Reese's Puffs (General Mills)
+[2026-03-24T05:55:53.420Z]   → Queued alternative: Cascadian Farm Organic Chocolate O's
+[2026-03-24T05:55:53.515Z]   → Queued alternative: Nature's Path EnviroKidz Peanut Butter Panda Puffs
+[2026-03-24T05:55:53.598Z]   → Queued alternative: Barbara's Peanut Butter Puffins
+[2026-03-24T05:55:53.600Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T05:55:54.129Z] [20/478] Scoring: Golden Grahams (General Mills)
+[2026-03-24T05:56:32.882Z]   → Queued alternative: Cascadian Farm Organic Honey Nut O's
+[2026-03-24T05:56:32.978Z]   → Queued alternative: Nature's Path Honey'd Corn Flakes
+[2026-03-24T05:56:33.070Z]   → Queued alternative: Barbara's Puffins Original
+[2026-03-24T05:56:33.072Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T05:56:33.612Z] [21/478] Scoring: Quaker Instant Oatmeal Maple Brown Sugar (Quaker)
+[2026-03-24T05:57:10.479Z]   → Queued alternative: Bob's Red Mill Organic Old Fashioned Rolled Oats
+[2026-03-24T05:57:10.563Z]   → Queued alternative: Nature's Path Organic Instant Oatmeal Original
+[2026-03-24T05:57:10.565Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T05:57:11.097Z] [22/478] Scoring: Quaker Instant Oatmeal Original (Quaker)
+[2026-03-24T05:57:31.421Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T05:57:31.957Z] [23/478] Scoring: Cream of Wheat Original (B&G Foods)
+[2026-03-24T05:57:52.954Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T05:58:20.998Z]   ✓ Scored: baseScore=3.8 tier=Watch alts=0
+[2026-03-24T05:58:21.535Z] [24/478] Scoring: Bob's Red Mill Old Fashioned Oats (Bob's Red Mill)
+[2026-03-24T05:58:38.161Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T05:58:38.695Z] [25/478] Scoring: Kashi Go Crunch (Kashi)
+[2026-03-24T05:59:09.286Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T05:59:09.821Z] [26/478] Scoring: Kashi Heart to Heart (Kashi)
+[2026-03-24T05:59:37.623Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T05:59:38.159Z] [27/478] Scoring: Fiber One Original (General Mills)
+[2026-03-24T06:00:15.850Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:00:46.896Z]   → Queued alternative: Nature's Path Organic SmartBran
+[2026-03-24T06:00:46.973Z]   → Queued alternative: Barbara's Morning Oat Crunch
+[2026-03-24T06:00:46.974Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=2
+[2026-03-24T06:00:47.507Z] [28/478] Scoring: Total Whole Grain (General Mills)
+[2026-03-24T06:01:18.185Z]   → Queued alternative: Cascadian Farm Organic Purely O's
+[2026-03-24T06:01:18.261Z]   → Queued alternative: Nature's Path Whole O's
+[2026-03-24T06:01:18.262Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T06:01:18.804Z] [29/478] Scoring: Apple Jacks (Kellogg's)
+[2026-03-24T06:02:17.456Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:02:53.828Z]   → Queued alternative: Cascadian Farm Organic Fruitful O's
+[2026-03-24T06:02:53.904Z]   → Queued alternative: Nature's Path EnviroKidz Cheetah Chomps
+[2026-03-24T06:02:53.978Z]   → Queued alternative: Three Wishes Fruity Cereal
+[2026-03-24T06:02:53.979Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T06:02:54.506Z] [30/478] Scoring: Corn Pops (Kellogg's)
+[2026-03-24T06:03:41.068Z]   → Queued alternative: Barbara's Puffins Original
+[2026-03-24T06:03:41.156Z]   → Queued alternative: Nature's Path Corn Puffs
+[2026-03-24T06:03:41.235Z]   → Queued alternative: Cascadian Farm Organic Purely O's
+[2026-03-24T06:03:41.236Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:03:41.767Z] [31/478] Scoring: Cocoa Krispies (Kellogg's)
+[2026-03-24T06:04:40.093Z]   → Queued alternative: Cascadian Farm Organic Chocolate O's
+[2026-03-24T06:04:40.162Z]   → Queued alternative: Nature's Path Koala Crisp
+[2026-03-24T06:04:40.237Z]   → Queued alternative: Barbara's Puffins Peanut Butter
+[2026-03-24T06:04:40.238Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:04:40.766Z] [32/478] Scoring: Honey Nut Clusters (General Mills)
+[2026-03-24T06:05:13.120Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T06:05:13.657Z] [33/478] Scoring: Count Chocula (General Mills)
+[2026-03-24T06:06:00.609Z]   → Queued alternative: Cascadian Farm Organic Chocolate O's
+[2026-03-24T06:06:00.694Z]   → Queued alternative: Nature's Path EnviroKidz Koala Crisp
+[2026-03-24T06:06:00.777Z]   → Queued alternative: Barbara's Puffins Peanut Butter
+[2026-03-24T06:06:00.778Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:06:01.306Z] [34/478] Scoring: Nature's Path Heritage Flakes (Nature's Path)
+[2026-03-24T06:06:26.220Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:06:47.035Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T06:06:47.562Z] [35/478] Scoring: Barbara's Puffins Original (Barbara's)
+[2026-03-24T06:07:16.131Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:07:16.666Z] [36/478] Scoring: Gatorade Lemon-Lime (PepsiCo)
+[2026-03-24T06:07:53.689Z]   → Queued alternative: LMNT Citrus Salt
+[2026-03-24T06:07:53.763Z]   → Queued alternative: Nuun Sport Lemon Lime
+[2026-03-24T06:07:53.845Z]   → Queued alternative: Skratch Labs Sport Hydration Mix
+[2026-03-24T06:07:53.847Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T06:07:54.371Z] [37/478] Scoring: Gatorade Fruit Punch (PepsiCo)
+[2026-03-24T06:08:32.380Z]   → Queued alternative: LMNT Electrolyte Drink Mix
+[2026-03-24T06:08:32.454Z]   → Queued alternative: Ultima Replenisher Electrolyte Powder
+[2026-03-24T06:08:32.533Z]   → Queued alternative: Nuun Sport Electrolyte Tablets
+[2026-03-24T06:08:32.538Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T06:08:33.069Z] [38/478] Scoring: Gatorade Blue Cherry (PepsiCo)
+[2026-03-24T06:09:07.136Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:09:43.926Z]   ✗ Failed after 2 attempts: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      0,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      3,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      4,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      5,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      6,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      10,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  }
+]
+[2026-03-24T06:09:44.007Z]   → Written to queue for retry
+[2026-03-24T06:09:44.552Z] [39/478] Scoring: Powerade Mountain Berry Blast (Coca-Cola)
+[2026-03-24T06:10:35.894Z]   → Queued alternative: LMNT Electrolyte Drink Mix
+[2026-03-24T06:10:35.980Z]   → Queued alternative: Nuun Sport Electrolyte Tablets
+[2026-03-24T06:10:36.053Z]   → Queued alternative: Ultima Replenisher Electrolyte Powder
+[2026-03-24T06:10:36.060Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:10:36.590Z] [40/478] Scoring: Powerade Fruit Punch (Coca-Cola)
+[2026-03-24T06:11:19.171Z]   → Queued alternative: LMNT Electrolyte Drink Mix
+[2026-03-24T06:11:19.245Z]   → Queued alternative: Ultima Replenisher Electrolyte Powder
+[2026-03-24T06:11:19.550Z]   → Queued alternative: Nuun Sport Electrolyte Tablets
+[2026-03-24T06:11:19.551Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T06:11:20.085Z] [41/478] Scoring: Capri Sun Fruit Punch (Kraft Heinz)
+[2026-03-24T06:11:59.608Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=0
+[2026-03-24T06:12:00.140Z] [42/478] Scoring: Capri Sun Pacific Cooler (Kraft Heinz)
+[2026-03-24T06:12:52.195Z]   → Queued alternative: Honest Kids Organic Juice Drink
+[2026-03-24T06:12:52.270Z]   → Queued alternative: Tropicana Kids Organic Juice Boxes
+[2026-03-24T06:12:52.271Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=2
+[2026-03-24T06:12:52.815Z] [43/478] Scoring: Hi-C Orange Lavaburst (Coca-Cola)
+[2026-03-24T06:13:29.556Z]   → Queued alternative: Honest Kids Organic Orange Mango
+[2026-03-24T06:13:29.639Z]   → Queued alternative: Simply Orange Juice
+[2026-03-24T06:13:29.760Z]   → Queued alternative: Capri Sun Organic Fruit Punch
+[2026-03-24T06:13:29.762Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T06:13:30.292Z] [44/478] Scoring: Kool-Aid Tropical Punch Jammers (Kraft Heinz)
+[2026-03-24T06:14:01.191Z]   → Queued alternative: Honest Kids Organic Juice Drink
+[2026-03-24T06:14:01.330Z]   → Queued alternative: Capri Sun 100% Juice
+[2026-03-24T06:14:01.409Z]   → Queued alternative: Apple & Eve Organics Juice Box
+[2026-03-24T06:14:01.410Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T06:14:01.944Z] [45/478] Scoring: Monster Energy Original (Monster Beverage)
+[2026-03-24T06:14:52.133Z]   → Queued alternative: Guayaki Yerba Mate
+[2026-03-24T06:14:52.213Z]   → Queued alternative: RUNA Clean Energy
+[2026-03-24T06:14:52.302Z]   → Queued alternative: Zevia Energy
+[2026-03-24T06:14:52.303Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T06:14:52.846Z] [46/478] Scoring: Monster Energy Zero Ultra (Monster Beverage)
+[2026-03-24T06:15:40.818Z]   → Queued alternative: Zevia Zero Calorie Energy Drink
+[2026-03-24T06:15:40.883Z]   → Queued alternative: Guayaki Yerba Mate
+[2026-03-24T06:15:40.969Z]   → Queued alternative: Hiball Sparkling Energy Water
+[2026-03-24T06:15:40.971Z]   ✓ Scored: baseScore=6.3 tier=Caution alts=3
+[2026-03-24T06:15:41.504Z] [47/478] Scoring: Red Bull Original (Red Bull)
+[2026-03-24T06:16:32.346Z]   → Queued alternative: Guayaki Yerba Mate (Unsweetened)
+[2026-03-24T06:16:32.427Z]   → Queued alternative: RUNA Clean Energy
+[2026-03-24T06:16:32.519Z]   → Queued alternative: Zevia Energy
+[2026-03-24T06:16:32.521Z]   ✓ Scored: baseScore=6.3 tier=Caution alts=3
+[2026-03-24T06:16:33.053Z] [48/478] Scoring: Red Bull Sugar Free (Red Bull)
+[2026-03-24T06:17:19.560Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:18:00.787Z]   → Queued alternative: Zevia Zero Calorie Energy
+[2026-03-24T06:18:00.869Z]   → Queued alternative: Guayaki Yerba Mate Unsweetened
+[2026-03-24T06:18:00.947Z]   → Queued alternative: RUNA Clean Energy
+[2026-03-24T06:18:00.948Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T06:18:01.501Z] [49/478] Scoring: 5-Hour Energy Original (Innovation Ventures)
+[2026-03-24T06:18:55.959Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:19:38.688Z]   → Queued alternative: Guayaki Yerba Mate Organic Energy Shot
+[2026-03-24T06:19:38.775Z]   → Queued alternative: Proper Wild Clean All Day Energy Shots
+[2026-03-24T06:19:38.853Z]   → Queued alternative: RUNA Clean Energy Shot
+[2026-03-24T06:19:38.854Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:19:39.384Z] [50/478] Scoring: Celsius Sparkling Orange (Celsius)
+[2026-03-24T06:20:34.121Z]   → Queued alternative: Zevia Orange Soda
+[2026-03-24T06:20:34.190Z]   → Queued alternative: Spindrift Orange Mango
+[2026-03-24T06:20:34.263Z]   → Queued alternative: Hint Kick Orange Mango
+[2026-03-24T06:20:34.264Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:20:34.798Z] [51/478] Scoring: Prime Hydration Lemonade (Prime)
+[2026-03-24T06:21:10.720Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T06:21:11.254Z] [52/478] Scoring: Liquid I.V. Lemon Lime (Liquid I.V.)
+[2026-03-24T06:21:46.934Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T06:21:47.465Z] [53/478] Scoring: Tropicana Orange Juice Original (PepsiCo)
+[2026-03-24T06:22:00.542Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:22:01.079Z] [54/478] Scoring: Minute Maid Orange Juice (Coca-Cola)
+[2026-03-24T06:22:20.387Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T06:22:20.921Z] [55/478] Scoring: Ocean Spray Cranberry Cocktail (Ocean Spray)
+[2026-03-24T06:22:44.890Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=0
+[2026-03-24T06:22:45.424Z] [56/478] Scoring: Welch's Grape Juice (Welch's)
+[2026-03-24T06:22:59.052Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T06:22:59.580Z] [57/478] Scoring: Sunny D Tangy Original (Harvest Hill)
+[2026-03-24T06:23:36.148Z]   → Queued alternative: Honest Kids Organic Juice Drink
+[2026-03-24T06:23:36.228Z]   → Queued alternative: Simply Orange Juice
+[2026-03-24T06:23:36.305Z]   → Queued alternative: Tropicana Pure Premium Orange Juice
+[2026-03-24T06:23:36.307Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T06:23:36.837Z] [58/478] Scoring: V8 Original Vegetable Juice (Campbell's)
+[2026-03-24T06:24:09.040Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T06:24:09.575Z] [59/478] Scoring: Bolthouse Farms Strawberry Banana Smoothie (Bolthouse)
+[2026-03-24T06:24:33.320Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T06:24:33.864Z] [60/478] Scoring: Naked Green Machine (PepsiCo)
+[2026-03-24T06:25:00.345Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:25:00.881Z] [61/478] Scoring: Silk Original Oat Milk (Silk)
+[2026-03-24T06:25:29.350Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T06:25:29.892Z] [62/478] Scoring: Oatly Oat Milk Original (Oatly)
+[2026-03-24T06:26:01.029Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T06:26:01.578Z] [63/478] Scoring: Ripple Original Pea Milk (Ripple Foods)
+[2026-03-24T06:26:24.084Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:26:24.629Z] [64/478] Scoring: Snapple Peach Tea (Keurig Dr Pepper)
+[2026-03-24T06:26:51.282Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=0
+[2026-03-24T06:26:51.823Z] [65/478] Scoring: AriZona Green Tea with Honey (AriZona)
+[2026-03-24T06:27:20.515Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=0
+[2026-03-24T06:27:21.054Z] [66/478] Scoring: Lipton Iced Tea Lemon (Unilever)
+[2026-03-24T06:28:06.247Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=0
+[2026-03-24T06:28:06.790Z] [67/478] Scoring: Pure Leaf Sweet Tea (Unilever/PepsiCo)
+[2026-03-24T06:28:36.624Z]   → Queued alternative: Honest Tea Organic Just Green Tea
+[2026-03-24T06:28:36.755Z]   → Queued alternative: Tazo Iced Black Tea Unsweetened
+[2026-03-24T06:28:36.756Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T06:28:37.285Z] [68/478] Scoring: Starbucks Frappuccino Mocha (Starbucks)
+[2026-03-24T06:29:19.362Z]   → Queued alternative: Califia Farms Cold Brew Coffee with Almond Milk
+[2026-03-24T06:29:19.439Z]   → Queued alternative: Chameleon Cold-Brew Mocha
+[2026-03-24T06:29:19.734Z]   → Queued alternative: Homemade Cold Brew with Milk and Cocoa
+[2026-03-24T06:29:19.743Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:29:20.283Z] [69/478] Scoring: Starbucks Doubleshot Energy Vanilla (Starbucks)
+[2026-03-24T06:30:03.940Z]   → Queued alternative: Starbucks Iced Coffee Unsweetened
+[2026-03-24T06:30:04.014Z]   → Queued alternative: Chameleon Cold-Brew Coffee
+[2026-03-24T06:30:04.089Z]   → Queued alternative: Califia Farms Cold Brew Coffee
+[2026-03-24T06:30:04.091Z]   ✓ Scored: baseScore=6.3 tier=Caution alts=3
+[2026-03-24T06:30:04.624Z] [70/478] Scoring: Nesquik Chocolate Milk (Nestlé)
+[2026-03-24T06:30:44.190Z]   → Queued alternative: Organic Valley Chocolate Milk
+[2026-03-24T06:30:44.278Z]   → Queued alternative: Slate High Protein Chocolate Milk
+[2026-03-24T06:30:44.367Z]   → Queued alternative: Horizon Organic Chocolate Milk
+[2026-03-24T06:30:44.368Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T06:30:44.901Z] [71/478] Scoring: TruMoo Chocolate Milk (Dean Foods)
+[2026-03-24T06:31:24.717Z]   → Queued alternative: Organic Valley Grassmilk Chocolate Milk
+[2026-03-24T06:31:24.788Z]   → Queued alternative: Slate High Protein Chocolate Milk
+[2026-03-24T06:31:24.874Z]   → Queued alternative: Horizon Organic Chocolate Lowfat Milk
+[2026-03-24T06:31:24.875Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:31:25.411Z] [72/478] Scoring: Core Power Elite 42g Protein Chocolate (Fairlife)
+[2026-03-24T06:31:58.788Z]   → Queued alternative: Orgain Organic Protein Shake Chocolate
+[2026-03-24T06:31:58.872Z]   → Queued alternative: Fairlife Core Power Natural High Protein Milk Shake
+[2026-03-24T06:31:58.874Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T06:31:59.410Z] [73/478] Scoring: Fairlife 2% Reduced Fat Milk (Fairlife)
+[2026-03-24T06:32:13.132Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:32:27.607Z]   ✗ Failed after 2 attempts: [
+  {
+    "origin": "number",
+    "code": "too_small",
+    "minimum": 0,
+    "inclusive": true,
+    "path": [
+      "conditionModifiers",
+      0,
+      "modifierAmount"
+    ],
+    "message": "Too small: expected number to be >=0"
+  }
+]
+[2026-03-24T06:32:27.709Z]   → Written to queue for retry
+[2026-03-24T06:32:28.252Z] [74/478] Scoring: Bubly Sparkling Water Lime (PepsiCo)
+[2026-03-24T06:32:35.909Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T06:32:36.449Z] [75/478] Scoring: LaCroix Sparkling Water Pamplemousse (National Beverage)
+[2026-03-24T06:32:44.392Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T06:32:44.932Z] [76/478] Scoring: Spindrift Lemon Sparkling Water (Spindrift)
+[2026-03-24T06:32:55.250Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T06:32:55.794Z] [77/478] Scoring: Hint Water Watermelon (Hint)
+[2026-03-24T06:33:03.881Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T06:33:04.421Z] [78/478] Scoring: Bai Brasilia Blueberry (Bai Brands)
+[2026-03-24T06:33:32.080Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T06:33:32.614Z] [79/478] Scoring: GT's Synergy Gingerberry Kombucha (GT's Living Foods)
+[2026-03-24T06:34:02.293Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:34:02.836Z] [80/478] Scoring: Health-Ade Pink Lady Apple Kombucha (Health-Ade)
+[2026-03-24T06:34:18.668Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:34:19.206Z] [81/478] Scoring: Doritos Nacho Cheese (Frito-Lay)
+[2026-03-24T06:35:08.962Z]   → Queued alternative: Late July Organic Nacho Cheese Tortilla Chips
+[2026-03-24T06:35:09.036Z]   → Queued alternative: Siete Grain-Free Nacho Tortilla Chips
+[2026-03-24T06:35:09.109Z]   → Queued alternative: Simple Mills Farmhouse Cheddar Almond Flour Crackers
+[2026-03-24T06:35:09.114Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T06:35:09.643Z] [82/478] Scoring: Doritos Cool Ranch (Frito-Lay)
+[2026-03-24T06:35:59.937Z]   → Queued alternative: Late July Organic Sea Salt Tortilla Chips
+[2026-03-24T06:36:00.015Z]   → Queued alternative: Siete Grain-Free Tortilla Chips
+[2026-03-24T06:36:00.100Z]   → Queued alternative: Garden of Eatin' Blue Corn Tortilla Chips
+[2026-03-24T06:36:00.100Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T06:36:00.644Z] [83/478] Scoring: Lay's Classic (Frito-Lay)
+[2026-03-24T06:36:20.181Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:36:20.713Z] [84/478] Scoring: Lay's Sour Cream & Onion (Frito-Lay)
+[2026-03-24T06:36:59.655Z]   ✓ Scored: baseScore=3.8 tier=Watch alts=0
+[2026-03-24T06:37:00.190Z] [85/478] Scoring: Lay's Barbecue (Frito-Lay)
+[2026-03-24T06:37:44.549Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T06:37:45.087Z] [86/478] Scoring: Pringles Original (Kellogg's)
+[2026-03-24T06:38:24.055Z]   → Queued alternative: Jackson's Honest Sweet Potato Chips
+[2026-03-24T06:38:24.143Z]   → Queued alternative: Kettle Brand Sea Salt Potato Chips
+[2026-03-24T06:38:24.473Z]   → Queued alternative: Siete Grain Free Tortilla Chips
+[2026-03-24T06:38:24.475Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:38:25.012Z] [87/478] Scoring: Pringles Sour Cream & Onion (Kellogg's)
+[2026-03-24T06:38:59.957Z]   → Queued alternative: Kettle Brand Sour Cream & Onion Potato Chips
+[2026-03-24T06:39:00.033Z]   → Queued alternative: Popchips Sour Cream & Onion
+[2026-03-24T06:39:00.099Z]   → Queued alternative: Simple Mills Sea Salt Almond Flour Crackers
+[2026-03-24T06:39:00.100Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:39:00.630Z] [88/478] Scoring: Cheetos Crunchy (Frito-Lay)
+[2026-03-24T06:39:45.647Z]   → Queued alternative: Lesser Evil Paleo Puffs
+[2026-03-24T06:39:45.723Z]   → Queued alternative: Hippeas Organic Chickpea Puffs
+[2026-03-24T06:39:45.796Z]   → Queued alternative: Simple Mills Sea Salt Almond Flour Crackers
+[2026-03-24T06:39:45.797Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T06:39:46.339Z] [89/478] Scoring: Cheetos Puffs (Frito-Lay)
+[2026-03-24T06:40:27.208Z]   → Queued alternative: Pirate's Booty Aged White Cheddar
+[2026-03-24T06:40:27.277Z]   → Queued alternative: Lesser Evil Paleo Puffs
+[2026-03-24T06:40:27.348Z]   → Queued alternative: Hippeas Organic Chickpea Puffs
+[2026-03-24T06:40:27.349Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T06:40:27.879Z] [90/478] Scoring: Funyuns Onion Flavored Rings (Frito-Lay)
+[2026-03-24T06:41:08.420Z]   → Queued alternative: Bare Baked Crunchy Onion Rings
+[2026-03-24T06:41:08.492Z]   → Queued alternative: Simple Mills Sea Salt Almond Flour Crackers
+[2026-03-24T06:41:08.577Z]   → Queued alternative: Brad's Plant Based Organic Crunchy Kale
+[2026-03-24T06:41:08.579Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T06:41:09.112Z] [91/478] Scoring: Fritos Original (Frito-Lay)
+[2026-03-24T06:41:28.816Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:41:29.353Z] [92/478] Scoring: Tostitos Original (Frito-Lay)
+[2026-03-24T06:41:42.419Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:41:42.952Z] [93/478] Scoring: Tostitos Hint of Lime (Frito-Lay)
+[2026-03-24T06:42:03.928Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:42:04.470Z] [94/478] Scoring: SunChips Original (Frito-Lay)
+[2026-03-24T06:42:33.226Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T06:42:33.764Z] [95/478] Scoring: Ruffles Original (Frito-Lay)
+[2026-03-24T06:42:47.329Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T06:42:47.862Z] [96/478] Scoring: Ruffles Cheddar & Sour Cream (Frito-Lay)
+[2026-03-24T06:43:34.983Z]   → Queued alternative: Kettle Brand Cheddar Beer Chips
+[2026-03-24T06:43:35.065Z]   → Queued alternative: Late July Organic Cheddar Cheese Crackers
+[2026-03-24T06:43:35.138Z]   → Queued alternative: Simple Mills Cheddar Farmhouse Crackers
+[2026-03-24T06:43:35.139Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:43:35.671Z] [97/478] Scoring: Goldfish Crackers Original (Pepperidge Farm)
+[2026-03-24T06:44:09.099Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T06:44:09.635Z] [98/478] Scoring: Goldfish Crackers Cheddar (Pepperidge Farm)
+[2026-03-24T06:44:41.265Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T06:44:41.800Z] [99/478] Scoring: Cheez-It Original (Kellogg's)
+[2026-03-24T06:45:11.655Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:45:44.164Z]   → Queued alternative: Simple Mills Farmhouse Cheddar Almond Flour Crackers
+[2026-03-24T06:45:44.244Z]   → Queued alternative: Late July Organic Classic Rich Crackers
+[2026-03-24T06:45:44.331Z]   → Queued alternative: Mary's Gone Crackers Super Seed
+[2026-03-24T06:45:44.333Z]   ✓ Scored: baseScore=4.8 tier=Watch alts=3
+[2026-03-24T06:45:44.877Z] [100/478] Scoring: Cheez-It White Cheddar (Kellogg's)
+[2026-03-24T06:46:15.040Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=0
+[2026-03-24T06:46:15.579Z] [101/478] Scoring: Wheat Thins Original (Nabisco)
+[2026-03-24T06:46:41.787Z]   → Queued alternative: Mary's Gone Crackers Original
+[2026-03-24T06:46:41.853Z]   → Queued alternative: Simple Mills Almond Flour Crackers
+[2026-03-24T06:46:41.854Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T06:46:42.390Z] [102/478] Scoring: Triscuit Original (Nabisco)
+[2026-03-24T06:46:58.340Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:47:13.189Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T06:47:13.727Z] [103/478] Scoring: Ritz Crackers Original (Nabisco)
+[2026-03-24T06:47:54.115Z]   → Queued alternative: Simple Mills Almond Flour Crackers
+[2026-03-24T06:47:54.191Z]   → Queued alternative: Mary's Gone Crackers Original
+[2026-03-24T06:47:54.273Z]   → Queued alternative: Crunchmaster Multi-Seed Crackers
+[2026-03-24T06:47:54.275Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T06:47:54.811Z] [104/478] Scoring: Club Crackers Original (Kellogg's)
+[2026-03-24T06:48:31.533Z]   → Queued alternative: Simple Mills Almond Flour Crackers
+[2026-03-24T06:48:31.628Z]   → Queued alternative: Mary's Gone Crackers Original
+[2026-03-24T06:48:31.699Z]   → Queued alternative: Crunchmaster Multi-Seed Crackers
+[2026-03-24T06:48:31.702Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T06:48:32.235Z] [105/478] Scoring: Townhouse Crackers Original (Kellogg's)
+[2026-03-24T06:49:04.697Z]   → Queued alternative: Simple Mills Almond Flour Crackers
+[2026-03-24T06:49:04.769Z]   → Queued alternative: Mary's Gone Crackers Original
+[2026-03-24T06:49:04.770Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T06:49:05.305Z] [106/478] Scoring: Stacy's Pita Chips Simply Naked (Frito-Lay)
+[2026-03-24T06:49:30.195Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:49:55.046Z]   ✓ Scored: baseScore=2.4 tier=Clean alts=0
+[2026-03-24T06:49:55.577Z] [107/478] Scoring: Popchips Original Potato (Popchips)
+[2026-03-24T06:50:11.234Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T06:50:11.771Z] [108/478] Scoring: Skinny Pop Original Popcorn (Amplify Snack Brands)
+[2026-03-24T06:50:26.305Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:50:26.839Z] [109/478] Scoring: Orville Redenbacher Smart Pop Butter (ConAgra)
+[2026-03-24T06:50:56.197Z]   → Queued alternative: Quinn White Cheddar & Sea Salt Microwave Popcorn
+[2026-03-24T06:50:56.271Z]   → Queued alternative: SkinnyPop Sea Salt Popcorn
+[2026-03-24T06:50:56.272Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T06:50:56.806Z] [110/478] Scoring: ACT II Butter Lovers Popcorn (ConAgra)
+[2026-03-24T06:51:35.805Z]   → Queued alternative: Quinn Real Butter & Sea Salt Microwave Popcorn
+[2026-03-24T06:51:35.871Z]   → Queued alternative: SkinnyPop Sea Salt Popcorn
+[2026-03-24T06:51:35.946Z]   → Queued alternative: Angie's BOOMCHICKAPOP Sea Salt Popcorn
+[2026-03-24T06:51:35.947Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T06:51:36.483Z] [111/478] Scoring: Pirate's Booty Aged White Cheddar (Pirate Brands)
+[2026-03-24T06:51:58.298Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:51:58.831Z] [112/478] Scoring: Snyder's Mini Pretzels (Campbell's)
+[2026-03-24T06:52:19.389Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:52:19.951Z] [113/478] Scoring: Unique \"Extra Dark\" Pretzels (Unique Snacks)
+[2026-03-24T06:52:40.249Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T06:52:59.572Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:53:00.111Z] [114/478] Scoring: Bugles Original (General Mills)
+[2026-03-24T06:53:36.740Z]   → Queued alternative: Simple Mills Sea Salt Almond Flour Crackers
+[2026-03-24T06:53:36.874Z]   → Queued alternative: Late July Organic Sea Salt Tortilla Chips
+[2026-03-24T06:53:36.949Z]   → Queued alternative: Hippeas Organic Chickpea Puffs
+[2026-03-24T06:53:36.951Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:53:37.487Z] [115/478] Scoring: Combos Cheddar Cheese Cracker (Mars)
+[2026-03-24T06:54:23.035Z]   → Queued alternative: Simple Mills Farmhouse Cheddar Crackers
+[2026-03-24T06:54:23.366Z]   → Queued alternative: Annie's Organic Cheddar Squares
+[2026-03-24T06:54:23.452Z]   → Queued alternative: Late July Organic Cheddar Cheese Crackers
+[2026-03-24T06:54:23.454Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T06:54:23.983Z] [116/478] Scoring: Munchies Cheese Fix Snack Mix (Frito-Lay)
+[2026-03-24T06:55:07.776Z]   → Queued alternative: Simple Mills Farmhouse Cheddar Crackers
+[2026-03-24T06:55:07.848Z]   → Queued alternative: Annie's Organic Cheddar Squares
+[2026-03-24T06:55:07.925Z]   → Queued alternative: Late July Organic Cheddar Cheese Crackers
+[2026-03-24T06:55:07.925Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T06:55:08.464Z] [117/478] Scoring: Chex Mix Original (General Mills)
+[2026-03-24T06:55:53.873Z]   → Queued alternative: Simple Mills Almond Flour Crackers
+[2026-03-24T06:55:53.954Z]   → Queued alternative: Late July Organic Crackers
+[2026-03-24T06:55:54.029Z]   → Queued alternative: Mary's Gone Crackers Original
+[2026-03-24T06:55:54.030Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:55:54.566Z] [118/478] Scoring: Gardetto's Original Recipe Snack Mix (General Mills)
+[2026-03-24T06:56:40.288Z]   → Queued alternative: Simple Mills Almond Flour Crackers
+[2026-03-24T06:56:40.358Z]   → Queued alternative: Mary's Gone Crackers Original
+[2026-03-24T06:56:40.428Z]   → Queued alternative: Late July Organic Crackers
+[2026-03-24T06:56:40.429Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T06:56:40.958Z] [119/478] Scoring: Harvest Snaps Green Pea Snacks Lightly Salted (Calbee)
+[2026-03-24T06:56:59.039Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:56:59.571Z] [120/478] Scoring: Beanitos White Bean Chips (Beanitos)
+[2026-03-24T06:57:14.425Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:57:14.958Z] [121/478] Scoring: Late July Organic Multigrain Tortilla Chips (Late July)
+[2026-03-24T06:57:34.536Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:57:35.066Z] [122/478] Scoring: Siete Grain-Free Tortilla Chips Sea Salt (Siete Foods)
+[2026-03-24T06:57:51.806Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:57:52.337Z] [123/478] Scoring: Simple Mills Almond Flour Crackers (Simple Mills)
+[2026-03-24T06:58:10.566Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:58:11.097Z] [124/478] Scoring: RW Garcia Sweet Potato Crackers (RW Garcia)
+[2026-03-24T06:58:28.671Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:58:29.198Z] [125/478] Scoring: Mary's Gone Crackers Original (Mary's Gone Crackers)
+[2026-03-24T06:58:48.226Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T06:58:48.766Z] [126/478] Scoring: Kind Mini Bars Dark Chocolate Nuts & Sea Salt (Kind)
+[2026-03-24T06:59:13.091Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:59:13.620Z] [127/478] Scoring: RXBar Chocolate Sea Salt (RXBAR)
+[2026-03-24T06:59:32.399Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T06:59:32.934Z] [128/478] Scoring: Larabar Apple Pie (General Mills)
+[2026-03-24T06:59:46.629Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T06:59:47.164Z] [129/478] Scoring: Cliff Bar Chocolate Chip (Clif Bar)
+[2026-03-24T07:00:15.031Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T07:00:15.567Z] [130/478] Scoring: Oreo Original (Nabisco)
+[2026-03-24T07:01:04.558Z]   → Queued alternative: Simple Mills Crunchy Cookies
+[2026-03-24T07:01:04.631Z]   → Queued alternative: Back to Nature Classic Creme Cookies
+[2026-03-24T07:01:04.714Z]   → Queued alternative: Newman's Own Alphabet Cookies
+[2026-03-24T07:01:04.715Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T07:01:05.248Z] [131/478] Scoring: Oreo Double Stuf (Nabisco)
+[2026-03-24T07:01:54.056Z]   → Queued alternative: Simple Mills Crunchy Cookies
+[2026-03-24T07:01:54.124Z]   → Queued alternative: Back to Nature Classic Creme Cookies
+[2026-03-24T07:01:54.186Z]   → Queued alternative: Newman's Own Alphabet Cookies
+[2026-03-24T07:01:54.188Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:01:54.721Z] [132/478] Scoring: Oreo Golden (Nabisco)
+[2026-03-24T07:02:35.296Z]   → Queued alternative: Annie's Organic Bunny Grahams
+[2026-03-24T07:02:35.373Z]   → Queued alternative: Back to Nature Golden Honey Oat Grahams
+[2026-03-24T07:02:35.374Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:02:35.911Z] [133/478] Scoring: Chips Ahoy! Original (Nabisco)
+[2026-03-24T07:03:19.112Z]   → Queued alternative: Simple Mills Crunchy Cookies
+[2026-03-24T07:03:19.192Z]   → Queued alternative: Back to Nature Chocolate Chunk Cookies
+[2026-03-24T07:03:19.288Z]   → Queued alternative: Enjoy Life Soft Baked Cookies
+[2026-03-24T07:03:19.289Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T07:03:19.828Z] [134/478] Scoring: Chips Ahoy! Chewy (Nabisco)
+[2026-03-24T07:03:56.838Z]   → Queued alternative: Simple Mills Crunchy Cookies
+[2026-03-24T07:03:56.909Z]   → Queued alternative: Enjoy Life Soft Baked Cookies
+[2026-03-24T07:03:56.990Z]   → Queued alternative: Annie's Organic Chocolate Chip Cookies
+[2026-03-24T07:03:56.991Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T07:03:57.525Z] [135/478] Scoring: Nutter Butter Original (Nabisco)
+[2026-03-24T07:04:41.488Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T07:05:13.847Z]   → Queued alternative: Justin's Peanut Butter Cups
+[2026-03-24T07:05:13.926Z]   → Queued alternative: Made Good Soft Baked Mini Cookies Snickerdoodle
+[2026-03-24T07:05:14.013Z]   → Queued alternative: Simple Mills Crunchy Peanut Butter Cookies
+[2026-03-24T07:05:14.014Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:05:14.554Z] [136/478] Scoring: Pepperidge Farm Milano Cookies (Pepperidge Farm)
+[2026-03-24T07:05:49.452Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T07:05:49.992Z] [137/478] Scoring: Famous Amos Chocolate Chip Cookies (Ferrero)
+[2026-03-24T07:06:34.835Z]   → Queued alternative: Simple Mills Crunchy Cookies
+[2026-03-24T07:06:34.907Z]   → Queued alternative: Enjoy Life Soft Baked Cookies
+[2026-03-24T07:06:34.908Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=2
+[2026-03-24T07:06:35.718Z] [138/478] Scoring: Lorna Doone Shortbread Cookies (Nabisco)
+[2026-03-24T07:07:09.649Z]   → Queued alternative: Annie's Organic Bunny Grahams
+[2026-03-24T07:07:09.650Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T07:07:10.189Z] [139/478] Scoring: Keebler Fudge Stripes (Kellogg's)
+[2026-03-24T07:07:49.943Z]   → Queued alternative: Simple Mills Crunchy Cookies
+[2026-03-24T07:07:50.012Z]   → Queued alternative: Annie's Organic Bunny Cookies
+[2026-03-24T07:07:50.092Z]   → Queued alternative: Back to Nature Fudge Mint Cookies
+[2026-03-24T07:07:50.093Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T07:07:50.628Z] [140/478] Scoring: Twinkies (Hostess)
+[2026-03-24T07:08:39.286Z]   → Queued alternative: Simple Mills Almond Flour Vanilla Cupcake Mix
+[2026-03-24T07:08:39.347Z]   → Queued alternative: Annie's Organic Bunny Fruit Snacks
+[2026-03-24T07:08:39.425Z]   → Queued alternative: MadeGood Vanilla Birthday Cake Soft Baked Mini Cookies
+[2026-03-24T07:08:39.426Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:08:39.959Z] [141/478] Scoring: Ding Dongs (Hostess)
+[2026-03-24T07:09:22.299Z]   → Queued alternative: Simple Mills Chocolate Muffin Mix
+[2026-03-24T07:09:22.392Z]   → Queued alternative: Enjoy Life Brownie Bites
+[2026-03-24T07:09:22.475Z]   → Queued alternative: MadeGood Chocolate Chip Granola Minis
+[2026-03-24T07:09:22.476Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:09:23.003Z] [142/478] Scoring: Little Debbie Oatmeal Creme Pies (McKee Foods)
+[2026-03-24T07:10:04.188Z]   → Queued alternative: Annie's Organic Oatmeal Cookies
+[2026-03-24T07:10:04.273Z]   → Queued alternative: Nature's Path Organic Oatmeal Cookies
+[2026-03-24T07:10:04.275Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T07:10:04.809Z] [143/478] Scoring: Little Debbie Nutty Bars (McKee Foods)
+[2026-03-24T07:10:48.622Z]   → Queued alternative: KIND Peanut Butter Dark Chocolate Bar
+[2026-03-24T07:10:48.696Z]   → Queued alternative: RX Bar Chocolate Peanut Butter
+[2026-03-24T07:10:48.783Z]   → Queued alternative: Larabar Peanut Butter Chocolate Chip
+[2026-03-24T07:10:48.785Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:10:49.319Z] [144/478] Scoring: Skittles Original (Mars)
+[2026-03-24T07:11:31.999Z]   → Queued alternative: YumEarth Organic Fruit Snacks
+[2026-03-24T07:11:32.076Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:11:32.156Z]   → Queued alternative: SmartSweets Sweet Fish
+[2026-03-24T07:11:32.158Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:11:32.691Z] [145/478] Scoring: Skittles Wild Berry (Mars)
+[2026-03-24T07:12:21.203Z]   → Queued alternative: YumEarth Organic Fruit Snacks
+[2026-03-24T07:12:21.278Z]   → Queued alternative: Unreal Dark Chocolate Gems
+[2026-03-24T07:12:21.354Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:12:21.354Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:12:21.890Z] [146/478] Scoring: Starburst Original (Mars)
+[2026-03-24T07:13:04.666Z]   → Queued alternative: YumEarth Organic Fruit Snacks
+[2026-03-24T07:13:04.738Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:13:04.819Z]   → Queued alternative: Annie's Organic Bunny Fruit Snacks
+[2026-03-24T07:13:04.820Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:13:05.353Z] [147/478] Scoring: Twizzlers Strawberry Twists (Hershey's)
+[2026-03-24T07:13:42.913Z]   → Queued alternative: YumEarth Organic Strawberry Licorice
+[2026-03-24T07:13:42.992Z]   → Queued alternative: Project 7 Low Sugar Strawberry Licorice
+[2026-03-24T07:13:43.074Z]   → Queued alternative: Wholesome Organic Licorice Twists
+[2026-03-24T07:13:43.076Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:13:43.609Z] [148/478] Scoring: Swedish Fish Original (Mondelēz)
+[2026-03-24T07:14:13.953Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:14:14.032Z]   → Queued alternative: YumEarth Organic Gummy Fish
+[2026-03-24T07:14:14.033Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=2
+[2026-03-24T07:14:14.585Z] [149/478] Scoring: Sour Patch Kids Original (Mondelēz)
+[2026-03-24T07:15:00.630Z]   → Queued alternative: Organic Gummy Bears
+[2026-03-24T07:15:00.709Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:15:00.796Z]   → Queued alternative: Smart Sweets Sour Gummy Bears
+[2026-03-24T07:15:00.798Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:15:01.332Z] [150/478] Scoring: Airheads Original (Perfetti Van Melle)
+[2026-03-24T07:15:45.120Z]   → Queued alternative: YumEarth Organic Fruit Chews
+[2026-03-24T07:15:45.195Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:15:45.262Z]   → Queued alternative: Unreal Dark Chocolate Gems
+[2026-03-24T07:15:45.263Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:15:45.793Z] [151/478] Scoring: Jolly Rancher Hard Candy Assorted (Hershey's)
+[2026-03-24T07:16:28.005Z]   → Queued alternative: YumEarth Organic Hard Candies
+[2026-03-24T07:16:28.092Z]   → Queued alternative: Torie & Howard Organic Hard Candy
+[2026-03-24T07:16:28.178Z]   → Queued alternative: Wholesome Organic Hard Candies
+[2026-03-24T07:16:28.179Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:16:28.716Z] [152/478] Scoring: Nerds Original (Ferrara Candy)
+[2026-03-24T07:17:08.158Z]   → Queued alternative: YumEarth Organic Sour Beans
+[2026-03-24T07:17:08.223Z]   → Queued alternative: Unreal Dark Chocolate Gems
+[2026-03-24T07:17:08.307Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:17:08.309Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:17:08.843Z] [153/478] Scoring: Haribo Gold-Bears (Haribo)
+[2026-03-24T07:17:53.363Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:17:53.443Z]   → Queued alternative: YumEarth Organic Gummy Bears
+[2026-03-24T07:17:53.543Z]   → Queued alternative: Project 7 Gourmet Gummies
+[2026-03-24T07:17:53.543Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:17:54.072Z] [154/478] Scoring: Trolli Sour Brite Crawlers (Ferrara Candy)
+[2026-03-24T07:18:41.882Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:18:41.963Z]   → Queued alternative: YumEarth Organic Gummy Worms
+[2026-03-24T07:18:42.060Z]   → Queued alternative: Black Forest Organic Gummy Worms
+[2026-03-24T07:18:42.061Z]   ✓ Scored: baseScore=7.2 tier=Caution alts=3
+[2026-03-24T07:18:42.595Z] [155/478] Scoring: Mike and Ike Original Fruits (Just Born)
+[2026-03-24T07:19:22.712Z]   → Queued alternative: Surf Sweets Organic Fruity Bears
+[2026-03-24T07:19:23.047Z]   → Queued alternative: YumEarth Organic Fruit Snacks
+[2026-03-24T07:19:23.122Z]   → Queued alternative: Black Forest Organic Gummy Bears
+[2026-03-24T07:19:23.123Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:19:23.650Z] [156/478] Scoring: M&Ms Milk Chocolate (Mars)
+[2026-03-24T07:20:02.852Z]   → Queued alternative: Unreal Dark Chocolate Gems
+[2026-03-24T07:20:02.934Z]   → Queued alternative: YumEarth Organic Fruit Snacks
+[2026-03-24T07:20:03.011Z]   → Queued alternative: Hu Chocolate Gems
+[2026-03-24T07:20:03.013Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T07:20:03.545Z] [157/478] Scoring: M&Ms Peanut (Mars)
+[2026-03-24T07:20:54.680Z]   → Queued alternative: Unreal Dark Chocolate Peanut Gems
+[2026-03-24T07:20:54.762Z]   → Queued alternative: YumEarth Organic Fruit Snacks
+[2026-03-24T07:20:54.839Z]   → Queued alternative: Hu Chocolate Gems
+[2026-03-24T07:20:54.840Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T07:20:55.369Z] [158/478] Scoring: Snickers Original (Mars)
+[2026-03-24T07:21:46.690Z]   → Queued alternative: Hu Chocolate Bars
+[2026-03-24T07:21:46.765Z]   → Queued alternative: Unreal Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:21:46.838Z]   → Queued alternative: Justin's Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:21:46.839Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:21:47.372Z] [159/478] Scoring: Kit Kat Original (Hershey's)
+[2026-03-24T07:22:26.208Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=0
+[2026-03-24T07:22:26.742Z] [160/478] Scoring: Reese's Peanut Butter Cups (Hershey's)
+[2026-03-24T07:23:03.754Z]   → Queued alternative: Justin's Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:23:03.825Z]   → Queued alternative: Unreal Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:23:03.907Z]   → Queued alternative: Hu Kitchen Peanut Butter Cups
+[2026-03-24T07:23:03.908Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:23:04.441Z] [161/478] Scoring: Hershey's Milk Chocolate Bar (Hershey's)
+[2026-03-24T07:23:30.979Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T07:23:31.520Z] [162/478] Scoring: Butterfinger Original (Ferrero)
+[2026-03-24T07:24:18.148Z]   → Queued alternative: Unreal Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:24:18.226Z]   → Queued alternative: Justin's Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:24:18.311Z]   → Queued alternative: Hu Kitchen Peanut Butter Dark Chocolate Bar
+[2026-03-24T07:24:18.312Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:24:18.845Z] [163/478] Scoring: Baby Ruth Original (Ferrero)
+[2026-03-24T07:25:06.662Z]   → Queued alternative: Unreal Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:25:06.733Z]   → Queued alternative: Justin's Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:25:06.803Z]   → Queued alternative: Hu Kitchen Peanut Butter Dark Chocolate Bar
+[2026-03-24T07:25:06.804Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T07:25:07.348Z] [164/478] Scoring: 3 Musketeers (Mars)
+[2026-03-24T07:25:57.253Z]   → Queued alternative: Hu Dark Chocolate Bars
+[2026-03-24T07:25:57.322Z]   → Queued alternative: Unreal Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:25:57.418Z]   → Queued alternative: Endangered Species Dark Chocolate
+[2026-03-24T07:25:57.418Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T07:25:57.946Z] [165/478] Scoring: Milky Way Original (Mars)
+[2026-03-24T07:26:50.875Z]   → Queued alternative: Hu Dark Chocolate Bar
+[2026-03-24T07:26:50.951Z]   → Queued alternative: Unreal Dark Chocolate Peanut Butter Cups
+[2026-03-24T07:26:51.024Z]   → Queued alternative: Endangered Species Dark Chocolate
+[2026-03-24T07:26:51.025Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:26:51.553Z] [166/478] Scoring: Almond Joy (Hershey's)
+[2026-03-24T07:27:42.155Z]   → Queued alternative: Unreal Dark Chocolate Coconut Bars
+[2026-03-24T07:27:42.235Z]   → Queued alternative: Hu Kitchen Almond Butter + Puffed Quinoa Dark Chocolate Bar
+[2026-03-24T07:27:42.321Z]   → Queued alternative: Endangered Species Dark Chocolate with Coconut
+[2026-03-24T07:27:42.323Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:27:42.855Z] [167/478] Scoring: Mounds (Hershey's)
+[2026-03-24T07:28:20.601Z]   → Queued alternative: Unreal Dark Chocolate Coconut Bars
+[2026-03-24T07:28:20.680Z]   → Queued alternative: Alter Eco Dark Chocolate Coconut Toffee
+[2026-03-24T07:28:20.754Z]   → Queued alternative: Eating Evolved Coconut Butter Cups
+[2026-03-24T07:28:20.755Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:28:21.299Z] [168/478] Scoring: Toblerone Milk Chocolate (Mondelēz)
+[2026-03-24T07:28:46.628Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T07:29:12.068Z]   ✓ Scored: baseScore=3.8 tier=Watch alts=0
+[2026-03-24T07:29:12.609Z] [169/478] Scoring: Lindt Excellence 70% Cocoa Dark (Lindt)
+[2026-03-24T07:29:33.876Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T07:29:34.410Z] [170/478] Scoring: Justin's Dark Chocolate Peanut Butter Cups (Justin's)
+[2026-03-24T07:29:59.425Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T07:29:59.961Z] [171/478] Scoring: Lily's Milk Chocolate Chips (Lily's)
+[2026-03-24T07:30:23.509Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T07:30:24.049Z] [172/478] Scoring: SmartSweets Peach Rings (SmartSweets)
+[2026-03-24T07:30:55.743Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T07:30:56.283Z] [173/478] Scoring: YumEarth Organic Gummy Bears (YumEarth)
+[2026-03-24T07:31:19.520Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T07:31:20.051Z] [174/478] Scoring: Unreal Dark Chocolate Peanut Butter Cups (Unreal)
+[2026-03-24T07:31:43.209Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T07:31:43.744Z] [175/478] Scoring: Kraft Mac & Cheese Original (Kraft Heinz)
+[2026-03-24T07:32:17.185Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=0
+[2026-03-24T07:32:17.725Z] [176/478] Scoring: Kraft Mac & Cheese Shapes (Kraft Heinz)
+[2026-03-24T07:33:01.590Z]   → Queued alternative: Annie's Organic Shells & White Cheddar
+[2026-03-24T07:33:01.666Z]   → Queued alternative: Banza Chickpea Mac & Cheese
+[2026-03-24T07:33:01.757Z]   → Queued alternative: Goodles Cheddy Mac
+[2026-03-24T07:33:01.758Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:33:02.287Z] [177/478] Scoring: Velveeta Shells & Cheese (Kraft Heinz)
+[2026-03-24T07:33:41.060Z]   → Queued alternative: Annie's Organic Shells & White Cheddar
+[2026-03-24T07:33:41.138Z]   → Queued alternative: Banza Shells & White Cheddar
+[2026-03-24T07:33:41.213Z]   → Queued alternative: Goodles Cheddy Mac
+[2026-03-24T07:33:41.214Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T07:33:41.751Z] [178/478] Scoring: Annie's Organic Mac & Cheese (General Mills)
+[2026-03-24T07:34:09.427Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T07:34:09.957Z] [179/478] Scoring: Maruchan Ramen Chicken (Maruchan)
+[2026-03-24T07:35:01.958Z]   → Queued alternative: Lotus Foods Organic Millet & Brown Rice Ramen
+[2026-03-24T07:35:02.033Z]   → Queued alternative: Dr. McDougall's Right Foods Chicken Ramen
+[2026-03-24T07:35:02.112Z]   → Queued alternative: Mike's Mighty Good Craft Ramen
+[2026-03-24T07:35:02.113Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:35:02.648Z] [180/478] Scoring: Maruchan Ramen Beef (Maruchan)
+[2026-03-24T07:35:54.305Z]   → Queued alternative: Dr. McDougall's Right Foods Ramen
+[2026-03-24T07:35:54.376Z]   → Queued alternative: Lotus Foods Organic Millet & Brown Rice Ramen
+[2026-03-24T07:35:54.451Z]   → Queued alternative: Mike's Mighty Good Craft Ramen
+[2026-03-24T07:35:54.455Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:35:54.990Z] [181/478] Scoring: Top Ramen Chicken (Nissin)
+[2026-03-24T07:36:38.396Z]   → Queued alternative: Lotus Foods Organic Millet & Brown Rice Ramen
+[2026-03-24T07:36:38.506Z]   → Queued alternative: Dr. McDougall's Right Foods Chicken Ramen
+[2026-03-24T07:36:38.597Z]   → Queued alternative: Koyo Organic Ramen
+[2026-03-24T07:36:38.599Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:36:39.131Z] [182/478] Scoring: Nissin Cup Noodles Chicken (Nissin)
+[2026-03-24T07:37:30.219Z]   → Queued alternative: Dr. McDougall's Right Foods Chicken Noodle Soup
+[2026-03-24T07:37:30.292Z]   → Queued alternative: Lotus Foods Organic Millet & Brown Rice Ramen
+[2026-03-24T07:37:30.694Z]   → Queued alternative: Mike's Mighty Good Craft Ramen
+[2026-03-24T07:37:30.696Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:37:31.240Z] [183/478] Scoring: Hamburger Helper Cheeseburger Macaroni (General Mills)
+[2026-03-24T07:38:23.750Z]   → Queued alternative: Annie's Organic Shells & White Cheddar
+[2026-03-24T07:38:23.824Z]   → Queued alternative: Banza Chickpea Mac & Cheese
+[2026-03-24T07:38:23.909Z]   → Queued alternative: Simple Truth Organic Deluxe Macaroni & Cheese Dinner
+[2026-03-24T07:38:23.910Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:38:24.444Z] [184/478] Scoring: Rice-A-Roni Chicken Flavor (PepsiCo)
+[2026-03-24T07:39:15.881Z]   → Queued alternative: Lundberg Organic Rice & Seasoning Mix
+[2026-03-24T07:39:15.970Z]   → Queued alternative: Seeds of Change Organic Quinoa & Brown Rice
+[2026-03-24T07:39:16.048Z]   → Queued alternative: Near East Rice Pilaf (Original)
+[2026-03-24T07:39:16.049Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:39:16.582Z] [185/478] Scoring: Knorr Pasta Sides Chicken Broccoli (Unilever)
+[2026-03-24T07:40:05.232Z]   → Queued alternative: Annie's Organic Shells & White Cheddar
+[2026-03-24T07:40:05.348Z]   → Queued alternative: Lundberg Organic Rice & Seasoning Mix
+[2026-03-24T07:40:05.433Z]   → Queued alternative: Simply Organic Alfredo Sauce Mix
+[2026-03-24T07:40:05.434Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:40:05.976Z] [186/478] Scoring: Pasta Roni Angel Hair & Butter (PepsiCo)
+[2026-03-24T07:40:54.424Z]   → Queued alternative: Bionaturae Organic Angel Hair Pasta
+[2026-03-24T07:40:54.497Z]   → Queued alternative: Jovial Organic Brown Rice Pasta
+[2026-03-24T07:40:54.572Z]   → Queued alternative: DeLallo Whole Wheat Angel Hair
+[2026-03-24T07:40:54.573Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T07:40:55.111Z] [187/478] Scoring: Barilla Spaghetti (Barilla)
+[2026-03-24T07:41:06.400Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T07:41:16.963Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T07:41:17.494Z] [188/478] Scoring: Barilla Penne Rigate (Barilla)
+[2026-03-24T07:41:26.850Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T07:41:37.252Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T07:41:37.793Z] [189/478] Scoring: Barilla Rotini (Barilla)
+[2026-03-24T07:41:47.859Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T07:41:59.451Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T07:41:59.992Z] [190/478] Scoring: Ronzoni Garden Delight Rotini (TreeHouse Foods)
+[2026-03-24T07:42:21.431Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T07:42:44.648Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T07:42:45.189Z] [191/478] Scoring: Banza Chickpea Pasta Penne (Banza)
+[2026-03-24T07:42:59.599Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T07:43:00.131Z] [192/478] Scoring: Explore Cuisine Edamame Spaghetti (Explore Cuisine)
+[2026-03-24T07:43:10.483Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T07:43:19.211Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T07:43:19.742Z] [193/478] Scoring: Near East Couscous Roasted Garlic & Olive Oil (PepsiCo)
+[2026-03-24T07:43:57.491Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T07:43:58.023Z] [194/478] Scoring: Uncle Ben's Ready Rice Long Grain & Wild (Mars Food)
+[2026-03-24T07:44:20.518Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T07:44:21.065Z] [195/478] Scoring: Seeds of Change Organic Brown Rice & Quinoa (Mars Food)
+[2026-03-24T07:44:36.104Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T07:44:36.647Z] [196/478] Scoring: Idahoan Instant Mashed Potatoes Four Cheese (Idahoan)
+[2026-03-24T07:45:27.573Z]   → Queued alternative: Simply Potatoes Mashed Potatoes
+[2026-03-24T07:45:27.654Z]   → Queued alternative: Bob's Red Mill Instant Mashed Potatoes
+[2026-03-24T07:45:27.740Z]   → Queued alternative: Homemade Mashed Potatoes
+[2026-03-24T07:45:27.742Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T07:45:28.274Z] [197/478] Scoring: Betty Crocker Scalloped Potatoes (General Mills)
+[2026-03-24T07:46:22.904Z]   → Queued alternative: Simply Potatoes Homestyle Slices
+[2026-03-24T07:46:22.988Z]   → Queued alternative: Idahoan Real Premium Mashed Potatoes
+[2026-03-24T07:46:23.066Z]   → Queued alternative: Homemade scalloped potatoes
+[2026-03-24T07:46:23.068Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:46:23.600Z] [198/478] Scoring: Knorr Lipton Onion Soup & Dip Mix (Unilever)
+[2026-03-24T07:47:11.739Z]   → Queued alternative: Simply Organic French Onion Dip Mix
+[2026-03-24T07:47:11.836Z]   → Queued alternative: Frontier Co-op Onion Powder
+[2026-03-24T07:47:11.920Z]   → Queued alternative: Primal Palate French Onion Dip Seasoning
+[2026-03-24T07:47:11.920Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T07:47:12.464Z] [199/478] Scoring: McCormick Taco Seasoning (McCormick)
+[2026-03-24T07:47:41.076Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T07:47:41.617Z] [200/478] Scoring: Chili-Man Mild Chili Seasoning Mix (Tone Brothers)
+[2026-03-24T07:48:06.297Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T07:48:06.830Z] [201/478] Scoring: Zatarain's Dirty Rice Mix (Mars Food)
+[2026-03-24T07:49:03.507Z]   → Queued alternative: Organic Brown Rice
+[2026-03-24T07:49:03.579Z]   → Queued alternative: Dirty Rice Seasoning Mix
+[2026-03-24T07:49:03.666Z]   → Queued alternative: Organic Spanish Rice Mix
+[2026-03-24T07:49:03.667Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T07:49:04.201Z] [202/478] Scoring: Old El Paso Taco Shells Hard (General Mills)
+[2026-03-24T07:49:22.051Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T07:49:22.593Z] [203/478] Scoring: Old El Paso Flour Tortillas Small (General Mills)
+[2026-03-24T07:50:04.492Z]   → Queued alternative: Siete Almond Flour Tortillas
+[2026-03-24T07:50:04.574Z]   → Queued alternative: Maria and Ricardo's Whole Wheat Tortillas
+[2026-03-24T07:50:04.575Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T07:50:05.109Z] [204/478] Scoring: Mission Flour Tortillas Soft Taco (Mission Foods)
+[2026-03-24T07:50:55.296Z]   ✓ Scored: baseScore=3.8 tier=Watch alts=0
+[2026-03-24T07:50:55.832Z] [205/478] Scoring: La Banderita Corn Tortillas (Mission Foods)
+[2026-03-24T07:51:18.755Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T07:51:19.291Z] [206/478] Scoring: Goya Black Beans (Goya)
+[2026-03-24T07:51:34.758Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T07:51:35.302Z] [207/478] Scoring: Ro-Tel Original Diced Tomatoes & Chilies (ConAgra)
+[2026-03-24T07:51:53.361Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T07:51:53.902Z] [208/478] Scoring: Campbell's Chunky Classic Chicken Noodle (Campbell's)
+[2026-03-24T07:52:32.921Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=0
+[2026-03-24T07:52:33.455Z] [209/478] Scoring: DiGiorno Rising Crust Pepperoni Pizza (Nestlé)
+[2026-03-24T07:53:19.615Z]   → Queued alternative: Amy's Margherita Pizza
+[2026-03-24T07:53:19.692Z]   → Queued alternative: Cappello's Naked Crust Pepperoni Pizza
+[2026-03-24T07:53:19.779Z]   → Queued alternative: Simple Truth Organic Uncured Pepperoni Pizza
+[2026-03-24T07:53:19.782Z]   ✓ Scored: baseScore=6.3 tier=Caution alts=3
+[2026-03-24T07:53:20.317Z] [210/478] Scoring: DiGiorno Thin & Crispy Three Meat (Nestlé)
+[2026-03-24T07:54:04.834Z]   → Queued alternative: Amy's Margherita Pizza
+[2026-03-24T07:54:04.917Z]   → Queued alternative: Cappello's Naked Crust Pizza
+[2026-03-24T07:54:05.001Z]   → Queued alternative: Simple Mills Pizza Dough Mix
+[2026-03-24T07:54:05.002Z]   ✓ Scored: baseScore=6.4 tier=Caution alts=3
+[2026-03-24T07:54:05.529Z] [211/478] Scoring: Red Baron Classic Crust Pepperoni (Schwan's)
+[2026-03-24T07:54:54.617Z]   → Queued alternative: Amy's Margherita Pizza
+[2026-03-24T07:54:54.688Z]   → Queued alternative: Simple Truth Organic Uncured Pepperoni Pizza
+[2026-03-24T07:54:54.768Z]   → Queued alternative: Cappello's Grain-Free Pepperoni Pizza
+[2026-03-24T07:54:54.770Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T07:54:55.305Z] [212/478] Scoring: Totino's Party Pizza Pepperoni (General Mills)
+[2026-03-24T07:55:50.149Z]   → Queued alternative: Amy's Margherita Pizza
+[2026-03-24T07:55:50.227Z]   → Queued alternative: Simple Truth Organic Uncured Pepperoni Pizza
+[2026-03-24T07:55:50.309Z]   → Queued alternative: Newman's Own Thin & Crispy Pepperoni Pizza
+[2026-03-24T07:55:50.311Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T07:55:50.840Z] [213/478] Scoring: Stouffer's Macaroni & Cheese (Nestlé)
+[2026-03-24T07:56:29.112Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=0
+[2026-03-24T07:56:29.651Z] [214/478] Scoring: Stouffer's Lasagna with Meat Sauce (Nestlé)
+[2026-03-24T07:57:20.441Z]   → Queued alternative: Amy's Organic Vegetable Lasagna
+[2026-03-24T07:57:20.522Z]   → Queued alternative: Rao's Homemade Lasagna
+[2026-03-24T07:57:20.600Z]   → Queued alternative: Homemade Lasagna
+[2026-03-24T07:57:20.601Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T07:57:21.142Z] [215/478] Scoring: Lean Cuisine Glazed Chicken (Nestlé)
+[2026-03-24T07:58:02.891Z]   → Queued alternative: Organic Grilled Chicken Breast
+[2026-03-24T07:58:02.969Z]   → Queued alternative: Simply Balanced Grilled Chicken Strips
+[2026-03-24T07:58:03.050Z]   → Queued alternative: Evol Truffle Parmesan Chicken
+[2026-03-24T07:58:03.051Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T07:58:03.578Z] [216/478] Scoring: Amy's Cheese Pizza (Amy's Kitchen)
+[2026-03-24T07:58:27.329Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T07:58:49.900Z]   ✗ Failed after 2 attempts: [
+  {
+    "origin": "number",
+    "code": "too_big",
+    "maximum": 9,
+    "inclusive": true,
+    "path": [
+      "conditionModifiers",
+      0,
+      "modifierAmount"
+    ],
+    "message": "Too big: expected number to be <=9"
+  }
+]
+[2026-03-24T07:58:49.994Z]   → Written to queue for retry
+[2026-03-24T07:58:50.534Z] [217/478] Scoring: Amy's Broccoli Cheddar Bake (Amy's Kitchen)
+[2026-03-24T07:59:20.769Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T07:59:21.310Z] [218/478] Scoring: Birds Eye Steamfresh Mixed Vegetables (ConAgra)
+[2026-03-24T07:59:30.471Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T07:59:31.013Z] [219/478] Scoring: Birds Eye Steamfresh Broccoli (ConAgra)
+[2026-03-24T07:59:36.887Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T07:59:37.432Z] [220/478] Scoring: Green Giant Broccoli & Cheese Sauce (B&G Foods)
+[2026-03-24T08:00:11.228Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=0
+[2026-03-24T08:00:11.764Z] [221/478] Scoring: Ore-Ida Golden Crinkles (Kraft Heinz)
+[2026-03-24T08:00:31.953Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:00:32.487Z] [222/478] Scoring: Ore-Ida Tater Tots (Kraft Heinz)
+[2026-03-24T08:00:51.085Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:00:51.622Z] [223/478] Scoring: McCain Smiles Mashed Potato Shapes (McCain Foods)
+[2026-03-24T08:01:26.839Z]   → Queued alternative: Alexia Organic Yukon Select Fries
+[2026-03-24T08:01:26.926Z]   → Queued alternative: Cascadian Farm Organic Crinkle Cut French Fries
+[2026-03-24T08:01:26.928Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T08:01:27.464Z] [224/478] Scoring: Eggo Homestyle Waffles (Kellogg's)
+[2026-03-24T08:02:07.691Z]   → Queued alternative: Nature's Path Homestyle Waffles
+[2026-03-24T08:02:07.761Z]   → Queued alternative: Van's Gluten-Free Waffles
+[2026-03-24T08:02:07.835Z]   → Queued alternative: Kodiak Cakes Power Waffles
+[2026-03-24T08:02:07.836Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T08:02:08.380Z] [225/478] Scoring: Eggo Buttermilk Waffles (Kellogg's)
+[2026-03-24T08:02:46.485Z]   → Queued alternative: Nature's Path Homestyle Waffles
+[2026-03-24T08:02:46.552Z]   → Queued alternative: Van's Gluten-Free Waffles
+[2026-03-24T08:02:46.625Z]   → Queued alternative: Kodiak Cakes Power Waffles
+[2026-03-24T08:02:46.626Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T08:02:47.160Z] [226/478] Scoring: Pillsbury Frozen Mini Pancakes Blueberry (General Mills)
+[2026-03-24T08:03:32.261Z]   → Queued alternative: Birch Benders Paleo Pancake Mix
+[2026-03-24T08:03:32.345Z]   → Queued alternative: Simple Mills Almond Flour Pancake Mix
+[2026-03-24T08:03:32.429Z]   → Queued alternative: Kodiak Cakes Power Cakes Flapjack Mix
+[2026-03-24T08:03:32.430Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T08:03:32.959Z] [227/478] Scoring: Jimmy Dean Sausage Egg & Cheese Croissant (Tyson)
+[2026-03-24T08:04:22.044Z]   → Queued alternative: Simple Truth Organic Uncured Turkey Sausage Breakfast Sandwich
+[2026-03-24T08:04:22.118Z]   → Queued alternative: Applegate Naturals Sausage Egg & Cheese Breakfast Sandwich
+[2026-03-24T08:04:22.194Z]   → Queued alternative: Homemade breakfast sandwich with fresh ingredients
+[2026-03-24T08:04:22.196Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T08:04:22.728Z] [228/478] Scoring: Jimmy Dean Original Pork Sausage Patties (Tyson)
+[2026-03-24T08:05:05.465Z]   → Queued alternative: Applegate Naturals Pork Breakfast Sausage
+[2026-03-24T08:05:05.542Z]   → Queued alternative: Pederson's Natural Farms No Sugar Added Pork Sausage Patties
+[2026-03-24T08:05:05.627Z]   → Queued alternative: Bilinski's Organic Chicken Breakfast Sausage
+[2026-03-24T08:05:05.629Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T08:05:06.167Z] [229/478] Scoring: Hot Pockets Pepperoni Pizza (Nestlé)
+[2026-03-24T08:05:58.683Z]   → Queued alternative: Amy's Margherita Pizza
+[2026-03-24T08:05:58.755Z]   → Queued alternative: Simple Truth Organic Uncured Pepperoni Pizza
+[2026-03-24T08:05:58.843Z]   → Queued alternative: Cappello's Grain-Free Pizza
+[2026-03-24T08:05:58.844Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T08:05:59.385Z] [230/478] Scoring: Hot Pockets Ham & Cheese (Nestlé)
+[2026-03-24T08:06:47.457Z]   → Queued alternative: Amy's Organic Pocket Sandwich
+[2026-03-24T08:06:47.537Z]   → Queued alternative: Simple Truth Organic Uncured Ham & Cheese Sandwich
+[2026-03-24T08:06:47.613Z]   → Queued alternative: Applegate Natural Ham & Cheese Sandwich
+[2026-03-24T08:06:47.614Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T08:06:48.148Z] [231/478] Scoring: Bagel Bites Pepperoni (Ore-Ida)
+[2026-03-24T08:07:31.276Z]   → Queued alternative: Annie's Organic Pizza Poppers
+[2026-03-24T08:07:31.355Z]   → Queued alternative: Simple Mills Pizza Bites
+[2026-03-24T08:07:31.430Z]   → Queued alternative: Applegate Naturals Mini Pizzas
+[2026-03-24T08:07:31.432Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T08:07:31.968Z] [232/478] Scoring: TGI Friday's Mozzarella Sticks (Inventure Foods)
+[2026-03-24T08:08:11.820Z]   → Queued alternative: 365 Organic Mozzarella Sticks
+[2026-03-24T08:08:11.895Z]   → Queued alternative: Farm Rich Mozzarella Sticks
+[2026-03-24T08:08:11.975Z]   → Queued alternative: Homemade Mozzarella Sticks
+[2026-03-24T08:08:11.977Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T08:08:12.509Z] [233/478] Scoring: Jose Ole Beef & Cheese Taquitos (Ruiz Foods)
+[2026-03-24T08:08:54.360Z]   → Queued alternative: Siete Grain-Free Mexican Chicken Taquitos
+[2026-03-24T08:08:54.432Z]   → Queued alternative: Trader Joe's Chicken Taquitos
+[2026-03-24T08:08:54.511Z]   → Queued alternative: Delimex Beef Taquitos
+[2026-03-24T08:08:54.512Z]   ✓ Scored: baseScore=6.3 tier=Caution alts=3
+[2026-03-24T08:08:55.055Z] [234/478] Scoring: El Monterey Bean & Cheese Burritos (Ruiz Foods)
+[2026-03-24T08:09:33.278Z]   → Queued alternative: Amy's Bean & Cheese Burrito
+[2026-03-24T08:09:33.348Z]   → Queued alternative: Evol Burritos Bean & Cheese
+[2026-03-24T08:09:33.423Z]   → Queued alternative: Sweet Earth Protein Lover's Burrito
+[2026-03-24T08:09:33.424Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T08:09:33.962Z] [235/478] Scoring: Tyson Crispy Chicken Strips (Tyson)
+[2026-03-24T08:10:07.802Z]   → Queued alternative: Bell & Evans Breaded Chicken Breast Tenders
+[2026-03-24T08:10:07.876Z]   → Queued alternative: Applegate Naturals Chicken Strips
+[2026-03-24T08:10:07.877Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=2
+[2026-03-24T08:10:08.418Z] [236/478] Scoring: Perdue Chicken Nuggets (Perdue)
+[2026-03-24T08:10:48.353Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:11:20.780Z]   ✓ Scored: baseScore=4.8 tier=Watch alts=0
+[2026-03-24T08:11:21.319Z] [237/478] Scoring: Foster Farms Corn Dogs (Foster Farms)
+[2026-03-24T08:12:15.693Z]   → Queued alternative: Applegate Organic Corn Dogs
+[2026-03-24T08:12:15.766Z]   → Queued alternative: Homemade Corn Dogs with Organic Hot Dogs
+[2026-03-24T08:12:15.845Z]   → Queued alternative: Simple Truth Organic Uncured Beef Hot Dogs
+[2026-03-24T08:12:15.846Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T08:12:16.377Z] [238/478] Scoring: Applegate Naturals Chicken Nuggets (Applegate)
+[2026-03-24T08:12:42.996Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T08:12:43.533Z] [239/478] Scoring: MorningStar Farms Veggie Burger Original (Kellogg's)
+[2026-03-24T08:13:23.189Z]   → Queued alternative: Dr. Praeger's All American Veggie Burgers
+[2026-03-24T08:13:23.275Z]   → Queued alternative: Hilary's World's Best Veggie Burger
+[2026-03-24T08:13:23.277Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=2
+[2026-03-24T08:13:23.810Z] [240/478] Scoring: Impossible Burger Patties (Impossible Foods)
+[2026-03-24T08:13:58.479Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:13:59.016Z] [241/478] Scoring: Beyond Burger Plant-Based Patties (Beyond Meat)
+[2026-03-24T08:14:53.184Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:15:33.597Z]   ✗ Failed after 2 attempts: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      0,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      1,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      3,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      4,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      6,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      7,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      9,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      10,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      11,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      12,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      13,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      14,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      15,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      16,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      17,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  }
+]
+[2026-03-24T08:15:33.694Z]   → Written to queue for retry
+[2026-03-24T08:15:34.230Z] [242/478] Scoring: Gardein Beefless Burger (Conagra)
+[2026-03-24T08:16:09.198Z]   → Queued alternative: Beyond Burger
+[2026-03-24T08:16:09.624Z]   → Queued alternative: Dr. Praeger's All American Veggie Burger
+[2026-03-24T08:16:09.696Z]   → Queued alternative: Hilary's World's Best Veggie Burger
+[2026-03-24T08:16:09.697Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T08:16:10.231Z] [243/478] Scoring: Ben & Jerry's Chocolate Chip Cookie Dough (Unilever)
+[2026-03-24T08:16:31.698Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:16:32.244Z] [244/478] Scoring: Häagen-Dazs Vanilla (Nestlé)
+[2026-03-24T08:16:51.137Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:16:51.676Z] [245/478] Scoring: Dreyer's Slow Churned Vanilla Bean (Nestlé)
+[2026-03-24T08:17:33.965Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:17:34.506Z] [246/478] Scoring: Breyers Natural Vanilla (Unilever)
+[2026-03-24T08:18:01.375Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:18:01.914Z] [247/478] Scoring: Breyers Oreo Cookies & Cream (Unilever)
+[2026-03-24T08:18:43.587Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=0
+[2026-03-24T08:18:44.129Z] [248/478] Scoring: Popsicle Orange Cherry Grape (Unilever)
+[2026-03-24T08:19:33.345Z]   → Queued alternative: Outshine Fruit Bars
+[2026-03-24T08:19:33.430Z]   → Queued alternative: GoodPop Organic Freezer Pops
+[2026-03-24T08:19:33.518Z]   → Queued alternative: Chloe's Fruit Pops
+[2026-03-24T08:19:33.519Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T08:19:34.056Z] [249/478] Scoring: Welch's Fruit Snacks Mixed Fruit (Welch's)
+[2026-03-24T08:20:14.196Z]   → Queued alternative: Annie's Organic Bunny Fruit Snacks
+[2026-03-24T08:20:14.280Z]   → Queued alternative: Stretch Island Fruit Leather
+[2026-03-24T08:20:14.364Z]   → Queued alternative: That's It Mini Fruit Bars
+[2026-03-24T08:20:14.365Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T08:20:14.897Z] [250/478] Scoring: Outshine Strawberry Fruit Bar (Nestlé)
+[2026-03-24T08:20:39.323Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:20:39.862Z] [251/478] Scoring: Halo Top Vanilla Bean (Halo Top)
+[2026-03-24T08:21:10.761Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:21:11.295Z] [252/478] Scoring: Good Culture Cottage Cheese 2% (Good Culture)
+[2026-03-24T08:21:32.940Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T08:21:33.482Z] [253/478] Scoring: Evol Truffle Parmesan Mac & Cheese (Conagra)
+[2026-03-24T08:22:05.624Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:22:06.169Z] [254/478] Scoring: Sweet Earth Protein Lovers Burrito (Nestlé)
+[2026-03-24T08:22:43.891Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:23:20.370Z]   ✗ Failed after 2 attempts: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      8,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "ingredients",
+      9,
+      "flagLabel"
+    ],
+    "message": "Invalid input: expected string, received null"
+  }
+]
+[2026-03-24T08:23:20.461Z]   → Written to queue for retry
+[2026-03-24T08:23:20.998Z] [255/478] Scoring: Caulipower Cauliflower Pizza Margherita (Caulipower)
+[2026-03-24T08:23:46.246Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T08:23:46.780Z] [256/478] Scoring: Wonder Classic White Bread (Flowers Foods)
+[2026-03-24T08:24:22.892Z]   → Queued alternative: Dave's Killer Bread White Bread Done Right
+[2026-03-24T08:24:22.973Z]   → Queued alternative: Ezekiel 4:9 Sprouted Grain Bread
+[2026-03-24T08:24:23.060Z]   → Queued alternative: Arnold Whole Grains Bread
+[2026-03-24T08:24:23.062Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T08:24:23.593Z] [257/478] Scoring: Nature's Own Honey Wheat Bread (Flowers Foods)
+[2026-03-24T08:25:08.797Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:25:46.998Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:25:47.532Z] [258/478] Scoring: Dave's Killer Bread 21 Whole Grains (Flowers Foods)
+[2026-03-24T08:26:29.291Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:26:29.836Z] [259/478] Scoring: Arnold Whole Wheat Bread (Bimbo Bakeries)
+[2026-03-24T08:27:14.392Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:27:55.765Z]   → Queued alternative: Dave's Killer Bread 21 Whole Grains and Seeds
+[2026-03-24T08:27:55.849Z]   → Queued alternative: Ezekiel 4:9 Sprouted Whole Grain Bread
+[2026-03-24T08:27:55.933Z]   → Queued alternative: Simple Truth Organic Whole Wheat Bread
+[2026-03-24T08:27:55.935Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T08:27:56.475Z] [260/478] Scoring: Sara Lee Delightful Wheat Bread (Flowers Foods)
+[2026-03-24T08:28:41.291Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:29:16.753Z]   → Queued alternative: Dave's Killer Bread Thin-Sliced 21 Whole Grains
+[2026-03-24T08:29:16.830Z]   → Queued alternative: Ezekiel 4:9 Sprouted Whole Grain Bread
+[2026-03-24T08:29:16.898Z]   → Queued alternative: Simple Truth Organic Whole Wheat Bread
+[2026-03-24T08:29:16.899Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T08:29:17.433Z] [261/478] Scoring: Pepperidge Farm Farmhouse White (Pepperidge Farm)
+[2026-03-24T08:30:01.984Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:30:32.000Z]   → Queued alternative: Dave's Killer Bread White Bread Done Right
+[2026-03-24T08:30:32.085Z]   → Queued alternative: Angelic Bakehouse Sprouted White Bread
+[2026-03-24T08:30:32.087Z]   ✓ Scored: baseScore=4.8 tier=Watch alts=2
+[2026-03-24T08:30:32.621Z] [262/478] Scoring: Thomas' English Muffins Original (Bimbo Bakeries)
+[2026-03-24T08:31:06.481Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:31:43.263Z]   → Queued alternative: Ezekiel 4:9 Sprouted Grain English Muffins
+[2026-03-24T08:31:43.349Z]   → Queued alternative: Dave's Killer Bread English Muffins
+[2026-03-24T08:31:43.430Z]   → Queued alternative: Angelic Bakehouse Sprouted English Muffins
+[2026-03-24T08:31:43.432Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T08:31:43.964Z] [263/478] Scoring: Thomas' Everything Bagels (Bimbo Bakeries)
+[2026-03-24T08:32:18.670Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:32:19.208Z] [264/478] Scoring: Lender's Blueberry Bagels (Bimbo Bakeries)
+[2026-03-24T08:33:02.518Z]   → Queued alternative: Dave's Killer Bread Organic Bagels
+[2026-03-24T08:33:02.606Z]   → Queued alternative: Ezekiel 4:9 Sprouted Grain Bagels
+[2026-03-24T08:33:02.685Z]   → Queued alternative: Thomas' Plain Bagels
+[2026-03-24T08:33:02.687Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T08:33:03.223Z] [265/478] Scoring: Pillsbury Crescent Rolls Original (General Mills)
+[2026-03-24T08:33:47.297Z]   → Queued alternative: Immaculate Baking Crescent Rolls
+[2026-03-24T08:33:47.372Z]   → Queued alternative: Annie's Organic Crescent Rolls
+[2026-03-24T08:33:47.373Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=2
+[2026-03-24T08:33:47.912Z] [266/478] Scoring: Pepperidge Farm Puff Pastry Sheets (Pepperidge Farm)
+[2026-03-24T08:34:19.043Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:34:19.585Z] [267/478] Scoring: Betty Crocker Blueberry Muffin Mix (General Mills)
+[2026-03-24T08:34:59.084Z]   → Queued alternative: Simple Mills Almond Flour Muffin Mix
+[2026-03-24T08:34:59.165Z]   → Queued alternative: King Arthur Baking Company Blueberry Muffin Mix
+[2026-03-24T08:34:59.247Z]   → Queued alternative: Bob's Red Mill Gluten Free Blueberry Muffin Mix
+[2026-03-24T08:34:59.248Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T08:34:59.785Z] [268/478] Scoring: Bisquick Original Pancake & Baking Mix (General Mills)
+[2026-03-24T08:35:38.469Z]   → Queued alternative: Bob's Red Mill Gluten-Free Pancake Mix
+[2026-03-24T08:35:38.549Z]   → Queued alternative: Simple Mills Almond Flour Pancake Mix
+[2026-03-24T08:35:38.621Z]   → Queued alternative: King Arthur Baking Company Buttermilk Pancake Mix
+[2026-03-24T08:35:38.623Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T08:35:39.153Z] [269/478] Scoring: Aunt Jemima Buttermilk Pancake Mix (Pearl Milling Co.)
+[2026-03-24T08:36:10.224Z]   → Queued alternative: Simple Mills Pancake & Waffle Mix
+[2026-03-24T08:36:10.312Z]   → Queued alternative: Kodiak Cakes Power Cakes
+[2026-03-24T08:36:10.407Z]   → Queued alternative: Bob's Red Mill Organic Pancake Mix
+[2026-03-24T08:36:10.407Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T08:36:10.947Z] [270/478] Scoring: Krusteaz Buttermilk Pancake Mix (Continental Mills)
+[2026-03-24T08:36:41.785Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:36:42.325Z] [271/478] Scoring: Pepperidge Farm Stuffing Herb Seasoned (Pepperidge Farm)
+[2026-03-24T08:37:26.831Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:37:27.372Z] [272/478] Scoring: Mission Flour Tortillas Large (Mission Foods)
+[2026-03-24T08:38:12.291Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:38:12.825Z] [273/478] Scoring: Old El Paso Stand 'n Stuff Taco Shells (General Mills)
+[2026-03-24T08:38:30.690Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T08:38:31.227Z] [274/478] Scoring: Udi's Gluten-Free Original Sandwich Bread (Canyon Bakehouse)
+[2026-03-24T08:39:07.698Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:39:08.239Z] [275/478] Scoring: Oroweat Whole Grains Double Fiber Bread (Bimbo Bakeries)
+[2026-03-24T08:39:51.620Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:40:19.067Z]   → Queued alternative: Dave's Killer Bread 21 Whole Grains and Seeds
+[2026-03-24T08:40:19.149Z]   → Queued alternative: Ezekiel 4:9 Sprouted Whole Grain Bread
+[2026-03-24T08:40:19.230Z]   → Queued alternative: Silver Hills Sprouted Power Big Red's Bread
+[2026-03-24T08:40:19.231Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T08:40:19.758Z] [276/478] Scoring: Brownberry Buttermilk Bread (Bimbo Bakeries)
+[2026-03-24T08:40:59.810Z]   → Queued alternative: Dave's Killer Bread Powerseed
+[2026-03-24T08:40:59.882Z]   → Queued alternative: Ezekiel 4:9 Sprouted Whole Grain Bread
+[2026-03-24T08:40:59.958Z]   → Queued alternative: Alpine Valley Organic Bread
+[2026-03-24T08:40:59.959Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T08:41:00.487Z] [277/478] Scoring: Schmidt Old Tyme 647 Bread (Schmidt Baking Co.)
+[2026-03-24T08:41:30.415Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:42:08.784Z]   → Queued alternative: Dave's Killer Bread Thin-Sliced 21 Whole Grains
+[2026-03-24T08:42:08.859Z]   → Queued alternative: Ezekiel 4:9 Sprouted Whole Grain Bread
+[2026-03-24T08:42:08.957Z]   → Queued alternative: Base Culture Keto Bread
+[2026-03-24T08:42:08.958Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T08:42:09.504Z] [278/478] Scoring: Siete Grain-Free Almond Flour Tortillas (Siete Foods)
+[2026-03-24T08:42:28.460Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:42:44.872Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T08:42:45.420Z] [279/478] Scoring: Base Culture Original Keto Bread (Base Culture)
+[2026-03-24T08:43:05.069Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:43:05.610Z] [280/478] Scoring: Heinz Tomato Ketchup (Kraft Heinz)
+[2026-03-24T08:43:30.660Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:43:31.197Z] [281/478] Scoring: Hunt's Ketchup No Sugar Added (ConAgra)
+[2026-03-24T08:44:02.994Z]   → Queued alternative: Primal Kitchen Organic Unsweetened Ketchup
+[2026-03-24T08:44:03.082Z]   → Queued alternative: True Made Foods Veggie Ketchup
+[2026-03-24T08:44:03.084Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T08:44:03.618Z] [282/478] Scoring: French's Classic Yellow Mustard (McCormick)
+[2026-03-24T08:44:25.782Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:44:26.320Z] [283/478] Scoring: Grey Poupon Dijon Mustard (Kraft Heinz)
+[2026-03-24T08:44:56.925Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:44:57.463Z] [284/478] Scoring: Hellmann's Real Mayonnaise (Unilever)
+[2026-03-24T08:45:27.927Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:45:28.479Z] [285/478] Scoring: Miracle Whip Dressing (Kraft Heinz)
+[2026-03-24T08:46:08.916Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=0
+[2026-03-24T08:46:09.744Z] [286/478] Scoring: Heinz Sweet Relish (Kraft Heinz)
+[2026-03-24T08:46:40.660Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:46:41.210Z] [287/478] Scoring: Vlasic Bread & Butter Chips (Conagra)
+[2026-03-24T08:47:19.303Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:47:19.846Z] [288/478] Scoring: Prego Traditional Pasta Sauce (Campbell's)
+[2026-03-24T08:47:54.239Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:47:54.776Z] [289/478] Scoring: Ragu Traditional Pasta Sauce (Mizkan)
+[2026-03-24T08:48:22.302Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T08:48:22.843Z] [290/478] Scoring: Bertolli Marinara Sauce (Mizkan)
+[2026-03-24T08:48:45.683Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:48:46.230Z] [291/478] Scoring: Rao's Homemade Marinara Sauce (Rao's)
+[2026-03-24T08:49:03.115Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T08:49:03.653Z] [292/478] Scoring: Classico Sweet Basil Marinara (Kraft Heinz)
+[2026-03-24T08:49:28.614Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:49:29.150Z] [293/478] Scoring: Jif Creamy Peanut Butter (J.M. Smucker)
+[2026-03-24T08:49:58.701Z]   → Queued alternative: Smucker's Natural Peanut Butter
+[2026-03-24T08:49:58.800Z]   → Queued alternative: Crazy Richard's 100% Peanuts Peanut Butter
+[2026-03-24T08:49:58.869Z]   → Queued alternative: 365 Organic Creamy Peanut Butter
+[2026-03-24T08:49:58.870Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T08:49:59.400Z] [294/478] Scoring: Skippy Creamy Peanut Butter (Hormel)
+[2026-03-24T08:50:24.955Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T08:50:50.026Z]   → Queued alternative: Smucker's Natural Peanut Butter
+[2026-03-24T08:50:50.097Z]   → Queued alternative: 365 Organic Creamy Peanut Butter
+[2026-03-24T08:50:50.179Z]   → Queued alternative: Once Again Organic Peanut Butter
+[2026-03-24T08:50:50.181Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T08:50:50.710Z] [295/478] Scoring: Smucker's Strawberry Jam (J.M. Smucker)
+[2026-03-24T08:51:16.548Z]   → Queued alternative: Crofter's Organic Strawberry Premium Spread
+[2026-03-24T08:51:16.635Z]   → Queued alternative: St. Dalfour Strawberry Fruit Spread
+[2026-03-24T08:51:16.635Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T08:51:17.178Z] [296/478] Scoring: Smucker's Concord Grape Jelly (J.M. Smucker)
+[2026-03-24T08:51:43.095Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:51:43.636Z] [297/478] Scoring: Nutella Hazelnut Spread (Ferrero)
+[2026-03-24T08:52:17.462Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=0
+[2026-03-24T08:52:17.998Z] [298/478] Scoring: Hershey's Chocolate Syrup (Hershey's)
+[2026-03-24T08:53:01.466Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=0
+[2026-03-24T08:53:02.000Z] [299/478] Scoring: Mrs. Butterworth's Original Syrup (TreeHouse Foods)
+[2026-03-24T08:53:56.124Z]   → Queued alternative: Pure Maple Syrup (Grade A)
+[2026-03-24T08:53:56.215Z]   → Queued alternative: Lakanto Maple Flavored Syrup
+[2026-03-24T08:53:56.293Z]   → Queued alternative: Nature's Hollow Sugar-Free Maple Syrup
+[2026-03-24T08:53:56.295Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T08:53:56.830Z] [300/478] Scoring: Aunt Jemima Original Syrup (Pearl Milling Co.)
+[2026-03-24T08:54:37.437Z]   → Queued alternative: Pure Maple Syrup (Grade A)
+[2026-03-24T08:54:37.505Z]   → Queued alternative: Lakanto Maple Flavored Syrup
+[2026-03-24T08:54:37.581Z]   → Queued alternative: Wholesome Organic Blue Agave
+[2026-03-24T08:54:37.582Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T08:54:38.112Z] [301/478] Scoring: Hidden Valley Original Ranch Dressing (Clorox)
+[2026-03-24T08:55:23.020Z]   → Queued alternative: Primal Kitchen Ranch Dressing
+[2026-03-24T08:55:23.097Z]   → Queued alternative: Tessemae's Organic Creamy Ranch
+[2026-03-24T08:55:23.098Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=2
+[2026-03-24T08:55:23.631Z] [302/478] Scoring: Ken's Thousand Island Dressing (Ken's Foods)
+[2026-03-24T08:56:09.467Z]   → Queued alternative: Primal Kitchen Thousand Island Dressing
+[2026-03-24T08:56:09.792Z]   → Queued alternative: Tessemae's Organic Thousand Island
+[2026-03-24T08:56:09.792Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=2
+[2026-03-24T08:56:10.325Z] [303/478] Scoring: Wish-Bone Italian Dressing (Wish-Bone)
+[2026-03-24T08:56:54.254Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=0
+[2026-03-24T08:56:54.787Z] [304/478] Scoring: Newman's Own Caesar Dressing (Newman's Own)
+[2026-03-24T08:57:26.287Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T08:57:26.823Z] [305/478] Scoring: Kraft Classic Caesar Dressing (Kraft Heinz)
+[2026-03-24T08:58:04.778Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=0
+[2026-03-24T08:58:05.317Z] [306/478] Scoring: Frank's RedHot Original Hot Sauce (McCormick)
+[2026-03-24T08:58:22.694Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:58:23.238Z] [307/478] Scoring: Tabasco Original Red Sauce (McIlhenny Co.)
+[2026-03-24T08:58:37.399Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T08:58:37.930Z] [308/478] Scoring: Cholula Original Hot Sauce (McCormick)
+[2026-03-24T08:59:00.650Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:59:01.190Z] [309/478] Scoring: Sriracha Rooster Sauce (Huy Fong Foods)
+[2026-03-24T08:59:28.594Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T08:59:29.132Z] [310/478] Scoring: Heinz 57 Sauce (Kraft Heinz)
+[2026-03-24T09:00:11.496Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T09:00:12.026Z] [311/478] Scoring: A.1. Original Sauce (Kraft Heinz)
+[2026-03-24T09:00:50.773Z]   → Queued alternative: Primal Kitchen Organic Steak Sauce
+[2026-03-24T09:00:50.851Z]   → Queued alternative: Tessemae's Organic Steak Sauce
+[2026-03-24T09:00:50.938Z]   → Queued alternative: Noble Made Classic Steak Sauce
+[2026-03-24T09:00:50.939Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:00:51.470Z] [312/478] Scoring: Lea & Perrins Worcestershire Sauce (Kraft Heinz)
+[2026-03-24T09:01:29.459Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:01:29.999Z] [313/478] Scoring: Kikkoman Soy Sauce (Kikkoman)
+[2026-03-24T09:01:47.614Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T09:02:09.957Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:02:10.500Z] [314/478] Scoring: Bragg Liquid Aminos (Bragg)
+[2026-03-24T09:02:31.179Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:02:31.719Z] [315/478] Scoring: Ocean's Halo No Soy Organic Soy-Free Sauce (Ocean's Halo)
+[2026-03-24T09:02:49.402Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:02:49.949Z] [316/478] Scoring: Pace Chunky Salsa Medium (Campbell's)
+[2026-03-24T09:03:09.598Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:03:10.136Z] [317/478] Scoring: Tostitos Chunky Salsa Medium (Frito-Lay)
+[2026-03-24T09:03:28.194Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:03:28.731Z] [318/478] Scoring: Sabra Classic Hummus (PepsiCo)
+[2026-03-24T09:03:49.567Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:03:50.150Z] [319/478] Scoring: Wholly Guacamole Classic (Hormel)
+[2026-03-24T09:04:10.468Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:04:11.013Z] [320/478] Scoring: Dannon Strawberry Yogurt (Danone)
+[2026-03-24T09:04:52.962Z]   → Queued alternative: Siggi's Strawberry Skyr
+[2026-03-24T09:04:53.044Z]   → Queued alternative: Chobani Less Sugar Greek Yogurt Strawberry
+[2026-03-24T09:04:53.047Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=2
+[2026-03-24T09:04:53.586Z] [321/478] Scoring: Dannon Light & Fit Greek Strawberry (Danone)
+[2026-03-24T09:05:32.057Z]   → Queued alternative: Siggi's Icelandic Style Skyr Strawberry
+[2026-03-24T09:05:32.137Z]   → Queued alternative: Chobani Greek Yogurt Strawberry on the Bottom
+[2026-03-24T09:05:32.139Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=2
+[2026-03-24T09:05:32.677Z] [322/478] Scoring: Yoplait Original Strawberry (General Mills)
+[2026-03-24T09:06:22.433Z]   → Queued alternative: Siggi's Strawberry Icelandic Skyr
+[2026-03-24T09:06:22.509Z]   → Queued alternative: Chobani Less Sugar Greek Yogurt Strawberry
+[2026-03-24T09:06:22.595Z]   → Queued alternative: Stonyfield Organic Strawberry Yogurt
+[2026-03-24T09:06:22.596Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T09:06:23.130Z] [323/478] Scoring: Chobani Plain Greek Yogurt (Chobani)
+[2026-03-24T09:06:34.015Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T09:06:34.553Z] [324/478] Scoring: Chobani Strawberry Greek Yogurt (Chobani)
+[2026-03-24T09:06:59.893Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:07:00.433Z] [325/478] Scoring: Activia Strawberry Probiotic Yogurt (Danone)
+[2026-03-24T09:07:49.705Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T09:07:50.238Z] [326/478] Scoring: Stonyfield Organic Whole Milk Vanilla (Lactalis)
+[2026-03-24T09:08:15.946Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:08:16.483Z] [327/478] Scoring: Siggi's Plain Whole-Milk Skyr (Arla Foods)
+[2026-03-24T09:08:28.480Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T09:08:29.019Z] [328/478] Scoring: Kraft Singles American Cheese (Kraft Heinz)
+[2026-03-24T09:09:15.095Z]   → Queued alternative: Organic Valley Organic American Singles
+[2026-03-24T09:09:15.176Z]   → Queued alternative: Applegate Natural American Cheese Slices
+[2026-03-24T09:09:15.254Z]   → Queued alternative: Horizon Organic American Cheese Slices
+[2026-03-24T09:09:15.255Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:09:15.789Z] [329/478] Scoring: Velveeta Original Pasteurized Cheese (Kraft Heinz)
+[2026-03-24T09:10:04.796Z]   → Queued alternative: Organic Valley Organic American Singles
+[2026-03-24T09:10:04.875Z]   → Queued alternative: Applegate Natural American Cheese
+[2026-03-24T09:10:04.956Z]   → Queued alternative: Horizon Organic American Slices
+[2026-03-24T09:10:04.958Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T09:10:05.491Z] [330/478] Scoring: Sargento Shredded Mild Cheddar (Sargento)
+[2026-03-24T09:10:20.870Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:10:21.407Z] [331/478] Scoring: Tillamook Medium Cheddar (Tillamook)
+[2026-03-24T09:10:44.087Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:10:44.626Z] [332/478] Scoring: Babybel Original Mini Cheese (Bel Brands)
+[2026-03-24T09:11:08.301Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:11:08.833Z] [333/478] Scoring: Laughing Cow Original Creamy Swiss (Bel Brands)
+[2026-03-24T09:11:37.995Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:11:38.539Z] [334/478] Scoring: Philadelphia Original Cream Cheese (Kraft Heinz)
+[2026-03-24T09:12:02.165Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T09:12:02.702Z] [335/478] Scoring: Daisy Pure & Natural Sour Cream (Daisy Brand)
+[2026-03-24T09:12:14.342Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T09:12:14.881Z] [336/478] Scoring: Horizon Organic Whole Milk (Danone)
+[2026-03-24T09:12:27.639Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T09:12:28.171Z] [337/478] Scoring: Coffee-mate Original Liquid Creamer (Nestlé)
+[2026-03-24T09:13:07.901Z]   → Queued alternative: Nutpods Unsweetened Dairy-Free Creamer
+[2026-03-24T09:13:07.984Z]   → Queued alternative: Califia Farms Unsweetened Better Half
+[2026-03-24T09:13:08.076Z]   → Queued alternative: Organic Valley Half & Half
+[2026-03-24T09:13:08.077Z]   ✓ Scored: baseScore=6.3 tier=Caution alts=3
+[2026-03-24T09:13:08.610Z] [338/478] Scoring: Coffee-mate Natural Bliss Oat Milk Creamer (Nestlé)
+[2026-03-24T09:13:33.091Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T09:13:33.632Z] [339/478] Scoring: International Delight French Vanilla (Danone)
+[2026-03-24T09:14:14.432Z]   → Queued alternative: Nutpods French Vanilla
+[2026-03-24T09:14:14.503Z]   → Queued alternative: Califia Farms Vanilla Almond Milk Creamer
+[2026-03-24T09:14:14.569Z]   → Queued alternative: Organic Valley Half & Half
+[2026-03-24T09:14:14.570Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:14:15.111Z] [340/478] Scoring: Vital Farms Pasture-Raised Butter (Vital Farms)
+[2026-03-24T09:14:28.440Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T09:14:28.976Z] [341/478] Scoring: Land O'Lakes Unsalted Butter (Land O'Lakes)
+[2026-03-24T09:14:39.319Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:14:39.857Z] [342/478] Scoring: I Can't Believe It's Not Butter! (Upfield)
+[2026-03-24T09:15:31.166Z]   → Queued alternative: Earth Balance Original Buttery Spread
+[2026-03-24T09:15:31.247Z]   → Queued alternative: Miyoko's Creamery European Style Cultured Vegan Butter
+[2026-03-24T09:15:31.326Z]   → Queued alternative: Country Crock Plant Butter with Olive Oil
+[2026-03-24T09:15:31.328Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T09:15:31.858Z] [343/478] Scoring: Country Crock Original Buttery Spread (Upfield)
+[2026-03-24T09:16:14.414Z]   → Queued alternative: Miyoko's Creamery European Style Cultured Vegan Butter
+[2026-03-24T09:16:14.487Z]   → Queued alternative: Organic Valley Pasture Butter
+[2026-03-24T09:16:14.489Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=2
+[2026-03-24T09:16:15.017Z] [344/478] Scoring: Egg Beaters Original (ConAgra)
+[2026-03-24T09:16:35.714Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:16:36.250Z] [345/478] Scoring: Just Egg Plant-Based Scramble (Eat Just)
+[2026-03-24T09:17:02.974Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:17:03.509Z] [346/478] Scoring: Bob Evans Original Country Sausage (Post Holdings)
+[2026-03-24T09:17:54.633Z]   → Queued alternative: Applegate Naturals Breakfast Sausage
+[2026-03-24T09:17:54.709Z]   → Queued alternative: Pederson's Natural Farms No Sugar Added Pork Sausage
+[2026-03-24T09:17:54.793Z]   → Queued alternative: Bilinski's Organic Chicken Sausage
+[2026-03-24T09:17:54.794Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:17:55.327Z] [347/478] Scoring: Pillsbury Orange Sweet Rolls (General Mills)
+[2026-03-24T09:18:44.164Z]   → Queued alternative: Annie's Organic Cinnamon Rolls
+[2026-03-24T09:18:44.239Z]   → Queued alternative: Immaculate Baking Organic Cinnamon Rolls
+[2026-03-24T09:18:44.240Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=2
+[2026-03-24T09:18:44.783Z] [348/478] Scoring: Sargento String Cheese Original (Sargento)
+[2026-03-24T09:19:02.843Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:19:03.387Z] [349/478] Scoring: Horizon Organic String Cheese (Danone)
+[2026-03-24T09:19:24.940Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T09:19:40.177Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:19:40.717Z] [350/478] Scoring: Babybel Light Mini Cheese (Bel Brands)
+[2026-03-24T09:19:59.078Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:19:59.620Z] [351/478] Scoring: Daisy Squeezable Sour Cream (Daisy Brand)
+[2026-03-24T09:20:19.966Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:20:20.505Z] [352/478] Scoring: Good Culture Cottage Cheese 4% (Good Culture)
+[2026-03-24T09:20:41.086Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:20:41.623Z] [353/478] Scoring: Kite Hill Almond Milk Yogurt Plain (Kite Hill)
+[2026-03-24T09:20:58.478Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:20:59.014Z] [354/478] Scoring: Oscar Mayer Classic Beef Franks (Kraft Heinz)
+[2026-03-24T09:21:36.834Z]   → Queued alternative: Applegate Organic Uncured Beef Hot Dogs
+[2026-03-24T09:21:36.910Z]   → Queued alternative: Organic Prairie Organic Uncured Grass-Fed Beef Hot Dogs
+[2026-03-24T09:21:36.991Z]   → Queued alternative: Trader Joe's Uncured All Beef Hot Dogs
+[2026-03-24T09:21:36.992Z]   ✓ Scored: baseScore=7.2 tier=Caution alts=3
+[2026-03-24T09:21:37.523Z] [355/478] Scoring: Ball Park Beef Franks (Tyson)
+[2026-03-24T09:22:28.240Z]   → Queued alternative: Applegate Organic Uncured Beef Hot Dogs
+[2026-03-24T09:22:28.319Z]   → Queued alternative: Organic Prairie Organic Uncured Grassfed Hot Dogs
+[2026-03-24T09:22:28.408Z]   → Queued alternative: Trader Joe's Uncured Beef Hot Dogs
+[2026-03-24T09:22:28.409Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:22:28.943Z] [356/478] Scoring: Hebrew National Beef Franks (ConAgra)
+[2026-03-24T09:23:04.934Z]   → Queued alternative: Applegate Organic Uncured Beef Hot Dogs
+[2026-03-24T09:23:05.017Z]   → Queued alternative: Organic Prairie Organic Uncured Beef Hot Dogs
+[2026-03-24T09:23:05.111Z]   → Queued alternative: Trader Joe's Uncured Beef Hot Dogs
+[2026-03-24T09:23:05.112Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:23:05.644Z] [357/478] Scoring: Oscar Mayer Turkey Bacon (Kraft Heinz)
+[2026-03-24T09:23:49.758Z]   → Queued alternative: Applegate Naturals Sunday Bacon
+[2026-03-24T09:23:49.847Z]   → Queued alternative: Pederson's Natural Farms No Sugar Added Bacon
+[2026-03-24T09:23:49.932Z]   → Queued alternative: Organic Prairie Uncured Bacon
+[2026-03-24T09:23:49.933Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:23:50.466Z] [358/478] Scoring: Applegate Farms Uncured Turkey Bacon (Applegate)
+[2026-03-24T09:24:15.357Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T09:24:15.894Z] [359/478] Scoring: Oscar Mayer Original Bologna (Kraft Heinz)
+[2026-03-24T09:24:56.951Z]   → Queued alternative: Applegate Naturals Uncured Turkey Bologna
+[2026-03-24T09:24:57.032Z]   → Queued alternative: Organic Prairie Organic Uncured Bologna
+[2026-03-24T09:24:57.105Z]   → Queued alternative: Boar's Head All Natural Uncured Beef Bologna
+[2026-03-24T09:24:57.106Z]   ✓ Scored: baseScore=7.2 tier=Caution alts=3
+[2026-03-24T09:24:57.651Z] [360/478] Scoring: Hillshire Farm Smoked Sausage Original (Tyson)
+[2026-03-24T09:25:46.627Z]   → Queued alternative: Applegate Naturals Uncured Beef Hot Dog
+[2026-03-24T09:25:46.706Z]   → Queued alternative: Pederson's Natural Farms No Sugar Added Smoked Sausage
+[2026-03-24T09:25:46.786Z]   → Queued alternative: Teton Waters Ranch Grass-Fed Beef Polish Sausage
+[2026-03-24T09:25:46.786Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:25:47.317Z] [361/478] Scoring: Eckrich Smoked Sausage (John Morrell)
+[2026-03-24T09:26:56.089Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T09:27:27.176Z]   → Queued alternative: Applegate Naturals Chicken & Apple Sausage
+[2026-03-24T09:27:27.255Z]   → Queued alternative: Teton Waters Ranch Uncured Beef Polish Sausage
+[2026-03-24T09:27:27.351Z]   → Queued alternative: Bilinski's Organic Chicken Sausage
+[2026-03-24T09:27:27.353Z]   ✓ Scored: baseScore=7.2 tier=Caution alts=3
+[2026-03-24T09:27:27.887Z] [362/478] Scoring: Johnsonville Original Bratwurst (Johnsonville)
+[2026-03-24T09:28:01.358Z]   → Queued alternative: Applegate Organic Bratwurst
+[2026-03-24T09:28:01.442Z]   → Queued alternative: Pederson's Natural Farms No Sugar Added Bratwurst
+[2026-03-24T09:28:01.528Z]   → Queued alternative: Aidells Chicken & Apple Sausage
+[2026-03-24T09:28:01.529Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T09:28:02.063Z] [363/478] Scoring: Hormel Pepperoni Classic (Hormel)
+[2026-03-24T09:28:49.563Z]   → Queued alternative: Applegate Natural Uncured Pepperoni
+[2026-03-24T09:28:49.636Z]   → Queued alternative: Hormel Natural Choice Pepperoni
+[2026-03-24T09:28:49.711Z]   → Queued alternative: Trader Joe's Uncured Pepperoni
+[2026-03-24T09:28:49.711Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:28:50.248Z] [364/478] Scoring: Hormel Black Label Bacon Regular (Hormel)
+[2026-03-24T09:29:27.670Z]   → Queued alternative: Applegate Naturals Sunday Bacon
+[2026-03-24T09:29:27.753Z]   → Queued alternative: Pederson's Natural Farms No Sugar Added Bacon
+[2026-03-24T09:29:27.829Z]   → Queued alternative: US Wellness Meats Sugar-Free Bacon
+[2026-03-24T09:29:27.829Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:29:28.364Z] [365/478] Scoring: Boar's Head Low Sodium Oven Roasted Turkey (Boar's Head)
+[2026-03-24T09:29:52.109Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:29:52.643Z] [366/478] Scoring: Deli Select Honey Ham (Hillshire Farm)
+[2026-03-24T09:30:31.225Z]   → Queued alternative: Applegate Naturals Uncured Ham
+[2026-03-24T09:30:31.329Z]   → Queued alternative: Organic Prairie Organic Uncured Ham
+[2026-03-24T09:30:31.408Z]   → Queued alternative: Plainville Farms All Natural Turkey Breast
+[2026-03-24T09:30:31.409Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:30:31.938Z] [367/478] Scoring: Armour Vienna Sausage Original (Conagra)
+[2026-03-24T09:31:06.670Z]   → Queued alternative: Applegate Naturals Uncured Beef Hot Dogs
+[2026-03-24T09:31:06.750Z]   → Queued alternative: Organic Prairie Organic Uncured Hot Dogs
+[2026-03-24T09:31:06.850Z]   → Queued alternative: Lightlife Smart Dogs
+[2026-03-24T09:31:06.850Z]   ✓ Scored: baseScore=7.2 tier=Caution alts=3
+[2026-03-24T09:31:07.385Z] [368/478] Scoring: Spam Classic (Hormel)
+[2026-03-24T09:31:46.960Z]   → Queued alternative: Applegate Naturals Uncured Ham
+[2026-03-24T09:31:47.040Z]   → Queued alternative: US Wellness Meats Pork Liverwurst
+[2026-03-24T09:31:47.121Z]   → Queued alternative: Organic Prairie Organic Uncured Ham Slices
+[2026-03-24T09:31:47.122Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:31:47.655Z] [369/478] Scoring: Spam Lite (Hormel)
+[2026-03-24T09:32:26.339Z]   → Queued alternative: Applegate Naturals Uncured Ham
+[2026-03-24T09:32:26.409Z]   → Queued alternative: Organic Prairie Organic Uncured Ham Slices
+[2026-03-24T09:32:26.491Z]   → Queued alternative: Lightlife Smart Deli Ham Style
+[2026-03-24T09:32:26.492Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:32:27.025Z] [370/478] Scoring: Hormel Compleats Chicken & Rice (Hormel)
+[2026-03-24T09:33:10.958Z]   → Queued alternative: Amy's Organic Brown Rice & Vegetables Bowl
+[2026-03-24T09:33:11.029Z]   → Queued alternative: Evol Chicken Enchilada Bowl
+[2026-03-24T09:33:11.112Z]   → Queued alternative: Simply Balanced Chicken & Rice Bowl
+[2026-03-24T09:33:11.117Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:33:11.649Z] [371/478] Scoring: StarKist Chunk Light Tuna in Water (StarKist)
+[2026-03-24T09:33:41.346Z]   → Queued alternative: Wild Planet Wild Skipjack Light Tuna
+[2026-03-24T09:33:41.421Z]   → Queued alternative: Safe Catch Elite Wild Tuna
+[2026-03-24T09:33:41.422Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=2
+[2026-03-24T09:33:41.953Z] [372/478] Scoring: Bumble Bee Chunk White Albacore Tuna (Bumble Bee)
+[2026-03-24T09:34:09.354Z]   → Queued alternative: Wild Planet Wild Skipjack Tuna
+[2026-03-24T09:34:09.434Z]   → Queued alternative: Safe Catch Elite Wild Tuna
+[2026-03-24T09:34:09.515Z]   → Queued alternative: Ocean Naturals Chunk Light Tuna in Water
+[2026-03-24T09:34:09.516Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:34:10.056Z] [373/478] Scoring: Wild Planet Wild Albacore Tuna (Wild Planet)
+[2026-03-24T09:34:32.002Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T09:34:45.038Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T09:34:45.566Z] [374/478] Scoring: Chicken of the Sea Pink Salmon (Chicken of the Sea)
+[2026-03-24T09:34:56.784Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T09:35:10.086Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:35:10.625Z] [375/478] Scoring: Sargento Ultra Thin Sliced Swiss (Sargento)
+[2026-03-24T09:35:26.660Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:35:27.197Z] [376/478] Scoring: Jennie-O Ground Turkey 93/7 (Jennie-O)
+[2026-03-24T09:35:37.371Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:35:37.910Z] [377/478] Scoring: Tyson Grilled & Ready Chicken Strips (Tyson)
+[2026-03-24T09:36:21.144Z]   → Queued alternative: Applegate Naturals Grilled Chicken Breast Strips
+[2026-03-24T09:36:21.219Z]   → Queued alternative: Perdue Simply Smart Organics Chicken Breast Strips
+[2026-03-24T09:36:21.287Z]   → Queued alternative: Bell & Evans Grilled Chicken Breast Strips
+[2026-03-24T09:36:21.289Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:36:21.826Z] [378/478] Scoring: Perdue Short Cuts Carved Chicken Breast Original (Perdue)
+[2026-03-24T09:36:52.474Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T09:36:53.011Z] [379/478] Scoring: Jack Link's Original Beef Jerky (Jack Link's)
+[2026-03-24T09:37:31.639Z]   → Queued alternative: Epic Provisions Beef Sea Salt & Pepper Bar
+[2026-03-24T09:37:31.713Z]   → Queued alternative: Chomps Original Beef Stick
+[2026-03-24T09:37:31.792Z]   → Queued alternative: The New Primal Classic Beef Stick
+[2026-03-24T09:37:31.798Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:37:32.327Z] [380/478] Scoring: Slim Jim Original Smoked Snack Stick (Conagra)
+[2026-03-24T09:38:29.420Z]   → Queued alternative: Chomps Original Beef Stick
+[2026-03-24T09:38:29.500Z]   → Queued alternative: Epic Beef Sea Salt & Pepper Bar
+[2026-03-24T09:38:29.584Z]   → Queued alternative: Paleovalley Grass-Fed Beef Stick
+[2026-03-24T09:38:29.586Z]   ✓ Scored: baseScore=7.2 tier=Caution alts=3
+[2026-03-24T09:38:30.119Z] [381/478] Scoring: Old Wisconsin Beef Summer Sausage (Kraft Heinz)
+[2026-03-24T09:39:11.877Z]   → Queued alternative: Applegate Naturals Uncured Beef Hot Dog
+[2026-03-24T09:39:11.944Z]   → Queued alternative: Chomps Grass-Fed Beef Stick
+[2026-03-24T09:39:12.031Z]   → Queued alternative: Epic Provisions Beef Sea Salt & Pepper Bar
+[2026-03-24T09:39:12.032Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:39:12.573Z] [382/478] Scoring: Bridgford Pepperoni Slices (Bridgford Foods)
+[2026-03-24T09:39:51.985Z]   → Queued alternative: Applegate Naturals Uncured Pepperoni
+[2026-03-24T09:39:52.072Z]   → Queued alternative: Hormel Natural Choice Pepperoni
+[2026-03-24T09:39:52.147Z]   → Queued alternative: Organic Prairie Uncured Pepperoni
+[2026-03-24T09:39:52.148Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:39:52.679Z] [383/478] Scoring: Gerber 2nd Foods Apple Blueberry (Nestlé)
+[2026-03-24T09:40:06.029Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:40:06.564Z] [384/478] Scoring: Gerber 2nd Foods Sweet Potato (Nestlé)
+[2026-03-24T09:40:13.505Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T09:40:14.043Z] [385/478] Scoring: Gerber 3rd Foods Pasta Alphabet in Chicken Broth (Nestlé)
+[2026-03-24T09:40:37.381Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:40:37.914Z] [386/478] Scoring: Gerber Puffs Banana (Nestlé)
+[2026-03-24T09:41:10.209Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:41:10.741Z] [387/478] Scoring: Gerber Lil' Crunchies Mild Cheddar (Nestlé)
+[2026-03-24T09:41:39.502Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T09:41:40.043Z] [388/478] Scoring: Happy Baby Organic Clearly Crafted Apple Mango (Happy Family)
+[2026-03-24T09:41:51.555Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:41:52.092Z] [389/478] Scoring: Sprout Organic Baby Food Pea Pear Broccoli (Sprout Organics)
+[2026-03-24T09:42:03.600Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T09:42:04.145Z] [390/478] Scoring: Beech-Nut Stage 2 Apple & Blueberry (Beech-Nut)
+[2026-03-24T09:42:16.188Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:42:16.719Z] [391/478] Scoring: Earth's Best Organic Stage 2 Winter Squash (Hain Celestial)
+[2026-03-24T09:42:24.513Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T09:42:25.046Z] [392/478] Scoring: Plum Organics Just Fruits Variety Pack (Campbell's)
+[2026-03-24T09:42:41.530Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:42:42.075Z] [393/478] Scoring: Similac Pro-Advance Non-GMO Infant Formula (Abbott)
+[2026-03-24T09:43:10.409Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T09:43:10.953Z] [394/478] Scoring: Enfamil NeuroPro Infant Formula (Mead Johnson)
+[2026-03-24T09:43:48.701Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T09:43:49.235Z] [395/478] Scoring: Parent's Choice Infant Formula (Walmart)
+[2026-03-24T09:44:12.795Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T09:44:13.337Z] [396/478] Scoring: Annie's Organic Bunny Grahams (General Mills)
+[2026-03-24T09:44:42.132Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T09:45:07.950Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:45:08.486Z] [397/478] Scoring: Annie's Organic Cheddar Bunnies (General Mills)
+[2026-03-24T09:45:31.542Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T09:45:55.376Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T09:45:55.919Z] [398/478] Scoring: Nilla Wafers Mini (Nabisco)
+[2026-03-24T09:46:35.332Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T09:46:35.873Z] [399/478] Scoring: Teddy Grahams Honey (Nabisco)
+[2026-03-24T09:47:20.829Z]   → Queued alternative: Annie's Organic Honey Bunny Grahams
+[2026-03-24T09:47:20.902Z]   → Queued alternative: Simple Mills Organic Seed Flour Crackers
+[2026-03-24T09:47:20.903Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T09:47:21.443Z] [400/478] Scoring: Keebler Gripz Cinnamon Grahams (Kellogg's)
+[2026-03-24T09:48:06.492Z]   → Queued alternative: Annie's Organic Cinnamon Graham Crackers
+[2026-03-24T09:48:06.564Z]   → Queued alternative: Simple Mills Cinnamon Sweet Thins
+[2026-03-24T09:48:06.566Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=2
+[2026-03-24T09:48:07.107Z] [401/478] SKIP (already scored): Welch's Fruit Snacks Mixed Fruit
+[2026-03-24T09:48:07.133Z] [402/478] Scoring: Motts Fruit Snacks Assorted (Mott's)
+[2026-03-24T09:48:51.051Z]   → Queued alternative: Annie's Organic Bunny Fruit Snacks
+[2026-03-24T09:48:51.140Z]   → Queued alternative: Stretch Island Fruit Leather
+[2026-03-24T09:48:51.223Z]   → Queued alternative: That's It Mini Fruit Bars
+[2026-03-24T09:48:51.225Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:48:51.760Z] [403/478] Scoring: Horizon Organic Whole Milk Boxes (Danone)
+[2026-03-24T09:49:05.242Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T09:49:05.779Z] [404/478] Scoring: Stonyfield YoBaby Organic Whole Milk Yogurt Peach (Lactalis)
+[2026-03-24T09:49:27.192Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T09:49:47.955Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T09:49:48.493Z] [405/478] Scoring: Danimals Strawberry Explosion Smoothie (Danone)
+[2026-03-24T09:50:31.055Z]   → Queued alternative: Stonyfield Organic Kids Strawberry Yogurt Pouch
+[2026-03-24T09:50:31.133Z]   → Queued alternative: Siggi's Kids Strawberry Yogurt Pouch
+[2026-03-24T09:50:31.206Z]   → Queued alternative: Chobani Gimmies Strawberry Yogurt
+[2026-03-24T09:50:31.207Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T09:50:31.744Z] [406/478] Scoring: Go-GURT Strawberry Banana Yogurt Tube (General Mills)
+[2026-03-24T09:51:14.161Z]   → Queued alternative: Stonyfield Organic Kids Strawberry Banana Yogurt Tubes
+[2026-03-24T09:51:14.243Z]   → Queued alternative: Siggi's Kids Strawberry Yogurt Tube
+[2026-03-24T09:51:14.315Z]   → Queued alternative: Chobani Gimmies Strawberry Yogurt Tube
+[2026-03-24T09:51:14.316Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:51:14.847Z] [407/478] Scoring: Kraft Easy Mac Original (Kraft Heinz)
+[2026-03-24T09:51:54.064Z]   → Queued alternative: Annie's Organic White Cheddar Mac & Cheese
+[2026-03-24T09:51:54.136Z]   → Queued alternative: Banza Chickpea Mac & Cheese
+[2026-03-24T09:51:54.214Z]   → Queued alternative: Modern Table Lentil Pasta Mac & Cheese
+[2026-03-24T09:51:54.216Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:51:54.770Z] [408/478] Scoring: Lunchables Turkey & Cheddar with Crackers (Kraft Heinz)
+[2026-03-24T09:52:39.478Z]   → Queued alternative: Applegate Naturals Turkey & Cheddar Lunchbox
+[2026-03-24T09:52:39.560Z]   → Queued alternative: Simple Truth Organic Turkey & Cheese Snack Pack
+[2026-03-24T09:52:39.636Z]   → Queued alternative: Homemade turkey and cheese with whole grain crackers
+[2026-03-24T09:52:39.638Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:52:40.168Z] [409/478] Scoring: Lunchables Pizza with Pepperoni (Kraft Heinz)
+[2026-03-24T09:53:38.887Z]   → Queued alternative: Annie's Organic Pizza Poppers
+[2026-03-24T09:53:38.958Z]   → Queued alternative: Applegate Naturals Pepperoni Pizza
+[2026-03-24T09:53:39.029Z]   → Queued alternative: Simple Mills Pizza Bites
+[2026-03-24T09:53:39.030Z]   ✓ Scored: baseScore=6.8 tier=Caution alts=3
+[2026-03-24T09:53:39.560Z] [410/478] Scoring: Nature Valley Oats 'n Honey Bar (General Mills)
+[2026-03-24T09:54:22.681Z]   → Queued alternative: KIND Oats & Honey Clusters
+[2026-03-24T09:54:22.775Z]   → Queued alternative: Purely Elizabeth Ancient Grain Granola
+[2026-03-24T09:54:22.777Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T09:54:23.307Z] [411/478] Scoring: Nature Valley Sweet & Salty Almond (General Mills)
+[2026-03-24T09:55:07.694Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T09:55:08.235Z] [412/478] Scoring: Nutri-Grain Strawberry Bar (Kellogg's)
+[2026-03-24T09:55:49.011Z]   → Queued alternative: Larabar Strawberry Fruit & Nut Bar
+[2026-03-24T09:55:49.098Z]   → Queued alternative: KIND Strawberry Breakfast Bars
+[2026-03-24T09:55:49.177Z]   → Queued alternative: Annie's Organic Strawberry Fruit Snack Bars
+[2026-03-24T09:55:49.178Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T09:55:49.709Z] [413/478] Scoring: Nutri-Grain Apple Cinnamon Bar (Kellogg's)
+[2026-03-24T09:56:33.894Z]   → Queued alternative: KIND Apple Cinnamon & Pecan Bar
+[2026-03-24T09:56:33.975Z]   → Queued alternative: RXBAR Apple Cinnamon
+[2026-03-24T09:56:33.976Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:56:34.511Z] [414/478] Scoring: Special K Chocolate Almond Protein Bar (Kellogg's)
+[2026-03-24T09:57:21.897Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=0
+[2026-03-24T09:57:22.426Z] [415/478] Scoring: Quaker Chewy Chocolate Chip Granola Bar (Quaker)
+[2026-03-24T09:58:16.081Z]   → Queued alternative: KIND Granola Bars (Dark Chocolate Chunk)
+[2026-03-24T09:58:16.161Z]   → Queued alternative: Larabar Chocolate Chip Cookie Dough
+[2026-03-24T09:58:16.234Z]   → Queued alternative: Nature's Path Organic Granola Bars
+[2026-03-24T09:58:16.238Z]   ✓ Scored: baseScore=5.2 tier=Watch alts=3
+[2026-03-24T09:58:16.780Z] [416/478] Scoring: Quaker Chewy Dipps Chocolate Chip (Quaker)
+[2026-03-24T09:59:13.055Z]   → Queued alternative: KIND Granola Bars Dark Chocolate Chunk
+[2026-03-24T09:59:13.127Z]   → Queued alternative: Larabar Chocolate Chip Cookie Dough
+[2026-03-24T09:59:13.203Z]   → Queued alternative: Nature Valley Granola Cups Almond Butter
+[2026-03-24T09:59:13.204Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:59:13.735Z] [417/478] Scoring: Fiber One Chocolate Fudge Brownie (General Mills)
+[2026-03-24T09:59:58.101Z]   → Queued alternative: Larabar Chocolate Chip Brownie
+[2026-03-24T09:59:58.182Z]   → Queued alternative: KIND Dark Chocolate Nuts & Sea Salt Bar
+[2026-03-24T09:59:58.213Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T09:59:58.749Z] [418/478] Scoring: Kind Bar Dark Chocolate Nuts & Sea Salt (Kind)
+[2026-03-24T10:00:29.736Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:00:30.273Z] [419/478] Scoring: Kind Breakfast Oats & Honey Bar (Kind)
+[2026-03-24T10:00:55.177Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:00:55.716Z] [420/478] SKIP (already scored): RXBar Chocolate Sea Salt
+[2026-03-24T10:00:55.747Z] [421/478] Scoring: RXBar Blueberry (RXBAR)
+[2026-03-24T10:01:16.803Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:01:17.336Z] [422/478] SKIP (already scored): Larabar Apple Pie
+[2026-03-24T10:01:17.365Z] [423/478] Scoring: Larabar Peanut Butter Chocolate Chip (General Mills)
+[2026-03-24T10:01:35.363Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T10:01:35.906Z] [424/478] SKIP (already scored): Clif Bar Chocolate Chip
+[2026-03-24T10:01:35.936Z] [425/478] Scoring: Clif Bar Crunchy Peanut Butter (Clif Bar)
+[2026-03-24T10:02:11.928Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T10:02:46.296Z]   → Queued alternative: RXBar Peanut Butter
+[2026-03-24T10:02:46.378Z]   → Queued alternative: Larabar Peanut Butter Cookie
+[2026-03-24T10:02:46.379Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T10:02:46.917Z] [426/478] Scoring: Luna Bar Chocolate Dipped Coconut (Clif Bar)
+[2026-03-24T10:03:27.502Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T10:03:28.042Z] [427/478] Scoring: Quest Bar Chocolate Chip Cookie Dough (Quest Nutrition)
+[2026-03-24T10:04:04.870Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T10:04:05.409Z] [428/478] Scoring: Quest Bar Birthday Cake (Quest Nutrition)
+[2026-03-24T10:04:37.318Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T10:04:37.852Z] [429/478] Scoring: One Bar Birthday Cake (ONE Brands)
+[2026-03-24T10:05:14.645Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T10:05:15.186Z] [430/478] Scoring: Atkins Chocolate Peanut Butter Bar (Atkins)
+[2026-03-24T10:05:59.275Z]   → Queued alternative: RXBAR Chocolate Peanut Butter
+[2026-03-24T10:05:59.365Z]   → Queued alternative: KIND Peanut Butter Dark Chocolate Bar
+[2026-03-24T10:05:59.394Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T10:05:59.929Z] [431/478] Scoring: Think! Protein Bar Chocolate Fudge (thinkThin)
+[2026-03-24T10:06:38.167Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=0
+[2026-03-24T10:06:38.702Z] [432/478] Scoring: Perfect Bar Dark Chocolate Chip Peanut Butter (Perfect Bar)
+[2026-03-24T10:07:07.569Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:07:08.105Z] [433/478] Scoring: GoMacro MacroBar Peanut Butter Chocolate Chip (GoMacro)
+[2026-03-24T10:07:28.306Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T10:07:28.836Z] [434/478] Scoring: Rise Bar Sunflower Cinnamon Protein (Rise Bar)
+[2026-03-24T10:07:49.389Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T10:07:49.928Z] [435/478] Scoring: Kashi Chewy Granola Bar Dark Chocolate Coconut (Kashi)
+[2026-03-24T10:08:17.477Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T10:08:18.013Z] [436/478] Scoring: Bear Naked Granola Fruit & Nut (Kellanova)
+[2026-03-24T10:08:42.577Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T10:08:43.111Z] [437/478] Scoring: KIND Healthy Grains Oats & Honey Clusters (Kind)
+[2026-03-24T10:09:10.338Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T10:09:10.880Z] [438/478] Scoring: Orgain Organic Protein Powder Chocolate Fudge (Orgain)
+[2026-03-24T10:09:43.771Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:09:44.319Z] [439/478] Scoring: Garden of Life Raw Organic Protein Vanilla (Nestlé)
+[2026-03-24T10:10:22.795Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:10:23.339Z] [440/478] Scoring: Vega Sport Premium Protein Chocolate (Danone)
+[2026-03-24T10:10:50.865Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:10:51.414Z] [441/478] Scoring: Muscle Milk Genuine Protein Shake Chocolate (Hormel)
+[2026-03-24T10:11:35.719Z]   → Queued alternative: Orgain Organic Protein Shake Chocolate
+[2026-03-24T10:11:35.806Z]   → Queued alternative: OWYN Pro Elite Chocolate Protein Shake
+[2026-03-24T10:11:35.808Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=2
+[2026-03-24T10:11:36.349Z] [442/478] Scoring: Premier Protein Shake Chocolate (Post Holdings)
+[2026-03-24T10:12:23.963Z]   → Queued alternative: Orgain Organic Protein Shake
+[2026-03-24T10:12:24.045Z]   → Queued alternative: OWYN Pro Elite Protein Shake
+[2026-03-24T10:12:24.119Z]   → Queued alternative: Fairlife Core Power High Protein Shake
+[2026-03-24T10:12:24.120Z]   ✓ Scored: baseScore=5.8 tier=Watch alts=3
+[2026-03-24T10:12:24.652Z] [443/478] Scoring: Ensure Original Nutrition Shake Vanilla (Abbott)
+[2026-03-24T10:13:11.122Z]   → Queued alternative: Orgain Organic Nutritional Shake Vanilla
+[2026-03-24T10:13:11.201Z]   → Queued alternative: Kate Farms Nutrition Shake Vanilla
+[2026-03-24T10:13:11.285Z]   → Queued alternative: OWYN Pro Elite Vanilla
+[2026-03-24T10:13:11.288Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T10:13:11.821Z] [444/478] Scoring: Boost Original Vanilla Drink (Nestlé)
+[2026-03-24T10:14:00.844Z]   → Queued alternative: Orgain Organic Nutritional Shake Vanilla
+[2026-03-24T10:14:00.919Z]   → Queued alternative: OWYN Vegan Protein Shake Vanilla
+[2026-03-24T10:14:00.989Z]   → Queued alternative: Kate Farms Nutrition Shake Vanilla
+[2026-03-24T10:14:00.990Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T10:14:01.525Z] [445/478] Scoring: Glucerna Snack Shake Homemade Vanilla (Abbott)
+[2026-03-24T10:14:41.503Z]   → Queued alternative: Orgain Organic Nutritional Shake
+[2026-03-24T10:14:41.573Z]   → Queued alternative: OWYN Pro Elite Protein Shake
+[2026-03-24T10:14:41.701Z]   → Queued alternative: Kate Farms Nutrition Shake
+[2026-03-24T10:14:41.703Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T10:14:42.232Z] [446/478] Scoring: Odwalla Protein Shake Chocolate (Coca-Cola)
+[2026-03-24T10:15:26.527Z]   → Queued alternative: Orgain Organic Protein Shake Chocolate
+[2026-03-24T10:15:26.602Z]   → Queued alternative: OWYN Vegan Protein Shake Chocolate
+[2026-03-24T10:15:26.681Z]   → Queued alternative: Koia Protein Shake Chocolate
+[2026-03-24T10:15:26.682Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T10:15:27.221Z] [447/478] Scoring: Body Armor Fruit Punch (Coca-Cola)
+[2026-03-24T10:16:06.530Z]   → Queued alternative: Harmless Harvest Organic Coconut Water
+[2026-03-24T10:16:06.606Z]   → Queued alternative: Ultima Replenisher Electrolyte Powder
+[2026-03-24T10:16:06.692Z]   → Queued alternative: Nooma Organic Electrolyte Sports Drink
+[2026-03-24T10:16:06.693Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=3
+[2026-03-24T10:16:07.225Z] [448/478] Scoring: Nuun Sport Electrolyte Tablets Lemon Lime (Nuun)
+[2026-03-24T10:16:40.719Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T10:16:41.255Z] [449/478] Scoring: Clif Shot Energy Gel Chocolate (Clif Bar)
+[2026-03-24T10:17:03.178Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T10:17:03.711Z] [450/478] Scoring: GU Energy Gel Vanilla Bean (GU Energy Labs)
+[2026-03-24T10:17:37.164Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T10:17:37.702Z] [451/478] Scoring: Hammer Gel Chocolate (Hammer Nutrition)
+[2026-03-24T10:18:10.054Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:18:10.592Z] [452/478] Scoring: Gatorade Recover 03 Protein Shake Chocolate (PepsiCo)
+[2026-03-24T10:18:50.429Z]   → Queued alternative: Orgain Organic Protein Shake Chocolate
+[2026-03-24T10:18:50.507Z]   → Queued alternative: Fairlife Core Power High Protein Shake Chocolate
+[2026-03-24T10:18:50.585Z]   → Queued alternative: OWYN Vegan Protein Shake Chocolate
+[2026-03-24T10:18:50.587Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T10:18:51.122Z] [453/478] Scoring: Isopure Zero Carb Protein Powder Dutch Chocolate (Isopure)
+[2026-03-24T10:19:18.339Z]   ✓ Scored: baseScore=3.2 tier=Clean alts=0
+[2026-03-24T10:19:18.878Z] [454/478] Scoring: Pure Protein Bar Chocolate Peanut Butter (Worldwide Sport)
+[2026-03-24T10:19:58.609Z]   → Queued alternative: RXBAR Chocolate Peanut Butter
+[2026-03-24T10:19:58.690Z]   → Queued alternative: Perfect Bar Peanut Butter
+[2026-03-24T10:19:58.728Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T10:19:59.263Z] [455/478] Scoring: Gatorade Fast Twitch Berry (PepsiCo)
+[2026-03-24T10:20:52.377Z]   → Queued alternative: LMNT Electrolyte Drink Mix
+[2026-03-24T10:20:52.461Z]   → Queued alternative: Nuun Sport Electrolyte Tablets
+[2026-03-24T10:20:52.530Z]   → Queued alternative: Skratch Labs Sport Hydration Mix
+[2026-03-24T10:20:52.530Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T10:20:53.063Z] [456/478] Scoring: Primal Kitchen Avocado Oil Mayo (Kraft Heinz)
+[2026-03-24T10:21:11.328Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T10:21:11.869Z] [457/478] Scoring: Chosen Foods Avocado Oil (Chosen Foods)
+[2026-03-24T10:21:18.130Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T10:21:18.674Z] [458/478] Scoring: Bragg Apple Cider Vinegar (Bragg)
+[2026-03-24T10:21:30.260Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T10:21:30.802Z] [459/478] Scoring: Bob's Red Mill Organic Chia Seeds (Bob's Red Mill)
+[2026-03-24T10:21:40.746Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T10:21:41.284Z] [460/478] Scoring: Navitas Organics Hemp Seeds (Navitas)
+[2026-03-24T10:21:49.641Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T10:21:50.185Z] [461/478] Scoring: Thrive Market Organic Coconut Sugar (Thrive Market)
+[2026-03-24T10:21:58.130Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T10:21:58.666Z] [462/478] Scoring: Now Foods Organic Stevia Packets (Now Foods)
+[2026-03-24T10:22:10.765Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:22:11.304Z] [463/478] Scoring: Monkfruit In The Raw Zero Calorie Sweetener (In The Raw)
+[2026-03-24T10:22:23.252Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:22:23.795Z] [464/478] Scoring: Splenda Original Sweetener (Splenda)
+[2026-03-24T10:22:49.733Z]   → Queued alternative: Organic Stevia Extract
+[2026-03-24T10:22:49.810Z]   → Queued alternative: Monk Fruit Sweetener
+[2026-03-24T10:22:49.812Z]   ✓ Scored: baseScore=4.2 tier=Watch alts=2
+[2026-03-24T10:22:50.348Z] [465/478] Scoring: Equal Original Sweetener (Equal)
+[2026-03-24T10:23:15.227Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T10:23:39.199Z]   → Queued alternative: Stevia In The Raw
+[2026-03-24T10:23:39.279Z]   → Queued alternative: Lakanto Monkfruit Sweetener
+[2026-03-24T10:23:39.365Z]   → Queued alternative: Pure Organic Stevia Extract
+[2026-03-24T10:23:39.366Z]   ✓ Scored: baseScore=5.8 tier=Caution alts=3
+[2026-03-24T10:23:39.901Z] [466/478] Scoring: Sweet'N Low Zero Calorie Sweetener (Sweet'N Low)
+[2026-03-24T10:24:04.542Z]   → Queued alternative: Stevia In The Raw
+[2026-03-24T10:24:04.623Z]   → Queued alternative: Monk Fruit In The Raw
+[2026-03-24T10:24:04.707Z]   → Queued alternative: Organic Stevia
+[2026-03-24T10:24:04.708Z]   ✓ Scored: baseScore=6.2 tier=Caution alts=3
+[2026-03-24T10:24:05.240Z] [467/478] Scoring: Stevia In The Raw Packets (In The Raw)
+[2026-03-24T10:24:18.455Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T10:24:34.125Z]   ✓ Scored: baseScore=3.8 tier=Watch alts=0
+[2026-03-24T10:24:34.661Z] [468/478] Scoring: Vital Proteins Collagen Peptides Unflavored (Nestlé)
+[2026-03-24T10:24:46.103Z]   ✓ Scored: baseScore=2.8 tier=Clean alts=0
+[2026-03-24T10:24:46.635Z] [469/478] Scoring: Ancient Nutrition Multi Collagen Protein (Ancient Nutrition)
+[2026-03-24T10:25:06.099Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:25:06.639Z] [470/478] Scoring: OLIPOP Classic Root Beer (Olipop)
+[2026-03-24T10:25:35.345Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:25:35.888Z] [471/478] Scoring: Poppi Apple Cider Vinegar Prebiotic Soda (Poppi)
+[2026-03-24T10:25:58.030Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:25:58.566Z] [472/478] Scoring: Siete Foods Sea Salt Tortilla Chips (Siete Foods)
+[2026-03-24T10:26:13.156Z]   ✓ Scored: baseScore=1.8 tier=Clean alts=0
+[2026-03-24T10:26:13.683Z] [473/478] Scoring: Simple Mills Almond Flour Vanilla Frosting (Simple Mills)
+[2026-03-24T10:26:35.260Z]   ⚠ Validation failed on attempt 1 (claude-sonnet-4-5), retrying with claude-opus-4-5...
+[2026-03-24T10:26:52.848Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:26:53.388Z] [474/478] Scoring: Anthony's Organic Coconut Flour (Anthony's)
+[2026-03-24T10:27:01.313Z]   ✓ Scored: baseScore=1.2 tier=Clean alts=0
+[2026-03-24T10:27:01.856Z] [475/478] Scoring: Primal Kitchen Buffalo Sauce (Kraft Heinz)
+[2026-03-24T10:27:21.604Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:27:22.149Z] [476/478] Scoring: Thrive Market Organic Cassava Flour Tortillas (Thrive Market)
+[2026-03-24T10:27:41.087Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:27:41.620Z] [477/478] Scoring: Hu Chocolate Gems (Mondelēz)
+[2026-03-24T10:27:57.641Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:27:58.179Z] [478/478] Scoring: Enjoy Life Semi-Sweet Chocolate Mini Chips (Mondelēz)
+[2026-03-24T10:28:13.024Z]   ✓ Scored: baseScore=2.1 tier=Clean alts=0
+[2026-03-24T10:28:13.528Z] SUMMARY scored=469 skipped=4 failed=5 alts=621

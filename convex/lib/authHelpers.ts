@@ -3,14 +3,13 @@ import { internalQuery } from "../_generated/server";
 import { Id } from "../_generated/dataModel";
 
 /**
- * Look up a user's email from the users table by their user ID.
- * Used by requireAdmin to resolve emails when the auth provider
- * (e.g. @convex-dev/auth Password) doesn't include email in JWT claims.
+ * Check whether a user has admin access.
+ * Used by requireAdmin to verify the isAdmin flag on the users table.
  */
-export const getUserEmail = internalQuery({
+export const checkIsAdmin = internalQuery({
   args: { userId: v.string() },
-  handler: async (ctx, args): Promise<string | null> => {
+  handler: async (ctx, args): Promise<boolean> => {
     const user = await ctx.db.get(args.userId as Id<"users">);
-    return user?.email ?? null;
+    return user?.isAdmin === true;
   },
 });

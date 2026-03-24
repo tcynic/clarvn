@@ -137,7 +137,7 @@ export const getQueueEntry = internalQuery({
   },
 });
 
-// Public query: list queue entries, paginated, sorted by priority asc.
+// Admin-only query: list queue entries, paginated, sorted by priority asc.
 // Optional status filter. Results within same priority sorted by requestCount desc.
 export const listQueue = query({
   args: {
@@ -152,6 +152,7 @@ export const listQueue = query({
     paginationOpts: paginationOptsValidator,
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx);
     let q = ctx.db.query("scoring_queue");
 
     if (args.status !== undefined) {

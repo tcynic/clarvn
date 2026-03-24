@@ -4,6 +4,20 @@ import { authTables } from "@convex-dev/auth/server";
 
 export default defineSchema({
   ...authTables,
+  // Extend the auth users table with an isAdmin flag.
+  // Set isAdmin: true on a user document via the Convex dashboard to grant admin access.
+  users: defineTable({
+    name: v.optional(v.string()),
+    email: v.optional(v.string()),
+    phone: v.optional(v.string()),
+    image: v.optional(v.string()),
+    emailVerificationTime: v.optional(v.number()),
+    phoneVerificationTime: v.optional(v.number()),
+    isAnonymous: v.optional(v.boolean()),
+    isAdmin: v.optional(v.boolean()),
+  })
+    .index("email", ["email"])
+    .index("phone", ["phone"]),
   scoring_queue: defineTable({
     productName: v.string(),
     source: v.union(

@@ -7,13 +7,10 @@ type AuthCtx = MutationCtx | QueryCtx | ActionCtx;
 /**
  * Throws ConvexError if the caller is not an authenticated admin.
  *
- * To restrict to specific emails, set ADMIN_EMAILS env var as
- * comma-separated list: e.g. "admin@example.com,other@example.com"
- * If not set, any authenticated user is treated as admin.
+ * Admin status is stored as isAdmin: true on the user document in the
+ * users table. Set this field via the Convex dashboard to grant access.
  *
- * With @convex-dev/auth Password provider, identity.email is not in
- * JWT claims. We extract the user ID from tokenIdentifier and look
- * up the email from the users table.
+ * @convex-dev/auth tokenIdentifier format: "<issuer>|<userId>|<sessionId>"
  */
 export async function requireAdmin(ctx: AuthCtx): Promise<void> {
   const identity = await ctx.auth.getUserIdentity();
@@ -22,30 +19,20 @@ export async function requireAdmin(ctx: AuthCtx): Promise<void> {
     throw new ConvexError("Not authenticated");
   }
 
-  const adminEmails = process.env.ADMIN_EMAILS;
-  if (adminEmails) {
-    const allowed = adminEmails.split(",").map((e) => e.trim().toLowerCase());
+  // Extract userId from the tokenIdentifier (second segment)
+  const parts = identity.tokenIdentifier.split("|");
+  const userId = parts.length >= 2 ? parts[1] : undefined;
 
-    // First try identity.email (populated by some auth providers)
-    let email = identity.email?.toLowerCase();
+  if (!userId) {
+    throw new ConvexError("Could not determine user identity");
+  }
 
-    // If not on the JWT, look up from the users table.
-    // @convex-dev/auth tokenIdentifier format: "<issuer>|<userId>|<sessionId>"
-    if (!email) {
-      const parts = identity.tokenIdentifier.split("|");
-      // The user ID is the second segment (index 1)
-      const userId = parts.length >= 2 ? parts[1] : undefined;
-      if (userId) {
-        const userEmail: string | null = await ctx.runQuery(
-          internal.lib.authHelpers.getUserEmail,
-          { userId }
-        );
-        email = userEmail?.toLowerCase();
-      }
-    }
+  const isAdmin: boolean = await ctx.runQuery(
+    internal.lib.authHelpers.checkIsAdmin,
+    { userId }
+  );
 
-    if (!email || !allowed.includes(email)) {
-      throw new ConvexError("Unauthorized: not an admin");
-    }
+  if (!isAdmin) {
+    throw new ConvexError("Unauthorized: not an admin");
   }
 }
