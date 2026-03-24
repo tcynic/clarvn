@@ -26,15 +26,15 @@ export const parseAndSaveProfile = action({
 
     const prompt = `You are extracting a health profile from a user's onboarding conversation.
 
-The user was asked three questions:
+The user answered three questions:
 1. "What brings you to CleanList?" → "${args.answers[0]}"
 2. "Do you have any diagnosed health conditions?" → "${args.answers[1]}"
 3. "Any sensitivities or things you personally react to?" → "${args.answers[2]}"
 
 Extract and return a JSON object with exactly these fields:
 - motivation: string (a brief summary of why they're using the app, max 100 chars)
-- conditions: string[] (diagnosed medical conditions mentioned; empty array if none)
-- sensitivities: string[] (self-reported sensitivities/intolerances/reactions; empty array if none)
+- conditions: string[] (health conditions mentioned — include suspected or unconfirmed ones too, e.g. "might have IBS" → ["IBS"]; normalize names, e.g. "pre-diabetic" → "pre-diabetes"; empty array if none)
+- sensitivities: string[] (any substance the user mentions reacting to, even casually, e.g. "I get headaches after wine" → ["wine"]; empty array if none)
 
 Return ONLY valid JSON, no markdown, no explanation.`;
 
