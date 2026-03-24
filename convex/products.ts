@@ -120,6 +120,23 @@ export const writeProductPublic = mutation({
   },
 });
 
+// Public query: count products by status.
+export const countProducts = query({
+  args: {
+    status: v.optional(
+      v.union(v.literal("scored"), v.literal("archived"))
+    ),
+  },
+  handler: async (ctx, args) => {
+    const status = args.status ?? "scored";
+    const all = await ctx.db
+      .query("products")
+      .withIndex("by_status", (q) => q.eq("status", status))
+      .collect();
+    return all.length;
+  },
+});
+
 // Public query: list scored products by status, paginated.
 export const listProducts = query({
   args: {

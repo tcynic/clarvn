@@ -16,6 +16,7 @@ export default function AdminProductsPage() {
   const [refreshStatus, setRefreshStatus] = useState<string | null>(null);
 
   const products = useQuery(api.products.listProducts, { status: "scored" });
+  const productCount = useQuery(api.products.countProducts, { status: "scored" });
   const ingredients = useQuery(
     api.ingredients.getIngredientsByProduct,
     selected ? { productId: selected._id } : "skip"
@@ -49,12 +50,17 @@ export default function AdminProductsPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <p className="section-eyebrow">Section 02</p>
-          <h1
-            className="text-2xl text-[var(--ink)] mt-1"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            Product Browser
-          </h1>
+          <div className="flex items-baseline gap-3 mt-1">
+            <h1
+              className="text-2xl text-[var(--ink)]"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              Product Browser
+            </h1>
+            <span className="text-sm text-[var(--ink-3)]">
+              {productCount !== undefined ? productCount : "—"} scored
+            </span>
+          </div>
         </div>
         <div className="flex items-center gap-3">
           {refreshStatus && (
