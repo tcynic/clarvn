@@ -96,11 +96,14 @@ async function scoreIngredientCore(
     return { success: false, error: lastError };
   }
 
-  // 4. Write/update ingredient record with all scores
+  // 4. Write/update ingredient record with all scores.
+  // Pass placeholderName so upsertIngredient can update the placeholder in-place
+  // if Claude normalised the canonical name (preserves product_ingredients links).
   const ingredientId: Id<"ingredients"> = await ctx.runMutation(
     internal.ingredients.upsertIngredient,
     {
       canonicalName: scored.canonicalName,
+      placeholderName: queueEntry.canonicalName,
       aliases: scored.aliases,
       harmEvidenceScore: scored.harmEvidenceScore,
       regulatoryScore: scored.regulatoryScore,

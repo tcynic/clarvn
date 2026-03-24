@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { internalMutation } from "./_generated/server";
 import { internal } from "./_generated/api";
+import { Id } from "./_generated/dataModel";
 
 /**
  * Epic 2.2 — Process the extraction result for a product.
@@ -32,8 +33,8 @@ export const processExtractionResult = internalMutation({
         .withIndex("by_canonicalName", (q) => q.eq("canonicalName", name))
         .first();
 
-      if (existing) {
-        // Already scored — link to product
+      if (existing && (existing.scoreVersion ?? 0) > 0) {
+        // Already SCORED — link to product
         const alreadyLinked = await ctx.db
           .query("product_ingredients")
           .withIndex("by_productId", (q) => q.eq("productId", args.productId))
@@ -47,37 +48,58 @@ export const processExtractionResult = internalMutation({
           });
         }
       } else {
-        // Not scored — create placeholder ingredient (zeroed scores)
-        const ingredientId = await ctx.db.insert("ingredients", {
-          canonicalName: name,
-          aliases: [],
-          harmEvidenceScore: 0,
-          regulatoryScore: 0,
-          avoidanceScore: 0,
-          baseScore: 0,
-          tier: "Clean",
-          scoreVersion: 0,
-          scoredAt: 0,
-        });
+        // Not yet scored: either a placeholder (scoreVersion=0) or brand new.
+        // In both cases this product must wait for the ingredient to be scored.
+        let ingredientId: Id<"ingredients">;
 
-        // Link to product
-        await ctx.db.insert("product_ingredients", {
-          productId: args.productId,
-          ingredientId,
-        });
+        if (existing) {
+          // Reuse existing placeholder — don't create a duplicate record
+          ingredientId = existing._id;
+          const alreadyLinked = await ctx.db
+            .query("product_ingredients")
+            .withIndex("by_productId", (q) => q.eq("productId", args.productId))
+            .filter((q) => q.eq(q.field("ingredientId"), ingredientId))
+            .first();
+          if (!alreadyLinked) {
+            await ctx.db.insert("product_ingredients", {
+              productId: args.productId,
+              ingredientId,
+            });
+          }
+        } else {
+          // Create new placeholder ingredient (zeroed scores)
+          ingredientId = await ctx.db.insert("ingredients", {
+            canonicalName: name,
+            aliases: [],
+            harmEvidenceScore: 0,
+            regulatoryScore: 0,
+            avoidanceScore: 0,
+            baseScore: 0,
+            tier: "Clean",
+            scoreVersion: 0,
+            scoredAt: 0,
+          });
+          await ctx.db.insert("product_ingredients", {
+            productId: args.productId,
+            ingredientId,
+          });
+        }
 
-        // Add to ingredient queue
+        // Add this product to the queue entry's blockedProductIds.
+        // Filter by pending/scoring status to avoid matching a stale "done" entry.
         const existingQueueEntry = await ctx.db
           .query("ingredient_queue")
           .withIndex("by_canonicalName", (q) => q.eq("canonicalName", name))
+          .filter((q) =>
+            q.or(
+              q.eq(q.field("status"), "pending"),
+              q.eq(q.field("status"), "scoring")
+            )
+          )
           .first();
 
-        if (
-          existingQueueEntry &&
-          (existingQueueEntry.status === "pending" ||
-            existingQueueEntry.status === "scoring")
-        ) {
-          // Dedup — increment and add blocked product
+        if (existingQueueEntry) {
+          // Dedup — add this product to the blocked list
           await ctx.db.patch(existingQueueEntry._id, {
             requestCount: existingQueueEntry.requestCount + 1,
             blockedProductIds: [

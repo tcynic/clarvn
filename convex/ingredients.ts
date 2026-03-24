@@ -21,8 +21,34 @@ export const upsertIngredient = internalMutation({
     evidenceSources: v.optional(v.any()),
     scoreVersion: v.optional(v.number()),
     scoredAt: v.optional(v.number()),
+    // Optional: the raw name used when the placeholder was created (from the
+    // ingredient queue). If Claude normalises the canonical name, this lets us
+    // find and update the placeholder in-place rather than creating a new record,
+    // keeping product_ingredients links intact.
+    placeholderName: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    // If the scored canonical name differs from the placeholder name, try to
+    // find and upgrade the placeholder in-place so existing product_ingredients
+    // links remain valid.
+    if (args.placeholderName && args.placeholderName !== args.canonicalName) {
+      const placeholder = await ctx.db
+        .query("ingredients")
+        .withIndex("by_canonicalName", (q) =>
+          q.eq("canonicalName", args.placeholderName!)
+        )
+        .first();
+      if (placeholder && (placeholder.scoreVersion ?? 0) === 0) {
+        const { placeholderName: _drop, ...rest } = args;
+        await ctx.db.patch(placeholder._id, {
+          ...rest,
+          scoreVersion: 1,
+          scoredAt: args.scoredAt ?? Date.now(),
+        });
+        return placeholder._id;
+      }
+    }
+
     const existing = await ctx.db
       .query("ingredients")
       .withIndex("by_canonicalName", (q) =>
@@ -31,16 +57,18 @@ export const upsertIngredient = internalMutation({
       .first();
 
     if (existing) {
+      const { placeholderName: _drop, ...rest } = args;
       await ctx.db.patch(existing._id, {
-        ...args,
+        ...rest,
         scoreVersion: (existing.scoreVersion ?? 0) + 1,
         scoredAt: args.scoredAt ?? Date.now(),
       });
       return existing._id;
     }
 
+    const { placeholderName: _drop, ...rest } = args;
     return await ctx.db.insert("ingredients", {
-      ...args,
+      ...rest,
       scoreVersion: args.scoreVersion ?? 1,
       scoredAt: args.scoredAt ?? Date.now(),
     });
