@@ -25,8 +25,8 @@ export default function AdminQueuePage() {
   const [scoringIds, setScoringIds] = useState<Set<string>>(new Set());
   const [batchRunning, setBatchRunning] = useState(false);
   const [statusFilter, setStatusFilter] = useState<
-    "pending" | "failed" | undefined
-  >("pending");
+    "pending" | "scoring" | "done" | "failed" | undefined
+  >(undefined);
 
   const queueResult = useQuery(api.scoringQueue.listQueue, {
     status: statusFilter,
@@ -137,8 +137,8 @@ export default function AdminQueuePage() {
       </form>
 
       {/* Status filter tabs */}
-      <div className="flex gap-2 mb-4">
-        {(["pending", "failed", undefined] as const).map((s) => (
+      <div className="flex gap-2 mb-4 flex-wrap">
+        {([undefined, "pending", "scoring", "failed", "done"] as const).map((s) => (
           <button
             key={String(s)}
             onClick={() => setStatusFilter(s)}
@@ -214,7 +214,7 @@ export default function AdminQueuePage() {
                       ) : entry.status === "done" ? (
                         <span className="b-clean">Done</span>
                       ) : (
-                        <span className="b-gray">Pending</span>
+                        <span className="b-watch">Pending</span>
                       )}
                     </td>
                     <td className="px-4 py-3 text-right">
