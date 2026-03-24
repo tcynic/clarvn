@@ -3,7 +3,7 @@ import ConvexClientProvider from "./ConvexClientProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "CleanList",
+  title: "clarvn",
   description: "Food product scoring based on ingredient safety",
 };
 

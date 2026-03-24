@@ -42,7 +42,7 @@ export default function AdminLayout({
       <nav className="bg-[var(--ink)] text-white px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <span className="font-semibold text-sm">
-            CleanList <span className="text-[var(--teal-mid)] italic">Admin</span>
+            clarvn <span className="text-[var(--teal-mid)] italic">Admin</span>
           </span>
           <div className="flex gap-4 text-sm">
             <Link

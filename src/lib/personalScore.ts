@@ -82,7 +82,7 @@ export function getPersonalScore(
 }
 
 // localStorage helpers
-const PROFILE_KEY = "cleanlist_profile";
+const PROFILE_KEY = "clarvn_profile";
 
 export function loadProfile(): UserProfile {
   if (typeof window === "undefined") {

@@ -1,11 +1,11 @@
 /**
- * CleanList Scoring Prompt
+ * clarvn Scoring Prompt
  *
  * Encodes the Scoring Algorithm Specification v1.0.
  * Used by Operation 2 (scoreProduct action) and Operation 1 (bulk seed script).
  */
 
-export const SCORING_SYSTEM_PROMPT = `You are CleanList's AI scoring engine. Your job is to evaluate food and consumer product ingredients using the CleanList Scoring Algorithm v1.0 and return a structured JSON object.
+export const SCORING_SYSTEM_PROMPT = `You are clarvn's AI scoring engine. Your job is to evaluate food and consumer product ingredients using the clarvn Scoring Algorithm v1.0 and return a structured JSON object.
 
 ## SCORING ALGORITHM
 
@@ -115,7 +115,7 @@ Return ONLY valid JSON. No explanation, no markdown fences, no commentary.
 - The minimum score for any ingredient dimension is 1.0. Even the safest ingredient (water, salt) scores 1.0, not 0
 - tier must exactly match: "Clean", "Watch", "Caution", or "Avoid"`;
 
-export const SCORING_DIFF_PROMPT = `You are reviewing an existing CleanList score for regulatory or scientific changes.
+export const SCORING_DIFF_PROMPT = `You are reviewing an existing clarvn score for regulatory or scientific changes.
 
 Return {"change": false} if nothing material has changed since the last scoring date.
 
@@ -141,7 +141,7 @@ export function buildDiffUserMessage(
   currentTier: string,
   lastScoredDate: string
 ): string {
-  return `Review this existing CleanList score for regulatory or scientific changes since ${lastScoredDate}:
+  return `Review this existing clarvn score for regulatory or scientific changes since ${lastScoredDate}:
 
 Product: ${productName}
 Current base score: ${currentScore}

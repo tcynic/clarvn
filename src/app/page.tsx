@@ -1,440 +1,217 @@
-"use client";
+import Link from "next/link";
 
-import { useState, useEffect } from "react";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
-import { Doc } from "../../convex/_generated/dataModel";
-import { TierBadge } from "../components/TierBadge";
-import {
-  getPersonalScore,
-  loadProfile,
-  saveProfile,
-  hasCompletedOnboarding,
-  type UserProfile,
-  type ModifierData,
-} from "../lib/personalScore";
+const TIERS = [
+  { name: "Clean", score: "1–4", color: "var(--tier-clean)", bg: "var(--tier-clean-light)", desc: "No significant concern" },
+  { name: "Watch", score: "4–6", color: "var(--tier-watch)", bg: "var(--tier-watch-light)", desc: "Some evidence of concern" },
+  { name: "Caution", score: "6–8", color: "var(--tier-caution)", bg: "var(--tier-caution-light)", desc: "Meaningful concern, consider swapping" },
+  { name: "Avoid", score: "8–10", color: "var(--tier-avoid)", bg: "var(--tier-avoid-light)", desc: "Strong evidence of harm" },
+];
 
-type Tier = "Clean" | "Watch" | "Caution" | "Avoid";
+const FEATURES = [
+  {
+    icon: "🧬",
+    title: "Evidence-based scoring",
+    body: "Each product gets a score from 1–10 derived from peer-reviewed studies, IARC classifications, and regulatory bans across 20+ jurisdictions. No opinions — only citable sources.",
+  },
+  {
+    icon: "👤",
+    title: "Personal health profile",
+    body: "Tell us your conditions and sensitivities once. clarvn applies condition-specific ingredient modifiers so the score reflects your body, not just an average.",
+  },
+  {
+    icon: "🔄",
+    title: "Cleaner alternatives",
+    body: "When a product scores Caution or Avoid, clarvn surfaces real, widely-available alternatives with lower ingredient concern profiles.",
+  },
+  {
+    icon: "🔒",
+    title: "Your data stays yours",
+    body: "Your health profile is stored only on your device. It never leaves your browser. clarvn computes your personal score locally — no server ever sees your conditions.",
+  },
+];
 
-interface ListItem {
-  name: string;
-  requestSent?: boolean;
-}
+const STEPS = [
+  { step: "01", title: "Search any product", body: "Type the name of any grocery, snack, or household product. clarvn looks it up in our scored database of 400+ products." },
+  { step: "02", title: "See the score", body: "Get an instant ingredient safety score. Each score links to the studies and regulatory actions behind it." },
+  { step: "03", title: "Find better options", body: "Swap out Caution or Avoid products with cleaner alternatives we've already scored for you." },
+];
 
-function ScorePill({ score, tier }: { score: number; tier: Tier }) {
-  const colors: Record<Tier, string> = {
-    Clean: "var(--tier-clean)",
-    Watch: "var(--tier-watch)",
-    Caution: "var(--tier-caution)",
-    Avoid: "var(--tier-avoid)",
-  };
+export default function LandingPage() {
   return (
-    <span
-      className="inline-flex items-center justify-center w-10 h-10 rounded-full text-white font-bold text-sm shrink-0"
-      style={{ background: colors[tier], fontFamily: "var(--font-serif)" }}
-    >
-      {score.toFixed(1)}
-    </span>
-  );
-}
-
-function ProductRow({
-  item,
-  profile,
-  isSelected,
-  onSelect,
-  onRequest,
-}: {
-  item: ListItem;
-  profile: UserProfile;
-  isSelected: boolean;
-  onSelect: () => void;
-  onRequest: () => void;
-}) {
-  const product = useQuery(api.products.getProduct, { name: item.name });
-  const ingredientLinks = useQuery(
-    api.ingredients.getIngredientsByProduct,
-    product ? { productId: product._id } : "skip"
-  );
-  const modifiers = useQuery(
-    api.ingredients.getModifiersByIngredients,
-    ingredientLinks
-      ? { ingredientIds: (ingredientLinks as Doc<"ingredients">[]).map((i) => i._id) }
-      : "skip"
-  );
-
-  if (product === undefined) {
-    return (
-      <div className="flex items-center gap-3 px-4 py-3 rounded-[var(--radius-lg)] border border-[var(--border)] bg-white">
-        <div className="w-10 h-10 rounded-full bg-[var(--surface-2)] animate-pulse shrink-0" />
-        <div className="flex-1">
-          <div className="h-3 bg-[var(--surface-2)] rounded w-40 animate-pulse" />
-        </div>
-      </div>
-    );
-  }
-
-  if (product === null) {
-    return (
-      <div
-        className={`flex items-center justify-between px-4 py-3 rounded-[var(--radius-lg)] border transition-colors ${
-          isSelected ? "border-[var(--teal)] bg-[var(--teal-light)]" : "border-[var(--border)] bg-white"
-        }`}
-      >
-        <div>
-          <p className="text-sm font-medium text-[var(--ink)]">{item.name}</p>
-          <p className="text-xs text-[var(--ink-3)]">Not yet scored</p>
-        </div>
-        {item.requestSent ? (
-          <span className="b-teal">Requested ✓</span>
-        ) : (
-          <button
-            onClick={onRequest}
-            className="text-xs bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
-          >
-            Request
-          </button>
-        )}
-      </div>
-    );
-  }
-
-  const personal = modifiers
-    ? getPersonalScore(product.baseScore, modifiers as ModifierData[], profile)
-    : null;
-  const displayScore = personal?.personalScore ?? product.baseScore;
-  const displayTier = personal?.personalTier ?? (product.tier as Tier);
-  const hasModifiers = personal && personal.appliedModifiers.length > 0;
-
-  return (
-    <button
-      onClick={onSelect}
-      className={`w-full flex items-center gap-3 px-4 py-3 rounded-[var(--radius-lg)] border text-left transition-colors ${
-        isSelected ? "border-[var(--teal)] bg-[var(--teal-light)]" : "border-[var(--border)] bg-white hover:bg-[var(--surface)]"
-      }`}
-    >
-      <ScorePill score={displayScore} tier={displayTier} />
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-1.5 flex-wrap">
-          <p className="text-sm font-medium text-[var(--ink)] truncate">
-            {product.emoji} {product.name}
-          </p>
-          <TierBadge tier={displayTier} />
-        </div>
-        <p className="text-xs text-[var(--ink-3)]">{product.brand}</p>
-        {hasModifiers && (
-          <div className="flex flex-wrap gap-1 mt-0.5">
-            {personal!.appliedModifiers.map((m, i) => (
-              <span key={i} className="text-xs text-[var(--tier-caution)]">
-                +{m.modifierAmount} {m.condition}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-      {hasModifiers && (
-        <span className="text-xs line-through text-[var(--ink-4)] shrink-0">
-          {product.baseScore.toFixed(1)}
+    <div className="min-h-screen bg-[var(--surface)] flex flex-col">
+      {/* Nav */}
+      <nav className="bg-white border-b border-[var(--border)] px-6 py-4 flex items-center justify-between">
+        <span className="font-semibold text-base text-[var(--ink)]" style={{ fontFamily: "var(--font-serif)" }}>
+          clar<span className="text-[var(--teal)] italic">vn</span>
         </span>
-      )}
-    </button>
-  );
-}
-
-function ProductDetail({
-  name,
-  profile,
-  onClose,
-  onSwap,
-}: {
-  name: string;
-  profile: UserProfile;
-  onClose: () => void;
-  onSwap: (newName: string) => void;
-}) {
-  const product = useQuery(api.products.getProduct, { name });
-  const ingredientLinks = useQuery(
-    api.ingredients.getIngredientsByProduct,
-    product ? { productId: product._id } : "skip"
-  );
-  const modifiers = useQuery(
-    api.ingredients.getModifiersByIngredients,
-    ingredientLinks
-      ? { ingredientIds: (ingredientLinks as Doc<"ingredients">[]).map((i) => i._id) }
-      : "skip"
-  );
-  const alternatives = useQuery(
-    api.scoringQueue.getAlternativesForProduct,
-    product ? { productId: product._id } : "skip"
-  );
-
-  if (!product) return null;
-
-  const personal = modifiers
-    ? getPersonalScore(product.baseScore, modifiers as ModifierData[], profile)
-    : null;
-  const displayScore = personal?.personalScore ?? product.baseScore;
-  const displayTier = personal?.personalTier ?? (product.tier as Tier);
-
-  return (
-    <div className="bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-5 mt-3">
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <h2 className="font-semibold text-[var(--ink)] text-sm">
-            {product.emoji} {product.name}
-          </h2>
-          <p className="text-xs text-[var(--ink-3)]">{product.brand}</p>
-        </div>
-        <button onClick={onClose} className="text-[var(--ink-3)] hover:text-[var(--ink)] text-xl leading-none">×</button>
-      </div>
-
-      {/* Score display */}
-      <div className="flex items-center gap-4 mb-5">
-        <div className="flex flex-col items-center">
-          {personal && personal.personalScore !== personal.baseScore && (
-            <span className="text-xs line-through text-[var(--ink-4)]">{personal.baseScore.toFixed(1)}</span>
-          )}
-          <span
-            className="text-4xl font-bold"
-            style={{ fontFamily: "var(--font-serif)", color: `var(--tier-${displayTier.toLowerCase()})` }}
+        <div className="flex items-center gap-3">
+          <Link
+            href="/login"
+            className="text-sm font-medium text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors"
           >
-            {displayScore.toFixed(1)}
-          </span>
-          <TierBadge tier={displayTier} />
+            Sign In
+          </Link>
+          <Link
+            href="/login"
+            className="text-sm font-medium bg-[var(--teal)] text-white px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors"
+          >
+            Get Started
+          </Link>
         </div>
-        <div className="text-xs text-[var(--ink-3)]">
-          <p>v{product.scoreVersion}</p>
-          <p className="mt-0.5">AI-generated</p>
-        </div>
-      </div>
+      </nav>
 
-      {/* Profile modifiers */}
-      {personal && personal.appliedModifiers.length > 0 && (
-        <div className="mb-4 p-3 bg-[var(--tier-caution-light)] rounded-[var(--radius)]">
-          <p className="text-xs font-semibold text-[var(--tier-caution)] uppercase tracking-wide mb-1.5">Your Profile</p>
-          {personal.appliedModifiers.map((m, i) => (
-            <div key={i} className="text-xs text-[var(--tier-caution)] mb-0.5">
-              +{m.modifierAmount} {m.condition} · {m.evidenceCitation.split(" ").slice(0, 5).join(" ")}…
+      {/* Hero */}
+      <section className="px-6 py-20 text-center max-w-2xl mx-auto">
+        <p className="section-eyebrow mb-4">Ingredient safety, made readable</p>
+        <h1
+          className="text-5xl sm:text-6xl text-[var(--ink)] leading-[1.1] mb-6"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          Know what&rsquo;s really<br />
+          <span className="text-[var(--teal)] italic">in your food.</span>
+        </h1>
+        <p className="text-lg text-[var(--ink-3)] mb-10 max-w-lg mx-auto">
+          clarvn scores grocery products 1–10 based on ingredient safety evidence from peer-reviewed research and regulatory databases across 20 countries. Personalised to your health profile.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link
+            href="/login"
+            className="inline-flex items-center justify-center bg-[var(--teal)] text-white font-semibold text-sm px-8 py-3.5 rounded-[var(--radius-lg)] hover:bg-[var(--teal-dark)] transition-colors"
+          >
+            Create free account
+          </Link>
+          <Link
+            href="/login"
+            className="inline-flex items-center justify-center bg-white text-[var(--ink)] font-semibold text-sm px-8 py-3.5 rounded-[var(--radius-lg)] border border-[var(--border)] hover:bg-[var(--surface-2)] transition-colors"
+          >
+            Sign in
+          </Link>
+        </div>
+      </section>
+
+      {/* Score tiers */}
+      <section className="px-6 py-14 max-w-3xl mx-auto w-full">
+        <p className="section-eyebrow text-center mb-3">Four clear tiers</p>
+        <h2
+          className="text-2xl text-center text-[var(--ink)] mb-8"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          Simple scores, transparent evidence
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {TIERS.map((t) => (
+            <div
+              key={t.name}
+              className="rounded-[var(--radius-lg)] p-4 flex flex-col items-center text-center gap-2"
+              style={{ background: t.bg }}
+            >
+              <span
+                className="text-2xl font-bold"
+                style={{ fontFamily: "var(--font-serif)", color: t.color }}
+              >
+                {t.score}
+              </span>
+              <span className="text-xs font-bold uppercase tracking-wider" style={{ color: t.color }}>
+                {t.name}
+              </span>
+              <p className="text-xs text-[var(--ink-3)] leading-snug">{t.desc}</p>
             </div>
           ))}
         </div>
-      )}
+      </section>
 
-      {/* Ingredients */}
-      {ingredientLinks && (
-        <div className="border-t border-[var(--border)] pt-4">
-          <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Ingredients</p>
-          <ul className="flex flex-col gap-1">
-            {(ingredientLinks as Doc<"ingredients">[])
-              .sort((a, b) => b.baseScore - a.baseScore)
-              .map((ing) => (
-                <li key={ing._id} className="flex items-center justify-between text-xs py-0.5">
-                  <span className="text-[var(--ink-2)]">
-                    {ing.canonicalName}
-                    {ing.flagLabel && <span className="text-[var(--ink-4)] ml-1">· {ing.flagLabel}</span>}
-                  </span>
-                  <TierBadge tier={ing.tier as Tier} />
-                </li>
-              ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Alternatives */}
-      {alternatives && alternatives.length > 0 && (
-        <div className="border-t border-[var(--border)] pt-4 mt-1">
-          <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Alternatives</p>
-          <ul className="flex flex-col gap-2">
-            {(alternatives as Doc<"products">[]).map((alt) => (
-              <li key={alt._id} className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 min-w-0">
-                  <span
-                    className="text-sm font-bold shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white"
-                    style={{ background: `var(--tier-${alt.tier.toLowerCase()})`, fontFamily: "var(--font-serif)" }}
-                  >
-                    {alt.baseScore.toFixed(1)}
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-xs font-medium text-[var(--ink)] truncate">
-                      {alt.emoji} {alt.name}
-                    </p>
-                    <TierBadge tier={alt.tier as Tier} />
-                  </div>
-                </div>
-                <button
-                  onClick={() => onSwap(alt.name)}
-                  className="text-xs bg-[var(--teal-light)] text-[var(--teal-dark)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--teal-pale)] transition-colors shrink-0"
-                >
-                  Swap
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function ProfilePanel({
-  profile,
-  onChange,
-  onClose,
-}: {
-  profile: UserProfile;
-  onChange: (p: UserProfile) => void;
-  onClose: () => void;
-}) {
-  const CONDITIONS = ["ADHD","IBS / Gut sensitivity","Thyroid condition","Eczema / skin","Hormone-sensitive condition","Cancer history","Pregnancy"];
-  const SENSITIVITIES = ["Migraines","Food allergies","Gluten sensitivity","Gut sensitivity","Artificial dyes","Preservatives"];
-
-  function toggle(type: "conditions" | "sensitivities", val: string) {
-    const next = profile[type].includes(val)
-      ? profile[type].filter((v) => v !== val)
-      : [...profile[type], val];
-    const updated = { ...profile, [type]: next };
-    onChange(updated);
-    saveProfile(updated);
-  }
-
-  return (
-    <div className="fixed inset-0 bg-black/30 flex items-end sm:items-center justify-center z-50 p-4" onClick={onClose}>
-      <div className="bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-6 w-full max-w-sm max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="font-semibold text-[var(--ink)]" style={{ fontFamily: "var(--font-serif)" }}>Your Profile</h2>
-          <button onClick={onClose} className="text-[var(--ink-3)] text-xl">×</button>
-        </div>
-        <div className="mb-4">
-          <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Conditions</p>
-          <div className="flex flex-wrap gap-2">
-            {CONDITIONS.map((c) => (
-              <button key={c} onClick={() => toggle("conditions", c)}
-                className={profile.conditions.includes(c) ? "pill" : "pill-neutral"}>{c}</button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Sensitivities</p>
-          <div className="flex flex-wrap gap-2">
-            {SENSITIVITIES.map((s) => (
-              <button key={s} onClick={() => toggle("sensitivities", s)}
-                className={profile.sensitivities.includes(s) ? "pill" : "pill-neutral"}>{s}</button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function ShoppingListPage() {
-  const [search, setSearch] = useState("");
-  const [list, setList] = useState<ListItem[]>([]);
-  const [selectedName, setSelectedName] = useState<string | null>(null);
-  const [showProfile, setShowProfile] = useState(false);
-  const [profile, setProfile] = useState<UserProfile>({
-    motivation: [], conditions: [], sensitivities: [],
-  });
-
-  useEffect(() => {
-    setProfile(loadProfile());
-    if (!hasCompletedOnboarding()) {
-      window.location.href = "/onboarding";
-    }
-  }, []);
-
-  const addToQueue = useMutation(api.scoringQueue.addToQueue);
-
-  function handleAdd() {
-    const name = search.trim();
-    if (!name || list.some((i) => i.name === name)) return;
-    setList((prev) => [...prev, { name }]);
-    setSearch("");
-    setSelectedName(name);
-  }
-
-  async function handleRequest(name: string) {
-    await addToQueue({ productName: name, source: "user_request", priority: 1 });
-    setList((prev) => prev.map((item) => item.name === name ? { ...item, requestSent: true } : item));
-  }
-
-  function handleSwap(currentName: string, newName: string) {
-    setList((prev) => prev.map((item) => item.name === currentName ? { name: newName } : item));
-    setSelectedName(newName);
-  }
-
-  const activeConditionCount = profile.conditions.length + profile.sensitivities.length;
-
-  return (
-    <div className="min-h-screen bg-[var(--surface)]">
-      <header className="bg-[var(--ink)] text-white px-4 py-3 flex items-center justify-between">
-        <h1 className="font-semibold text-sm">
-          Clean<span className="text-[var(--teal-mid)] italic">List</span>
-        </h1>
-        <button
-          onClick={() => setShowProfile(true)}
-          className="flex items-center gap-1.5 text-xs bg-white/10 hover:bg-white/20 transition-colors px-3 py-1.5 rounded-full"
-        >
-          {activeConditionCount > 0 ? `${activeConditionCount} active` : "Profile"}
-          <span>▾</span>
-        </button>
-      </header>
-
-      <div className="max-w-lg mx-auto px-4 py-6">
-        <form onSubmit={(e) => { e.preventDefault(); handleAdd(); }} className="flex gap-2 mb-6">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search or add a product…"
-            className="flex-1 border border-[var(--border)] rounded-[var(--radius-lg)] px-4 py-3 text-sm text-[var(--ink)] bg-white outline-none focus:border-[var(--teal)] transition-colors"
-          />
-          <button
-            type="submit"
-            disabled={!search.trim()}
-            className="bg-[var(--teal)] text-white font-medium text-sm px-4 py-3 rounded-[var(--radius-lg)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-50"
+      {/* How it works */}
+      <section className="px-6 py-14 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <p className="section-eyebrow text-center mb-3">How it works</p>
+          <h2
+            className="text-2xl text-center text-[var(--ink)] mb-10"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
-            Add
-          </button>
-        </form>
-
-        {list.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-3xl mb-2">🛒</p>
-            <p className="text-sm text-[var(--ink-3)]">Search for a product to get started.</p>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-2">
-            {list.map((item) => (
-              <ProductRow
-                key={item.name}
-                item={item}
-                profile={profile}
-                isSelected={selectedName === item.name}
-                onSelect={() => setSelectedName(selectedName === item.name ? null : item.name)}
-                onRequest={() => handleRequest(item.name)}
-              />
+            Three steps to a cleaner cart
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {STEPS.map((s) => (
+              <div key={s.step} className="flex flex-col gap-3">
+                <span
+                  className="text-4xl font-bold text-[var(--surface-3)]"
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  {s.step}
+                </span>
+                <h3 className="font-semibold text-[var(--ink)] text-sm">{s.title}</h3>
+                <p className="text-sm text-[var(--ink-3)] leading-relaxed">{s.body}</p>
+              </div>
             ))}
           </div>
-        )}
+        </div>
+      </section>
 
-        {selectedName && (
-          <ProductDetail
-            name={selectedName}
-            profile={profile}
-            onClose={() => setSelectedName(null)}
-            onSwap={(newName) => handleSwap(selectedName, newName)}
-          />
-        )}
-      </div>
+      {/* Features */}
+      <section className="px-6 py-14 max-w-3xl mx-auto w-full">
+        <p className="section-eyebrow text-center mb-3">Built with care</p>
+        <h2
+          className="text-2xl text-center text-[var(--ink)] mb-10"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          What makes clarvn different
+        </h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {FEATURES.map((f) => (
+            <div
+              key={f.title}
+              className="bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-6 flex flex-col gap-3"
+            >
+              <span className="text-2xl">{f.icon}</span>
+              <h3 className="font-semibold text-[var(--ink)] text-sm">{f.title}</h3>
+              <p className="text-sm text-[var(--ink-3)] leading-relaxed">{f.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      {showProfile && (
-        <ProfilePanel
-          profile={profile}
-          onChange={setProfile}
-          onClose={() => setShowProfile(false)}
-        />
-      )}
+      {/* Transparency note */}
+      <section className="px-6 py-10 bg-white">
+        <div className="max-w-xl mx-auto text-center">
+          <div className="callout teal inline-block text-left max-w-lg">
+            <div>
+              <p className="text-xs font-semibold text-[var(--teal-dark)] uppercase tracking-wide mb-1">How scores are calculated</p>
+              <p className="text-sm text-[var(--ink-2)] leading-relaxed">
+                Every score is computed from three weighted dimensions: harm evidence (40%), regulatory consensus across 20+ jurisdictions (35%), and avoidance priority (25%). All citations are traceable to published studies or official regulatory actions. Scores are AI-generated and reviewed periodically — they are not a substitute for medical advice.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="px-6 py-20 text-center">
+        <h2
+          className="text-3xl text-[var(--ink)] mb-4"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          Start reading labels differently.
+        </h2>
+        <p className="text-sm text-[var(--ink-3)] mb-8">Free to use. No credit card required.</p>
+        <Link
+          href="/login"
+          className="inline-flex items-center justify-center bg-[var(--teal)] text-white font-semibold text-sm px-8 py-3.5 rounded-[var(--radius-lg)] hover:bg-[var(--teal-dark)] transition-colors"
+        >
+          Create free account
+        </Link>
+      </section>
+
+      {/* Footer */}
+      <footer className="mt-auto bg-[var(--ink)] text-white px-6 py-8">
+        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="font-semibold text-sm" style={{ fontFamily: "var(--font-serif)" }}>
+            clar<span className="text-[var(--teal-mid)] italic">vn</span>
+          </span>
+          <p className="text-xs text-white/40">
+            Scores are AI-generated from peer-reviewed evidence. Not medical advice. &copy; {new Date().getFullYear()} clarvn.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

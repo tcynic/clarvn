@@ -131,7 +131,7 @@ export default function OnboardingPage() {
         sensitivities: sensitivities.filter((s) => s !== "None"),
       };
       saveProfile(profile);
-      router.push("/");
+      router.push("/app");
     }
   }
 

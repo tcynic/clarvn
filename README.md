@@ -1,4 +1,4 @@
-# CleanList
+# clarvn
 
 Food product scoring app. Evaluates grocery products based on ingredient safety evidence, regulatory consensus, and avoidance priority. Produces a universal base score (1–10) and a personalized score adjusted by the user's health profile.
 
@@ -15,10 +15,13 @@ Food product scoring app. Evaluates grocery products based on ingredient safety 
 ```
 src/
   app/
-    page.tsx              # Consumer shopping list app
+    page.tsx              # Landing page
+    app/
+      page.tsx            # Consumer shopping list app (requires auth)
+    login/                # Consumer auth (sign in / sign up)
     onboarding/           # 3-step health profile onboarding
     admin/
-      page.tsx            # Scoring queue (admin)
+      page.tsx            # Scoring queue (admin, served at admin subdomain)
       products/           # Product browser (admin)
       login/              # Admin auth
   lib/
@@ -57,7 +60,8 @@ npx convex dev
 npm run dev
 ```
 
-App runs at `http://localhost:3000`. Admin at `/admin/login`.
+App runs at `http://localhost:3000`. Admin at `http://admin.localhost:3000/login`.
+Consumer login at `http://localhost:3000/login`.
 
 ## Environment variables
 
@@ -83,10 +87,9 @@ npx convex env set ADMIN_EMAILS you@example.com --prod
 
 ## Admin account setup
 
-1. Go to `/admin/login`
-2. Click **"First time? Create account"**
-3. Sign up with your email and password
-4. Optionally restrict access: `npx convex env set ADMIN_EMAILS you@example.com`
+1. Go to `http://admin.localhost:3000/login`
+2. Sign up with your email and password
+3. Optionally restrict access: `npx convex env set ADMIN_EMAILS you@example.com`
 
 ## Bulk seed script
 

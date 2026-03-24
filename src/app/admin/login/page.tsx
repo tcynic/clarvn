@@ -34,7 +34,7 @@ export default function AdminLoginPage() {
         {/* Logo */}
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-[var(--font-serif)] text-[var(--ink)]">
-            CleanList <span className="italic text-[var(--teal)]">Admin</span>
+            clarvn <span className="italic text-[var(--teal)]">Admin</span>
           </h1>
           <p className="text-sm text-[var(--ink-3)] mt-1">Sign in to continue</p>
         </div>

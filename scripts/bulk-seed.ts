@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 /**
- * CleanList Bulk Seed Script — Operation 1
+ * clarvn Bulk Seed Script — Operation 1
  *
  * Scores ~500 products from seed-products.json using the Claude API
  * and writes results to Convex via ConvexHttpClient.
@@ -245,7 +245,7 @@ async function main() {
   const products = limit ? allProducts.slice(0, limit) : allProducts;
 
   console.log(
-    `\n🌱 CleanList Bulk Seed${isDryRun ? " [DRY RUN]" : ""}${isProd ? " [PROD]" : " [DEV]"}`
+    `\n🌱 clarvn Bulk Seed${isDryRun ? " [DRY RUN]" : ""}${isProd ? " [PROD]" : " [DEV]"}`,
   );
   console.log(`   Products to process: ${products.length}`);
   console.log(`   Convex URL: ${ACTIVE_URL}`);
