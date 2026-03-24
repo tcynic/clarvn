@@ -135,9 +135,20 @@ async function scoreIngredientCore(
     ingredientId,
   });
 
+  // Re-fetch the queue entry so we assemble any products that were appended to
+  // blockedProductIds while the Claude API call was in-flight (the snapshot from
+  // step 2 above may be stale — new product extractions can add to blockedProductIds
+  // while an entry is in "scoring" status).
+  const freshQueueEntry = await ctx.runQuery(
+    internal.ingredientQueue.getIngredientQueueEntry,
+    { queueId }
+  );
+  const finalBlockedProductIds =
+    freshQueueEntry?.blockedProductIds ?? queueEntry.blockedProductIds;
+
   // 7. Auto-assembly: decrement pendingIngredientCount for all blocked products.
   //    If count reaches 0 → trigger full assembly.
-  for (const productId of queueEntry.blockedProductIds) {
+  for (const productId of finalBlockedProductIds) {
     await ctx.runMutation(internal.assembly.decrementPendingAndAssemble, {
       productId,
     });
