@@ -137,6 +137,29 @@ export const getQueueEntry = internalQuery({
   },
 });
 
+// Public query: get scored alternatives for a given product.
+// Finds scoring_queue entries where source="alternative", sourceProductId matches,
+// and status="done", then joins to the products table.
+export const getAlternativesForProduct = query({
+  args: { productId: v.id("products") },
+  handler: async (ctx, args) => {
+    const entries = await ctx.db
+      .query("scoring_queue")
+      .withIndex("by_sourceProductId_and_status", (q) =>
+        q.eq("sourceProductId", args.productId).eq("status", "done")
+      )
+      .take(10);
+
+    const products = await Promise.all(
+      entries
+        .filter((e) => e.source === "alternative" && e.productId !== undefined)
+        .map((e) => ctx.db.get(e.productId!))
+    );
+
+    return products.filter(Boolean);
+  },
+});
+
 // Admin-only query: list queue entries, paginated, sorted by priority asc.
 // Optional status filter. Results within same priority sorted by requestCount desc.
 export const listQueue = query({

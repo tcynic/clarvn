@@ -8,9 +8,19 @@ const modules = import.meta.glob("../convex/**/*.ts");
 
 // convex-test spins up an in-memory Convex backend for each test.
 
+// Helper: insert an admin user and return a withIdentity context.
+async function setupAdmin(t: ReturnType<typeof convexTest>) {
+  const userId = await t.run(async (ctx) =>
+    ctx.db.insert("users", { isAdmin: true })
+  );
+  return t.withIdentity({ tokenIdentifier: `test|${userId}|session` });
+}
+
 describe("1.3 — Queue management", () => {
   test("addToQueue inserts a new entry and listQueue returns it", async () => {
     const t = convexTest(schema, modules);
+    const asAdmin = await setupAdmin(t);
+
     const id = await t.mutation(api.scoringQueue.addToQueue, {
       productName: "Froot Loops",
       source: "user_request",
@@ -19,7 +29,7 @@ describe("1.3 — Queue management", () => {
 
     expect(id).toBeTruthy();
 
-    const result = await t.query(api.scoringQueue.listQueue, {
+    const result = await asAdmin.query(api.scoringQueue.listQueue, {
       status: "pending",
       paginationOpts: { numItems: 10, cursor: null },
     });
@@ -31,6 +41,7 @@ describe("1.3 — Queue management", () => {
 
   test("addToQueue deduplicates: second call increments requestCount instead of inserting", async () => {
     const t = convexTest(schema, modules);
+    const asAdmin = await setupAdmin(t);
 
     await t.mutation(api.scoringQueue.addToQueue, {
       productName: "Froot Loops",
@@ -44,7 +55,7 @@ describe("1.3 — Queue management", () => {
       priority: 1,
     });
 
-    const result = await t.query(api.scoringQueue.listQueue, {
+    const result = await asAdmin.query(api.scoringQueue.listQueue, {
       status: "pending",
       paginationOpts: { numItems: 10, cursor: null },
     });

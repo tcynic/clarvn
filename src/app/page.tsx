@@ -145,10 +145,12 @@ function ProductDetail({
   name,
   profile,
   onClose,
+  onSwap,
 }: {
   name: string;
   profile: UserProfile;
   onClose: () => void;
+  onSwap: (newName: string) => void;
 }) {
   const product = useQuery(api.products.getProduct, { name });
   const ingredientLinks = useQuery(
@@ -160,6 +162,10 @@ function ProductDetail({
     ingredientLinks
       ? { ingredientIds: (ingredientLinks as Doc<"ingredients">[]).map((i) => i._id) }
       : "skip"
+  );
+  const alternatives = useQuery(
+    api.scoringQueue.getAlternativesForProduct,
+    product ? { productId: product._id } : "skip"
   );
 
   if (!product) return null;
@@ -230,6 +236,39 @@ function ProductDetail({
                   <TierBadge tier={ing.tier as Tier} />
                 </li>
               ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Alternatives */}
+      {alternatives && alternatives.length > 0 && (
+        <div className="border-t border-[var(--border)] pt-4 mt-1">
+          <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Alternatives</p>
+          <ul className="flex flex-col gap-2">
+            {(alternatives as Doc<"products">[]).map((alt) => (
+              <li key={alt._id} className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span
+                    className="text-sm font-bold shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white"
+                    style={{ background: `var(--tier-${alt.tier.toLowerCase()})`, fontFamily: "var(--font-serif)" }}
+                  >
+                    {alt.baseScore.toFixed(1)}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium text-[var(--ink)] truncate">
+                      {alt.emoji} {alt.name}
+                    </p>
+                    <TierBadge tier={alt.tier as Tier} />
+                  </div>
+                </div>
+                <button
+                  onClick={() => onSwap(alt.name)}
+                  className="text-xs bg-[var(--teal-light)] text-[var(--teal-dark)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--teal-pale)] transition-colors shrink-0"
+                >
+                  Swap
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
       )}
@@ -319,6 +358,11 @@ export default function ShoppingListPage() {
     setList((prev) => prev.map((item) => item.name === name ? { ...item, requestSent: true } : item));
   }
 
+  function handleSwap(currentName: string, newName: string) {
+    setList((prev) => prev.map((item) => item.name === currentName ? { name: newName } : item));
+    setSelectedName(newName);
+  }
+
   const activeConditionCount = profile.conditions.length + profile.sensitivities.length;
 
   return (
@@ -379,6 +423,7 @@ export default function ShoppingListPage() {
             name={selectedName}
             profile={profile}
             onClose={() => setSelectedName(null)}
+            onSwap={(newName) => handleSwap(selectedName, newName)}
           />
         )}
       </div>

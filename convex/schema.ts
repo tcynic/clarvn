@@ -39,7 +39,8 @@ export default defineSchema({
     errorMessage: v.optional(v.string()),
   })
     .index("by_status_and_priority", ["status", "priority"])
-    .index("by_productName", ["productName"]),
+    .index("by_productName", ["productName"])
+    .index("by_sourceProductId_and_status", ["sourceProductId", "status"]),
 
   products: defineTable({
     name: v.string(),
