@@ -1,4 +1,5 @@
 import { v } from "convex/values";
+import { paginationOptsValidator } from "convex/server";
 import { internalMutation, internalQuery, mutation, query } from "./_generated/server";
 import { requireAdmin } from "./lib/auth";
 
@@ -270,13 +271,13 @@ export const getModifiersByIngredients = query({
 
 // Admin query: list all scored ingredients.
 export const listIngredients = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
     await requireAdmin(ctx);
     return await ctx.db
       .query("ingredients")
       .order("asc")
-      .take(500);
+      .paginate(args.paginationOpts);
   },
 });
 

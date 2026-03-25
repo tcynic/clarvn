@@ -13,6 +13,7 @@ import type * as alternativesMutations from "../alternativesMutations.js";
 import type * as assembly from "../assembly.js";
 import type * as auth from "../auth.js";
 import type * as brandSuggestions from "../brandSuggestions.js";
+import type * as crons from "../crons.js";
 import type * as deduplication from "../deduplication.js";
 import type * as extraction from "../extraction.js";
 import type * as extractionMutations from "../extractionMutations.js";
@@ -45,6 +46,7 @@ declare const fullApi: ApiFromModules<{
   assembly: typeof assembly;
   auth: typeof auth;
   brandSuggestions: typeof brandSuggestions;
+  crons: typeof crons;
   deduplication: typeof deduplication;
   extraction: typeof extraction;
   extractionMutations: typeof extractionMutations;

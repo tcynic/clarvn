@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery, useMutation } from "convex/react";
+import { usePaginatedQuery, useQuery, useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id, Doc } from "../../../../convex/_generated/dataModel";
 import { TierBadge } from "../../../components/TierBadge";
@@ -15,7 +15,11 @@ export default function AdminIngredientsPage() {
   const [selectedId, setSelectedId] = useState<Id<"ingredients"> | null>(null);
   const [dedupStatus, setDedupStatus] = useState<string | null>(null);
 
-  const ingredients = useQuery(api.ingredients.listIngredients, {});
+  const { results: ingredients, status, loadMore } = usePaginatedQuery(
+    api.ingredients.listIngredients,
+    {},
+    { initialNumItems: 200 }
+  );
   const detail = useQuery(
     api.ingredients.getIngredientDetail,
     selectedId ? { ingredientId: selectedId } : "skip"
@@ -37,7 +41,7 @@ export default function AdminIngredientsPage() {
     }
   }
 
-  const filtered = (ingredients ?? []).filter((ing) => {
+  const filtered = ingredients.filter((ing) => {
     const matchesSearch =
       !search ||
       ing.canonicalName.toLowerCase().includes(search.toLowerCase()) ||
@@ -120,7 +124,7 @@ export default function AdminIngredientsPage() {
       <div className="flex gap-4">
         {/* Ingredient list */}
         <div className="flex-1 bg-white rounded-[var(--radius-lg)] border border-[var(--border)] overflow-hidden">
-          {!ingredients ? (
+          {status === "LoadingFirstPage" ? (
             <p className="text-sm text-[var(--ink-3)] text-center py-12">Loading…</p>
           ) : scoredIngredients.length === 0 ? (
             <p className="text-sm text-[var(--ink-3)] text-center py-12">No ingredients found.</p>
@@ -192,6 +196,16 @@ export default function AdminIngredientsPage() {
                   ))}
               </tbody>
             </table>
+          )}
+          {status === "CanLoadMore" && (
+            <div className="p-4 text-center border-t border-[var(--border)]">
+              <button
+                onClick={() => loadMore(200)}
+                className="text-sm text-[var(--teal)] hover:underline"
+              >
+                Load more
+              </button>
+            </div>
           )}
         </div>
 
