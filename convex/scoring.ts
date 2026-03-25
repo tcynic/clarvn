@@ -166,7 +166,7 @@ async function scoreProductCore(
 
   // 5. Store and auto-queue alternatives (only for non-Clean products)
   if (scored.alternatives.length > 0) {
-    await ctx.runMutation(internal.alternatives.upsertAlternatives, {
+    await ctx.runMutation(internal.alternativesMutations.upsertAlternatives, {
       productId,
       alternatives: scored.alternatives,
     });

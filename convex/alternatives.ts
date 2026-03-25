@@ -1,14 +1,7 @@
 "use node";
 
 import { v } from "convex/values";
-import {
-  action,
-  internalAction,
-  internalMutation,
-  internalQuery,
-  query,
-  ActionCtx,
-} from "./_generated/server";
+import { action, internalAction, ActionCtx } from "./_generated/server";
 import { internal, api } from "./_generated/api";
 import { Id } from "./_generated/dataModel";
 import Anthropic from "@anthropic-ai/sdk";
@@ -27,84 +20,6 @@ function buildAlternativesUserMessage(
   return `Product: "${name}" by ${brand} (tier: ${tier})
 Suggest 4 cleaner alternatives. Each must be a real, widely available product. Return: [{"name":"...","brand":"...","reason":"..."}]`;
 }
-
-// --- Internal mutation: upsert alternatives for a product ---
-export const upsertAlternatives = internalMutation({
-  args: {
-    productId: v.id("products"),
-    alternatives: v.array(
-      v.object({
-        name: v.string(),
-        brand: v.string(),
-        reason: v.optional(v.string()),
-      })
-    ),
-  },
-  handler: async (ctx, args) => {
-    const existing = await ctx.db
-      .query("alternatives_queue")
-      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
-      .first();
-
-    if (existing) {
-      await ctx.db.patch(existing._id, {
-        status: "done",
-        alternatives: args.alternatives,
-      });
-    } else {
-      await ctx.db.insert("alternatives_queue", {
-        productId: args.productId,
-        status: "done",
-        alternatives: args.alternatives,
-      });
-    }
-  },
-});
-
-// --- Internal mutation: mark alternatives entry as failed ---
-export const markAlternativesFailed = internalMutation({
-  args: { productId: v.id("products") },
-  handler: async (ctx, args) => {
-    const existing = await ctx.db
-      .query("alternatives_queue")
-      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
-      .first();
-
-    if (existing) {
-      await ctx.db.patch(existing._id, { status: "failed" });
-    } else {
-      await ctx.db.insert("alternatives_queue", {
-        productId: args.productId,
-        status: "failed",
-      });
-    }
-  },
-});
-
-// --- Internal query: check if a product already has done alternatives ---
-export const getAlternativesEntry = internalQuery({
-  args: { productId: v.id("products") },
-  handler: async (ctx, args) => {
-    return await ctx.db
-      .query("alternatives_queue")
-      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
-      .first();
-  },
-});
-
-// --- Public query: get alternatives for a product ---
-export const getAlternativesForProduct = query({
-  args: { productId: v.id("products") },
-  handler: async (ctx, args) => {
-    const entry = await ctx.db
-      .query("alternatives_queue")
-      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
-      .first();
-
-    if (!entry || entry.status !== "done") return null;
-    return entry.alternatives ?? null;
-  },
-});
 
 // --- Core: generate alternatives for one product via LLM ---
 async function generateAlternativesCore(
@@ -163,21 +78,21 @@ async function generateAlternativesCore(
       )
       .slice(0, 4);
   } catch (_err) {
-    await ctx.runMutation(internal.alternatives.markAlternativesFailed, {
+    await ctx.runMutation(internal.alternativesMutations.markAlternativesFailed, {
       productId,
     });
     return;
   }
 
   if (alternatives.length === 0) {
-    await ctx.runMutation(internal.alternatives.markAlternativesFailed, {
+    await ctx.runMutation(internal.alternativesMutations.markAlternativesFailed, {
       productId,
     });
     return;
   }
 
   // Store alternatives
-  await ctx.runMutation(internal.alternatives.upsertAlternatives, {
+  await ctx.runMutation(internal.alternativesMutations.upsertAlternatives, {
     productId,
     alternatives,
   });
@@ -230,7 +145,7 @@ export const backfillBatch = internalAction({
       if (!product || !product.tier || product.tier === "Clean") continue;
 
       const entry = await ctx.runQuery(
-        internal.alternatives.getAlternativesEntry,
+        internal.alternativesMutations.getAlternativesEntry,
         { productId }
       );
       if (entry?.status === "done") continue;
