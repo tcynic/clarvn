@@ -247,6 +247,23 @@ export const processQueueBatch = internalAction({
   },
 });
 
+// Internal: kick off batch processing without auth check (used by cron).
+export const internalProcessAllPending = internalAction({
+  args: {},
+  handler: async (ctx, _args): Promise<{ started: boolean }> => {
+    const batchState = await ctx.runQuery(internal.scoringQueue.getBatchState, {});
+    if (batchState?.isRunning) {
+      return { started: false };
+    }
+    await ctx.runMutation(internal.scoringQueue.setBatchState, {
+      isRunning: true,
+      shouldStop: false,
+    });
+    await ctx.scheduler.runAfter(0, internal.scoring.processQueueBatch, {});
+    return { started: true };
+  },
+});
+
 // Public: kick off batch processing (admin-only).
 export const processAllPending = action({
   args: {},
