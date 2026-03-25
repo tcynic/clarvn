@@ -8,6 +8,8 @@
  * @module
  */
 
+import type * as alternatives from "../alternatives.js";
+import type * as alternativesMutations from "../alternativesMutations.js";
 import type * as assembly from "../assembly.js";
 import type * as auth from "../auth.js";
 import type * as brandSuggestions from "../brandSuggestions.js";
@@ -38,6 +40,8 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  alternatives: typeof alternatives;
+  alternativesMutations: typeof alternativesMutations;
   assembly: typeof assembly;
   auth: typeof auth;
   brandSuggestions: typeof brandSuggestions;
