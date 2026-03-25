@@ -106,7 +106,7 @@ Return ONLY valid JSON. No explanation, no markdown fences, no commentary.
 }
 
 ## RULES
-- Include 2–3 alternatives only for Caution or Avoid products
+- Include 4 alternatives for Watch, Caution, or Avoid products
 - Alternatives must be real, widely available products
 - conditionModifiers must have a citable study or regulatory finding — do not invent modifiers
 - evidenceQuality must be one of: RCT, cohort, animal, regulatory, advocacy

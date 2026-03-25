@@ -164,16 +164,23 @@ async function scoreProductCore(
     productId,
   });
 
-  // 5. Auto-queue alternatives
-  for (const alt of scored.alternatives) {
-    const existing = await ctx.runQuery(api.products.getProduct, { name: alt.name });
-    if (!existing) {
-      await ctx.runMutation(api.scoringQueue.addToQueue, {
-        productName: alt.name,
-        source: "alternative",
-        priority: 2,
-        sourceProductId: productId,
-      });
+  // 5. Store and auto-queue alternatives (only for non-Clean products)
+  if (scored.alternatives.length > 0) {
+    await ctx.runMutation(internal.alternatives.upsertAlternatives, {
+      productId,
+      alternatives: scored.alternatives,
+    });
+
+    for (const alt of scored.alternatives) {
+      const existing = await ctx.runQuery(api.products.getProduct, { name: alt.name });
+      if (!existing) {
+        await ctx.runMutation(api.scoringQueue.addToQueue, {
+          productName: alt.name,
+          source: "alternative",
+          priority: 2,
+          sourceProductId: productId,
+        });
+      }
     }
   }
 

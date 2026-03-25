@@ -92,7 +92,7 @@ export default defineSchema({
         })
       )
     ),
-  }),
+  }).index("by_productId", ["productId"]),
 
   products: defineTable({
     name: v.string(),
