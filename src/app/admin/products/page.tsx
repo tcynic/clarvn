@@ -37,6 +37,7 @@ export default function AdminProductsPage() {
   const [reassembleStatus, setReassembleStatus] = useState<string | null>(null);
   const [requeueStatus, setRequeueStatus] = useState<string | null>(null);
   const [dedupStatus, setDedupStatus] = useState<string | null>(null);
+  const [backfillStatus, setBackfillStatus] = useState<string | null>(null);
   const [researchStatus, setResearchStatus] = useState<string | null>(null);
   const [unknownBrandOnly, setUnknownBrandOnly] = useState(false);
   const [brandInputs, setBrandInputs] = useState<string[]>([""]);
@@ -64,6 +65,7 @@ export default function AdminProductsPage() {
   const reassembleStuck = useAction(api.scoring.reassembleStuckProducts);
   const requeueUnscored = useAction(api.scoring.requeueUnscoredIngredients);
   const deduplicateProducts = useMutation(api.deduplication.deduplicateProducts);
+  const backfillAlternatives = useAction(api.alternatives.backfillAlternatives);
   const addToQueue = useMutation(api.scoringQueue.addToQueue);
   const scoreProduct = useAction(api.scoring.scoreProduct);
   const setBrand = useMutation(api.products.setBrand);
@@ -176,6 +178,16 @@ export default function AdminProductsPage() {
     });
   }
 
+  async function handleBackfillAlternatives() {
+    setBackfillStatus("Starting…");
+    try {
+      await backfillAlternatives({});
+      setBackfillStatus("Backfill started in background.");
+    } catch {
+      setBackfillStatus("Backfill failed.");
+    }
+  }
+
   async function handleDedup() {
     setDedupStatus("Deduplicating…");
     try {
@@ -230,9 +242,15 @@ export default function AdminProductsPage() {
           >
             Deduplicate
           </button>
-          {(requeueStatus || reassembleStatus || refreshStatus || dedupStatus) && (
+          <button
+            onClick={handleBackfillAlternatives}
+            className="text-sm bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
+          >
+            Backfill Alternatives
+          </button>
+          {(requeueStatus || reassembleStatus || refreshStatus || dedupStatus || backfillStatus) && (
             <span className="text-xs text-[var(--ink-3)]">
-              {dedupStatus ?? refreshStatus ?? reassembleStatus ?? requeueStatus}
+              {backfillStatus ?? dedupStatus ?? refreshStatus ?? reassembleStatus ?? requeueStatus}
             </span>
           )}
         </div>
