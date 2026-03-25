@@ -113,58 +113,49 @@ export default function AdminProductsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <p className="section-eyebrow">Section 02</p>
-          <div className="flex items-baseline gap-3 mt-1">
-            <h1
-              className="text-2xl text-[var(--ink)]"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              Product Browser
-            </h1>
-            <span className="text-sm text-[var(--ink-3)]">
-              {productCount !== undefined ? productCount : "—"} scored
-            </span>
-          </div>
+      <div className="mb-6">
+        <p className="section-eyebrow">Section 02</p>
+        <div className="flex items-baseline gap-3 mt-1 mb-4">
+          <h1
+            className="text-2xl text-[var(--ink)]"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            Product Browser
+          </h1>
+          <span className="text-sm text-[var(--ink-3)]">
+            {productCount !== undefined ? productCount : "—"} scored
+          </span>
         </div>
-        <div className="flex items-center gap-3">
-          {requeueStatus && (
-            <span className="text-xs text-[var(--ink-3)]">{requeueStatus}</span>
-          )}
+        <div className="flex items-center gap-3 flex-wrap">
           <button
             onClick={handleRequeue}
             className="text-sm bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
           >
             Requeue Unscored
           </button>
-          {reassembleStatus && (
-            <span className="text-xs text-[var(--ink-3)]">{reassembleStatus}</span>
-          )}
           <button
             onClick={handleReassemble}
             className="text-sm bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
           >
             Reassemble Stuck
           </button>
-          {refreshStatus && (
-            <span className="text-xs text-[var(--ink-3)]">{refreshStatus}</span>
-          )}
           <button
             onClick={handleRefreshCheck}
             className="text-sm bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
           >
             Run Refresh Check
           </button>
-          {dedupStatus && (
-            <span className="text-xs text-[var(--ink-3)]">{dedupStatus}</span>
-          )}
           <button
             onClick={handleDedup}
             className="text-sm bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
           >
             Deduplicate
           </button>
+          {(requeueStatus || reassembleStatus || refreshStatus || dedupStatus) && (
+            <span className="text-xs text-[var(--ink-3)]">
+              {dedupStatus ?? refreshStatus ?? reassembleStatus ?? requeueStatus}
+            </span>
+          )}
         </div>
       </div>
 
