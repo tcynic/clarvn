@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useQuery } from "convex/react";
+import { useState, useEffect } from "react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { TierBadge } from "../../components/TierBadge";
 import { ScorePill } from "./ScorePill";
@@ -19,8 +19,14 @@ interface BrowsePanelProps {
 export function BrowsePanel({ onAdd, listNames, selectedName, onSelect }: BrowsePanelProps) {
   const [search, setSearch] = useState("");
   const [tierFilter, setTierFilter] = useState<Tier | null>(null);
+  const [requestStatus, setRequestStatus] = useState<string | null>(null);
+
+  useEffect(() => {
+    setRequestStatus(null);
+  }, [search]);
 
   const products = useQuery(api.products.listProducts, { status: "scored" });
+  const addToQueue = useMutation(api.scoringQueue.addToQueue);
 
   const filtered = (products ?? []).filter((p) => {
     const matchesSearch =
@@ -78,7 +84,29 @@ export function BrowsePanel({ onAdd, listNames, selectedName, onSelect }: Browse
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-sm text-[var(--ink-3)]">No products found.</p>
+            <p className="text-sm text-[var(--ink-3)] mb-3">No products found.</p>
+            {search.trim() && (
+              <>
+                <button
+                  onClick={async () => {
+                    setRequestStatus("Requesting…");
+                    try {
+                      await addToQueue({ productName: search.trim(), source: "user_request", priority: 5 });
+                      setRequestStatus("Requested!");
+                    } catch {
+                      setRequestStatus("Request failed.");
+                    }
+                  }}
+                  disabled={requestStatus === "Requesting…" || requestStatus === "Requested!"}
+                  className="text-sm bg-[var(--teal)] text-white font-medium px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-50"
+                >
+                  Request &ldquo;{search.trim()}&rdquo;
+                </button>
+                {requestStatus && (
+                  <p className="text-xs text-[var(--ink-3)] mt-2">{requestStatus}</p>
+                )}
+              </>
+            )}
           </div>
         ) : (
           filtered.map((p) => {
