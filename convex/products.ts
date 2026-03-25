@@ -218,6 +218,6 @@ export const listProducts = query({
     return await ctx.db
       .query("products")
       .withIndex("by_status", (q) => q.eq("status", status))
-      .take(100);
+      .collect();
   },
 });

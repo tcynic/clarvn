@@ -128,23 +128,18 @@ async function scoreIngredientCore(
     });
   }
 
-  // 6. Mark queue entry as done
-  await ctx.runMutation(internal.ingredientQueue.updateIngredientQueueStatus, {
-    queueId,
-    status: "done",
-    ingredientId,
-  });
-
-  // Re-fetch the queue entry so we assemble any products that were appended to
-  // blockedProductIds while the Claude API call was in-flight (the snapshot from
-  // step 2 above may be stale — new product extractions can add to blockedProductIds
-  // while an entry is in "scoring" status).
+  // 6. Re-fetch queue entry to capture any blockedProductIds added while the
+  //    Claude API call was in-flight, then delete the entry — done entries are not retained.
   const freshQueueEntry = await ctx.runQuery(
     internal.ingredientQueue.getIngredientQueueEntry,
     { queueId }
   );
   const finalBlockedProductIds =
     freshQueueEntry?.blockedProductIds ?? queueEntry.blockedProductIds;
+
+  await ctx.runMutation(internal.ingredientQueue.deleteIngredientQueueEntry, {
+    queueId,
+  });
 
   // 7. Auto-assembly: decrement pendingIngredientCount for all blocked products.
   //    If count reaches 0 → trigger full assembly.

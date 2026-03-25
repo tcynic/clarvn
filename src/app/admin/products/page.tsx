@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery, useAction } from "convex/react";
+import { useQuery, useAction, useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Doc, Id } from "../../../../convex/_generated/dataModel";
 import { TierBadge } from "../../../components/TierBadge";
@@ -36,6 +36,7 @@ export default function AdminProductsPage() {
   const [refreshStatus, setRefreshStatus] = useState<string | null>(null);
   const [reassembleStatus, setReassembleStatus] = useState<string | null>(null);
   const [requeueStatus, setRequeueStatus] = useState<string | null>(null);
+  const [dedupStatus, setDedupStatus] = useState<string | null>(null);
 
   const products = useQuery(api.products.listProducts, { status: "scored" });
   const productCount = useQuery(api.products.countProducts, { status: "scored" });
@@ -47,6 +48,7 @@ export default function AdminProductsPage() {
   const refreshCheck = useAction(api.scoring.refreshCheck);
   const reassembleStuck = useAction(api.scoring.reassembleStuckProducts);
   const requeueUnscored = useAction(api.scoring.requeueUnscoredIngredients);
+  const deduplicateProducts = useMutation(api.deduplication.deduplicateProducts);
 
   const filtered = (products ?? []).filter((p) => {
     const matchesSearch =
@@ -95,6 +97,20 @@ export default function AdminProductsPage() {
     }
   }
 
+  async function handleDedup() {
+    setDedupStatus("Deduplicating…");
+    try {
+      const result = await deduplicateProducts({});
+      setDedupStatus(
+        result.resolved > 0
+          ? `Resolved ${result.resolved} duplicate(s).`
+          : "No duplicates found."
+      );
+    } catch {
+      setDedupStatus("Deduplication failed.");
+    }
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -139,6 +155,15 @@ export default function AdminProductsPage() {
             className="text-sm bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
           >
             Run Refresh Check
+          </button>
+          {dedupStatus && (
+            <span className="text-xs text-[var(--ink-3)]">{dedupStatus}</span>
+          )}
+          <button
+            onClick={handleDedup}
+            className="text-sm bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
+          >
+            Deduplicate
           </button>
         </div>
       </div>

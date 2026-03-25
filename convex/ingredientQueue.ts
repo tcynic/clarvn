@@ -112,6 +112,34 @@ export const updateIngredientQueueStatus = internalMutation({
 });
 
 /**
+ * Internal mutation: delete a single ingredient queue entry.
+ * Called after successful scoring — done entries are not retained.
+ */
+export const deleteIngredientQueueEntry = internalMutation({
+  args: { queueId: v.id("ingredient_queue") },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.queueId);
+  },
+});
+
+/**
+ * Admin mutation: delete all existing "done" entries (one-time cleanup).
+ */
+export const deleteAllDoneEntries = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const done = await ctx.db
+      .query("ingredient_queue")
+      .withIndex("by_status_and_priority", (q) => q.eq("status", "done"))
+      .collect();
+    for (const entry of done) {
+      await ctx.db.delete(entry._id);
+    }
+    return { deleted: done.length };
+  },
+});
+
+/**
  * Internal query: get a single ingredient queue entry by ID.
  */
 export const getIngredientQueueEntry = internalQuery({

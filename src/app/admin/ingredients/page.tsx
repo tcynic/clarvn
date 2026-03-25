@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id, Doc } from "../../../../convex/_generated/dataModel";
 import { TierBadge } from "../../../components/TierBadge";
@@ -13,12 +13,29 @@ export default function AdminIngredientsPage() {
   const [search, setSearch] = useState("");
   const [tierFilter, setTierFilter] = useState<Tier | null>(null);
   const [selectedId, setSelectedId] = useState<Id<"ingredients"> | null>(null);
+  const [dedupStatus, setDedupStatus] = useState<string | null>(null);
 
   const ingredients = useQuery(api.ingredients.listIngredients, {});
   const detail = useQuery(
     api.ingredients.getIngredientDetail,
     selectedId ? { ingredientId: selectedId } : "skip"
   );
+
+  const deduplicateIngredients = useMutation(api.deduplication.deduplicateIngredients);
+
+  async function handleDedup() {
+    setDedupStatus("Deduplicating…");
+    try {
+      const result = await deduplicateIngredients({});
+      setDedupStatus(
+        result.resolved > 0
+          ? `Resolved ${result.resolved} duplicate(s).`
+          : "No duplicates found."
+      );
+    } catch {
+      setDedupStatus("Deduplication failed.");
+    }
+  }
 
   const filtered = (ingredients ?? []).filter((ing) => {
     const matchesSearch =
@@ -50,6 +67,17 @@ export default function AdminIngredientsPage() {
               {scoredIngredients.length} scored
             </span>
           </div>
+        </div>
+        <div className="flex items-center gap-3">
+          {dedupStatus && (
+            <span className="text-xs text-[var(--ink-3)]">{dedupStatus}</span>
+          )}
+          <button
+            onClick={handleDedup}
+            className="text-sm bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1.5 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors"
+          >
+            Deduplicate
+          </button>
         </div>
       </div>
 
