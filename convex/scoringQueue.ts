@@ -184,11 +184,11 @@ export const getAlternativesForProduct = query({
   },
 });
 
-// Admin mutation: delete all done entries from scoring_queue (one-time backlog cleanup).
-export const purgeDoneEntries = mutation({
+// Internal mutation: delete all done entries from scoring_queue (one-time backlog cleanup).
+// Run from the Convex dashboard — no auth required as it's internal-only.
+export const purgeDoneEntries = internalMutation({
   args: {},
   handler: async (ctx) => {
-    await requireAdmin(ctx);
     const done = await ctx.db
       .query("scoring_queue")
       .withIndex("by_status_and_priority", (q) => q.eq("status", "done"))
