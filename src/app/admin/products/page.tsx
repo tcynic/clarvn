@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useAction, useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Doc, Id } from "../../../../convex/_generated/dataModel";
@@ -38,6 +38,14 @@ export default function AdminProductsPage() {
   const [requeueStatus, setRequeueStatus] = useState<string | null>(null);
   const [dedupStatus, setDedupStatus] = useState<string | null>(null);
   const [researchStatus, setResearchStatus] = useState<string | null>(null);
+  const [unknownBrandOnly, setUnknownBrandOnly] = useState(false);
+  const [brandInputs, setBrandInputs] = useState<string[]>([""]);
+  const [setBrandStatus, setSetBrandStatus] = useState<string | null>(null);
+
+  useEffect(() => {
+    setBrandInputs([""]);
+    setSetBrandStatus(null);
+  }, [selected?._id]);
 
   const products = useQuery(api.products.listProducts, { status: "scored" });
   const productCount = useQuery(api.products.countProducts, { status: "scored" });
@@ -52,6 +60,7 @@ export default function AdminProductsPage() {
   const deduplicateProducts = useMutation(api.deduplication.deduplicateProducts);
   const addToQueue = useMutation(api.scoringQueue.addToQueue);
   const scoreProduct = useAction(api.scoring.scoreProduct);
+  const setBrand = useMutation(api.products.setBrand);
 
   const filtered = (products ?? []).filter((p) => {
     const matchesSearch =
@@ -60,8 +69,9 @@ export default function AdminProductsPage() {
       p.brand.toLowerCase().includes(search.toLowerCase());
     const matchesTier = !tierFilter || p.tier === tierFilter;
     const matchesAssembly = !assemblyFilter || p.assemblyStatus === assemblyFilter;
+    const matchesUnknown = !unknownBrandOnly || p.brand === "Unknown";
     if (tierFilter && !p.tier) return false;
-    return matchesSearch && matchesTier && matchesAssembly;
+    return matchesSearch && matchesTier && matchesAssembly && matchesUnknown;
   });
 
   async function handleRequeue() {
@@ -114,6 +124,21 @@ export default function AdminProductsPage() {
       if (match) setSelected(match);
     } catch {
       setResearchStatus("Research failed.");
+    }
+  }
+
+  async function handleSetBrand() {
+    if (!selected) return;
+    const brands = brandInputs.map((b) => b.trim()).filter(Boolean);
+    if (brands.length === 0) return;
+    setSetBrandStatus("Saving…");
+    try {
+      await setBrand({ productId: selected._id, brands });
+      setSetBrandStatus(null);
+      setBrandInputs([""]);
+      setSelected(null);
+    } catch {
+      setSetBrandStatus("Failed to save brand.");
     }
   }
 
@@ -188,6 +213,20 @@ export default function AdminProductsPage() {
           placeholder="Search products…"
           className="flex-1 min-w-48 border border-[var(--border)] rounded-[var(--radius)] px-3 py-2 text-sm text-[var(--ink)] outline-none focus:border-[var(--teal)] transition-colors"
         />
+        {search.trim() && (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleResearch}
+              disabled={researchStatus === "Scoring…"}
+              className="text-sm bg-[var(--teal)] text-white font-medium px-3 py-2 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-50 whitespace-nowrap"
+            >
+              Research &ldquo;{search.trim()}&rdquo;
+            </button>
+            {researchStatus && (
+              <span className="text-xs text-[var(--ink-3)]">{researchStatus}</span>
+            )}
+          </div>
+        )}
         <div className="flex gap-1">
           <button
             onClick={() => setTierFilter(null)}
@@ -215,8 +254,8 @@ export default function AdminProductsPage() {
         </div>
       </div>
 
-      {/* Assembly status filter */}
-      <div className="flex gap-2 mb-4">
+      {/* Assembly status filter + Unknown brand toggle */}
+      <div className="flex gap-2 mb-4 flex-wrap">
         {ASSEMBLY_STATUSES.map((s) => (
           <button
             key={String(s.value)}
@@ -230,6 +269,16 @@ export default function AdminProductsPage() {
             {s.label}
           </button>
         ))}
+        <button
+          onClick={() => setUnknownBrandOnly((v) => !v)}
+          className={`text-xs font-semibold px-3 py-1.5 rounded-[var(--radius)] transition-colors ${
+            unknownBrandOnly
+              ? "bg-[var(--ink)] text-white"
+              : "bg-[var(--surface-2)] text-[var(--ink-3)] hover:bg-[var(--surface-3)]"
+          }`}
+        >
+          Unknown Brand
+        </button>
       </div>
 
       <div className="flex gap-4">
@@ -241,23 +290,9 @@ export default function AdminProductsPage() {
             </p>
           ) : filtered.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-sm text-[var(--ink-3)] mb-3">
+              <p className="text-sm text-[var(--ink-3)]">
                 {search.trim() ? `No products found for "${search}".` : "No products found."}
               </p>
-              {search.trim() && (
-                <>
-                  <button
-                    onClick={handleResearch}
-                    disabled={researchStatus === "Scoring…"}
-                    className="text-sm bg-[var(--teal)] text-white font-medium px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-50"
-                  >
-                    Research &ldquo;{search.trim()}&rdquo;
-                  </button>
-                  {researchStatus && (
-                    <p className="text-xs text-[var(--ink-3)] mt-2">{researchStatus}</p>
-                  )}
-                </>
-              )}
             </div>
           ) : (
             <table className="w-full text-sm">
@@ -385,6 +420,50 @@ export default function AdminProductsPage() {
                 )}
               </div>
             </div>
+
+            {selected.brand === "Unknown" && (
+              <div className="border-t border-[var(--border)] pt-3 mb-3">
+                <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">
+                  Assign Brand
+                </p>
+                <div className="flex flex-col gap-1.5">
+                  {brandInputs.map((val, i) => (
+                    <input
+                      key={i}
+                      type="text"
+                      value={val}
+                      onChange={(e) => {
+                        const next = [...brandInputs];
+                        next[i] = e.target.value;
+                        setBrandInputs(next);
+                      }}
+                      placeholder={`Brand ${i + 1}`}
+                      className="border border-[var(--border)] rounded-[var(--radius)] px-2 py-1 text-xs text-[var(--ink)] outline-none focus:border-[var(--teal)] transition-colors"
+                    />
+                  ))}
+                </div>
+                <div className="flex items-center gap-2 mt-2">
+                  {brandInputs.length < 5 && (
+                    <button
+                      onClick={() => setBrandInputs([...brandInputs, ""])}
+                      className="text-xs text-[var(--teal)] hover:underline"
+                    >
+                      + Add brand
+                    </button>
+                  )}
+                  <button
+                    onClick={handleSetBrand}
+                    disabled={brandInputs.every((b) => !b.trim())}
+                    className="ml-auto text-xs bg-[var(--teal)] text-white font-medium px-3 py-1 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-40"
+                  >
+                    Apply
+                  </button>
+                </div>
+                {setBrandStatus && (
+                  <p className="text-xs text-[var(--ink-3)] mt-1">{setBrandStatus}</p>
+                )}
+              </div>
+            )}
 
             <div className="border-t border-[var(--border)] pt-3">
               <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">

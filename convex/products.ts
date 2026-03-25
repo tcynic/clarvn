@@ -206,6 +206,34 @@ export const countProducts = query({
   },
 });
 
+// Public (admin-only) mutation: assign one or more brands to an unknown-brand product.
+// If one brand: patches the existing record in place.
+// If multiple brands: clones the product for each brand, then deletes the original.
+export const setBrand = mutation({
+  args: {
+    productId: v.id("products"),
+    brands: v.array(v.string()),
+  },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx);
+    if (args.brands.length === 0) throw new Error("At least one brand is required");
+    if (args.brands.length > 5) throw new Error("At most 5 brands allowed");
+
+    const product = await ctx.db.get(args.productId);
+    if (!product) throw new Error("Product not found");
+
+    if (args.brands.length === 1) {
+      await ctx.db.patch(args.productId, { brand: args.brands[0] });
+    } else {
+      const { _id, _creationTime, ...rest } = product;
+      for (const brand of args.brands) {
+        await ctx.db.insert("products", { ...rest, brand });
+      }
+      await ctx.db.delete(args.productId);
+    }
+  },
+});
+
 // Public query: list scored products by status, paginated.
 export const listProducts = query({
   args: {
