@@ -63,20 +63,19 @@ export default function AdminLayout({
             >
               Products
             </Link>
-            <Link
-              href="/app"
-              className="text-white/40 hover:text-white transition-colors"
-            >
-              App ↗
-            </Link>
           </div>
         </div>
-        <button
-          onClick={() => signOut()}
-          className="text-xs text-white/50 hover:text-white transition-colors"
-        >
-          Sign out
-        </button>
+        <div className="flex items-center gap-4">
+          <Link href="/app" className="text-xs text-white/50 hover:text-white transition-colors">
+            App ↗
+          </Link>
+          <button
+            onClick={() => signOut()}
+            className="text-xs text-white/50 hover:text-white transition-colors"
+          >
+            Sign out
+          </button>
+        </div>
       </nav>
 
       {/* Page content */}
