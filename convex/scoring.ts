@@ -157,12 +157,13 @@ async function scoreProductCore(
     }
   }
 
-  // 4. Mark done
+  // 4. Mark done then delete — done entries have no further use
   await ctx.runMutation(internal.scoringQueue.updateQueueStatus, {
     queueId,
     status: "done",
     productId,
   });
+  await ctx.runMutation(internal.scoringQueue.deleteQueueEntry, { queueId });
 
   // 5. Store and auto-queue alternatives (only for non-Clean products)
   if (scored.alternatives.length > 0) {

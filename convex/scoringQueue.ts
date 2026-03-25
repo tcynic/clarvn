@@ -129,6 +129,14 @@ export const updateQueueStatus = internalMutation({
   },
 });
 
+// Internal mutation: delete a queue entry by ID.
+export const deleteQueueEntry = internalMutation({
+  args: { queueId: v.id("scoring_queue") },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.queueId);
+  },
+});
+
 // Internal query: get a single queue entry by ID (used by scoreProduct action).
 export const getQueueEntry = internalQuery({
   args: { queueId: v.id("scoring_queue") },
@@ -151,25 +159,42 @@ export const getPendingBatch = internalQuery({
 });
 
 // Public query: get scored alternatives for a given product.
-// Finds scoring_queue entries where source="alternative", sourceProductId matches,
-// and status="done", then joins to the products table.
+// Looks up the alternatives list from alternatives_queue, then resolves each
+// alternative name to a product document from the products table.
 export const getAlternativesForProduct = query({
   args: { productId: v.id("products") },
   handler: async (ctx, args) => {
-    const entries = await ctx.db
-      .query("scoring_queue")
-      .withIndex("by_sourceProductId_and_status", (q) =>
-        q.eq("sourceProductId", args.productId).eq("status", "done")
-      )
-      .take(10);
+    const entry = await ctx.db
+      .query("alternatives_queue")
+      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
+      .first();
+
+    if (!entry || entry.status !== "done" || !entry.alternatives) return [];
 
     const products = await Promise.all(
-      entries
-        .filter((e) => e.source === "alternative" && e.productId !== undefined)
-        .map((e) => ctx.db.get(e.productId!))
+      entry.alternatives.map((alt) =>
+        ctx.db
+          .query("products")
+          .withIndex("by_name", (q) => q.eq("name", alt.name))
+          .first()
+      )
     );
 
     return products.filter(Boolean);
+  },
+});
+
+// Admin mutation: delete all done entries from scoring_queue (one-time backlog cleanup).
+export const purgeDoneEntries = mutation({
+  args: {},
+  handler: async (ctx) => {
+    await requireAdmin(ctx);
+    const done = await ctx.db
+      .query("scoring_queue")
+      .withIndex("by_status_and_priority", (q) => q.eq("status", "done"))
+      .collect();
+    await Promise.all(done.map((e) => ctx.db.delete(e._id)));
+    return { deleted: done.length };
   },
 });
 
