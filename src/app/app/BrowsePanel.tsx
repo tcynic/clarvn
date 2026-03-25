@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useQuery, useMutation } from "convex/react";
+import { useQuery, useMutation, useAction } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { TierBadge } from "../../components/TierBadge";
 import { ScorePill } from "./ScorePill";
@@ -27,6 +27,7 @@ export function BrowsePanel({ onAdd, listNames, selectedName, onSelect }: Browse
 
   const products = useQuery(api.products.listProducts, { status: "scored" });
   const addToQueue = useMutation(api.scoringQueue.addToQueue);
+  const scoreProduct = useAction(api.scoring.scoreProduct);
 
   const filtered = (products ?? []).filter((p) => {
     const matchesSearch =
@@ -89,15 +90,16 @@ export function BrowsePanel({ onAdd, listNames, selectedName, onSelect }: Browse
               <>
                 <button
                   onClick={async () => {
-                    setRequestStatus("Requesting…");
+                    setRequestStatus("Scoring…");
                     try {
-                      await addToQueue({ productName: search.trim(), source: "user_request", priority: 5 });
-                      setRequestStatus("Requested!");
+                      const queueId = await addToQueue({ productName: search.trim(), source: "user_request", priority: 5 });
+                      await scoreProduct({ queueId });
+                      setRequestStatus("Done!");
                     } catch {
-                      setRequestStatus("Request failed.");
+                      setRequestStatus("Failed.");
                     }
                   }}
-                  disabled={requestStatus === "Requesting…" || requestStatus === "Requested!"}
+                  disabled={requestStatus === "Scoring…" || requestStatus === "Done!"}
                   className="text-sm bg-[var(--teal)] text-white font-medium px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-50"
                 >
                   Request &ldquo;{search.trim()}&rdquo;

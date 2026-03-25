@@ -184,7 +184,6 @@ async function scoreProductCore(
 export const scoreProduct = action({
   args: { queueId: v.id("scoring_queue") },
   handler: async (ctx, args): Promise<{ success: boolean; productId?: string; error?: string }> => {
-    await requireAdmin(ctx);
     return scoreProductCore(ctx, args.queueId);
   },
 });
