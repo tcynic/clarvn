@@ -41,10 +41,16 @@ export default function AdminProductsPage() {
   const [unknownBrandOnly, setUnknownBrandOnly] = useState(false);
   const [brandInputs, setBrandInputs] = useState<string[]>([""]);
   const [setBrandStatus, setSetBrandStatus] = useState<string | null>(null);
+  const [brandSuggestions, setBrandSuggestions] = useState<string[]>([]);
+  const [suggestingBrands, setSuggestingBrands] = useState(false);
+  const [selectedSuggestions, setSelectedSuggestions] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     setBrandInputs([""]);
     setSetBrandStatus(null);
+    setBrandSuggestions([]);
+    setSuggestingBrands(false);
+    setSelectedSuggestions(new Set());
   }, [selected?._id]);
 
   const products = useQuery(api.products.listProducts, { status: "scored" });
@@ -61,6 +67,7 @@ export default function AdminProductsPage() {
   const addToQueue = useMutation(api.scoringQueue.addToQueue);
   const scoreProduct = useAction(api.scoring.scoreProduct);
   const setBrand = useMutation(api.products.setBrand);
+  const suggestBrandsAction = useAction(api.brandSuggestions.suggestBrands);
 
   const filtered = (products ?? []).filter((p) => {
     const matchesSearch =
@@ -127,9 +134,9 @@ export default function AdminProductsPage() {
     }
   }
 
-  async function handleSetBrand() {
+  async function handleSetBrand(overrideBrands?: string[]) {
     if (!selected) return;
-    const brands = brandInputs.map((b) => b.trim()).filter(Boolean);
+    const brands = overrideBrands ?? brandInputs.map((b) => b.trim()).filter(Boolean);
     if (brands.length === 0) return;
     setSetBrandStatus("Saving…");
     try {
@@ -140,6 +147,33 @@ export default function AdminProductsPage() {
     } catch {
       setSetBrandStatus("Failed to save brand.");
     }
+  }
+
+  async function handleSuggestBrands() {
+    if (!selected) return;
+    setSuggestingBrands(true);
+    setBrandSuggestions([]);
+    setSelectedSuggestions(new Set());
+    try {
+      const suggestions = await suggestBrandsAction({ productId: selected._id });
+      setBrandSuggestions(suggestions);
+    } catch {
+      // silently fall back to manual entry
+    } finally {
+      setSuggestingBrands(false);
+    }
+  }
+
+  function toggleSuggestion(brand: string) {
+    setSelectedSuggestions((prev) => {
+      const next = new Set(prev);
+      if (next.has(brand)) {
+        next.delete(brand);
+      } else {
+        next.add(brand);
+      }
+      return next;
+    });
   }
 
   async function handleDedup() {
@@ -426,6 +460,49 @@ export default function AdminProductsPage() {
                 <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">
                   Assign Brand
                 </p>
+
+                {/* Suggest brands */}
+                <button
+                  onClick={handleSuggestBrands}
+                  disabled={suggestingBrands}
+                  className="text-xs bg-[var(--surface-2)] text-[var(--ink-2)] font-medium px-3 py-1 rounded-[var(--radius)] hover:bg-[var(--surface-3)] transition-colors disabled:opacity-50 mb-2"
+                >
+                  {suggestingBrands ? "Suggesting…" : "Suggest brands"}
+                </button>
+
+                {/* Suggestion chips */}
+                {brandSuggestions.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mb-2">
+                    {brandSuggestions.map((brand) => {
+                      const isSelected = selectedSuggestions.has(brand);
+                      return (
+                        <button
+                          key={brand}
+                          onClick={() => toggleSuggestion(brand)}
+                          className={`text-xs font-medium px-2.5 py-1 rounded-full border transition-colors ${
+                            isSelected
+                              ? "bg-[var(--teal)] text-white border-[var(--teal)]"
+                              : "bg-[var(--surface)] text-[var(--ink-2)] border-[var(--border)] hover:border-[var(--teal)]"
+                          }`}
+                        >
+                          {brand}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* Apply selected suggestions */}
+                {selectedSuggestions.size > 0 && (
+                  <button
+                    onClick={() => handleSetBrand([...selectedSuggestions])}
+                    className="w-full text-xs bg-[var(--teal)] text-white font-medium px-3 py-1 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors mb-3"
+                  >
+                    Apply {selectedSuggestions.size} selected
+                  </button>
+                )}
+
+                {/* Manual entry fallback */}
                 <div className="flex flex-col gap-1.5">
                   {brandInputs.map((val, i) => (
                     <input
@@ -452,7 +529,7 @@ export default function AdminProductsPage() {
                     </button>
                   )}
                   <button
-                    onClick={handleSetBrand}
+                    onClick={() => handleSetBrand()}
                     disabled={brandInputs.every((b) => !b.trim())}
                     className="ml-auto text-xs bg-[var(--teal)] text-white font-medium px-3 py-1 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-40"
                   >
