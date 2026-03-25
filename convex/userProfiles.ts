@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { mutation, internalMutation, query } from "./_generated/server";
 import { ConvexError } from "convex/values";
+import { Id } from "./_generated/dataModel";
 
 /**
  * Create or update the current user's health profile.
@@ -86,6 +87,24 @@ export const createOrUpdateProfileInternal = internalMutation({
       conditions: args.conditions,
       sensitivities: args.sensitivities,
     });
+  },
+});
+
+/**
+ * Returns true if the current user has isAdmin: true on their users document.
+ * Used by the consumer app to conditionally show the admin nav link.
+ */
+export const getIsAdmin = query({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) return false;
+    // @convex-dev/auth tokenIdentifier format: "<issuer>|<userId>|<sessionId>"
+    const parts = identity.tokenIdentifier.split("|");
+    const userId = parts.length >= 2 ? parts[1] : undefined;
+    if (!userId) return false;
+    const user = await ctx.db.get(userId as Id<"users">);
+    return user?.isAdmin === true;
   },
 });
 

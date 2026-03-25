@@ -37,6 +37,7 @@ export default function AdminProductsPage() {
   const [reassembleStatus, setReassembleStatus] = useState<string | null>(null);
   const [requeueStatus, setRequeueStatus] = useState<string | null>(null);
   const [dedupStatus, setDedupStatus] = useState<string | null>(null);
+  const [researchStatus, setResearchStatus] = useState<string | null>(null);
 
   const products = useQuery(api.products.listProducts, { status: "scored" });
   const productCount = useQuery(api.products.countProducts, { status: "scored" });
@@ -49,6 +50,8 @@ export default function AdminProductsPage() {
   const reassembleStuck = useAction(api.scoring.reassembleStuckProducts);
   const requeueUnscored = useAction(api.scoring.requeueUnscoredIngredients);
   const deduplicateProducts = useMutation(api.deduplication.deduplicateProducts);
+  const addToQueue = useMutation(api.scoringQueue.addToQueue);
+  const scoreProduct = useAction(api.scoring.scoreProduct);
 
   const filtered = (products ?? []).filter((p) => {
     const matchesSearch =
@@ -94,6 +97,23 @@ export default function AdminProductsPage() {
       }
     } catch (err) {
       setRefreshStatus("Refresh check failed.");
+    }
+  }
+
+  async function handleResearch() {
+    const name = search.trim();
+    if (!name) return;
+    setResearchStatus("Scoring…");
+    try {
+      const queueId = await addToQueue({ productName: name, source: "admin_add", priority: 1 });
+      await scoreProduct({ queueId });
+      setResearchStatus("Done.");
+      const match = (products ?? []).find(
+        (p) => p.name.toLowerCase() === name.toLowerCase()
+      );
+      if (match) setSelected(match);
+    } catch {
+      setResearchStatus("Research failed.");
     }
   }
 
@@ -220,9 +240,25 @@ export default function AdminProductsPage() {
               Loading…
             </p>
           ) : filtered.length === 0 ? (
-            <p className="text-sm text-[var(--ink-3)] text-center py-12">
-              No products found.
-            </p>
+            <div className="text-center py-12">
+              <p className="text-sm text-[var(--ink-3)] mb-3">
+                {search.trim() ? `No products found for "${search}".` : "No products found."}
+              </p>
+              {search.trim() && (
+                <>
+                  <button
+                    onClick={handleResearch}
+                    disabled={researchStatus === "Scoring…"}
+                    className="text-sm bg-[var(--teal)] text-white font-medium px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors disabled:opacity-50"
+                  >
+                    Research &ldquo;{search.trim()}&rdquo;
+                  </button>
+                  {researchStatus && (
+                    <p className="text-xs text-[var(--ink-3)] mt-2">{researchStatus}</p>
+                  )}
+                </>
+              )}
+            </div>
           ) : (
             <table className="w-full text-sm">
               <thead>

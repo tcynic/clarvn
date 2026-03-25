@@ -63,6 +63,12 @@ export default function AdminLayout({
             >
               Products
             </Link>
+            <Link
+              href="/app"
+              className="text-white/40 hover:text-white transition-colors"
+            >
+              App ↗
+            </Link>
           </div>
         </div>
         <button

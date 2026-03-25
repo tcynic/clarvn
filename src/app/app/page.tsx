@@ -33,7 +33,6 @@ export default function ShoppingListPage() {
     motivation: [], conditions: [], sensitivities: [],
   });
   const [activeTab, setActiveTab] = useState<ActiveTab>("browse");
-  const [listSearch, setListSearch] = useState("");
 
   // Persistent shopping list from Convex
   const listDocs = useQuery(
@@ -55,6 +54,10 @@ export default function ShoppingListPage() {
   // Sync profile: hydrate from localStorage (fast), then override from Convex (source of truth)
   const convexProfile = useQuery(
     api.userProfiles.getMyProfile,
+    isAuthenticated ? {} : "skip"
+  );
+  const isAdmin = useQuery(
+    api.userProfiles.getIsAdmin,
     isAuthenticated ? {} : "skip"
   );
 
@@ -130,13 +133,20 @@ export default function ShoppingListPage() {
         <h1 className="font-semibold text-sm">
           clar<span className="text-[var(--teal-mid)] italic">vn</span>
         </h1>
-        <button
-          onClick={() => setShowProfile(true)}
-          className="flex items-center gap-1.5 text-xs bg-white/10 hover:bg-white/20 transition-colors px-3 py-1.5 rounded-full"
-        >
-          {activeConditionCount > 0 ? `${activeConditionCount} active` : "Profile"}
-          <span>▾</span>
-        </button>
+        <div className="flex items-center gap-3">
+          {isAdmin && (
+            <a href="/admin" className="text-xs text-white/50 hover:text-white transition-colors">
+              Admin ↗
+            </a>
+          )}
+          <button
+            onClick={() => setShowProfile(true)}
+            className="flex items-center gap-1.5 text-xs bg-white/10 hover:bg-white/20 transition-colors px-3 py-1.5 rounded-full"
+          >
+            {activeConditionCount > 0 ? `${activeConditionCount} active` : "Profile"}
+            <span>▾</span>
+          </button>
+        </div>
       </header>
 
       {/* Mobile tab bar */}
@@ -197,9 +207,6 @@ export default function ShoppingListPage() {
                 clearListMutation().catch(() => {});
                 setSelectedName(null);
               }}
-              onAdd={handleAdd}
-              search={listSearch}
-              onSearchChange={setListSearch}
             />
             {/* Detail panel on mobile when list tab is active */}
             {selectedName && activeTab === "list" && (
