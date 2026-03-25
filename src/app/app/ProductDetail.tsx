@@ -36,7 +36,7 @@ export function ProductDetail({
   const baseScore = personalized.baseScore;
 
   return (
-    <div className="bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-5 mt-3">
+    <div className="bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-5">
       <div className="flex items-start justify-between mb-4">
         <div>
           <h2 className="font-semibold text-[var(--ink)] text-sm">

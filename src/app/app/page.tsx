@@ -187,17 +187,33 @@ export default function ShoppingListPage() {
               selectedName={selectedName}
               onSelect={setSelectedName}
             />
+            {/* Mobile browse tab: show detail below panel */}
             {selectedName && (
+              <div className="md:hidden mt-3">
+                <ProductDetail
+                  name={selectedName}
+                  onClose={() => setSelectedName(null)}
+                  onSwap={(newName) => handleSwap(selectedName, newName)}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Right column: product detail (top) + shopping list (bottom) */}
+          <div className={`flex flex-col gap-4 ${activeTab === "browse" ? "hidden md:flex" : ""}`}>
+            {/* Top: ProductDetail or placeholder (desktop always, mobile only when selected) */}
+            {selectedName ? (
               <ProductDetail
                 name={selectedName}
                 onClose={() => setSelectedName(null)}
                 onSwap={(newName) => handleSwap(selectedName, newName)}
               />
+            ) : (
+              <div className="hidden md:flex bg-white rounded-[var(--radius-xl)] border border-[var(--border)] p-5 items-center justify-center min-h-[120px]">
+                <p className="text-sm text-[var(--ink-3)]">Select a product for more details</p>
+              </div>
             )}
-          </div>
-
-          {/* Shopping list sidebar */}
-          <div className={activeTab === "browse" ? "hidden md:block" : ""}>
+            {/* Bottom: Shopping list */}
             <ListSidebar
               list={list}
               selectedName={selectedName}
@@ -208,14 +224,6 @@ export default function ShoppingListPage() {
                 setSelectedName(null);
               }}
             />
-            {/* Detail panel on mobile when list tab is active */}
-            {selectedName && activeTab === "list" && (
-              <ProductDetail
-                name={selectedName}
-                onClose={() => setSelectedName(null)}
-                onSwap={(newName) => handleSwap(selectedName, newName)}
-              />
-            )}
           </div>
 
         </div>
