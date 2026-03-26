@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/playwright-report
+/test-results
 
 # next.js
 /.next/
@@ -41,6 +43,9 @@ scripts/*.log
 
 # convex
 .convex-generated-hashes
+
+# claude code local settings (skills/ is tracked, settings.local.json is not)
+.claude/settings.local.json
 
 # typescript
 *.tsbuildinfo
