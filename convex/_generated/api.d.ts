@@ -8,11 +8,13 @@
  * @module
  */
 
+import type * as adminUsers from "../adminUsers.js";
 import type * as alternatives from "../alternatives.js";
 import type * as alternativesMutations from "../alternativesMutations.js";
 import type * as assembly from "../assembly.js";
 import type * as auth from "../auth.js";
 import type * as brandSuggestions from "../brandSuggestions.js";
+import type * as checkins from "../checkins.js";
 import type * as crons from "../crons.js";
 import type * as deduplication from "../deduplication.js";
 import type * as extraction from "../extraction.js";
@@ -24,9 +26,11 @@ import type * as ingredients from "../ingredients.js";
 import type * as lib_auth from "../lib/auth.js";
 import type * as lib_authHelpers from "../lib/authHelpers.js";
 import type * as lib_ingredientScoringPrompt from "../lib/ingredientScoringPrompt.js";
+import type * as lib_premium from "../lib/premium.js";
 import type * as lib_scoringPrompt from "../lib/scoringPrompt.js";
 import type * as lib_validator from "../lib/validator.js";
 import type * as onboarding from "../onboarding.js";
+import type * as pantry from "../pantry.js";
 import type * as products from "../products.js";
 import type * as scoring from "../scoring.js";
 import type * as scoringQueue from "../scoringQueue.js";
@@ -40,11 +44,13 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  adminUsers: typeof adminUsers;
   alternatives: typeof alternatives;
   alternativesMutations: typeof alternativesMutations;
   assembly: typeof assembly;
   auth: typeof auth;
   brandSuggestions: typeof brandSuggestions;
+  checkins: typeof checkins;
   crons: typeof crons;
   deduplication: typeof deduplication;
   extraction: typeof extraction;
@@ -56,9 +62,11 @@ declare const fullApi: ApiFromModules<{
   "lib/auth": typeof lib_auth;
   "lib/authHelpers": typeof lib_authHelpers;
   "lib/ingredientScoringPrompt": typeof lib_ingredientScoringPrompt;
+  "lib/premium": typeof lib_premium;
   "lib/scoringPrompt": typeof lib_scoringPrompt;
   "lib/validator": typeof lib_validator;
   onboarding: typeof onboarding;
+  pantry: typeof pantry;
   products: typeof products;
   scoring: typeof scoring;
   scoringQueue: typeof scoringQueue;

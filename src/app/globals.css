@@ -116,6 +116,53 @@ body {
 /* Section eyebrow */
 .section-eyebrow { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--teal); }
 
+/* Widget card — dashboard panel container */
+.widget-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+}
+.widget-card-title { font-weight: 600; font-size: 0.875rem; color: var(--ink); margin-bottom: 12px; }
+.widget-card-eyebrow { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-4); margin-bottom: 4px; }
+
+/* Gradient score pills (by tier) */
+.score-pill-clean   { background: linear-gradient(135deg, #D1FAE5 0%, #6EE7B7 100%); color: var(--tier-clean); }
+.score-pill-watch   { background: linear-gradient(135deg, #FEF3C7 0%, #FCD34D 100%); color: var(--tier-watch); }
+.score-pill-caution { background: linear-gradient(135deg, #FFEDD5 0%, #FDBA74 100%); color: var(--tier-caution); }
+.score-pill-avoid   { background: linear-gradient(135deg, #FEE2E2 0%, #FCA5A5 100%); color: var(--tier-avoid); }
+
+/* Filter pills */
+.filter-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500;
+  border: 1px solid var(--border); background: var(--white); color: var(--ink-3);
+  cursor: pointer; transition: all 0.15s;
+}
+.filter-pill:hover  { border-color: var(--teal-mid); color: var(--teal-dark); }
+.filter-pill.active { border-color: var(--teal); background: var(--teal-light); color: var(--teal-dark); }
+
+/* Match badge */
+.match-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;
+  background: var(--teal-light); color: var(--teal-dark);
+}
+.match-badge.high   { background: var(--tier-clean-light); color: var(--tier-clean); }
+.match-badge.medium { background: var(--tier-watch-light); color: var(--tier-watch); }
+.match-badge.low    { background: var(--surface-2); color: var(--ink-3); }
+
+/* Product card (grid) */
+.product-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.15s;
+}
+.product-card:hover { box-shadow: 0 4px 16px rgba(13, 15, 20, 0.08); }
+.product-card-image { aspect-ratio: 4/3; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+.product-card-body  { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
 /* Responsive */
 @media (max-width: 640px) {
   .container { padding: 0 1.25rem; }
