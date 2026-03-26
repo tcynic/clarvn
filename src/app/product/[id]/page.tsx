@@ -70,6 +70,16 @@ export default function ProductDetailPage() {
     isAuthenticated ? {} : "skip"
   );
 
+  const isPremium = subscriptionStatus?.isPremium ?? false;
+  const daysRemaining = subscriptionStatus?.daysRemaining ?? null;
+  const subStatus = subscriptionStatus?.subscriptionStatus ?? null;
+
+  const { isGuest, markScoreDelta } = usePremiumGate({
+    isAuthenticated,
+    isPremium,
+    subscriptionStatus: subStatus,
+  });
+
   // --- Loading / not-found states ---
   if (product === undefined) {
     return (
@@ -95,15 +105,6 @@ export default function ProductDetailPage() {
   }
 
   const tier = product.tier as Tier | undefined;
-  const isPremium = subscriptionStatus?.isPremium ?? false;
-  const daysRemaining = subscriptionStatus?.daysRemaining ?? null;
-  const subStatus = subscriptionStatus?.subscriptionStatus ?? null;
-
-  const { isGuest, markScoreDelta } = usePremiumGate({
-    isAuthenticated,
-    isPremium,
-    subscriptionStatus: subStatus,
-  });
 
   // Compute personal score client-side from condition modifiers
   const personalScore: number | undefined = (() => {
