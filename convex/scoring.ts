@@ -265,28 +265,6 @@ export const internalProcessAllPending = internalAction({
   },
 });
 
-// Public: kick off batch processing (admin-only).
-export const processAllPending = action({
-  args: {},
-  handler: async (ctx, _args): Promise<{ started: boolean }> => {
-    await requireAdmin(ctx);
-    
-    // Guard against double-start
-    const batchState = await ctx.runQuery(internal.scoringQueue.getBatchState, {});
-    if (batchState?.isRunning) {
-      return { started: false };
-    }
-    
-    // Mark as running and start batch
-    await ctx.runMutation(internal.scoringQueue.setBatchState, {
-      isRunning: true,
-      shouldStop: false,
-    });
-    await ctx.scheduler.runAfter(0, internal.scoring.processQueueBatch, {});
-    return { started: true };
-  },
-});
-
 // Public: request batch processing to stop (admin-only).
 export const cancelBatch = action({
   args: {},

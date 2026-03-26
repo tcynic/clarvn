@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { internalMutation, internalQuery, query } from "./_generated/server";
+import { internalMutation, internalQuery } from "./_generated/server";
 
 // --- Internal mutation: upsert alternatives for a product ---
 export const upsertAlternatives = internalMutation({
@@ -62,19 +62,5 @@ export const getAlternativesEntry = internalQuery({
       .query("alternatives_queue")
       .withIndex("by_productId", (q) => q.eq("productId", args.productId))
       .first();
-  },
-});
-
-// --- Public query: get alternatives for a product ---
-export const getAlternativesForProduct = query({
-  args: { productId: v.id("products") },
-  handler: async (ctx, args) => {
-    const entry = await ctx.db
-      .query("alternatives_queue")
-      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
-      .first();
-
-    if (!entry || entry.status !== "done") return null;
-    return entry.alternatives ?? null;
   },
 });

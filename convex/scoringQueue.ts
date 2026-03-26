@@ -222,15 +222,6 @@ export const setBatchState = internalMutation({
   },
 });
 
-// Public query: get batch state for UI (admin-only).
-export const getBatchStateForUI = query({
-  args: {},
-  handler: async (ctx) => {
-    await requireAdmin(ctx);
-    return await ctx.db.query("batch_state").first();
-  },
-});
-
 // Admin-only query: list queue entries, paginated, sorted by priority asc.
 // Optional status filter. Results within same priority sorted by requestCount desc.
 export const listQueue = query({
