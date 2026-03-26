@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useQuery } from "convex/react";
+import { useRouter } from "next/navigation";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
-import { Doc } from "../../../convex/_generated/dataModel";
+import { Doc, Id } from "../../../convex/_generated/dataModel";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { LockedProductCard } from "./LockedProductCard";
 import type { UserProfile } from "@/lib/personalScore";
@@ -28,8 +29,20 @@ export function ProductMatchSection({
   profileOverride,
   conditionCount,
 }: ProductMatchSectionProps) {
+  const router = useRouter();
   const FREE_LIMIT = 3;
   const limit = isPremium ? 8 : FREE_LIMIT;
+
+  const pantryProductIds = useQuery(
+    api.pantry.getMyPantryProductIds,
+    isAuthenticated ? {} : "skip"
+  );
+  const addToPantry = useMutation(api.pantry.addToPantry);
+  const removeFromPantry = useMutation(api.pantry.removeFromPantry);
+
+  const pantrySet = new Set<string>(
+    (pantryProductIds ?? []).map((id) => id as string)
+  );
 
   const recommendations = useQuery(
     api.recommendations.getRecommendedProducts,
@@ -106,6 +119,19 @@ export function ProductMatchSection({
             tier={tier as "Clean" | "Watch" | "Caution" | "Avoid"}
             price={product.price}
             matchPercentage={matchPercentage}
+            onSelect={() => router.push(`/product/${product._id}`)}
+            inPantry={pantrySet.has(product._id as string)}
+            onTogglePantry={
+              isAuthenticated
+                ? () => {
+                    if (pantrySet.has(product._id as string)) {
+                      removeFromPantry({ productId: product._id as Id<"products"> });
+                    } else {
+                      addToPantry({ productId: product._id as Id<"products"> });
+                    }
+                  }
+                : undefined
+            }
           />
         ))}
 

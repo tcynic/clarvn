@@ -107,6 +107,27 @@ export const getMyPantry = query({
 });
 
 /**
+ * Get just the product IDs in the current user's pantry.
+ * Lightweight alternative to getMyPantry for membership checks.
+ * Returns empty array for unauthenticated users.
+ */
+export const getMyPantryProductIds = query({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) return [];
+    const userId = identity.tokenIdentifier;
+
+    const items = await ctx.db
+      .query("pantry_items")
+      .withIndex("by_userId", (q) => q.eq("userId", userId))
+      .take(200);
+
+    return items.map((i) => i.productId);
+  },
+});
+
+/**
  * Get pantry statistics for the current user.
  * Returns null for unauthenticated users.
  */
