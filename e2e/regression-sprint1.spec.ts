@@ -56,8 +56,8 @@ test.describe("R1 — /showcase visual regression", () => {
       await page.setViewportSize({ width: vp.width, height: vp.height });
       await page.goto("/showcase");
 
-      // NavBar — <header> is always visible; <nav> is hidden at mobile (md:flex)
-      await expect(page.locator("header").first()).toBeVisible({ timeout: 8000 });
+      // NavBar — desktop nav or mobile bottom tab bar is always visible
+      await expect(page.getByRole("navigation")).toBeVisible({ timeout: 8000 });
 
       // Section headings — each primitive section must be present
       await expect(page.getByRole("heading", { name: "Component Showcase" })).toBeVisible();
