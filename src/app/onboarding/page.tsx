@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useConvexAuth, useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 import { OnboardingChipScreen } from "@/components/onboarding/OnboardingChipScreen";
 import { HouseholdScreen } from "@/components/onboarding/HouseholdScreen";
 import { ValuePreviewScreen } from "@/components/onboarding/ValuePreviewScreen";
@@ -31,6 +33,10 @@ const TOTAL_STEPS = 7; // 6 chip screens + 1 preview (step index 6)
 
 export default function OnboardingPage() {
   const router = useRouter();
+  const { isAuthenticated } = useConvexAuth();
+  const createProfileFromOnboarding = useMutation(
+    api.userProfiles.createProfileFromOnboarding
+  );
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState<OnboardingDraft>({});
   const [mounted, setMounted] = useState(false);
@@ -95,6 +101,21 @@ export default function OnboardingPage() {
 
   function handleCreateAccount() {
     router.push("/login?from=onboarding");
+  }
+
+  async function handleUpdateProfile() {
+    await createProfileFromOnboarding({
+      motivation: draft.motivation ?? [],
+      conditions: draft.conditions ?? [],
+      sensitivities: draft.sensitivities ?? [],
+      dietaryRestrictions: draft.dietaryRestrictions ?? [],
+      lifeStage: draft.lifeStage ?? "just_me",
+      householdMembers: draft.householdMembers ?? [],
+      ingredientsToAvoid: draft.ingredientsToAvoid ?? [],
+    });
+    saveProfile(draftToProfile(draft));
+    clearOnboardingData();
+    router.push("/home");
   }
 
   function handleExploreAsGuest() {
@@ -206,7 +227,8 @@ export default function OnboardingPage() {
         {step === 6 && (
           <ValuePreviewScreen
             draft={draft}
-            onCreateAccount={handleCreateAccount}
+            isAuthenticated={isAuthenticated}
+            onCreateAccount={isAuthenticated ? handleUpdateProfile : handleCreateAccount}
             onExploreAsGuest={handleExploreAsGuest}
           />
         )}

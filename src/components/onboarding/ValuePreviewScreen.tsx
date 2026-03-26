@@ -10,6 +10,7 @@ interface Section {
 
 interface ValuePreviewScreenProps {
   draft: OnboardingDraft;
+  isAuthenticated?: boolean;
   onCreateAccount: () => void;
   onExploreAsGuest: () => void;
 }
@@ -57,6 +58,7 @@ function countActiveFlags(draft: OnboardingDraft): number {
 
 export function ValuePreviewScreen({
   draft,
+  isAuthenticated,
   onCreateAccount,
   onExploreAsGuest,
 }: ValuePreviewScreenProps) {
@@ -112,21 +114,25 @@ export function ValuePreviewScreen({
           onClick={onCreateAccount}
           className="w-full bg-[var(--teal)] text-white font-medium text-sm px-5 py-3.5 rounded-[var(--radius)] hover:bg-[var(--teal-dark)] transition-colors"
         >
-          Create your free account
+          {isAuthenticated ? "Update your profile" : "Create your free account"}
         </button>
-        <button
-          type="button"
-          onClick={onExploreAsGuest}
-          className="w-full text-sm font-medium text-[var(--ink-3)] py-3 rounded-[var(--radius)] hover:text-[var(--ink)] transition-colors"
-        >
-          Explore without an account
-        </button>
+        {!isAuthenticated && (
+          <button
+            type="button"
+            onClick={onExploreAsGuest}
+            className="w-full text-sm font-medium text-[var(--ink-3)] py-3 rounded-[var(--radius)] hover:text-[var(--ink)] transition-colors"
+          >
+            Explore without an account
+          </button>
+        )}
       </div>
 
-      <p className="text-xs text-[var(--ink-4)] text-center mt-4">
-        Creating an account starts your free 14-day Premium trial. No credit
-        card required.
-      </p>
+      {!isAuthenticated && (
+        <p className="text-xs text-[var(--ink-4)] text-center mt-4">
+          Creating an account starts your free 14-day Premium trial. No credit
+          card required.
+        </p>
+      )}
     </div>
   );
 }
