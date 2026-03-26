@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
@@ -20,7 +20,7 @@ interface ProductOption {
   tier?: string;
 }
 
-export default function ComparePage() {
+function ComparePageInner() {
   const searchParams = useSearchParams();
   const { isAuthenticated } = useConvexAuth();
 
@@ -164,5 +164,13 @@ export default function ComparePage() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function ComparePage() {
+  return (
+    <Suspense fallback={null}>
+      <ComparePageInner />
+    </Suspense>
   );
 }
