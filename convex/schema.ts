@@ -239,7 +239,9 @@ export default defineSchema({
     claim: v.string(), // e.g. "gluten_free", "usda_organic"
     verified: v.boolean(),
     source: v.optional(v.string()), // "open_food_facts" | "ai_extraction" | "manual"
-  }).index("by_productId", ["productId"]),
+  })
+    .index("by_productId", ["productId"])
+    .index("by_claim", ["claim"]),
 
   content_articles: defineTable({
     title: v.string(),

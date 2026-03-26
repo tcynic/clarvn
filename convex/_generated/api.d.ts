@@ -20,6 +20,7 @@ import type * as crons from "../crons.js";
 import type * as deduplication from "../deduplication.js";
 import type * as enrichment from "../enrichment.js";
 import type * as enrichmentMutations from "../enrichmentMutations.js";
+import type * as explore from "../explore.js";
 import type * as extraction from "../extraction.js";
 import type * as extractionMutations from "../extractionMutations.js";
 import type * as http from "../http.js";
@@ -63,6 +64,7 @@ declare const fullApi: ApiFromModules<{
   deduplication: typeof deduplication;
   enrichment: typeof enrichment;
   enrichmentMutations: typeof enrichmentMutations;
+  explore: typeof explore;
   extraction: typeof extraction;
   extractionMutations: typeof extractionMutations;
   http: typeof http;
