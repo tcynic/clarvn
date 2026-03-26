@@ -171,6 +171,10 @@ export default defineSchema({
     .index("by_category", ["category"])
     .index("by_tier", ["tier"])
     .index("by_category_and_tier", ["category", "tier"])
+    .index("by_status_and_category", ["status", "category"])
+    .index("by_status_and_tier", ["status", "tier"])
+    .index("by_status_and_category_and_tier", ["status", "category", "tier"])
+    .index("by_status_and_category_and_subcategory", ["status", "category", "subcategory"])
     .searchIndex("search_name", { searchField: "name" }),
 
   ingredients: defineTable({

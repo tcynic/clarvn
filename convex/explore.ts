@@ -118,23 +118,44 @@ export const exploreProducts = query({
 
     if (!hasClaims) {
       // ── Branch A: index-based pagination ──────────────────────────────────
+      // All paths filter status === "scored" via compound indexes to exclude
+      // archived products. Subcategory uses a dedicated index when category is
+      // also provided; otherwise it falls back to post-pagination filtering.
       let result;
-      if (args.category && args.tier) {
+      if (args.category && args.subcategory) {
+        // Subcategory index handles category + subcategory + status in one pass
         result = await ctx.db
           .query("products")
-          .withIndex("by_category_and_tier", (q) =>
-            q.eq("category", args.category!).eq("tier", args.tier!)
+          .withIndex("by_status_and_category_and_subcategory", (q) =>
+            q
+              .eq("status", "scored")
+              .eq("category", args.category!)
+              .eq("subcategory", args.subcategory!)
+          )
+          .paginate(args.paginationOpts);
+      } else if (args.category && args.tier) {
+        result = await ctx.db
+          .query("products")
+          .withIndex("by_status_and_category_and_tier", (q) =>
+            q
+              .eq("status", "scored")
+              .eq("category", args.category!)
+              .eq("tier", args.tier!)
           )
           .paginate(args.paginationOpts);
       } else if (args.category) {
         result = await ctx.db
           .query("products")
-          .withIndex("by_category", (q) => q.eq("category", args.category!))
+          .withIndex("by_status_and_category", (q) =>
+            q.eq("status", "scored").eq("category", args.category!)
+          )
           .paginate(args.paginationOpts);
       } else if (args.tier) {
         result = await ctx.db
           .query("products")
-          .withIndex("by_tier", (q) => q.eq("tier", args.tier!))
+          .withIndex("by_status_and_tier", (q) =>
+            q.eq("status", "scored").eq("tier", args.tier!)
+          )
           .paginate(args.paginationOpts);
       } else {
         result = await ctx.db
@@ -147,10 +168,7 @@ export const exploreProducts = query({
       isDone = result.isDone;
       continueCursor = result.continueCursor;
 
-      // Apply subcategory + price range on the bounded page slice
-      if (args.subcategory) {
-        page = page.filter((p) => p.subcategory === args.subcategory);
-      }
+      // Price range is always applied post-pagination (no index)
       if (args.priceRange) {
         page = page.filter((p) => matchesPriceRange(p.price, args.priceRange!));
       }
@@ -166,7 +184,7 @@ export const exploreProducts = query({
           const rows = await ctx.db
             .query("product_claims")
             .withIndex("by_claim", (q) => q.eq("claim", claim))
-            .take(300);
+            .take(8192);
           return new Set(rows.map((r) => r.productId as string));
         })
       );
@@ -256,22 +274,32 @@ export const getExploreFilterCounts = query({
 
     // If category is specified, build a set of product IDs in that category first
     let categoryProductIds: Set<string> | null = null;
-    if (args.category) {
+    if (args.category && args.subcategory) {
       const products = await ctx.db
         .query("products")
-        .withIndex("by_category", (q) => q.eq("category", args.category!))
-        .take(500);
-      const filtered = args.subcategory
-        ? products.filter((p) => p.subcategory === args.subcategory)
-        : products;
-      categoryProductIds = new Set(filtered.map((p) => p._id as string));
+        .withIndex("by_status_and_category_and_subcategory", (q) =>
+          q
+            .eq("status", "scored")
+            .eq("category", args.category!)
+            .eq("subcategory", args.subcategory!)
+        )
+        .take(8192);
+      categoryProductIds = new Set(products.map((p) => p._id as string));
+    } else if (args.category) {
+      const products = await ctx.db
+        .query("products")
+        .withIndex("by_status_and_category", (q) =>
+          q.eq("status", "scored").eq("category", args.category!)
+        )
+        .take(8192);
+      categoryProductIds = new Set(products.map((p) => p._id as string));
     }
 
     for (const claim of ALL_CLAIM_KEYS) {
       const rows = await ctx.db
         .query("product_claims")
         .withIndex("by_claim", (q) => q.eq("claim", claim))
-        .take(300);
+        .take(8192);
 
       if (categoryProductIds) {
         counts[claim] = rows.filter((r) => categoryProductIds!.has(r.productId as string)).length;
