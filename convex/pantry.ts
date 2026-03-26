@@ -1,6 +1,9 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { ConvexError } from "convex/values";
+import { isPremiumUser } from "./lib/premium";
+
+const FREE_PANTRY_LIMIT = 10;
 
 /**
  * Add a product to the current user's pantry.
@@ -23,6 +26,20 @@ export const addToPantry = mutation({
       )
       .first();
     if (existing) return existing._id;
+
+    // Gate 5: enforce 10-item pantry limit for free users
+    const premium = await isPremiumUser(ctx);
+    if (!premium) {
+      const count = (
+        await ctx.db
+          .query("pantry_items")
+          .withIndex("by_userId", (q) => q.eq("userId", userId))
+          .take(FREE_PANTRY_LIMIT + 1)
+      ).length;
+      if (count >= FREE_PANTRY_LIMIT) {
+        throw new ConvexError("Pantry limit reached. Upgrade to Premium for unlimited pantry.");
+      }
+    }
 
     return await ctx.db.insert("pantry_items", {
       userId,

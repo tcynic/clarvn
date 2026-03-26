@@ -7,13 +7,13 @@ const ACTIONS = [
     emoji: "🔬",
     title: "Analyze ingredients",
     description: "Paste an ingredient list",
-    href: "/explore?mode=analyze",
+    href: "/analyze",
   },
   {
     emoji: "⚖️",
     title: "Compare products",
     description: "Side-by-side scores",
-    href: "/explore?mode=compare",
+    href: "/compare",
   },
   {
     emoji: "🔄",

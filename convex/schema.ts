@@ -28,7 +28,8 @@ export default defineSchema({
   })
     .index("email", ["email"])
     .index("phone", ["phone"])
-    .index("by_isComplimentary", ["isComplimentary"]),
+    .index("by_isComplimentary", ["isComplimentary"])
+    .index("by_subscriptionStatus", ["subscriptionStatus"]),
 
   // --- v2 product-level scoring queue (retained for backward compat) ---
   scoring_queue: defineTable({
@@ -169,7 +170,8 @@ export default defineSchema({
     .index("by_assemblyStatus", ["assemblyStatus"])
     .index("by_category", ["category"])
     .index("by_tier", ["tier"])
-    .index("by_category_and_tier", ["category", "tier"]),
+    .index("by_category_and_tier", ["category", "tier"])
+    .searchIndex("search_name", { searchField: "name" }),
 
   ingredients: defineTable({
     canonicalName: v.string(),
@@ -239,7 +241,9 @@ export default defineSchema({
     claim: v.string(), // e.g. "gluten_free", "usda_organic"
     verified: v.boolean(),
     source: v.optional(v.string()), // "open_food_facts" | "ai_extraction" | "manual"
-  }).index("by_productId", ["productId"]),
+  })
+    .index("by_productId", ["productId"])
+    .index("by_claim", ["claim"]),
 
   content_articles: defineTable({
     title: v.string(),
@@ -251,4 +255,11 @@ export default defineSchema({
   })
     .index("by_slug", ["slug"])
     .index("by_category", ["category"]),
+
+  // Daily usage tracking for paste-ingredients analysis (free tier: 3/day cap)
+  analysis_usage: defineTable({
+    userId: v.string(), // identity.tokenIdentifier
+    date: v.string(), // "YYYY-MM-DD"
+    count: v.number(),
+  }).index("by_userId_and_date", ["userId", "date"]),
 });

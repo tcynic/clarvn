@@ -7,6 +7,8 @@ import { api } from "../../../convex/_generated/api";
 import { Doc, Id } from "../../../convex/_generated/dataModel";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { LockedProductCard } from "./LockedProductCard";
+import { SignupPromptCard } from "@/components/ui/SignupPromptCard";
+import { GATE_COPY } from "@/lib/gateConstants";
 import type { UserProfile } from "@/lib/personalScore";
 
 interface RecommendationItem {
@@ -19,6 +21,8 @@ interface RecommendationItem {
 interface ProductMatchSectionProps {
   isAuthenticated: boolean;
   isPremium: boolean;
+  isGuest?: boolean;
+  hasSeenScoreDelta?: boolean;
   profileOverride?: Pick<UserProfile, "conditions" | "sensitivities" | "dietaryRestrictions" | "ingredientsToAvoid"> | null;
   conditionCount: number;
 }
@@ -26,12 +30,15 @@ interface ProductMatchSectionProps {
 export function ProductMatchSection({
   isAuthenticated,
   isPremium,
+  isGuest = false,
+  hasSeenScoreDelta = false,
   profileOverride,
   conditionCount,
 }: ProductMatchSectionProps) {
   const router = useRouter();
   const FREE_LIMIT = 3;
-  const limit = isPremium ? 8 : FREE_LIMIT;
+  const TOTAL_VISIBLE = 8;
+  const limit = isPremium ? TOTAL_VISIBLE : FREE_LIMIT;
 
   const pantryProductIds = useQuery(
     api.pantry.getMyPantryProductIds,
@@ -135,9 +142,16 @@ export function ProductMatchSection({
           />
         ))}
 
-        {/* Lock card for free users */}
-        {!isPremium && (
-          <LockedProductCard extraCount={5} />
+        {/* Gate 1: lock card for free users (score delta precondition must be met) */}
+        {!isPremium && hasSeenScoreDelta && (
+          isGuest ? (
+            <SignupPromptCard />
+          ) : (
+            <LockedProductCard
+              extraCount={TOTAL_VISIBLE - FREE_LIMIT}
+              message={GATE_COPY.homeOverflow(FREE_LIMIT, TOTAL_VISIBLE)}
+            />
+          )
         )}
       </div>
     </section>

@@ -11,15 +11,19 @@
 import type * as adminUsers from "../adminUsers.js";
 import type * as alternatives from "../alternatives.js";
 import type * as alternativesMutations from "../alternativesMutations.js";
+import type * as analyzeIngredients from "../analyzeIngredients.js";
+import type * as analyzeIngredientsHelpers from "../analyzeIngredientsHelpers.js";
 import type * as assembly from "../assembly.js";
 import type * as auth from "../auth.js";
 import type * as brandSuggestions from "../brandSuggestions.js";
 import type * as checkins from "../checkins.js";
+import type * as compare from "../compare.js";
 import type * as contentArticles from "../contentArticles.js";
 import type * as crons from "../crons.js";
 import type * as deduplication from "../deduplication.js";
 import type * as enrichment from "../enrichment.js";
 import type * as enrichmentMutations from "../enrichmentMutations.js";
+import type * as explore from "../explore.js";
 import type * as extraction from "../extraction.js";
 import type * as extractionMutations from "../extractionMutations.js";
 import type * as http from "../http.js";
@@ -43,6 +47,7 @@ import type * as scoring from "../scoring.js";
 import type * as scoringQueue from "../scoringQueue.js";
 import type * as shoppingList from "../shoppingList.js";
 import type * as userProfiles from "../userProfiles.js";
+import type * as users from "../users.js";
 
 import type {
   ApiFromModules,
@@ -54,15 +59,19 @@ declare const fullApi: ApiFromModules<{
   adminUsers: typeof adminUsers;
   alternatives: typeof alternatives;
   alternativesMutations: typeof alternativesMutations;
+  analyzeIngredients: typeof analyzeIngredients;
+  analyzeIngredientsHelpers: typeof analyzeIngredientsHelpers;
   assembly: typeof assembly;
   auth: typeof auth;
   brandSuggestions: typeof brandSuggestions;
   checkins: typeof checkins;
+  compare: typeof compare;
   contentArticles: typeof contentArticles;
   crons: typeof crons;
   deduplication: typeof deduplication;
   enrichment: typeof enrichment;
   enrichmentMutations: typeof enrichmentMutations;
+  explore: typeof explore;
   extraction: typeof extraction;
   extractionMutations: typeof extractionMutations;
   http: typeof http;
@@ -86,6 +95,7 @@ declare const fullApi: ApiFromModules<{
   scoringQueue: typeof scoringQueue;
   shoppingList: typeof shoppingList;
   userProfiles: typeof userProfiles;
+  users: typeof users;
 }>;
 
 /**
