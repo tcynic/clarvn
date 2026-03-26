@@ -69,6 +69,8 @@ Return ONLY valid JSON. No explanation, no markdown fences, no commentary.
   "baseScore": 6.7,
   "tier": "Caution",
   "flagLabel": "Artificial dye",
+  "ingredientFunction": "Colorant",
+  "detailExplanation": "Red No. 40 is a synthetic petroleum-derived dye used to give foods a red or pink color. Some studies link it to hyperactivity in children, and the EU requires a warning label on products containing it.",
   "evidenceSources": {
     "harm": "McCann et al. 2007 Lancet RCT",
     "regulatory": "EU warning label requirement"
@@ -90,7 +92,9 @@ Return ONLY valid JSON. No explanation, no markdown fences, no commentary.
 - The minimum score for any dimension is 1.0. Even the safest ingredient (water, salt) scores 1.0, not 0
 - tier must exactly match: "Clean", "Watch", "Caution", or "Avoid"
 - baseScore must equal (harmEvidenceScore × 0.40) + (regulatoryScore × 0.35) + (avoidanceScore × 0.25) rounded to one decimal place
-- Return an empty conditionModifiers array if no evidence-based modifiers exist`;
+- Return an empty conditionModifiers array if no evidence-based modifiers exist
+- ingredientFunction must be one of: Preservative, Emulsifier, Colorant, Sweetener, Thickener, Flavor Enhancer, Acidity Regulator, Antioxidant, Stabilizer, Leavening Agent, Humectant, Nutrient, Base Ingredient, Fiber, Fat/Oil, Protein, Vitamin/Mineral, Probiotic, Other
+- detailExplanation must be exactly 2 sentences in plain language for everyday consumers`;
 
 export function buildIngredientScoringMessage(ingredientName: string): string {
   return `Score this individual ingredient: "${ingredientName}"

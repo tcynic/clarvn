@@ -137,6 +137,8 @@ export const IngredientScoringResponseSchema = z.object({
   baseScore: z.number().min(1).max(10),
   tier: TierSchema,
   flagLabel: z.string().optional(),
+  ingredientFunction: z.string().optional(),
+  detailExplanation: z.string().optional(),
   evidenceSources: z.record(z.string(), z.string()).optional(),
   conditionModifiers: z.array(IngredientConditionModifierSchema).default([]),
 });

@@ -111,6 +111,8 @@ async function scoreIngredientCore(
       baseScore: scored.baseScore,
       tier: scored.tier,
       flagLabel: scored.flagLabel,
+      ingredientFunction: scored.ingredientFunction,
+      detailExplanation: scored.detailExplanation,
       evidenceSources: scored.evidenceSources as
         | Record<string, string>
         | undefined,

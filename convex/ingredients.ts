@@ -19,6 +19,8 @@ export const upsertIngredient = internalMutation({
       v.literal("Avoid")
     ),
     flagLabel: v.optional(v.string()),
+    ingredientFunction: v.optional(v.string()),
+    detailExplanation: v.optional(v.string()),
     evidenceSources: v.optional(v.any()),
     scoreVersion: v.optional(v.number()),
     scoredAt: v.optional(v.number()),
@@ -146,6 +148,8 @@ export const upsertIngredientPublic = mutation({
       v.literal("Avoid")
     ),
     flagLabel: v.optional(v.string()),
+    ingredientFunction: v.optional(v.string()),
+    detailExplanation: v.optional(v.string()),
     evidenceSources: v.optional(v.any()),
     scoreVersion: v.optional(v.number()),
     scoredAt: v.optional(v.number()),
