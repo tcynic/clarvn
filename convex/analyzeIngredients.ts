@@ -60,7 +60,14 @@ export const analyzeIngredientList = action({
   args: {
     rawText: v.string(),
   },
-  handler: async (ctx, args) => {
+  handler: async (ctx, args): Promise<{
+    assembledScore: number;
+    tier: string;
+    ingredients: Array<{ name: string; baseScore: number; tier: string; recognized: boolean; canonicalName?: string }>;
+    recognizedCount: number;
+    estimatedCount: number;
+    totalCount: number;
+  }> => {
     const rawText = args.rawText.trim();
     if (!rawText) {
       throw new ConvexError("Ingredient text cannot be empty");
