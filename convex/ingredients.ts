@@ -19,6 +19,8 @@ export const upsertIngredient = internalMutation({
       v.literal("Avoid")
     ),
     flagLabel: v.optional(v.string()),
+    ingredientFunction: v.optional(v.string()),
+    detailExplanation: v.optional(v.string()),
     evidenceSources: v.optional(v.any()),
     scoreVersion: v.optional(v.number()),
     scoredAt: v.optional(v.number()),
@@ -146,6 +148,8 @@ export const upsertIngredientPublic = mutation({
       v.literal("Avoid")
     ),
     flagLabel: v.optional(v.string()),
+    ingredientFunction: v.optional(v.string()),
+    detailExplanation: v.optional(v.string()),
     evidenceSources: v.optional(v.any()),
     scoreVersion: v.optional(v.number()),
     scoredAt: v.optional(v.number()),
@@ -235,6 +239,14 @@ export const getPlaceholderIngredientsByProduct = internalQuery({
   },
 });
 
+// Public query: get a single ingredient by ID.
+export const getIngredientById = query({
+  args: { ingredientId: v.id("ingredients") },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.ingredientId);
+  },
+});
+
 // Public query: get all ingredients for a product via the junction table.
 export const getIngredientsByProduct = query({
   args: { productId: v.id("products") },
@@ -278,6 +290,27 @@ export const listIngredients = query({
       .query("ingredients")
       .order("asc")
       .paginate(args.paginationOpts);
+  },
+});
+
+// Public query: list ingredients for CLI script access (no auth required).
+// Only exposes fields needed for backfill: id, canonicalName, ingredientFunction, scoreVersion.
+export const listIngredientsForBackfill = query({
+  args: { paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
+    const result = await ctx.db
+      .query("ingredients")
+      .order("asc")
+      .paginate(args.paginationOpts);
+    return {
+      ...result,
+      page: result.page.map((i) => ({
+        _id: i._id,
+        canonicalName: i.canonicalName,
+        ingredientFunction: i.ingredientFunction,
+        scoreVersion: i.scoreVersion,
+      })),
+    };
   },
 });
 

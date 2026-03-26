@@ -3,6 +3,44 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+function MobileNavIcon({ label }: { label: string }) {
+  if (label === "Home") {
+    return (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path
+          d="M3 9.5L10 3l7 6.5V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+        <path d="M7.5 18v-5h5v5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  if (label === "Explore") {
+    return (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="7.25" stroke="currentColor" strokeWidth="1.5" />
+        <path
+          d="M13.5 6.5l-2.25 4.5-4.5 2.25 2.25-4.5 4.5-2.25Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+  // Pantry — grid
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="3" y="3" width="5.5" height="5.5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="11.5" y="3" width="5.5" height="5.5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="3" y="11.5" width="5.5" height="5.5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="11.5" y="11.5" width="5.5" height="5.5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
 interface NavBarProps {
   userName?: string;
   activeConditionCount?: number;
@@ -31,6 +69,7 @@ export function NavBar({
   const pathname = usePathname();
 
   return (
+    <>
     <header className="bg-white border-b border-[var(--border)] px-6 py-0 sticky top-0 z-40">
       {/* Trial banner */}
       {isPremium && daysRemaining !== null && daysRemaining !== undefined && daysRemaining <= 14 && (
@@ -132,5 +171,25 @@ export function NavBar({
         </div>
       </div>
     </header>
+
+    {/* Mobile bottom tab bar — visible below md breakpoint, hidden on desktop */}
+    <nav className="fixed bottom-0 inset-x-0 bg-white border-t border-[var(--border)] flex md:hidden z-40">
+      {navLinks.map((link) => {
+        const active = pathname === link.href || pathname.startsWith(link.href + "/");
+        return (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={`flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-xs font-medium transition-colors ${
+              active ? "text-[var(--teal)]" : "text-[var(--ink-4)]"
+            }`}
+          >
+            <MobileNavIcon label={link.label} />
+            {link.label}
+          </Link>
+        );
+      })}
+    </nav>
+    </>
   );
 }
