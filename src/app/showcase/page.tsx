@@ -6,7 +6,7 @@
  */
 
 import { useState } from "react";
-import { ScorePill } from "../app/ScorePill";
+import { ScorePill } from "../../components/product/ScorePill";
 import { Widget } from "../../components/ui/Widget";
 import { ProductCard } from "../../components/ui/ProductCard";
 import { MatchBadge } from "../../components/ui/MatchBadge";

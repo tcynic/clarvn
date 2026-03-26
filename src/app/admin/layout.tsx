@@ -72,7 +72,7 @@ export default function AdminLayout({
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/app" className="text-xs text-white/50 hover:text-white transition-colors">
+          <Link href="/home" className="text-xs text-white/50 hover:text-white transition-colors">
             App ↗
           </Link>
           <button
