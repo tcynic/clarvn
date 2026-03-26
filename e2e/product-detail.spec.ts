@@ -18,8 +18,8 @@ import { ensureSignedIn } from "./helpers";
 // ---------------------------------------------------------------------------
 async function navigateToFirstProduct(page: Parameters<typeof ensureSignedIn>[0]) {
   await page.goto("/explore");
-  // Wait for at least one product card to appear
-  const card = page.locator(".product-card").first();
+  // Wait for a real product card — excludes skeleton/loading cards (animate-pulse)
+  const card = page.locator(".product-card.cursor-pointer").first();
   const hasProducts = await card.isVisible({ timeout: 8000 }).catch(() => false);
   if (!hasProducts) return false;
   await card.click();
@@ -209,7 +209,7 @@ test.describe("E7-E — Why it works + alternatives", () => {
     await page.waitForTimeout(2000);
 
     // Try to find a Watch/Caution/Avoid tier product card
-    const watchCard = page.locator('.product-card').filter({ hasText: /Watch|Caution|Avoid/ }).first();
+    const watchCard = page.locator('.product-card.cursor-pointer').filter({ hasText: /Watch|Caution|Avoid/ }).first();
     const found = await watchCard.isVisible({ timeout: 4000 }).catch(() => false);
     if (!found) { test.skip(); return; }
 
