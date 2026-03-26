@@ -277,6 +277,7 @@ export const getPersonalizedProduct = query({
     const baseTier = product.tier ?? getTierFromScore(baseScore);
 
     let personalScore = baseScore;
+    let matchPercentage = 0;
     const matchedModifiers: Array<{
       condition: string;
       ingredientId: Id<"ingredients">;
@@ -301,6 +302,17 @@ export const getPersonalizedProduct = query({
           });
         }
       }
+
+      // matchPercentage: proportion of user's conditions that have at least
+      // one active modifier for this product's ingredients.
+      if (userConditions.size > 0) {
+        const matchedConditionSet = new Set(
+          matchedModifiers.map((m) => m.condition.toLowerCase())
+        );
+        matchPercentage = Math.round(
+          (matchedConditionSet.size / userConditions.size) * 100
+        );
+      }
     }
 
     personalScore = Math.min(10.0, personalScore);
@@ -319,6 +331,7 @@ export const getPersonalizedProduct = query({
       personalScore,
       tier: baseTier,
       personalTier,
+      matchPercentage,
       modifiers: matchedModifiers,
       ingredients: scoredIngredients,
       pendingIngredients: pendingIngredients.map((i) => ({

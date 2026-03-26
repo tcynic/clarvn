@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
+import { useConvexAuth } from "convex/react";
 
 const DURATION_OPTIONS = [
   { label: "30 days", value: 30 },
@@ -68,6 +69,26 @@ function StatusPill({ user }: { user: { isPremium: boolean; isComplimentary: boo
 }
 
 export default function AdminUsersPage() {
+  const { isAuthenticated } = useConvexAuth();
+  const isAdmin = useQuery(
+    api.userProfiles.getIsAdmin,
+    isAuthenticated ? {} : "skip"
+  );
+
+  if (isAdmin === false) {
+    return (
+      <div className="py-16 text-center">
+        <p className="text-[var(--ink-3)]">You do not have admin access.</p>
+      </div>
+    );
+  }
+
+  if (!isAdmin) return null; // loading
+
+  return <AdminUsersContent />;
+}
+
+function AdminUsersContent() {
   const [searchEmail, setSearchEmail] = useState("");
   const [submittedEmail, setSubmittedEmail] = useState("");
   const [selectedDuration, setSelectedDuration] = useState<DurationOption>(30);
