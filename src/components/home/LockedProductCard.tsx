@@ -4,9 +4,10 @@ import Link from "next/link";
 
 interface LockedProductCardProps {
   extraCount?: number;
+  countLabel?: string; // default: "matches" (home page); use "results" for explore
 }
 
-export function LockedProductCard({ extraCount }: LockedProductCardProps) {
+export function LockedProductCard({ extraCount, countLabel = "matches" }: LockedProductCardProps) {
   return (
     <div className="product-card relative overflow-hidden select-none">
       {/* Blurred placeholder content */}
@@ -22,7 +23,7 @@ export function LockedProductCard({ extraCount }: LockedProductCardProps) {
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm rounded-[var(--radius-lg)] p-3 text-center">
         <span className="text-2xl mb-1">🔒</span>
         <p className="text-xs font-semibold text-[var(--ink)] leading-snug mb-2">
-          {extraCount ? `Unlock ${extraCount} more matches` : "Unlock more matches"}
+          {extraCount ? `Unlock ${extraCount} more ${countLabel}` : `Unlock more ${countLabel}`}
         </p>
         <Link
           href="/upgrade"

@@ -29,8 +29,8 @@ export function ExploreHeader({
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <p className="text-sm text-[var(--ink-3)]">
           {cappedForFree
-            ? `Showing 6 of ${totalCount}+ products`
-            : `Showing ${totalCount} product${totalCount !== 1 ? "s" : ""}`}
+            ? `Showing 6 of ${totalCount}+ products matching your profile`
+            : `Showing ${totalCount} product${totalCount !== 1 ? "s" : ""} matching your profile`}
         </p>
 
         <div className="flex items-center gap-2">

@@ -69,6 +69,11 @@ export function ExploreResultsGrid({
             tier={product.tier as "Clean" | "Watch" | "Caution" | "Avoid" | undefined}
             price={product.price}
             averageRating={product.averageRating}
+            matchPercentage={
+              product.baseScore !== undefined
+                ? Math.round(product.baseScore * 10)
+                : undefined
+            }
             inPantry={pantrySet.has(product._id as string)}
             onSelect={() => router.push(`/product/${product._id}`)}
             onTogglePantry={
@@ -86,7 +91,7 @@ export function ExploreResultsGrid({
         ))}
 
         {cappedForFree && (
-          <LockedProductCard extraCount={extraCount > 0 ? extraCount : undefined} />
+          <LockedProductCard extraCount={extraCount > 0 ? extraCount : undefined} countLabel="results" />
         )}
       </div>
 
