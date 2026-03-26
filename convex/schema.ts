@@ -81,7 +81,7 @@ export default defineSchema({
   // --- v3 user profiles (server-side personalization) ---
   user_profiles: defineTable({
     userId: v.string(), // auth identity tokenIdentifier (middle segment)
-    motivation: v.optional(v.string()),
+    motivation: v.optional(v.union(v.string(), v.array(v.string()))),
     conditions: v.array(v.string()),
     sensitivities: v.array(v.string()),
     // v3.4 onboarding redesign fields

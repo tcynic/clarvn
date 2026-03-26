@@ -1,26 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useConvexAuth } from "convex/react";
-import { useRouter } from "next/navigation";
+import { useMutation } from "convex/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useEffect } from "react";
+import { api } from "../../../convex/_generated/api";
+import {
+  hasOnboardingDraft,
+  loadOnboardingDraft,
+  draftToProfile,
+  clearOnboardingData,
+} from "@/lib/onboardingStorage";
+import { saveProfile } from "@/lib/personalScore";
 
-export default function LoginPage() {
+function LoginForm() {
   const { signIn } = useAuthActions();
   const { isAuthenticated, isLoading } = useConvexAuth();
   const router = useRouter();
-  const [mode, setMode] = useState<"signIn" | "signUp">("signIn");
+  const searchParams = useSearchParams();
+  const createProfileFromOnboarding = useMutation(
+    api.userProfiles.createProfileFromOnboarding
+  );
+
+  const fromParam = searchParams.get("from");
+  const defaultMode =
+    fromParam === "onboarding" || fromParam === "guest" ? "signUp" : "signIn";
+
+  const [mode, setMode] = useState<"signIn" | "signUp">(defaultMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [hasDraft] = useState(() => hasOnboardingDraft());
 
   // Redirect already-authenticated users
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
-      router.push("/app");
+      router.push("/home");
     }
   }, [isAuthenticated, isLoading, router]);
 
@@ -30,7 +48,29 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await signIn("password", { email, password, flow: mode });
-      router.push("/app");
+
+      // If there's an onboarding draft, sync it to Convex then clear
+      if (hasDraft) {
+        const draft = loadOnboardingDraft();
+        try {
+          await createProfileFromOnboarding({
+            motivation: draft.motivation ?? [],
+            conditions: draft.conditions ?? [],
+            sensitivities: draft.sensitivities ?? [],
+            dietaryRestrictions: draft.dietaryRestrictions ?? [],
+            lifeStage: draft.lifeStage ?? "just_me",
+            householdMembers: draft.householdMembers ?? [],
+            ingredientsToAvoid: draft.ingredientsToAvoid ?? [],
+          });
+          saveProfile(draftToProfile(draft));
+          clearOnboardingData();
+        } catch {
+          // Non-fatal: profile sync failed but auth succeeded
+          // User will be redirected to /onboarding to fill in profile
+        }
+      }
+
+      router.push("/home");
     } catch {
       setError(
         mode === "signIn"
@@ -63,9 +103,15 @@ export default function LoginPage() {
               clar<span className="text-[var(--teal)] italic">vn</span>
             </span>
           </Link>
-          <p className="text-sm text-[var(--ink-3)] mt-2">
-            {mode === "signIn" ? "Welcome back" : "Create your free account"}
-          </p>
+          {hasDraft && mode === "signUp" ? (
+            <p className="text-sm text-[var(--teal-dark)] mt-2 font-medium">
+              Your profile is ready — create an account to save it
+            </p>
+          ) : (
+            <p className="text-sm text-[var(--ink-3)] mt-2">
+              {mode === "signIn" ? "Welcome back" : "Create your free account"}
+            </p>
+          )}
         </div>
 
         {/* Mode toggle */}
@@ -145,5 +191,19 @@ export default function LoginPage() {
         Scores are AI-generated from peer-reviewed evidence. Not a substitute for medical advice.
       </p>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-[var(--surface)]">
+          <span className="text-sm text-[var(--ink-3)]">Loading…</span>
+        </div>
+      }
+    >
+      <LoginForm />
+    </Suspense>
   );
 }

@@ -168,3 +168,61 @@ body {
   .container { padding: 0 1.25rem; }
   .section   { padding: 2.5rem 0; }
 }
+
+/* === Onboarding === */
+
+/* Step progress bar */
+.progress-bar {
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Onboarding page container */
+.onboarding-container {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+/* Onboarding screen title */
+.onboarding-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+/* Onboarding chip — extends filter-pill with mobile touch target */
+.onboarding-chip {
+  display: inline-flex; align-items: center;
+  min-height: 44px; padding: 8px 16px;
+  border-radius: 22px; font-size: 13px; font-weight: 500;
+  border: 1px solid var(--border); background: var(--white); color: var(--ink-2);
+  cursor: pointer; transition: all 0.15s;
+  text-align: left;
+}
+.onboarding-chip:hover  { border-color: var(--teal-mid); color: var(--teal-dark); }
+.onboarding-chip.active { border-color: var(--teal); background: var(--teal-light); color: var(--teal-dark); }
+
+/* Exclusive chip — dashed border to visually distinguish "None of these" */
+.onboarding-chip.exclusive { border-style: dashed; }
+.onboarding-chip.exclusive.active { border-style: dashed; }
+
+/* Guest banner */
+.guest-banner {
+  background: var(--teal-light);
+  border-bottom: 1px solid var(--teal-pale);
+  padding: 10px 16px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; font-size: 13px; color: var(--teal-dark);
+  text-align: center;
+}

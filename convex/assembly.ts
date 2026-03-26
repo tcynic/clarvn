@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { internalMutation, query } from "./_generated/server";
 import { Id, Doc } from "./_generated/dataModel";
+import { getAuthUserId } from "./lib/premium";
 
 // ============================================================
 // Pure Functions (unit-testable, no Convex context)
@@ -249,13 +250,11 @@ export const getPersonalizedProduct = query({
 
     // Fetch user profile (if authenticated)
     let userProfile: Doc<"user_profiles"> | null = null;
-    const identity = await ctx.auth.getUserIdentity();
-    if (identity) {
+    const userId = await getAuthUserId(ctx);
+    if (userId) {
       userProfile = await ctx.db
         .query("user_profiles")
-        .withIndex("by_userId", (q) =>
-          q.eq("userId", identity.tokenIdentifier)
-        )
+        .withIndex("by_userId", (q) => q.eq("userId", userId))
         .first();
     }
 
