@@ -15,6 +15,8 @@ import type * as assembly from "../assembly.js";
 import type * as auth from "../auth.js";
 import type * as brandSuggestions from "../brandSuggestions.js";
 import type * as checkins from "../checkins.js";
+import type * as contentArticles from "../contentArticles.js";
+import type * as recommendations from "../recommendations.js";
 import type * as crons from "../crons.js";
 import type * as deduplication from "../deduplication.js";
 import type * as enrichment from "../enrichment.js";
@@ -56,6 +58,8 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   brandSuggestions: typeof brandSuggestions;
   checkins: typeof checkins;
+  contentArticles: typeof contentArticles;
+  recommendations: typeof recommendations;
   crons: typeof crons;
   deduplication: typeof deduplication;
   enrichment: typeof enrichment;

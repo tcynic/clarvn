@@ -45,9 +45,11 @@ export default function OnboardingPage() {
   }, []);
 
   function updateDraft(patch: Partial<OnboardingDraft>) {
-    const next = { ...draft, ...patch };
-    setDraft(next);
-    saveOnboardingDraft(next);
+    setDraft((prev) => {
+      const next = { ...prev, ...patch };
+      saveOnboardingDraft(next);
+      return next;
+    });
   }
 
   function advance(patch?: Partial<OnboardingDraft>) {

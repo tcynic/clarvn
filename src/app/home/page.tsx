@@ -1,16 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useConvexAuth } from "convex/react";
-import { useQuery } from "convex/react";
+import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
+import { NavBar } from "@/components/ui/NavBar";
 import { GuestBanner } from "@/components/ui/GuestBanner";
 import { useGuestProfile } from "@/hooks/useGuestProfile";
 import { saveProfile } from "@/lib/personalScore";
+import { HeroSection } from "@/components/home/HeroSection";
+import { SearchCard } from "@/components/home/SearchCard";
+import { QuickActionsGrid } from "@/components/home/QuickActionsGrid";
+import { ProductMatchSection } from "@/components/home/ProductMatchSection";
+import { ContentSection } from "@/components/home/ContentSection";
+import { CheckinWidget } from "@/components/home/CheckinWidget";
+import { PantryWidget } from "@/components/home/PantryWidget";
+import { ProfileWidget } from "@/components/home/ProfileWidget";
 
 /**
- * /home — Epic 4 Home Dashboard stub.
+ * /home — Epic 4 Home Dashboard.
  *
  * Access rules:
  * - Authenticated users: load profile from Convex, no banner.
@@ -24,6 +32,16 @@ export default function HomePage() {
 
   const convexProfile = useQuery(
     api.userProfiles.getMyProfile,
+    isAuthenticated ? {} : "skip"
+  );
+
+  const subscriptionStatus = useQuery(
+    api.userProfiles.getSubscriptionStatus,
+    isAuthenticated ? {} : "skip"
+  );
+
+  const isAdmin = useQuery(
+    api.userProfiles.getIsAdmin,
     isAuthenticated ? {} : "skip"
   );
 
@@ -45,8 +63,6 @@ export default function HomePage() {
   useEffect(() => {
     if (isLoading) return;
     if (!isAuthenticated && guestProfile === null) {
-      // guestProfile starts as null before hydration — wait one tick
-      // for the hook to hydrate from localStorage before deciding
       const timer = setTimeout(() => {
         const stillNull = guestProfile === null;
         if (!isAuthenticated && stillNull) {
@@ -66,14 +82,35 @@ export default function HomePage() {
     }
   }, [isAuthenticated, isLoading, convexProfile, router]);
 
+  const isGuest = !isAuthenticated;
+  const isPremium = subscriptionStatus?.isPremium ?? false;
+  const daysRemaining = subscriptionStatus?.daysRemaining ?? null;
+
+  // Resolve active profile (Convex takes priority over localStorage)
   const activeProfile = convexProfile
     ? {
         conditions: convexProfile.conditions ?? [],
         sensitivities: convexProfile.sensitivities ?? [],
+        dietaryRestrictions: convexProfile.dietaryRestrictions ?? [],
+        ingredientsToAvoid: convexProfile.ingredientsToAvoid ?? [],
       }
-    : guestProfile;
+    : guestProfile
+    ? {
+        conditions: guestProfile.conditions ?? [],
+        sensitivities: guestProfile.sensitivities ?? [],
+        dietaryRestrictions: guestProfile.dietaryRestrictions ?? [],
+        ingredientsToAvoid: guestProfile.ingredientsToAvoid ?? [],
+      }
+    : null;
 
-  const isGuest = !isAuthenticated;
+  const conditionCount =
+    (activeProfile?.conditions.length ?? 0) +
+    (activeProfile?.sensitivities.length ?? 0);
+
+  // Extract user display name from profile or auth
+  const userName = convexProfile
+    ? (convexProfile as { name?: string }).name
+    : undefined;
 
   if (isLoading) {
     return (
@@ -84,41 +121,50 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--surface)]">
+    <div className="min-h-screen bg-[var(--surface)] pb-24">
+      <NavBar
+        userName={userName}
+        activeConditionCount={conditionCount}
+        isAdmin={isAdmin ?? false}
+        isPremium={isPremium}
+        daysRemaining={daysRemaining}
+      />
+
       {isGuest && <GuestBanner />}
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
-        <header className="mb-8">
-          <h1 className="text-2xl font-semibold text-[var(--ink)]">
-            clar<span className="text-[var(--teal-mid)] italic">vn</span>
-          </h1>
-          <p className="text-sm text-[var(--ink-3)] mt-1">
-            {isGuest ? "Exploring as guest" : "Home"}
-          </p>
-        </header>
-
-        {/* Epic 4 content placeholder */}
-        <div className="widget-card text-center py-16">
-          <p className="text-[var(--ink-3)] text-sm">
-            Home dashboard coming in Epic 4.
-          </p>
-          {activeProfile && (
-            <p className="text-xs text-[var(--ink-4)] mt-2">
-              Profile active: {(activeProfile.conditions ?? []).length} conditions,{" "}
-              {(activeProfile.sensitivities ?? []).length} sensitivities
-            </p>
-          )}
-          <div className="mt-6">
-            <a
-              href="/app"
-              className="inline-block text-sm font-medium text-[var(--teal-dark)] underline underline-offset-2"
-            >
-              Browse products →
-            </a>
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+          {/* Main column */}
+          <div className="space-y-8">
+            <HeroSection userName={userName} isGuest={isGuest} />
+            <SearchCard />
+            <QuickActionsGrid />
+            {activeProfile && (
+              <ProductMatchSection
+                isAuthenticated={isAuthenticated}
+                isPremium={isPremium}
+                profileOverride={isGuest ? activeProfile : undefined}
+                conditionCount={conditionCount}
+              />
+            )}
+            <ContentSection />
           </div>
+
+          {/* Sidebar */}
+          <aside className="space-y-4">
+            <CheckinWidget isAuthenticated={isAuthenticated} />
+            <PantryWidget isAuthenticated={isAuthenticated} />
+            {activeProfile && (
+              <ProfileWidget
+                conditions={activeProfile.conditions}
+                sensitivities={activeProfile.sensitivities}
+                dietaryRestrictions={activeProfile.dietaryRestrictions}
+                isGuest={isGuest}
+              />
+            )}
+          </aside>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
