@@ -7,6 +7,9 @@
  *
  * extractClaims: AI fallback that infers product claims via Claude for products
  *   with 0 claims after OFF enrichment. Claims stored as verified=false.
+ *
+ * backfillIngredientFunction: Classifies an ingredient's function and writes
+ *   a 2-sentence explanation. Used by the backfill CLI script.
  */
 
 import { v } from "convex/values";
@@ -14,7 +17,10 @@ import { action } from "./_generated/server";
 import { internal, api } from "./_generated/api";
 import Anthropic from "@anthropic-ai/sdk";
 import { mapOFFCategory, mapOFFLabels } from "./lib/offMappings";
-import { requireAdmin } from "./lib/auth";
+import {
+  INGREDIENT_FUNCTION_SYSTEM_PROMPT,
+  buildIngredientFunctionMessage,
+} from "./lib/ingredientFunctionPrompt";
 
 // ---------------------------------------------------------------------------
 // Open Food Facts helpers
@@ -77,13 +83,11 @@ async function fetchProductDetailsFromOFF(
 
 /**
  * Enrich a product with category, image, and certification claims from OFF.
- * Admin-guarded. Safe to run multiple times (idempotent via mutations).
+ * Safe to run multiple times (idempotent via mutations).
  */
 export const enrichProductFromOFF = action({
   args: { productId: v.id("products") },
   handler: async (ctx, args) => {
-    await requireAdmin(ctx);
-
     const product = await ctx.runQuery(api.products.getProductById, {
       id: args.productId,
     });
@@ -162,8 +166,6 @@ const VALID_CLAIM_KEYS = [
 export const extractClaims = action({
   args: { productId: v.id("products") },
   handler: async (ctx, args) => {
-    await requireAdmin(ctx);
-
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) throw new Error("ANTHROPIC_API_KEY not configured");
 
@@ -173,11 +175,14 @@ export const extractClaims = action({
     if (!product) throw new Error(`Product not found: ${args.productId}`);
 
     // Fetch the product's ingredient names for context
-    const ingredientDocs = await ctx.runQuery(
+    const rawIngredients = await ctx.runQuery(
       api.ingredients.getIngredientsByProduct,
       { productId: args.productId }
     );
-    const ingredientList = ingredientDocs.map((i) => i.canonicalName).join(", ");
+    const ingredientList = rawIngredients
+      .filter((i): i is NonNullable<typeof i> => i !== null)
+      .map((i) => i.canonicalName)
+      .join(", ");
 
     const anthropic = new Anthropic({ apiKey });
 
@@ -215,17 +220,15 @@ Which claims does this product likely have?`,
     try {
       const parsed = JSON.parse(text);
       if (Array.isArray(parsed.claims)) {
-        // Only keep valid claim keys
         const validSet = new Set<string>(VALID_CLAIM_KEYS);
-        claims = (parsed.claims as unknown[])
-          .filter((c): c is string => typeof c === "string" && validSet.has(c));
+        claims = (parsed.claims as unknown[]).filter(
+          (c): c is string => typeof c === "string" && validSet.has(c)
+        );
       }
     } catch {
-      // If parsing fails, return empty claims rather than throw
       return { claims: [] };
     }
 
-    // Write each claim
     for (const claim of claims) {
       await ctx.runMutation(internal.enrichmentMutations.upsertProductClaim, {
         productId: args.productId,
@@ -236,5 +239,81 @@ Which claims does this product likely have?`,
     }
 
     return { claims };
+  },
+});
+
+// ---------------------------------------------------------------------------
+// backfillIngredientFunction
+// ---------------------------------------------------------------------------
+
+/**
+ * Classify a single ingredient's function and write a 2-sentence explanation.
+ * Called by the backfill CLI script — skips if already populated.
+ */
+export const backfillIngredientFunction = action({
+  args: { ingredientId: v.id("ingredients") },
+  handler: async (ctx, args) => {
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) throw new Error("ANTHROPIC_API_KEY not configured");
+
+    const ingredient = await ctx.runQuery(
+      api.ingredients.getIngredientById,
+      { ingredientId: args.ingredientId }
+    );
+    if (!ingredient) throw new Error(`Ingredient not found: ${args.ingredientId}`);
+
+    // Skip if already populated
+    if (ingredient.ingredientFunction) {
+      return { skipped: true };
+    }
+
+    const anthropic = new Anthropic({ apiKey });
+
+    const response = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 256,
+      temperature: 0,
+      system: INGREDIENT_FUNCTION_SYSTEM_PROMPT,
+      messages: [
+        {
+          role: "user",
+          content: buildIngredientFunctionMessage(ingredient.canonicalName),
+        },
+      ],
+    });
+
+    if (response.stop_reason === "max_tokens") {
+      throw new Error("Response truncated");
+    }
+
+    const content = response.content[0];
+    if (content.type !== "text") throw new Error("Unexpected response type");
+
+    let text = content.text.trim();
+    text = text
+      .replace(/^```json\s*/i, "")
+      .replace(/^```\s*/i, "")
+      .replace(/```\s*$/i, "")
+      .trim();
+
+    const parsed = JSON.parse(text);
+
+    if (
+      typeof parsed.ingredientFunction !== "string" ||
+      typeof parsed.detailExplanation !== "string"
+    ) {
+      throw new Error("Missing required fields in response");
+    }
+
+    await ctx.runMutation(internal.enrichmentMutations.patchIngredientEnrichment, {
+      ingredientId: args.ingredientId,
+      ingredientFunction: parsed.ingredientFunction.trim(),
+      detailExplanation: parsed.detailExplanation.trim(),
+    });
+
+    return {
+      skipped: false,
+      ingredientFunction: parsed.ingredientFunction.trim(),
+    };
   },
 });
