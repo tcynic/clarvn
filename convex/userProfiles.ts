@@ -2,6 +2,7 @@ import { v } from "convex/values";
 import { mutation, internalMutation, query } from "./_generated/server";
 import { ConvexError } from "convex/values";
 import { Id } from "./_generated/dataModel";
+import { getAuthUserId } from "./lib/premium";
 
 /**
  * Create or update the current user's health profile.
@@ -128,5 +129,40 @@ export const getMyProfile = query({
       .query("user_profiles")
       .withIndex("by_userId", (q) => q.eq("userId", userId))
       .first();
+  },
+});
+
+/**
+ * Returns the current user's subscription status for UI state management.
+ * isPremium reflects the server-side check (both isPremium AND premiumUntil > now).
+ * daysRemaining is populated for trialing users.
+ */
+export const getSubscriptionStatus = query({
+  args: {},
+  handler: async (ctx) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) return null;
+    const user = await ctx.db.get(userId);
+    if (!user) return null;
+
+    const now = Date.now();
+    const isActive =
+      user.isPremium === true &&
+      typeof user.premiumUntil === "number" &&
+      user.premiumUntil > now;
+
+    const daysRemaining =
+      isActive && typeof user.premiumUntil === "number"
+        ? Math.ceil((user.premiumUntil - now) / (1000 * 60 * 60 * 24))
+        : null;
+
+    return {
+      isPremium: isActive,
+      premiumUntil: user.premiumUntil ?? null,
+      planTier: user.planTier ?? "free",
+      subscriptionStatus: user.subscriptionStatus ?? null,
+      isComplimentary: user.isComplimentary ?? false,
+      daysRemaining,
+    };
   },
 });

@@ -63,6 +63,12 @@ export default function AdminLayout({
             >
               Products
             </Link>
+            <Link
+              href="/admin/users"
+              className="text-white/70 hover:text-white transition-colors"
+            >
+              Users
+            </Link>
           </div>
         </div>
         <div className="flex items-center gap-4">

@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { internalMutation, internalQuery, mutation, query } from "./_generated/server";
+import { paginationOptsValidator } from "convex/server";
 import { requireAdmin } from "./lib/auth";
 
 // Internal mutation: write a scored product to the DB.
@@ -247,5 +248,64 @@ export const listProducts = query({
       .query("products")
       .withIndex("by_status", (q) => q.eq("status", status))
       .collect();
+  },
+});
+
+/**
+ * Paginated product browse with optional category and/or tier filtering.
+ * Uses compound index by_category_and_tier when both are provided,
+ * single-field indexes otherwise.
+ */
+export const browseProducts = query({
+  args: {
+    paginationOpts: paginationOptsValidator,
+    category: v.optional(v.string()),
+    tier: v.optional(
+      v.union(
+        v.literal("Clean"),
+        v.literal("Watch"),
+        v.literal("Caution"),
+        v.literal("Avoid")
+      )
+    ),
+  },
+  handler: async (ctx, args) => {
+    if (args.category && args.tier) {
+      return await ctx.db
+        .query("products")
+        .withIndex("by_category_and_tier", (q) =>
+          q.eq("category", args.category!).eq("tier", args.tier!)
+        )
+        .paginate(args.paginationOpts);
+    }
+    if (args.category) {
+      return await ctx.db
+        .query("products")
+        .withIndex("by_category", (q) => q.eq("category", args.category!))
+        .paginate(args.paginationOpts);
+    }
+    if (args.tier) {
+      return await ctx.db
+        .query("products")
+        .withIndex("by_tier", (q) => q.eq("tier", args.tier!))
+        .paginate(args.paginationOpts);
+    }
+    return await ctx.db
+      .query("products")
+      .withIndex("by_status", (q) => q.eq("status", "scored"))
+      .paginate(args.paginationOpts);
+  },
+});
+
+/**
+ * Get all claims for a product.
+ */
+export const getProductClaims = query({
+  args: { productId: v.id("products") },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("product_claims")
+      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
+      .take(50);
   },
 });
