@@ -6,6 +6,8 @@ import { api } from "../../../convex/_generated/api";
 import { Doc, Id } from "../../../convex/_generated/dataModel";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { LockedProductCard } from "@/components/home/LockedProductCard";
+import { SignupPromptCard } from "@/components/ui/SignupPromptCard";
+import { GATE_COPY } from "@/lib/gateConstants";
 
 interface ExploreResultsGridProps {
   products: Doc<"products">[];
@@ -14,6 +16,8 @@ interface ExploreResultsGridProps {
   isLoading: boolean;
   pantrySet: Set<string>;
   isAuthenticated: boolean;
+  isGuest: boolean;
+  hasSeenScoreDelta: boolean;
   onLoadMore: () => void;
   isDone: boolean;
 }
@@ -29,6 +33,8 @@ export function ExploreResultsGrid({
   isLoading,
   pantrySet,
   isAuthenticated,
+  isGuest,
+  hasSeenScoreDelta,
   onLoadMore,
   isDone,
 }: ExploreResultsGridProps) {
@@ -54,6 +60,8 @@ export function ExploreResultsGrid({
   }
 
   const extraCount = cappedForFree ? Math.max(0, totalCount - products.length) : 0;
+  // Score delta precondition: suppress gate 1 until user has seen a score delta
+  const showGate = cappedForFree && hasSeenScoreDelta;
 
   return (
     <div>
@@ -90,8 +98,14 @@ export function ExploreResultsGrid({
           />
         ))}
 
-        {cappedForFree && (
-          <LockedProductCard extraCount={extraCount > 0 ? extraCount : undefined} countLabel="results" />
+        {showGate && (
+          isGuest ? (
+            <SignupPromptCard />
+          ) : (
+            <LockedProductCard
+              message={GATE_COPY.exploreOverflow(products.length, totalCount)}
+            />
+          )
         )}
       </div>
 

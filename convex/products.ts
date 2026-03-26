@@ -309,3 +309,60 @@ export const getProductClaims = query({
       .take(50);
   },
 });
+
+/**
+ * Epic 7.2 — Match details for a single product.
+ * Returns which of the authenticated user's profile flags are met by this
+ * product's ingredients, along with a match percentage.
+ */
+export const getMatchDetailsForProduct = query({
+  args: { productId: v.id("products") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) return null;
+
+    const parts = identity.tokenIdentifier.split("|");
+    const userId = parts.length >= 2 ? parts[1] : identity.tokenIdentifier;
+
+    const profile = await ctx.db
+      .query("user_profiles")
+      .withIndex("by_userId", (q) => q.eq("userId", userId))
+      .first();
+    if (!profile) return null;
+
+    const userConditions = new Set([
+      ...profile.conditions.map((c: string) => c.toLowerCase()),
+      ...profile.sensitivities.map((s: string) => s.toLowerCase()),
+    ]);
+    if (userConditions.size === 0) {
+      return { matchPercentage: 0, matchedFlags: [] as string[], totalFlags: 0 };
+    }
+
+    const links = await ctx.db
+      .query("product_ingredients")
+      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
+      .take(100);
+
+    const matchedConditions = new Set<string>();
+    for (const link of links) {
+      const mods = await ctx.db
+        .query("condition_modifiers")
+        .withIndex("by_ingredientId", (q) => q.eq("ingredientId", link.ingredientId))
+        .take(50);
+      for (const mod of mods) {
+        if (mod.status === "active" && userConditions.has(mod.condition.toLowerCase())) {
+          matchedConditions.add(mod.condition.toLowerCase());
+        }
+      }
+    }
+
+    const matchPercentage = Math.round(
+      (matchedConditions.size / userConditions.size) * 100
+    );
+    return {
+      matchPercentage,
+      matchedFlags: Array.from(matchedConditions),
+      totalFlags: userConditions.size,
+    };
+  },
+});

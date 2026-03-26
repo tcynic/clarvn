@@ -16,6 +16,7 @@ import {
   ExploreFilters,
   SortValue,
 } from "@/lib/exploreConstants";
+import { usePremiumGate } from "@/hooks/usePremiumGate";
 
 const PAGE_SIZE = 12;
 
@@ -114,8 +115,15 @@ function ExploreContent() {
 
   const isPremium = subscriptionStatus?.isPremium ?? false;
   const daysRemaining = subscriptionStatus?.daysRemaining ?? null;
+  const subStatus = subscriptionStatus?.subscriptionStatus ?? null;
   const pantrySet = new Set<string>((pantryProductIds ?? []).map((id) => id as string));
   const isLoading = authLoading || exploreResult === undefined;
+
+  const { isGuest, hasSeenScoreDelta } = usePremiumGate({
+    isAuthenticated,
+    isPremium,
+    subscriptionStatus: subStatus,
+  });
 
   const page = exploreResult?.page ?? [];
   const isDone = exploreResult?.isDone ?? true;
@@ -133,6 +141,7 @@ function ExploreContent() {
       <NavBar
         isPremium={isPremium}
         daysRemaining={daysRemaining}
+        subscriptionStatus={subStatus}
         isAdmin={isAdmin ?? false}
       />
 
@@ -157,6 +166,7 @@ function ExploreContent() {
             filters={filters}
             filterCounts={filterCounts ?? {}}
             onChange={handleFilterChange}
+            isPremium={isPremium}
           />
 
           <div className="flex-1 min-w-0">
@@ -167,6 +177,8 @@ function ExploreContent() {
               isLoading={isLoading}
               pantrySet={pantrySet}
               isAuthenticated={isAuthenticated}
+              isGuest={isGuest}
+              hasSeenScoreDelta={hasSeenScoreDelta}
               isDone={isDone}
               onLoadMore={() => {
                 if (exploreResult?.continueCursor) {
@@ -184,6 +196,7 @@ function ExploreContent() {
         filters={filters}
         filterCounts={filterCounts ?? {}}
         onChange={handleFilterChange}
+        isPremium={isPremium}
       />
     </div>
   );

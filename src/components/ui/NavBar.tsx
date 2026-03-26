@@ -47,6 +47,8 @@ interface NavBarProps {
   isAdmin?: boolean;
   isPremium?: boolean;
   daysRemaining?: number | null;
+  subscriptionStatus?: string | null;
+  onStartTrial?: () => void;
   onProfileClick?: () => void;
   onSignOut?: () => void;
 }
@@ -63,6 +65,8 @@ export function NavBar({
   isAdmin = false,
   isPremium = false,
   daysRemaining,
+  subscriptionStatus,
+  onStartTrial,
   onProfileClick,
   onSignOut,
 }: NavBarProps) {
@@ -71,8 +75,18 @@ export function NavBar({
   return (
     <>
     <header className="bg-white border-b border-[var(--border)] px-6 py-0 sticky top-0 z-40">
-      {/* Trial banner */}
-      {isPremium && daysRemaining !== null && daysRemaining !== undefined && daysRemaining <= 14 && (
+      {/* Past-due payment banner — shows when subscription is past_due, never hard-locks features */}
+      {subscriptionStatus === "past_due" && (
+        <div className="text-center text-xs py-1.5 font-medium bg-amber-50 text-amber-700">
+          Your payment method needs updating ·{" "}
+          <Link href="/upgrade" className="underline">
+            Update payment method
+          </Link>
+        </div>
+      )}
+
+      {/* Trial countdown banner — shown when trialing and ≤14 days remain */}
+      {subscriptionStatus !== "past_due" && isPremium && daysRemaining !== null && daysRemaining !== undefined && daysRemaining <= 14 && (
         <div
           className={`text-center text-xs py-1.5 font-medium ${
             daysRemaining <= 2
@@ -126,13 +140,23 @@ export function NavBar({
 
         {/* Right side */}
         <div className="flex items-center gap-2">
-          {!isPremium && (
-            <Link
-              href="/upgrade"
-              className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--teal)] text-white hover:bg-[var(--teal-dark)] transition-colors"
-            >
-              Start free trial
-            </Link>
+          {!isPremium && subscriptionStatus !== "canceled" && (
+            onStartTrial ? (
+              <button
+                type="button"
+                onClick={onStartTrial}
+                className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--teal)] text-white hover:bg-[var(--teal-dark)] transition-colors"
+              >
+                Start free trial
+              </button>
+            ) : (
+              <Link
+                href="/upgrade"
+                className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--teal)] text-white hover:bg-[var(--teal-dark)] transition-colors"
+              >
+                Start free trial
+              </Link>
+            )
           )}
 
           {isAdmin && (

@@ -2,11 +2,13 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useConvexAuth, useQuery } from "convex/react";
+import { useConvexAuth, useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { NavBar } from "@/components/ui/NavBar";
 import { GuestBanner } from "@/components/ui/GuestBanner";
+import { TrialEndedModal } from "@/components/ui/TrialEndedModal";
 import { useGuestProfile } from "@/hooks/useGuestProfile";
+import { usePremiumGate } from "@/hooks/usePremiumGate";
 import { saveProfile } from "@/lib/personalScore";
 import { HeroSection } from "@/components/home/HeroSection";
 import { SearchCard } from "@/components/home/SearchCard";
@@ -82,9 +84,14 @@ export default function HomePage() {
     }
   }, [isAuthenticated, isLoading, convexProfile, router]);
 
+  const startTrial = useMutation(api.users.startTrial);
+
   const isGuest = !isAuthenticated;
   const isPremium = subscriptionStatus?.isPremium ?? false;
   const daysRemaining = subscriptionStatus?.daysRemaining ?? null;
+  const subStatus = subscriptionStatus?.subscriptionStatus ?? null;
+
+  const { hasSeenScoreDelta } = usePremiumGate({ isAuthenticated, isPremium, subscriptionStatus: subStatus });
 
   // Resolve active profile (Convex takes priority over localStorage)
   const activeProfile = convexProfile
@@ -122,12 +129,15 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[var(--surface)] pb-24">
+      <TrialEndedModal subscriptionStatus={subStatus} />
       <NavBar
         userName={userName}
         activeConditionCount={conditionCount}
         isAdmin={isAdmin ?? false}
         isPremium={isPremium}
         daysRemaining={daysRemaining}
+        subscriptionStatus={subStatus}
+        onStartTrial={isAuthenticated ? () => startTrial({}) : undefined}
       />
 
       {isGuest && <GuestBanner />}
@@ -143,6 +153,8 @@ export default function HomePage() {
               <ProductMatchSection
                 isAuthenticated={isAuthenticated}
                 isPremium={isPremium}
+                isGuest={isGuest}
+                hasSeenScoreDelta={hasSeenScoreDelta}
                 profileOverride={isGuest ? activeProfile : undefined}
                 conditionCount={conditionCount}
               />

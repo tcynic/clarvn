@@ -9,23 +9,27 @@ export const CATEGORY_OPTIONS = [
   { label: "Frozen",         value: "frozen",         subcategory: null },
 ] as const;
 
+// Per paywall strategy: all free-from claims are premium.
+// Free filters: score range (tier) and certifications.
 export const FREE_FROM_OPTIONS = [
-  { label: "Gluten-free",     claim: "gluten_free" },
-  { label: "Dairy-free",      claim: "dairy_free" },
-  { label: "Nut-free",        claim: "nut_free" },
-  { label: "Soy-free",        claim: "soy_free" },
-  { label: "Artificial dyes", claim: "no_artificial_colors" },
-  { label: "Added sugars",    claim: "no_added_sugar" },
-  { label: "Preservatives",   claim: "no_preservatives" },
+  { label: "Gluten-free",     claim: "gluten_free",        premium: true },
+  { label: "Dairy-free",      claim: "dairy_free",         premium: true },
+  { label: "Nut-free",        claim: "nut_free",           premium: true },
+  { label: "Soy-free",        claim: "soy_free",           premium: true },
+  { label: "Artificial dyes", claim: "no_artificial_colors", premium: true },
+  { label: "Added sugars",    claim: "no_added_sugar",     premium: true },
+  { label: "Preservatives",   claim: "no_preservatives",   premium: true },
 ] as const;
 
+// Certifications are free filters.
 export const CERTIFICATION_OPTIONS = [
-  { label: "USDA Organic", claim: "usda_organic" },
-  { label: "Non-GMO",      claim: "non_gmo" },
-  { label: "Kosher",       claim: "kosher" },
-  { label: "Vegan",        claim: "vegan" },
+  { label: "USDA Organic", claim: "usda_organic", premium: false },
+  { label: "Non-GMO",      claim: "non_gmo",      premium: false },
+  { label: "Kosher",       claim: "kosher",        premium: false },
+  { label: "Vegan",        claim: "vegan",         premium: false },
 ] as const;
 
+// Price range is a premium filter.
 export const PRICE_RANGE_OPTIONS = [
   { label: "Under $5", value: "under_5" },
   { label: "$5–$15",   value: "5_to_15" },

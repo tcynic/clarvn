@@ -9,6 +9,7 @@ interface ExploreFilterSheetProps {
   filters: ExploreFilters;
   filterCounts: Record<string, number>;
   onChange: (update: Partial<ExploreFilters>) => void;
+  isPremium?: boolean;
 }
 
 export function ExploreFilterSheet({
@@ -17,6 +18,7 @@ export function ExploreFilterSheet({
   filters,
   filterCounts,
   onChange,
+  isPremium = false,
 }: ExploreFilterSheetProps) {
   if (!open) return null;
 
@@ -56,6 +58,7 @@ export function ExploreFilterSheet({
             filters={filters}
             filterCounts={filterCounts}
             onChange={onChange}
+            isPremium={isPremium}
           />
         </div>
       </div>

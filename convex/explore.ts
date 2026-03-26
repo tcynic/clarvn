@@ -21,6 +21,19 @@ const ALL_CLAIM_KEYS = [
   "vegan",
 ] as const;
 
+// Claims that require a premium subscription to filter by.
+// Free filters: score range (tier) and certifications (usda_organic, non_gmo, kosher, vegan).
+// Premium filters: all free-from claims.
+const PREMIUM_CLAIMS = new Set([
+  "gluten_free",
+  "dairy_free",
+  "nut_free",
+  "soy_free",
+  "no_artificial_colors",
+  "no_added_sugar",
+  "no_preservatives",
+]);
+
 type SortOption = "best_match" | "highest_score" | "most_reviewed" | "price_asc";
 type TierOption = "Clean" | "Watch" | "Caution";
 type PriceRange = "under_5" | "5_to_15" | "over_15";
@@ -80,7 +93,24 @@ export const exploreProducts = query({
   },
   handler: async (ctx, args) => {
     const isPremium = await isPremiumUser(ctx);
-    const hasClaims = args.claims && args.claims.length > 0;
+
+    // Gate 3 server-side: strip premium-only claims for non-premium users.
+    // Free users cannot bypass the UI gate via direct API calls.
+    let effectiveClaims = args.claims ?? [];
+    const strippedClaims: string[] = [];
+    if (!isPremium && effectiveClaims.length > 0) {
+      const allowed: string[] = [];
+      for (const c of effectiveClaims) {
+        if (PREMIUM_CLAIMS.has(c)) {
+          strippedClaims.push(c);
+        } else {
+          allowed.push(c);
+        }
+      }
+      effectiveClaims = allowed;
+    }
+
+    const hasClaims = effectiveClaims.length > 0;
 
     let page: Doc<"products">[];
     let isDone: boolean;
@@ -132,7 +162,7 @@ export const exploreProducts = query({
       // ── Branch B: set-intersection for claims + in-memory filtering ───────
       // 1. For each required claim, collect product IDs via by_claim index
       const claimIdSets = await Promise.all(
-        args.claims!.map(async (claim) => {
+        effectiveClaims.map(async (claim) => {
           const rows = await ctx.db
             .query("product_claims")
             .withIndex("by_claim", (q) => q.eq("claim", claim))
@@ -197,6 +227,7 @@ export const exploreProducts = query({
         continueCursor: "",
         totalCount: page.length,
         cappedForFree: true,
+        strippedClaims,
       };
     }
 
@@ -206,6 +237,7 @@ export const exploreProducts = query({
       continueCursor,
       totalCount,
       cappedForFree: false,
+      strippedClaims,
     };
   },
 });

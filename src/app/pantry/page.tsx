@@ -1,11 +1,15 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useConvexAuth, useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { NavBar } from "@/components/ui/NavBar";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { GATE_COPY } from "@/lib/gateConstants";
+
+const FREE_PANTRY_LIMIT = 10;
 
 type SortKey = "date" | "score" | "name";
 
@@ -57,6 +61,9 @@ export default function PantryPage() {
 
   const isPremium = subscriptionStatus?.isPremium ?? false;
   const daysRemaining = subscriptionStatus?.daysRemaining ?? null;
+  const subStatus = subscriptionStatus?.subscriptionStatus ?? null;
+  const itemCount = stats?.totalItems ?? 0;
+  const atLimit = !isPremium && itemCount >= FREE_PANTRY_LIMIT;
 
   const sorted = useMemo(() => {
     if (!pantryItems) return [];
@@ -92,6 +99,7 @@ export default function PantryPage() {
       <NavBar
         isPremium={isPremium}
         daysRemaining={daysRemaining}
+        subscriptionStatus={subStatus}
         isAdmin={isAdmin ?? false}
       />
 
@@ -103,25 +111,71 @@ export default function PantryPage() {
           Your Pantry
         </h1>
 
-        {/* Health score banner */}
-        {stats && stats.averageScore !== null && bannerStyle && (
-          <div
-            className="rounded-xl px-5 py-4 flex items-center justify-between"
-            style={{ background: bannerStyle.bg }}
-            data-testid="health-score-banner"
-          >
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: bannerStyle.color }}>
-                Pantry health score
-              </p>
-              <p className="text-3xl font-bold mt-0.5" style={{ color: bannerStyle.color }}>
-                {stats.averageScore.toFixed(1)}
-                <span className="text-base font-semibold ml-2">· {avgTier}</span>
-              </p>
+        {/* Gate 6: Pantry health score — premium sees full score; free sees locked teaser */}
+        {stats && stats.totalItems > 0 && (
+          isPremium && stats.averageScore !== null && bannerStyle ? (
+            <div
+              className="rounded-xl px-5 py-4 flex items-center justify-between"
+              style={{ background: bannerStyle.bg }}
+              data-testid="health-score-banner"
+            >
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: bannerStyle.color }}>
+                  Pantry health score
+                </p>
+                <p className="text-3xl font-bold mt-0.5" style={{ color: bannerStyle.color }}>
+                  {stats.averageScore.toFixed(1)}
+                  <span className="text-base font-semibold ml-2">· {avgTier}</span>
+                </p>
+              </div>
+              <span className="text-4xl" aria-hidden="true">
+                {avgTier === "Clean" ? "✅" : avgTier === "Watch" ? "⚠️" : avgTier === "Caution" ? "🟠" : "🔴"}
+              </span>
             </div>
-            <span className="text-4xl" aria-hidden="true">
-              {avgTier === "Clean" ? "✅" : avgTier === "Watch" ? "⚠️" : avgTier === "Caution" ? "🟠" : "🔴"}
+          ) : !isPremium ? (
+            <div
+              className="rounded-xl px-5 py-4 flex items-center justify-between bg-[var(--surface-2)]"
+              data-testid="health-score-teaser"
+            >
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--ink-4)]">
+                  Pantry health score
+                </p>
+                <p className="text-3xl font-bold mt-0.5 text-[var(--ink-4)] blur-sm select-none">
+                  7.4
+                </p>
+                <p className="text-xs text-[var(--ink-4)] mt-1">
+                  {GATE_COPY.pantryHealthScore}
+                </p>
+                <Link
+                  href="/upgrade"
+                  className="text-xs text-[var(--teal-dark)] font-medium underline mt-1 inline-block"
+                >
+                  Start free trial
+                </Link>
+              </div>
+              <span className="text-4xl opacity-20" aria-hidden="true">📊</span>
+            </div>
+          ) : null
+        )}
+
+        {/* Gate 5: Pantry counter — visible from first save, amber at 8+, cap at 10 */}
+        {stats && stats.totalItems > 0 && !isPremium && (
+          <div className="flex items-center gap-2" data-testid="pantry-counter">
+            <span
+              className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                itemCount >= 8
+                  ? "bg-amber-100 text-amber-700"
+                  : "bg-[var(--surface-2)] text-[var(--ink-3)]"
+              }`}
+            >
+              {itemCount} / {FREE_PANTRY_LIMIT} saved
             </span>
+            {itemCount >= 8 && !atLimit && (
+              <span className="text-xs text-amber-700">
+                Almost full — upgrade for unlimited
+              </span>
+            )}
           </div>
         )}
 
@@ -186,6 +240,32 @@ export default function PantryPage() {
             >
               Browse products
             </a>
+          </div>
+        )}
+
+        {/* Gate 5 limit banner — shown when pantry is at limit for free users */}
+        {atLimit && (
+          <div
+            className="rounded-xl border border-amber-200 bg-amber-50 p-4"
+            data-testid="pantry-limit-banner"
+          >
+            <p className="text-sm font-semibold text-amber-800 mb-1">
+              {GATE_COPY.pantryFull(FREE_PANTRY_LIMIT)}
+            </p>
+            <div className="flex items-center gap-3 mt-2">
+              {/* Blurred health score visual */}
+              <div className="rounded-lg bg-amber-100 px-3 py-2 blur-sm select-none text-sm font-bold text-amber-700">
+                7.4 · Watch
+              </div>
+              <div>
+                <Link
+                  href="/upgrade"
+                  className="text-xs font-semibold text-[var(--teal)] underline"
+                >
+                  Upgrade for unlimited pantry
+                </Link>
+              </div>
+            </div>
           </div>
         )}
 

@@ -12,4 +12,13 @@ crons.interval(
   {}
 );
 
+// Expire free trials that have passed their premiumUntil date.
+// Gracefully downgrades users to free tier — no data loss.
+crons.interval(
+  "expire trials",
+  { hours: 1 },
+  internal.users.expireTrials,
+  {}
+);
+
 export default crons;
