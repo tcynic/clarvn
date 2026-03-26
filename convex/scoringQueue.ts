@@ -164,20 +164,18 @@ export const getPendingBatch = internalQuery({
 export const getAlternativesForProduct = query({
   args: { productId: v.id("products") },
   handler: async (ctx, args) => {
-    const entry = await ctx.db
-      .query("alternatives_queue")
-      .withIndex("by_productId", (q) => q.eq("productId", args.productId))
-      .first();
-
-    if (!entry || entry.status !== "done" || !entry.alternatives) return [];
+    const entries = await ctx.db
+      .query("scoring_queue")
+      .withIndex("by_sourceProductId_and_status", (q) =>
+        q.eq("sourceProductId", args.productId).eq("status", "done")
+      )
+      .filter((q) => q.eq(q.field("source"), "alternative"))
+      .collect();
 
     const products = await Promise.all(
-      entry.alternatives.map((alt) =>
-        ctx.db
-          .query("products")
-          .withIndex("by_name", (q) => q.eq("name", alt.name))
-          .first()
-      )
+      entries
+        .filter((e) => e.productId != null)
+        .map((e) => ctx.db.get(e.productId!))
     );
 
     return products.filter(Boolean);

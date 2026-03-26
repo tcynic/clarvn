@@ -14,7 +14,18 @@ export function ProfilePanel({
   const hasConditions = profile.conditions.length > 0;
   const hasSensitivities = profile.sensitivities.length > 0;
   const hasMotivation = profile.motivation.length > 0;
-  const isEmpty = !hasConditions && !hasSensitivities && !hasMotivation;
+  const hasDietary = (profile.dietaryRestrictions ?? []).length > 0;
+  const hasIngredientsToAvoid = (profile.ingredientsToAvoid ?? []).length > 0;
+  const hasHousehold =
+    profile.lifeStage === "household" &&
+    (profile.householdMembers ?? []).length > 0;
+  const isEmpty =
+    !hasConditions &&
+    !hasSensitivities &&
+    !hasMotivation &&
+    !hasDietary &&
+    !hasIngredientsToAvoid &&
+    !hasHousehold;
 
   return (
     <div className="fixed inset-0 bg-black/30 flex items-end sm:items-center justify-center z-50 p-4" onClick={onClose}>
@@ -54,6 +65,36 @@ export function ProfilePanel({
                 <div className="flex flex-wrap gap-2">
                   {profile.sensitivities.map((s) => (
                     <span key={s} className="pill">{s}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {hasDietary && (
+              <div>
+                <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Dietary restrictions</p>
+                <div className="flex flex-wrap gap-2">
+                  {profile.dietaryRestrictions!.map((d) => (
+                    <span key={d} className="pill">{d}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {hasHousehold && (
+              <div>
+                <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Household</p>
+                <div className="flex flex-wrap gap-2">
+                  {profile.householdMembers!.map((m, i) => (
+                    <span key={i} className="pill">{m.role}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {hasIngredientsToAvoid && (
+              <div>
+                <p className="text-xs font-semibold text-[var(--ink-3)] uppercase tracking-wide mb-2">Ingredients to flag</p>
+                <div className="flex flex-wrap gap-2">
+                  {profile.ingredientsToAvoid!.map((ing) => (
+                    <span key={ing} className="pill">{ing}</span>
                   ))}
                 </div>
               </div>

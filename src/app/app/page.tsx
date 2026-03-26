@@ -30,7 +30,13 @@ export default function ShoppingListPage() {
   const [selectedName, setSelectedName] = useState<string | null>(null);
   const [showProfile, setShowProfile] = useState(false);
   const [profile, setProfile] = useState<UserProfile>({
-    motivation: [], conditions: [], sensitivities: [],
+    motivation: [],
+    conditions: [],
+    sensitivities: [],
+    dietaryRestrictions: [],
+    lifeStage: "",
+    householdMembers: [],
+    ingredientsToAvoid: [],
   });
   const [activeTab, setActiveTab] = useState<ActiveTab>("browse");
 
@@ -83,11 +89,13 @@ export default function ShoppingListPage() {
   useEffect(() => {
     if (convexProfile) {
       const synced: UserProfile = {
-        motivation: convexProfile.motivation
-          ? convexProfile.motivation.split(", ").filter(Boolean)
-          : profile.motivation,
-        conditions: convexProfile.conditions,
-        sensitivities: convexProfile.sensitivities,
+        motivation: convexProfile.motivation ?? [],
+        conditions: convexProfile.conditions ?? [],
+        sensitivities: convexProfile.sensitivities ?? [],
+        dietaryRestrictions: convexProfile.dietaryRestrictions ?? [],
+        lifeStage: convexProfile.lifeStage ?? "",
+        householdMembers: convexProfile.householdMembers ?? [],
+        ingredientsToAvoid: convexProfile.ingredientsToAvoid ?? [],
       };
       setProfile(synced);
       saveProfile(synced);

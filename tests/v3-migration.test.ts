@@ -44,7 +44,7 @@ describe("Epic 1 — createOrUpdateProfile", () => {
 
     const profile = await asUser.query(api.userProfiles.getMyProfile, {});
     expect(profile).not.toBeNull();
-    expect(profile?.motivation).toBe("General health");
+    expect(profile?.motivation).toEqual(["General health"]);
     expect(profile?.conditions).toEqual(["ADHD"]);
     expect(profile?.sensitivities).toEqual(["Migraines"]);
   });
@@ -69,7 +69,7 @@ describe("Epic 1 — createOrUpdateProfile", () => {
     });
 
     const profile = await asUser.query(api.userProfiles.getMyProfile, {});
-    expect(profile?.motivation).toBe("Kids");
+    expect(profile?.motivation).toEqual(["Kids"]);
     expect(profile?.conditions).toEqual(["ADHD", "IBS"]);
     expect(profile?.sensitivities).toEqual(["Migraines"]);
 
